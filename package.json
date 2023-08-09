@@ -1,0 +1,52 @@
+{
+  "name": "zaiyswears",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "@emotion/cache": "11.6.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "11.4.0",
+    "@emotion/styled": "11.6.0",
+    "@mui/lab": "^5.0.0-alpha.114",
+    "@mui/material": "^5.11.3",
+    "@react-icons/all-files": "^4.1.0",
+    "apexcharts": "^3.23.1",
+    "axios": "^1.2.2",
+    "body-parser": "^1.20.1",
+    "bootstrap": "^5.2.3",
+    "clsx": "1.1.1",
+    "crypto-js": "^4.1.1",
+    "feather-icons-react": "^0.5.0",
+    "framer-motion": "^10.15.1",
+    "init": "^0.1.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.0",
+    "multer": "^1.4.5-lts.1",
+    "next": "13.0.6",
+    "next-connect": "^0.13.0",
+    "react": "18.2.0",
+    "react-apexcharts": "^1.4.0",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-icons": "^4.7.1",
+    "react-player": "^2.12.0",
+    "react-tilt": "^1.0.2",
+    "react-toastify": "^9.1.1",
+    "react-top-loading-bar": "^2.3.1",
+    "styled-components": "^6.0.0-rc.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "install": "^0.13.0",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "typescript": "4.9.4"
+  }
+}
