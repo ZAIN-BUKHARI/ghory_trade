@@ -1,9 +1,12 @@
 import React from 'react'
-import Contact from '../newComp/Contact'
-
+import NewContact from '../newComp/NewContact'
+import Contact from "../newComp/Contact"
 const contact = () => {
   return (
+    <>
+    <NewContact/>
     <Contact/>
+    </>
   )
 }
 

@@ -31,7 +31,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcPhone/>
           </span>
-          <Link  href={'/info'}>Contact</Link>
+          <Link  href={'/contact'}>Contact</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
