@@ -1,11 +1,12 @@
 import { useState,useEffect } from 'react'
 // import Navbar from '../components/Navbar'
-// import Footer from '../components/Footer'
 import '../styles/globals.css'
 import { useRouter } from 'next/router'
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
+import Footer from '../newComp/Footer';
+import Sidebar from '../newComp/Sidebar';
 
 
 
@@ -154,8 +155,9 @@ function MyApp({ Component, pageProps
   {/* <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/> */}
    {/* <Navbar   /> */}
    {/* {key &&  <Navbar logout={logout} user={user} key={key} cart={cart} AddToCart={AddToCart} removeFromCart={removeFromCart} subTotal={subTotal} clearCart={clearCart}  />} */}
+  <Sidebar/>
   <Component  {...pageProps} />
-  {/* <Footer /> */}
+   <Footer /> 
   </>
   )
 }

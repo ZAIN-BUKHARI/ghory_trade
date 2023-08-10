@@ -6,7 +6,8 @@ import Logout from '../SVG/Logout'
 import Account from '../SVG/Account'
 import Read from '../SVG/Read'
 import { Settings } from 'react-feather'
-
+import Link from 'next/link'
+import Email from '../SVG/Email'
 
 const Sidebar = () => {
   return (
@@ -14,7 +15,7 @@ const Sidebar = () => {
     <aside className="sidebar text-[10px]">
       <div className="logo">
         <img src="/go1.png" alt="logo"/>
-        <h2 className='font-serif' >ghory.trading</h2>
+        <h2 className='font-serif text-3xl' >ghory.trading</h2>
       </div>
       <ul className="links">
         <h4 >Main Menu</h4>
@@ -23,19 +24,19 @@ const Sidebar = () => {
             <Dashboard/>
           </span>
         
-          <a href="#">Dashboard</a>
+          <Link href={'/'}>Dashboard</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <Dollar/>
+            <Email/>
           </span>
-          <a href="#">Revenue</a>
+          <Link  href={'/info'}>Contact</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
             <Report/>
           </span>
-          <a href="#">Reports</a>
+          <Link href="/service">Service</Link>
         </li>
         {/* <hr/> */}
         <hr/>
