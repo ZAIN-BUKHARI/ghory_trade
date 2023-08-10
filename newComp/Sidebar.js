@@ -1,13 +1,14 @@
 import React from 'react'
-import Dashboard from '../SVG/dashboard'
-import Dollar from '../SVG/Dollar'
-import Report from '../SVG/Report'
-import Logout from '../SVG/Logout'
-import Account from '../SVG/Account'
-import Read from '../SVG/Read'
-import { Settings } from 'react-feather'
 import Link from 'next/link'
-import Email from '../SVG/Email'
+import { FcAbout } from 'react-icons/fc';
+import { FcBriefcase } from 'react-icons/fc';
+import { FcBarChart } from 'react-icons/fc';
+import { FcList } from 'react-icons/fc';
+import { FcBusinessContact } from 'react-icons/fc';
+import { FcAutomatic } from 'react-icons/fc';
+import { FcLeft } from 'react-icons/fc';
+import { FcServices } from 'react-icons/fc';
+import { FcPhone } from 'react-icons/fc';
 
 const Sidebar = () => {
   return (
@@ -21,47 +22,60 @@ const Sidebar = () => {
         <h4 >Main Menu</h4>
         <li>
           <span className="material-symbols-outlined">
-            <Dashboard/>
+            <FcList/>
           </span>
         
           <Link href={'/'}>Dashboard</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <Email/>
+            <FcPhone/>
           </span>
           <Link  href={'/info'}>Contact</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <Report/>
+            <FcServices/>
           </span>
           <Link href="/service">Service</Link>
         </li>
-        {/* <hr/> */}
+        <li>
+          <span className="material-symbols-outlined">
+            <FcBriefcase/>
+          </span>
+          <Link href="/project">Project</Link>
+        </li>
+        <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcAbout />
+          </span>
+          <Link href="/about">About us</Link>
+        </li>
+        <hr/>
         <hr/>
         <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
-            <Read/>
+            <FcBarChart/>
           </span>
           <a href="#">Overview</a>
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <Account/>
+            <FcBusinessContact/>
           </span>
           <a href="#">Account</a>
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <Settings/>
+            <FcAutomatic/>
           </span>
           <a href="#">Settings</a>
         </li>
         <li className="logout-link">
           <span className="material-symbols-outlined">
-            <Logout/>
+            <FcLeft/>
           </span>
           <a href="#">Logout</a>
         </li>
