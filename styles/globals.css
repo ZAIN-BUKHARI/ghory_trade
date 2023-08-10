@@ -566,9 +566,10 @@ p {
 
 /* Hero Section */
 #hero {
-	background-image: url('/hero-bg.png');
+	background-image: url('/main.jpg');
 	background-size: cover;
-	background-position: top center;
+	/* background-position: top center; before  */
+	background-position:  center;  
 	position: relative;
 	z-index: 1;
 }
