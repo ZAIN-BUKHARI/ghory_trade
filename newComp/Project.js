@@ -50,7 +50,7 @@ const Project = () => {
             <img src="https://images.pexels.com/photos/5980885/pexels-photo-5980885.jpeg?auto=compress&cs=tinysrgb&w=600" alt="img"/>
           </div>
         </div>
-        <div class="project-item">
+        {/* <div class="project-item">
           <div class="project-info">
             <h1>Project 5</h1>
             <h2>Coding is Love</h2>
@@ -61,7 +61,7 @@ const Project = () => {
           <div class="project-img">
             <img src="img-1.png" alt="img"/>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   </section>
