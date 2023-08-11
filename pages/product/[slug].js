@@ -1,3 +1,13 @@
+import React from 'react'
+
+const [slug] = () => {
+  return (
+    <div>[slug]</div>
+  )
+}
+
+export default [slug]
+
 // import { useRouter } from 'next/router'
 // import { useState } from 'react'
 // import { useEffect } from 'react'
