@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps
     router.events.on('routeChangeComplete', ()=>{
       setProgress(100)
     })
+   
     },[])
   
 
@@ -33,7 +34,7 @@ function MyApp({ Component, pageProps
   <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
   <Sidebar/>
   <Component  {...pageProps} />
-   <Footer /> 
+   <Footer  /> 
   </>
   )
 }

@@ -1069,3 +1069,15 @@ p {
 	}
 }
 /* End  Media Query For Desktop */
+
+
+/* video =========================== */
+
+.videoSize
+{
+	width: 100vw;
+	height: 100vh;
+	}
+	.About-video{
+		height: 200px;
+	} 
