@@ -8,7 +8,7 @@ const Section = () => {
       <div>
         <h1>Welcome, <span></span></h1>
         <h1>We are <span></span></h1>
-        <h1>ghory.trade <span></span></h1>
+        <h1>ghory.traders <span></span></h1>
         <a href="#projects" type="button" className="cta">Start</a>
       </div>
     </div>

@@ -53,7 +53,7 @@
 }
 
 .logo img {
-    width: 60px;
+    width: 70px;
     border-radius: 30%;
 }
 
@@ -347,6 +347,7 @@
   color: #00bcd4;
 }
 
+
 @media (max-width: 991px) {
 	/* side bar media  */
 	.sidebar {
@@ -428,7 +429,20 @@ p {
 	letter-spacing: 0.2rem;
 	text-align: center;
 }
+.section-title-sidebar {
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	font-family: sans-serif;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	/* letter-spacing: 0.2rem; */
+	text-align: center;
+}
 .section-title span {
+	color: crimson;
+}
+.section-title-sidebar span {
 	color: crimson;
 }
 
