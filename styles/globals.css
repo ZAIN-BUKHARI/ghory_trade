@@ -262,7 +262,9 @@
 	}
 	/* ABOUT US PAGE MEDIA QUERY  */
 	.MEDIA-LEFT-ABOUT{
-		margin-left: 20px;
+		margin-left: 50px;
+		width: 200px !important;
+		height: 200px !important;
 	}
 	/* Contact US PAGE MEDIA QUERY  */
 	.MEDIA-LEFT-CONTACT{
@@ -270,10 +272,12 @@
 	}
 	/* footer  */
 	.MEDIA-FOOTER-COPYRIGHT{
-		padding: 10px;
+		/* padding: 10px; */
+		font-size: 10px !important;
 	}
 	.media-footer-font{
-		font-size: 10px;
+		/* font-size: 10px; */
+		font-size: 10px !important;
 	}
 	/* side bar media  */
 	.sidebar {

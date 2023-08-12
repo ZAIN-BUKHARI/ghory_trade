@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import '../styles/auth.css'
 import '../styles/invest.css'
 import '../styles/sidebar.css'
+import '../styles/intro.css'
 import { useRouter } from 'next/router'
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
