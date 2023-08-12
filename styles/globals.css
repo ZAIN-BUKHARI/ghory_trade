@@ -273,6 +273,7 @@
 	/* footer  */
 	.MEDIA-FOOTER-COPYRIGHT{
 		/* padding: 10px; */
+		margin-left: 5px;
 		font-size: 10px !important;
 	}
 	.media-footer-font{
