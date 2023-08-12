@@ -22,130 +22,7 @@
 
 
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 110px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(17px);
-    --webkit-backdrop-filter: blur(17px);
-    border-right: 1px solid rgba(255, 255, 255, 0.7);
-    transition: width 0.3s ease;
-    z-index: 10;
-    font-size: 20px;
-}
 
-.sidebar:hover {
-    width: 260px;
-	.section-title-sidebar {
-		font-size: 24px;
-		font-weight: bold;
-		color: black;
-		font-family: sans-serif;
-		margin-bottom: 10px;
-		text-transform: uppercase;
-		text-align: center;
-	}
-	
-}
-
-.sidebar .logo {
-    color: #000;
-    display: flex;
-    align-items: center;
-    padding: 25px 10px 15px;
-	img{
-		width: 70px;
-
-	}
-    
-}
-
-.logo img {
-    width: 50px;
-    border-radius: 30%;
-}
-
-.logo h2 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-left: 15px;
-    display: none;
-}
-
-.sidebar:hover .logo h2 {
-    display: block;
-}
-
-
-.sidebar .links {
-    list-style: none;
-    margin-top: 20px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    height: calc(100% - 140px);
-}
-
-.sidebar .links::-webkit-scrollbar {
-    display: none;
-}
-
-.links li {
-    display: flex;
-    border-radius: 4px;
-    align-items: center;
-}
-
-.links li:hover {
-    cursor: pointer;
-    background: #fff;
-}
-
-.links h4 {
-    color: #222;
-    font-weight: 500;
-    display: none;
-    margin-bottom: 10px;
-}
-
-.sidebar:hover .links h4 {
-    display: block;
-}
-
-.links hr {
-    margin: 10px 8px;
-    border: 1px solid #4c4c4c;
-}
-
-.sidebar:hover .links hr {
-    border-color: transparent;
-}
-
-.links li span {
-    padding: 12px 10px;
-}
-
-.links li a {
-    padding: 10px;
-    color: #000;
-    display: none;
-    font-weight: 500;
-    white-space: nowrap;
-    text-decoration: none;
-}
-
-.sidebar:hover .links li a {
-    display: block;
-}
-
-.links .logout-link {
-    margin-top: 20px;
-}
 
 
 /* ------------------ABOUT------------------- */
@@ -364,6 +241,13 @@
 
 
 @media (max-width: 991px) {
+	.Service-Media-P{
+		padding-left: 100px;
+	}
+	
+	.service-bottom{
+		margin-left: 20px;
+	}
 	/* side bar media  */
 	.sidebar {
 		position: fixed;
@@ -1005,6 +889,7 @@ p {
 		flex-basis: 45%;
 		margin: 2.5%;
 	}
+	
 	/* End Services Section */
 
 	/* Project */
@@ -1117,25 +1002,13 @@ p {
 		flex-basis: 22%;
 		margin: 1.5%;
 	}
+	
 }
 /* End  Media Query For Desktop */
 
 
 /* video =========================== */
 
-.videoSize
-{
-	width: 100vw;
-	height: 100vh;
-	}
-	.About-video{
-		height: 200px;
-	} 
 
 
 
-/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////LOGIN CSS HERE START /////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////// */

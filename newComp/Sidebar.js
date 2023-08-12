@@ -64,7 +64,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcBarChart/>
           </span>
-          <a href="#">Overview</a>
+          <a href="#">Invest</a>
         </li>
         <li>
           <span className="material-symbols-outlined">
