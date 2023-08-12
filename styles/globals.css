@@ -264,9 +264,16 @@
 	.MEDIA-LEFT-ABOUT{
 		margin-left: 20px;
 	}
-	/* ABOUT US PAGE MEDIA QUERY  */
-	.MEDIA-LEFT-ABOUT{
+	/* Contact US PAGE MEDIA QUERY  */
+	.MEDIA-LEFT-CONTACT{
 		margin-left: 10px;
+	}
+	/* footer  */
+	.MEDIA-FOOTER-COPYRIGHT{
+		padding: 10px;
+	}
+	.media-footer-font{
+		font-size: 10px;
 	}
 	/* side bar media  */
 	.sidebar {

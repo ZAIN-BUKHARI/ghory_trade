@@ -10,7 +10,7 @@ const router = useRouter()
       <div class="brand">
         <h1><span>g</span>hory <span>T</span>aders</h1>
       </div>
-      <h2>Your Complete Investment Solution</h2>
+      <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
       <div class="social-icon">
         <div class="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
@@ -25,7 +25,7 @@ const router = useRouter()
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/behance.png" /></a>
         </div>
       </div>
-      <p>Copyright © 2023 ghory.trade. All rights reserved</p>
+      <p className='MEDIA-FOOTER-COPYRIGHT'>Copyright © 2023 ghory.trade. All rights reserved</p>
     </div>
   </section>)}
     </>
