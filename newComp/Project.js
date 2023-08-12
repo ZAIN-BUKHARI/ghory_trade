@@ -6,9 +6,9 @@ const Project = () => {
      <section id="projects">
     <div class="projects container">
       <div class="projects-header">
-        <h1 class="section-title">Our Yearly <span>Projects</span></h1>
+        <h1 class="section-title MEDIA-LEFT-PROJECT">Our Yearly <span>Projects</span></h1>
       </div>
-      <div class="all-projects">
+      <div class="all-projects MEDIA-LEFT-PROJECT">
         <div class="project-item">
           <div class="project-info">
             <h1>Project 1</h1>

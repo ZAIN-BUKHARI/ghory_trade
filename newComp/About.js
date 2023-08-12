@@ -6,7 +6,7 @@ const About = () => {
      <section id="about">
     <div class="about container">
       <div class="col-left">
-        <div class="about-img">
+        <div class="about-img MEDIA-LEFT-ABOUT">
           <img src="two.png" alt="img"/>
         </div>
       </div>

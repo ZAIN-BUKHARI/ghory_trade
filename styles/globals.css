@@ -241,12 +241,31 @@
 
 
 @media (max-width: 991px) {
+	/* service section fr media query */
 	.Service-Media-P{
 		padding-left: 100px;
 	}
 	
 	.service-bottom{
 		margin-left: 20px;
+	}
+
+
+	/* SECTION MEDIA QUERT  */
+	.MEDIA-CON-SECTION{
+		margin-left: 10px !important;
+	}
+	/* PROJECT MEDIA QUERY  */
+	.MEDIA-LEFT-PROJECT{
+		margin-left: 20px;
+	}
+	/* ABOUT US PAGE MEDIA QUERY  */
+	.MEDIA-LEFT-ABOUT{
+		margin-left: 20px;
+	}
+	/* CONTACT US PAGE MEDIA QUERY  */
+	.MEDIA-LEFT-CONTACT{
+		margin-left: 10px;
 	}
 	/* side bar media  */
 	.sidebar {
