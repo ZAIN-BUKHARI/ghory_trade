@@ -2,13 +2,16 @@
     height: 100%;
     width: 100%;
     background-color: black;
-}
-.INTRO{
-    width: 50vw;
+  }
+  .INTRO{
+  position: absolute;
+  right: 50%;
+  top: 85%;
+    /* width: 50vw;
     height: 100vh;
     display: flex;
     justify-content: end;
-    align-items: center;
+    align-items: center; */
 }
 #checkbox {
     display: none;

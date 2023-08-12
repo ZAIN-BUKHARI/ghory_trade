@@ -4,7 +4,7 @@ const Footer = () => {
 const router = useRouter()
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/login'  && (
+    {router.asPath!='/register' && router.asPath!='/login' && router.asPath!='/intro'  && (
     <section id="footer">
     <div class="footer container">
       <div class="brand">

@@ -1,9 +1,9 @@
 import React from 'react'
-import Intro from '../newComp/Intro'
+import IntroVideo from '../newComp/IntroVideo'
 
 const intro = () => {
   return (
-    <Intro/>
+    <IntroVideo/>
   )
 }
 

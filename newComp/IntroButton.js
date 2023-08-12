@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const Intro = () => {
+const IntroButton = () => {
   const router = useRouter()
   const submit = () =>{
     setTimeout(()=>{
@@ -30,4 +30,4 @@ const Intro = () => {
   )
 }
 
-export default Intro
+export default IntroButton

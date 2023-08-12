@@ -14,7 +14,7 @@ const Sidebar = () => {
   const router = useRouter()
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/login'  && (
+    {router.asPath!='/register' && router.asPath!='/login' && router.asPath!='/intro'  && (
 
       
     <aside className="sidebar text-[10px]">
