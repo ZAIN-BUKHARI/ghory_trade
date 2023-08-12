@@ -9,10 +9,14 @@ import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
 import { FcServices } from 'react-icons/fc';
 import { FcPhone } from 'react-icons/fc';
-
+import { useRouter } from 'next/router';
 const Sidebar = () => {
+  const router = useRouter()
   return (
     <>
+    {router.asPath!='/register' && router.asPath!='/login'  && (
+
+      
     <aside className="sidebar text-[10px]">
       <div className="logo">
         <img src="/ONEE.png" alt="logo"/>
@@ -78,10 +82,10 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-          <a href="#">Logout</a>
+          <Link href="/register">Logout</Link>
         </li>
       </ul>
-    </aside>
+    </aside>)}
 
     
     </>

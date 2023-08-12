@@ -1,12 +1,10 @@
-import React from 'react'
 import { useRouter } from 'next/router'
-const Footer = ({Hide}) => {
-  const router = useRouter()
-  console.log(router.asPath)
-  if(!router.asPath=='/intro'){
-
+import React from 'react'
+const Footer = () => {
+const router = useRouter()
   return (
     <>
+    {router.asPath!='/register' && router.asPath!='/login'  && (
     <section id="footer">
     <div class="footer container">
       <div class="brand">
@@ -29,16 +27,10 @@ const Footer = ({Hide}) => {
       </div>
       <p>Copyright © 2023 ghory.trade. All rights reserved</p>
     </div>
-  </section>
+  </section>)}
     </>
   )
 }
-else{
-  return(
-    <>
-    </>
-  )
-}
-}
+
 
 export default Footer

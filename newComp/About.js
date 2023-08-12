@@ -12,13 +12,10 @@ const About = () => {
       </div>
       <div class="col-right">
         <h1 class="section-title">About <span>us</span></h1>
-        <h2>Dummy Dummy Dummy</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, velit alias eius non illum beatae atque
-          repellat ratione qui veritatis repudiandae adipisci maiores. At inventore necessitatibus deserunt
-          exercitationem cumque earum omnis ipsum rem accusantium quis, quas quia, accusamus provident suscipit magni!
-          Expedita sint ad dolore, commodi labore nihil velit earum ducimus nulla quae nostrum fugit aut, deserunt
-          reprehenderit libero enim!</p>
-        <a href="#" class="cta">Dummy Dummy</a>
+        <h2>ghory trade</h2>
+        <p>
+We are a dynamic trading company specializing in the exchange of commodities that drive global markets - oil, gold, and Bitcoin. With a deep understanding of the intricacies of these diverse assets, we navigate the ever-evolving landscape of international trade, utilizing advanced strategies and technologies to seize opportunities and manage risks effectively. Our commitment to integrity, innovation, and maximizing value for our partners defines our approach, making us a trusted player in the complex world of commodity trading.</p>
+        <a href="#" class="cta">Join us</a>
       </div>
     </div>
   </section>

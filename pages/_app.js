@@ -1,11 +1,13 @@
 import { useState,useEffect } from 'react'
 import '../styles/globals.css'
+import '../styles/auth.css'
 import { useRouter } from 'next/router'
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
 import Sidebar from '../newComp/Sidebar';
+// import AuthForm from '../newComp/AuthForm';
 
 
 
@@ -32,6 +34,7 @@ function MyApp({ Component, pageProps
   
 <>
   <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
+  {/* <AuthForm/> */}
   <Sidebar/>
   <Component  {...pageProps} />
    <Footer  /> 
