@@ -243,7 +243,8 @@
 @media (max-width: 991px) {
 	/* service section fr media query */
 	.Service-Media-P{
-		padding-left: 100px;
+		margin-left: 10;
+		padding: 50px;
 	}
 	
 	.service-bottom{
@@ -263,8 +264,8 @@
 	.MEDIA-LEFT-ABOUT{
 		margin-left: 20px;
 	}
-	/* CONTACT US PAGE MEDIA QUERY  */
-	.MEDIA-LEFT-CONTACT{
+	/* ABOUT US PAGE MEDIA QUERY  */
+	.MEDIA-LEFT-ABOUT{
 		margin-left: 10px;
 	}
 	/* side bar media  */
