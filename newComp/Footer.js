@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
+import Balls from '../universe.io/Balls'
 const Footer = () => {
 const router = useRouter()
   return (
@@ -12,18 +13,16 @@ const router = useRouter()
       </div>
       <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
       <div class="social-icon">
-        <div class="social-item">
+        <Balls/>
+        {/* <div class="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
         </div>
         <div class="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
         </div>
-        {/* <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png" /></a>
-        </div> */}
         <div class="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/behance.png" /></a>
-        </div>
+        </div> */}
       </div>
       <p className='MEDIA-FOOTER-COPYRIGHT'>Copyright © 2023 ghory.trade. All rights reserved</p>
     </div>

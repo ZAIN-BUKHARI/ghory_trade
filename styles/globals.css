@@ -273,7 +273,7 @@
 	/* footer  */
 	.MEDIA-FOOTER-COPYRIGHT{
 		/* padding: 10px; */
-		margin-left: 10px;
+		margin-left: 15px;
 		font-size: 10px !important;
 	}
 	.media-footer-font{
@@ -370,10 +370,12 @@ p {
 	text-align: center;
 }
 .section-title span {
-	color: crimson;
+	/* color: crimson; */
+	color: rgb(35, 68, 177);
 }
 .section-title-sidebar span {
-	color: crimson;
+	/* color: crimson; */
+	color: rgb(35, 68, 177);
 }
 
 .cta {
@@ -381,7 +383,8 @@ p {
 	padding: 10px 30px;
 	color: white;
 	background-color: transparent;
-	border: 2px solid crimson;
+	/* border: 2px solid crimson; */
+	border: 2px solid rgb(35, 68, 177);;
 	font-size: 2rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1rem;
@@ -391,7 +394,9 @@ p {
 }
 .cta:hover {
 	color: white;
-	background-color: crimson;
+	/* background-color: crimson; */
+    background-color: rgb(35, 68, 177);	
+
 	
 }
 .brand h1 {
@@ -400,7 +405,9 @@ p {
 	color: white;
 }
 .brand h1 span {
-	color: crimson;
+	/* color: crimson; */
+	color: rgb(35, 68, 177);
+
 }
 
 /* Header section */
@@ -472,7 +479,8 @@ p {
 	letter-spacing: initial;
 }
 #header .nav-list ul li:hover a {
-	color: crimson;
+	/* color: crimson; */
+	color: rgb(35, 68, 177);
 }
 #header .hamburger {
 	height: 60px;
@@ -581,7 +589,8 @@ p {
 	left: 0;
 	height: 100%;
 	width: 0;
-	background-color: crimson;
+	/* background-color: crimson; */
+	background-color: rgb(35, 68, 177);
 	animation: text_reveal_box 1s ease;
 	animation-delay: 0.5s;
 }
@@ -776,7 +785,8 @@ p {
 	top: 19px;
 	height: 98%;
 	width: 98%;
-	border: 7px solid crimson;
+	/* border: 7px solid crimson; */
+	border: 7px solid rgb(35, 68, 177);
 	z-index: -1;
 }
 /* End About Section */
@@ -894,7 +904,8 @@ p {
 }
 @keyframes text_reveal_name {
 	100% {
-		color: crimson;
+		/* color: crimson; */
+		color: rgb(35, 68, 177);
 		font-weight: 500;
 	}
 }
@@ -959,7 +970,8 @@ p {
 		top: 34px;
 		height: 98%;
 		width: 98%;
-		border: 10px solid crimson;
+		/* border: 10px solid crimson; */
+		border: 10px solid rgb(35, 68, 177);;
 	}
 	#about .col-right {
 		text-align: left;

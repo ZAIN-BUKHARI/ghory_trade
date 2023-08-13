@@ -1,23 +1,22 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,createContext } from 'react'
+import { ThemeContext } from '../Context/ThemeContext';
 import '../styles/globals.css'
 import '../styles/auth.css'
-import '../styles/invest.css'
 import '../styles/sidebar.css'
 import '../styles/intro.css'
+import '../styles/balls.css'
+import '../styles/plan.css'
 import { useRouter } from 'next/router'
-import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
 import Sidebar from '../newComp/Sidebar';
-
-
+import Loading from '../universe.io/Loading'
 
 function MyApp({ Component, pageProps
- }) {
+}) {
   const router = useRouter()
   const [progress, setProgress] = useState(0)
-  
   useEffect(() => {
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
@@ -31,15 +30,17 @@ function MyApp({ Component, pageProps
    
     },[])
   
-
+    const [loader,setLoader]=useState(false)
   return(
   
 <>
-  <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
-  {/* <AuthForm/> */}
-  <Sidebar/>
-  <Component  {...pageProps} />
-   <Footer  /> 
+<ThemeContext.Provider value={{setLoader}}>
+    <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
+    <Sidebar/>
+    {loader && <Loading/>}
+    <Component  {...pageProps} />
+    <Footer  /> 
+</ThemeContext.Provider>
   </>
   )
 }

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-
+import LightButton from '../universe.io/LightButton'
 const IntroButton = () => {
   const router = useRouter()
   const submit = () =>{
@@ -9,19 +9,12 @@ const IntroButton = () => {
     },2000)
   }
   return (
-      // <video className='videocss h-fullz  ' src='final.mp4 ' autoPlay muted loop />
      <>
      <div className='back-intro'>
 
      <div className='
      INTRO'>
-
-    <form >
-      <input type="checkbox" id="checkbox" onChange={submit}/>
-    <label for="checkbox" class="switch">
-        <div class="powersign"></div>
-    </label>
-    </form>
+     <LightButton/>
       
      </div>
        </div>

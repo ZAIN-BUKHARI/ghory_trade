@@ -19,7 +19,7 @@ const Sidebar = () => {
       
     <aside className="sidebar text-[10px]">
       <div className="logo">
-        <img src="/ONEE.png" alt="logo"/>
+        <img src="go2.png" alt="logo"/>
         {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
         {/* <h1 class="section-title-sidebar">Ghory <span>Trading</span></h1> */}
       </div>

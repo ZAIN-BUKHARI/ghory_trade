@@ -1,10 +1,10 @@
 import React from 'react'
-import InvestForm from '../newComp/InvestForm'
+import PlanForm from '../universe.io/PlanForm'
 
 const investment = () => {
   return (
     <>
-    <InvestForm/>
+    <PlanForm/>
     </>
   )
 }
