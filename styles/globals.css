@@ -376,6 +376,7 @@ p {
 .section-title-sidebar span {
 	/* color: crimson; */
 	color: rgb(35, 68, 177);
+	
 }
 
 .cta {
@@ -384,7 +385,8 @@ p {
 	color: white;
 	background-color: transparent;
 	/* border: 2px solid crimson; */
-	border: 2px solid rgb(35, 68, 177);;
+	/* border: 2px solid rgb(35, 68, 177); */
+	border: 2px solid #fff;
 	font-size: 2rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1rem;
@@ -407,6 +409,7 @@ p {
 .brand h1 span {
 	/* color: crimson; */
 	color: rgb(35, 68, 177);
+	
 
 }
 
@@ -905,7 +908,8 @@ p {
 @keyframes text_reveal_name {
 	100% {
 		/* color: crimson; */
-		color: rgb(35, 68, 177);
+		/* color: rgb(35, 68, 177); */
+     	color: #fff;
 		font-weight: 500;
 	}
 }
