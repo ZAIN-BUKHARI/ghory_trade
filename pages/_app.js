@@ -5,13 +5,15 @@ import '../styles/auth.css'
 import '../styles/sidebar.css'
 import '../styles/intro.css'
 import '../styles/balls.css'
-import '../styles/plan.css'
+import '../styles/planform.css'
+import '../styles/slider.css'
 import { useRouter } from 'next/router'
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
 import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
+
 
 function MyApp({ Component, pageProps
 }) {

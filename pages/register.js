@@ -1,6 +1,5 @@
 import React from 'react'
 import AuthForm from '../newComp/AuthForm'
-
 const register = () => {
   return (
     <>
