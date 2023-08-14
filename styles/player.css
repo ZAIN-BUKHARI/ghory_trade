@@ -1,0 +1,23 @@
+.Player-Main{
+    height:100vh;
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+} 
+.yt{
+    pointer-events: none;
+    position: absolute;
+    }
+.Player-Color{
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+
+}
+.Player-next{
+    position: absolute ;
+    right: 1%;
+    
+}
+
+    

@@ -6,6 +6,7 @@ import '../styles/sidebar.css'
 import '../styles/intro.css'
 import '../styles/balls.css'
 import '../styles/planform.css'
+import '../styles/player.css'
 import '../styles/slider.css'
 import { useRouter } from 'next/router'
 import 'react-toastify/dist/ReactToastify.css';

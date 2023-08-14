@@ -8,6 +8,7 @@ const LightButton = () => {
       router.push('/')
     },2000)
   }
+  
   return (
     <>
     <style jsx>
@@ -64,10 +65,14 @@ const LightButton = () => {
             `
         }
     </style>
-    <button onClick={submit}> Click
+    <button onClick={submit} > Click
 </button>
     </>
   )
 }
 
 export default LightButton
+
+
+
+  
