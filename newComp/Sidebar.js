@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Link from 'next/link'
 import { FcAbout } from 'react-icons/fc';
 import { FcBriefcase } from 'react-icons/fc';
@@ -10,7 +10,10 @@ import { FcLeft } from 'react-icons/fc';
 import { FcServices } from 'react-icons/fc';
 import { FcPhone } from 'react-icons/fc';
 import { useRouter } from 'next/router';
+import { ThemeContext } from '../Context/ThemeContext';
+
 const Sidebar = () => {
+  const {setAuth}=useContext(ThemeContext)
   const router = useRouter()
   return (
     <>
@@ -38,12 +41,12 @@ const Sidebar = () => {
           </span>
           <Link  href={'/contact'}>Contact</Link>
         </li>
-        <li>
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcServices/>
           </span>
           <Link href="/service">Service</Link>
-        </li>
+        </li> */}
         <li>
           <span className="material-symbols-outlined">
             <FcBriefcase/>
@@ -76,13 +79,13 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
-          <a href="#">Settings</a>
+          <Link href="#">Settings</Link>
         </li>
         <li className="logout-link">
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-          <Link href="/register">Logout</Link>
+          <Link onClick={()=>{setAuth(true)}}  href="#">Logout</Link>
         </li>
       </ul>
     </aside>)}

@@ -1,6 +1,7 @@
 .cross{
-    margin-left: 130px;
+    margin-left: 210px;
     cursor: pointer;
+    font-size: 30px;
 }
 .authform{
     height: 100vh;
@@ -8,22 +9,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: rgb(0,0,0,0.4); */
-    background-color: #eee;
+    background-color: rgb(0,0,0,0.8);
+    /* background-color: #eee; */
     z-index: 50;
-    /* position: absolute; */
-    /* top: 20%; */
-    /* right: 50%; */
+    position: absolute;
 }
-.form {
+.authform-span{
+  font-size: 15px !important;
+}
+.authform-input{
+  /* width: 300px !important; */
+  padding: 30px !important;
+}
+.form-auth {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 350px;
+    max-width: 450px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
     position: relative;
+  }
+  .form-auth-height{
+    height: 600px !important;
+
   }
   
   .title {
@@ -83,11 +93,11 @@
     gap: 6px;
   }
   
-  .form label {
+  .form-auth label {
     position: relative;
   }
   
-  .form label .input {
+  .form-auth label .input {
     width: 100%;
     padding: 10px 10px 20px 10px;
     outline: 0;
@@ -95,7 +105,7 @@
     border-radius: 10px;
   }
   
-  .form label .input + span {
+  .form-auth label .input + span {
     position: absolute;
     left: 10px;
     top: 15px;
@@ -105,19 +115,19 @@
     transition: 0.3s ease;
   }
   
-  .form label .input:placeholder-shown + span {
+  .form-auth label .input:placeholder-shown + span {
     top: 15px;
     font-size: 0.9em;
   }
   
-  .form label .input:focus + span,.form label .input:valid + span {
+  .form-auth label .input:focus + span,.form label .input:valid + span {
     top: 30px;
     font-size: 0.7em;
     font-weight: 600;
   }
   
-  .form label .input:valid + span {
-    color: green;
+  .form-auth label .input:valid + span {
+    color: royalblue;
   }
   
   .submit {

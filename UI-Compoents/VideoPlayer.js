@@ -32,7 +32,7 @@ const VideoPlayer = () => {
     <iframe width="1000" height="700" id='zain' src="https://www.youtube.com/embed/OuaFVfN6eeQ?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <idv>
       <div className='Player-next '>
-    <LightButtonPlayer title={buttonText}   DisableButton={DisableButton}/>
+    {/* <LightButtonPlayer title={buttonText}   DisableButton={DisableButton}/> */}
     {/* <button onClick={push}  disabled={DisableButton}>{buttonText}</button> */}
       </div>
     </idv>

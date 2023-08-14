@@ -1,66 +1,65 @@
-import { useRouter } from 'next/router';
 import React from 'react'
-import { useState } from 'react';
 import { FcRedo } from 'react-icons/fc';
-
-
+import { ThemeContext } from '../Context/ThemeContext';
+import { useState } from 'react';
+import { useContext } from 'react';
 const AuthForm = ({TopTitle,smallTitle,para,val}) => {
-    const router = useRouter();
-    const hideModla = ()=>{
-        if(router.asPath=='/login')
-        {
-            router.push('/register')
+    const {setAuth}=useContext(ThemeContext)
+    const [ActiveLoginModal,setActiveLoginModal]=useState(false)
 
-        }else{
-            router.push('/')
-        }
+    const hideModla = ()=>{
+        setAuth(false)
         
     }
     const showsignin = ()=>{
-        if(router.asPath!='/login'){
-            router.push('/login')
-        }
-        else{
-            router.push('/register')
-
-        }
+       setActiveLoginModal(true)
+       document.getElementById("form-remove").classList.remove("form-auth-height")
+    }
+    const showsignup = ()=>{
+       setActiveLoginModal(false)
+       document.getElementById("form-remove").classList.add("form-auth-height")
     }
   return (
     <>
     
     <div className='authform'>
-    <form class="form">
-    <p class="title">{TopTitle}  <FcRedo className='cross' onClick={hideModla}  /></p>
+    <form class="form-auth form-auth-height" id='form-remove'>
+    {ActiveLoginModal &&<p class="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
+    {!ActiveLoginModal &&<p class="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
     
     
-    <p class="message">{smallTitle} now and get full access to our app. </p>
-    {router.asPath!='/login' && (  <div class="flex">
+    {!ActiveLoginModal &&<p class="message">Signup now and get full access to our app. </p>}
+    {ActiveLoginModal &&<p class="message">Signin now and get full access to our app. </p>}
+    {!ActiveLoginModal && (  <div class="flex">
         <label>
-            <input required="" placeholder="" type="text" class="input"/>
-            <span>Firstname</span>
+            <input  required="" placeholder="" type="text" class="input authform-input"/>
+            <span className='authform-span'>Firstname</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input"/>
-            <span>Lastname</span>
+            <input required="" placeholder="" type="text" class="input authform-input"/>
+            <span className='authform-span'>Lastname</span>
         </label>
     </div>  )}
             
     <label>
-        <input required="" placeholder="" type="email" class="input"/>
-        <span>Email</span>
+        <input required="" placeholder="" type="email" class="input authform-input"/>
+        <span className='authform-span'>Email</span>
     </label> 
         
     <label>
-        <input required="" placeholder="" type="password" class="input"/>
-        <span>Password</span>
+        <input required="" placeholder="" type="password" class="input authform-input"/>
+        <span className='authform-span'>Password</span>
     </label>
-   {router.asPath!='/login' && ( <label>
-        <input required="" placeholder="" type="password" class="input"/>
-        <span>Confirm password</span>
+   {!ActiveLoginModal && ( <label>
+        <input required="" placeholder="" type="password" class="input authform-input"/>
+        <span className='authform-span'>Confirm password</span>
     </label>)}
     <button class="submit">Submit</button>
-    <p onClick={showsignin} class="signin">{para}<a>{val}</a> </p>
+    {ActiveLoginModal && <p onClick={showsignup} class="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
+    {!ActiveLoginModal && <p onClick={showsignin} class="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
+
+    {/* <p onClick={showsignin} class="signin ">{para}<a>{val}</a> </p> */}
 </form>
 </div>
     </>

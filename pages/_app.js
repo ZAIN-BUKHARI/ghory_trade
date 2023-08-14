@@ -14,7 +14,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
 import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
-
+import AuthFrom from '../newComp/AuthForm'
 
 function MyApp({ Component, pageProps
 }) {
@@ -34,13 +34,15 @@ function MyApp({ Component, pageProps
     },[])
   
     const [loader,setLoader]=useState(false)
+    const [Auth,setAuth]=useState(false)
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader}}>
+<ThemeContext.Provider value={{setLoader,setAuth}}>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
     {loader && <Loading/>}
+    {Auth   && <AuthFrom/>}
     <Component  {...pageProps} />
     <Footer  /> 
 </ThemeContext.Provider>
