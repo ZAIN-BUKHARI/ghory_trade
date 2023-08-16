@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const PlanForm = () => {
+  const [currency,setcurrency]=useState("USD")
+  const [amount,setamount]=useState()
+  const [usderror,seterror]=useState(false)
+  const [pkrerror,setpkrerror]=useState(false)
+  
+  const ChangeEvent = (e) =>{
+    if(e.target.name=="select"){
+      setcurrency(e.target.value)
+    }
+
+    else if(e.target.name=="amount"){
+      if(currency=="USD" && e.target.value<100){
+        seterror(true)
+        setpkrerror(false)
+      }
+      else if(currency=="PKR" && e.target.value<30000){  
+        setpkrerror(true)
+        seterror(false)
+      }
+      else {
+        seterror(false)
+        setpkrerror(false)
+      }
+      }
+
+  }
   return (
+
     <>
     <style>
       {`
@@ -71,15 +98,24 @@ const PlanForm = () => {
           </div>
           <div class="input-box">
             <span class="details">Amount</span>
-            <input type="number" placeholder="Enter your Amount" required/>
+            <div className='flex'>
+
+            <select value={currency} name='select' onChange={ChangeEvent} className="PlanForm-select">
+                   <option value={'USD'}>USD</option>
+                   <option value={'PKR'}>PKR</option>
+              </select>
+            <input type="number" value={amount} onChange={ChangeEvent} name='amount' placeholder="Enter your Amount" required/>
+            </div>
+            {usderror && <span class="PlanForm-Amount-error">Minimum Amount 100$</span>}
+            {pkrerror && <span class="PlanForm-Amount-error">Minimum Amount 3000PKR</span>}
           </div>
           <div class="input-box">
-          <input type="file" id="real-file" hidden="hidden" />
+          <input type="file" id="real-file" hidden className='PlanForm-ScreenShot' />
 <button type="button" id="custom-button">Payment Screenshot</button>
 <span id="custom-text">No file chosen, yet.</span>
           </div>
         </div>
-        <div class="gender-details">
+        {/* <div class="gender-details">
           <input type="radio" name="gender" id="dot-1"/>
           <input type="radio" name="gender" id="dot-2"/>
           <input type="radio" name="gender" id="dot-3"/>
@@ -98,7 +134,8 @@ const PlanForm = () => {
             <span class="gender">Prefer not to say</span>
             </label>
           </div>
-        </div>
+        </div> */}
+        
         <div class="button">
           <input type="submit" value="Subscribe"/>
         </div>

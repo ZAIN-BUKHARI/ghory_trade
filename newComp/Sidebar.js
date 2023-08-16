@@ -17,7 +17,7 @@ const Sidebar = () => {
   const router = useRouter()
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/login' && router.asPath!='/intro'  && (
+    {router.asPath!='/register' && router.asPath!='/test'  &&  router.asPath!='/login' && router.asPath!='/intro'  && (
 
       
     <aside className="sidebar text-[10px]">
@@ -73,13 +73,13 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
           </span>
-          <a href="#">Account</a>
+          <a href="#">Daily work</a>
         </li>
         <li>
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
-          <Link href="#">Settings</Link>
+          <Link href="#">Account</Link>
         </li>
         <li className="logout-link">
           <span className="material-symbols-outlined">
