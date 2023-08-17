@@ -5,7 +5,7 @@ const Footer = () => {
 const router = useRouter()
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/test' && router.asPath!='/adminlogin' && router.asPath!="/admin"  && router.asPath!='/login' && router.asPath!='/intro' && router.asPath!='/investment'  && (
+    {router.asPath!='/register' && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin' && router.asPath!="/admin"  && router.asPath!='/login' && router.asPath!='/intro' && router.asPath!='/investment'  && (
     <section id="footer">
     <div class="footer container">
       <div class="brand">

@@ -1,7 +1,7 @@
 import React from "react"
-const LightButtonPlayer = ({title,DisableButton}) => {
+const LightButtonPlayer = (props) => {
     const push=()=>{
-      console.log('hello')
+      props.func()
     }
     return (
       <>
@@ -59,7 +59,7 @@ const LightButtonPlayer = ({title,DisableButton}) => {
               `
           }
       </style>
-      <button onClick={push} disabled={DisableButton}> {title}
+      <button onClick={push} disabled={props.DisableButton}> {props.title}
   </button>
       </>
     )

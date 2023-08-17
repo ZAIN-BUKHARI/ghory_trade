@@ -38,7 +38,7 @@ const Sidebar = () => {
   }
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
+    {router.asPath!='/register' && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
 
       <aside className="sidebar text-[10px]">
       <div className="logo">
