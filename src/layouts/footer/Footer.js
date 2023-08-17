@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <Box sx={{ p: 3, textAlign: "center" }}>
       <Typography>
-        © 2022 All rights reserved by{" "}
-        <Link href="/" className="text-pink-500" >
-          zainyswear.com
+        © 2023 All rights reserved by{" "}
+        <Link href="/" className="text-blue-500" >
+          ghory.trade
         </Link>
       </Typography>
     </Box>

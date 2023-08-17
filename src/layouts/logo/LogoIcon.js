@@ -6,7 +6,7 @@ import LogoDark from "../../../assets/images/logos/logo-dark.svg";
 const LogoIcon = () => {
   return (
     <Link href="/">
-      <img src='/go1.png' width={100} height={100} alt="ghory.trader" className="mx-10" />
+      <img src='/TWOO.png' width={50} height={100} alt="ghory.trader" className="mx-10 w-20 h-20 " />
     </Link>
   );
 };

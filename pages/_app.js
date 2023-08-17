@@ -8,13 +8,14 @@ import '../styles/balls.css'
 import '../styles/planform.css'
 import '../styles/player.css'
 import '../styles/slider.css'
+import '../styles/worksheet.css'
 import { useRouter } from 'next/router'
-import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
 import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
 import AuthFrom from '../newComp/AuthForm'
+import Toastify from '../UI-Compoents/Toastify';
 
 function MyApp({ Component, pageProps
 }) {
@@ -39,6 +40,7 @@ function MyApp({ Component, pageProps
   
 <>
 <ThemeContext.Provider value={{setLoader,setAuth}}>
+    <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
     {loader && <Loading/>}

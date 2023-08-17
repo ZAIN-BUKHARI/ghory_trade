@@ -171,3 +171,31 @@
         flex-direction: column;
       }
     }
+
+    #custom-button {
+      margin-top:20px;
+      margin-left:2px;
+      padding: 10px;
+      color: white;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      border: 1px solid #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    
+    
+    #custom-text {
+      margin-left: 10px;
+      font-family: sans-serif;
+      color: #aaa;
+    }
+    .Address{
+      font-size:15px;
+      font-weight: 500;
+    }
+    .wallet{
+      font-size:20px;
+      font-weight: 900;
+      
+    }

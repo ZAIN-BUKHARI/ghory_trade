@@ -3,7 +3,18 @@ import { FcRedo } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { useState } from 'react';
 import { useContext } from 'react';
-const AuthForm = ({TopTitle,smallTitle,para,val}) => {
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+
+const AuthForm = () => {
+    // state variables 
+    const [firstname,setfirstname]=useState("")
+    const [secondname,setsecondname]=useState("")
+    const [email,setemail]=useState("")
+    const [password,setpassword]=useState("")
+    const [cpassword,setcpassword]=useState("")
+    const router=useRouter();
+
     const {setAuth}=useContext(ThemeContext)
     const [ActiveLoginModal,setActiveLoginModal]=useState(false)
 
@@ -19,8 +30,51 @@ const AuthForm = ({TopTitle,smallTitle,para,val}) => {
        setActiveLoginModal(false)
        document.getElementById("form-remove").classList.add("form-auth-height")
     }
-  return (
-    <>
+    const admincancel = () =>{
+        router.push('/')
+    }
+    const adminlogin = () =>{
+        if(email=="usmanadmin123@gmail.com"){
+            if(password=="123456789"){
+                toast.success('successfully logged in', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+                router.push('/admin')
+            }else{
+                toast.error('incorrect password', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+            }
+        }else{
+            toast.error('incorrect email', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+        }
+    }
+
+        return (
+            <>
     
     <div className='authform'>
     <form class="form-auth form-auth-height" id='form-remove'>
@@ -64,6 +118,7 @@ const AuthForm = ({TopTitle,smallTitle,para,val}) => {
 </div>
     </>
   )
+
 }
 
 export default AuthForm

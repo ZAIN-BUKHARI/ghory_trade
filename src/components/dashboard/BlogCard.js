@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, CardContent, Typography, Button, Grid } from "@mui/material";
 import Image from "next/image";
-import user1 from "../../../public/go1.png";
-import user2 from "../../../assets/images/backgrounds/u6.jpeg";
-import user3 from "../../../assets/images/backgrounds/u7.jpeg";
+import user1 from "../../../public/TWOO.png";
+import user2 from "../../../public/THREEE.png";
+import user3 from "../../../public/ONEE.png";
 
 const blogs = [
   {
@@ -13,20 +13,20 @@ const blogs = [
       "Some quick example text to build on the card title and make up the bulk of the card's content.",
     btncolor: "error",
   },
-  // {
-  //   img: user2,
-  //   title: "Raffay Akmal Admin",
-  //   subtitle:
-  //     "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //   btncolor: "warning",
-  // },
-  // {
-  //   img: user3,
-  //   title: "Faisal Mansoor",
-  //   subtitle:
-  //     "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //   btncolor: "primary",
-  // },
+  {
+    img: user2,
+    title: "Raffay Akmal Admin",
+    subtitle:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    btncolor: "warning",
+  },
+  {
+    img: user3,
+    title: "Faisal Mansoor",
+    subtitle:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    btncolor: "primary",
+  },
 ];
 
 const BlogCard = () => {

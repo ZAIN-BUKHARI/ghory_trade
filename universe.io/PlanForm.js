@@ -1,22 +1,55 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const PlanForm = () => {
+  // DATA STATE 
   const [currency,setcurrency]=useState("USD")
-  const [amount,setamount]=useState()
+  const [amount,setamount]=useState("")
+  const [phone,setphone]=useState("")
+  const [email,setemail]=useState("")
+  const [firstname,setfirstname]=useState("")
+  const [lastname,setlastname]=useState("")
+  const [cnic,setcnic]=useState("")
+  const [address,setaddress]=useState("")
+  // ERROR STATE 
   const [usderror,seterror]=useState(false)
   const [pkrerror,setpkrerror]=useState(false)
+  // TYPE-OF-USER
+  const [level,setlevel]=useState("")
   
+ 
   const ChangeEvent = (e) =>{
     if(e.target.name=="select"){
       setcurrency(e.target.value)
     }
 
     else if(e.target.name=="amount"){
-      if(currency=="USD" && e.target.value<100){
+      if(currency=="USD" && e.target.value<"100"){
+        var val = e.target.value;
+        if(val>=100 && val<200)
+          setlevel("1")
+        else if(val>=200 && val<300)
+          setlevel(2)
+        else if(val>300 && val<400)
+          setlevel("3")
+        else if(val>=400 && val<500)
+          setlevel("4")
+        else if(val>=500 && val<600)
+          setlevel("5")
+        else if(val>=600 && val<700)
+          setlevel("6")
+        else if(val>=700 && val<800)
+          setlevel("7")
+        else if(val>=800 && val<900)
+          setlevel("8")
+        else if(val>=900 && val<1000)
+          setlevel("9")
+        else
+          setlevel("10")
         seterror(true)
         setpkrerror(false)
       }
-      else if(currency=="PKR" && e.target.value<30000){  
+      else if(currency=="PKR" && e.target.value<"30000"){  
         setpkrerror(true)
         seterror(false)
       }
@@ -26,75 +59,61 @@ const PlanForm = () => {
       }
       }
 
-  }
+      
+    }
+    const submit =(e)=>{
+      e.preventDefault();
+      if(email.length>=5 && phone.length>=15 && firstname.length>=3 && lastname.length>=3 && address.length>=7 && cnic.length>=6){
+          alert("done")
+      }
+      else{
+        toast.error('Your info is incorrect please check it again', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
+
   return (
 
     <>
-    <style>
-      {`
-      #custom-button {
-        margin-top:20px;
-        margin-left:2px;
-        padding: 10px;
-        color: white;
-        // background-color: #009578;
-        background: linear-gradient(135deg, #71b7e6, #9b59b6);
-        border: 1px solid #000;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      
-      #custom-button:hover {
-        // background-color: #00b28f;
-      }
-      
-      #custom-text {
-        margin-left: 10px;
-        font-family: sans-serif;
-        color: #aaa;
-      }
-      .Address{
-        font-size:15px;
-        font-weight: 500;
-      }
-      .wallet{
-        font-size:20px;
-        font-weight: 900;
-        
-      }
-     
-      `}
-    </style>
+  
   <div className='PlanForm-Head'>
 
   <div class="Invest-Container">
     <div class="title  space"> Yearly Plan<span className='Address'><span className='wallet'>TRC20 : </span>TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span></div>
     <div class="content">
-      <form action="#">
+      <form action="#" onSubmit={submit}>
         <div class="user-details">
           <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required/>
+            <span class="details">First Name</span>
+            <input type="text" onChange={(e)=>{setfirstname(e.target.value)}} placeholder="Enter your name" required/>
           </div>
           <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required/>
+            <span class="details">Last Name</span>
+            <input type="text" onChange={(e)=>{setlastname(e.target.value)}}  placeholder="Enter your username" required/>
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required/>
+            <input type="text" onChange={(e)=>{setemail(e.target.value)}}  placeholder="Enter your email" required/>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required/>
+            <input type="text" onChange={(e)=>{setphone(e.target.value)}} placeholder="Enter your number" required/>
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" placeholder="Enter your Address" required/>
+            <input type="text" onChange={(e)=>{setaddress(e.target.value)}}  placeholder="Enter your Address" required/>
           </div>
           <div class="input-box">
-            <span class="details">Cnic</span>
-            <input type="text" placeholder="Enter your Cnic" required/>
+            <span class="details">CNIC</span>
+            <input type="text" onChange={(e)=>{setcnic(e.target.value)}} placeholder="Enter your Cnic" required/>
           </div>
           <div class="input-box">
             <span class="details">Amount</span>
@@ -104,7 +123,7 @@ const PlanForm = () => {
                    <option value={'USD'}>USD</option>
                    <option value={'PKR'}>PKR</option>
               </select>
-            <input type="number" value={amount} onChange={ChangeEvent} name='amount' placeholder="Enter your Amount" required/>
+            <input type="text" value={amount} onChange={ChangeEvent} name='amount' placeholder="Enter your Amount" />
             </div>
             {usderror && <span class="PlanForm-Amount-error">Minimum Amount 100$</span>}
             {pkrerror && <span class="PlanForm-Amount-error">Minimum Amount 3000PKR</span>}
@@ -115,30 +134,11 @@ const PlanForm = () => {
 <span id="custom-text">No file chosen, yet.</span>
           </div>
         </div>
-        {/* <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1"/>
-          <input type="radio" name="gender" id="dot-2"/>
-          <input type="radio" name="gender" id="dot-3"/>
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">Prefer not to say</span>
-            </label>
-          </div>
-        </div> */}
-        
+
         <div class="button">
-          <input type="submit" value="Subscribe"/>
+          <input  type="submit" value="Subscribe"/>
         </div>
+        
       </form>
     </div>
   </div>

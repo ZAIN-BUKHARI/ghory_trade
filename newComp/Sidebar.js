@@ -11,16 +11,36 @@ import { FcServices } from 'react-icons/fc';
 import { FcPhone } from 'react-icons/fc';
 import { useRouter } from 'next/router';
 import { ThemeContext } from '../Context/ThemeContext';
+import { toast } from 'react-toastify';
+
 
 const Sidebar = () => {
   const {setAuth}=useContext(ThemeContext)
   const router = useRouter()
+
+  const INVESTCHECKER = () =>{
+     if(!localStorage.getItem("isloggedin")==JSON.stringify("true")){
+      toast.info('Login required', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+     }
+     else{
+      router.push('/investment')
+     }
+
+  }
   return (
     <>
-    {router.asPath!='/register' && router.asPath!='/test'  &&  router.asPath!='/login' && router.asPath!='/intro'  && (
+    {router.asPath!='/register' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
 
-      
-    <aside className="sidebar text-[10px]">
+      <aside className="sidebar text-[10px]">
       <div className="logo">
         <img src="go2.png" alt="logo"/>
         {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
@@ -67,13 +87,13 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcBarChart/>
           </span>
-          <a href="/investment">Invest</a>
+          <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>
         </li>
         <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
           </span>
-          <a href="#">Daily work</a>
+          <Link href="/work">Daily work</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
@@ -85,7 +105,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-          <Link onClick={()=>{setAuth(true)}}  href="#">Logout</Link>
+          <Link onClick={()=>{setAuth(true)}}  href="/">Logout</Link>
         </li>
       </ul>
     </aside>)}

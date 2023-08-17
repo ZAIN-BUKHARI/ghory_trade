@@ -19,7 +19,7 @@
 }
 .authform-input{
   /* width: 300px !important; */
-  padding: 30px !important;
+  padding: 25px !important;
 }
 .form-auth {
     display: flex;
@@ -32,7 +32,7 @@
     position: relative;
   }
   .form-auth-height{
-    height: 600px !important;
+    height: 500px !important;
 
   }
   

@@ -115,8 +115,19 @@
     white-space: nowrap;
     text-decoration: none;
 }
+.SideBar-Investment-Span{
+    padding: 10px;
+    color: #000;
+    display: none;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+}
 
 .sidebar:hover .links li a {
+    display: block;
+}
+.sidebar:hover .links li .SideBar-Investment-Span {
     display: block;
 }
 
