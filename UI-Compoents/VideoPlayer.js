@@ -1,23 +1,37 @@
 import React, { useEffect } from 'react'
 import LightButtonPlayer from '../universe.io/LightButtonPlayer'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import { toast } from 'react-toastify';
-import axios from 'axios';
-
+import { useContext } from 'react';
+import { ThemeContext } from '../Context/ThemeContext'
+import Btn from '../universe.io/Btn'
 const VideoPlayer = () => {
+
+
+ const {setbalance,router}=useContext(ThemeContext)
+
+
+  // STATE VARIABLES
   const [time,setIme]=useState(10000);
   const[buttonText,setButtonTex]=useState('Wait')
   const[DisableButton,setDsableButton]=useState(true)
   const[comment,setcomment]=useState(true)
   const[textarea,settextarea]=useState("Post a comment ")
-  const router=useRouter();
+
+
   const Player = () =>{
     console.log('hello')
     var doc = document.getElementById("zain");
     doc.classList.add('yt');
 
   }
+
+  const next =()=>{
+    router.push('/work')
+    setbalance(0.67)
+  }
+
+
   const postComment =()=>{
     // axios.post('something')
     if(textarea.length==0){
@@ -36,6 +50,8 @@ const VideoPlayer = () => {
       setcomment(false)
     }
   }
+
+
   useEffect(()=>{
   toast.info('Post a comment & Watch the full video otherwise you cannot proceed furthur and your today earning will not be added to your wallet ', {
       position: "top-center",
@@ -57,6 +73,8 @@ const VideoPlayer = () => {
   },[])
 
   
+
+  
   return (
     <>
     <div className='flex'>
@@ -69,10 +87,11 @@ const VideoPlayer = () => {
 <div>
 <textarea onChange={(e)=>{settextarea(e.target.value)}} value={textarea} className='dailywork-textarea'  rows="5" cols="33"/>
     {/* <button>df</button> */}
+    <LightButtonPlayer func={postComment}  title={"Submit"}   DisableButton={false}/>
 </div>
 
-    <LightButtonPlayer func={postComment}  title={"Submit"}   DisableButton={false}/>
-    {!comment && !DisableButton && <LightButtonPlayer title={buttonText}   DisableButton={DisableButton}/>}
+    {/* {!comment && !DisableButton && <LightButtonPlayer func={next} title={buttonText}   DisableButton={DisableButton}/>} */}
+     <Btn func={next} title={buttonText}   DisableButton={DisableButton}/>
       </div>
     </div>
     </div>

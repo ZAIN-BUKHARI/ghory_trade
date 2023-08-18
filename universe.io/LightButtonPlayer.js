@@ -27,6 +27,7 @@ const LightButtonPlayer = (props) => {
                   text-shadow: 0 0 .5em var(--glow-color);
                   position: relative;
                   transition: all 0.3s;
+                  margin-bottom:300px;
                  }
                  
                  button::after {

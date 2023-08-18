@@ -16,7 +16,6 @@ import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
 import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
-
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -33,13 +32,14 @@ function MyApp({ Component, pageProps
     })
    
     },[])
-  
+    //GLOBALLY HANDLE STATE VARIABLES 
     const [loader,setLoader]=useState(false)
     const [Auth,setAuth]=useState(false)
+    const [balance,setbalance]=useState("0")
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

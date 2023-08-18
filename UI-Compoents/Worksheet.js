@@ -1,13 +1,21 @@
 import React from 'react'
-
+import { FcHighPriority } from "react-icons/fc";
+import { FcOk } from "react-icons/fc";
+import { useContext } from 'react';
+import { ThemeContext } from '../Context/ThemeContext'
 const Worksheet = () => {
+    //use Context 
+    const {balance,router}=useContext(ThemeContext)
+    const startWork = () =>{
+        router.push('/dailywork')
+    }
   return (
     <>
     <div className='Worksheet-body'>
     <main class="table">
     <section class="table__header">
             <h1>Daily Assignments</h1>
-            <h1 className='WORK-WALLET'>Wallet 1.51$</h1>
+            <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
             {/* <div class="input-group">
                 <input type="search" placeholder="Search Data..."/>
                 <img src="images/search.png" alt=""/>
@@ -44,10 +52,13 @@ const Worksheet = () => {
                         <td> 17 Dec, 2022 </td>
                         <td> 12:01pm </td>
                         <td>
-                            <p class=" Not-Done  ">Not done</p>
+                            <p class=" WorkSheet-Icon-Alert ">
+                               <FcHighPriority/>
+                               {/* <FcOk/> */}
+                            </p>
                         </td>
                         <td> <strong> $0.67 </strong></td>
-                        <td> <p class="status delivered">Start</p> </td>
+                        <td> <p onClick={startWork} class="Done">Start</p> </td>
                     </tr>
                      
                 </tbody>

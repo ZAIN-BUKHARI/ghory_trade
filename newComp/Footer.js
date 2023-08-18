@@ -1,11 +1,13 @@
-import { useRouter } from 'next/router'
 import React from 'react'
 import Balls from '../universe.io/Balls'
+import { ThemeContext } from '../Context/ThemeContext'
+import { useContext } from 'react'
 const Footer = () => {
-const router = useRouter()
+  const {router} = useContext(ThemeContext)
+  var Hide = router.asPath
   return (
     <>
-    {router.asPath!='/register' && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin' && router.asPath!="/admin"  && router.asPath!='/login' && router.asPath!='/intro' && router.asPath!='/investment'  && (
+    {Hide!='/register' && Hide!='/work' && Hide!="/dailywork" && Hide!='/test' && Hide!='/adminlogin' && Hide!="/admin"  && Hide!='/login' && Hide!='/intro' && Hide!='/investment'  && (
     <section id="footer">
     <div class="footer container">
       <div class="brand">

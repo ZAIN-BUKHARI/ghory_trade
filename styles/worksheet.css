@@ -180,6 +180,7 @@ tbody tr.hide td img {
     text-align: center;
     background-color: #d893a3;
     color: #b30021;
+    cursor: pointer;
 }
 .Done{
     /* padding: .2rem 0; */
@@ -188,6 +189,7 @@ tbody tr.hide td img {
     text-align: center;
     background-color: #86e49d;
     color: #006b21;
+    cursor: pointer;
 }
 .work-start{
     padding-left: 50px !important;
@@ -322,4 +324,8 @@ thead th.active,tbody td.active {
 .export__file .export__file-options img{
     width: 2rem;
     height: auto;
+}
+.WorkSheet-Icon-Alert{
+    font-size: 20px;
+    margin-left: 40px;
 }
