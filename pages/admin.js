@@ -5,11 +5,13 @@ import DailyActivity from "../src/components/dashboard/DailyActivity";
 import ProductPerfomance from "../src/components/dashboard/ProductPerfomance";
 import FullLayout from "../src/layouts/FullLayout";
 import theme from "../src/theme/theme";
-
-
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContext";
 
 
 export default function Index(admin) {
+  const {Admin}=useContext(ThemeContext)
+  if(Admin){
   return (
     
     <ThemeProvider theme={theme}>
@@ -45,4 +47,11 @@ export default function Index(admin) {
     </ThemeProvider>
     
   );
+}
+else{
+  return(
+    <h1 className='text-3xl text-blue-500 my-5 text-center'>Only ghory trading  admins allow here</h1>
+    
+  )
+}
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import FeatherIcon from "feather-icons-react";
 import Image from "next/image";
 import userimg from "../../../assets/images/users/user2.jpg";
+import {ThemeContext} from '../../../Context/ThemeContext'
 import { useRouter } from 'next/router'
 import {
   Box,
@@ -15,6 +16,7 @@ import {
   Divider,
 } from "@mui/material";
 const ProfileDD = () => {
+  const {setAdmin}=useContext(ThemeContext)
   const router =useRouter()
   const [anchorEl4, setAnchorEl4] = React.useState(null);
 
@@ -25,10 +27,8 @@ const ProfileDD = () => {
   const handleClose4 = () => {
     setAnchorEl4(null);
   };
-  const logout =(e)=>{
-  //    e.preventDefault()
-  //    localStorage.removeItem('adminToken')
-  //    router.push('/')
+  const logout =()=>{
+    setAdmin(false)
   }
   return (
     <>

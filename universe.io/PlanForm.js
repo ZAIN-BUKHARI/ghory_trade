@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const PlanForm = () => {
+  //useRouter
+  const router = useRouter()
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
   const [wallet, setwallet] = useState("TRC20");
 
@@ -10,10 +14,11 @@ const PlanForm = () => {
   const [amount, setamount] = useState("");
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
-  const [firstname, setfirstname] = useState("");
+  const [name, setname] = useState("");
   const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
+  const [img, setimg] = useState("path");
   // ERROR STATE
   const [usderror, seterror] = useState(false);
   const [pkrerror, setpkrerror] = useState(false);
@@ -51,13 +56,34 @@ const PlanForm = () => {
     e.preventDefault();
     if (
       email.length >= 5 &&
-      phone.length >= 15 &&
-      firstname.length >= 3 &&
+      phone.length >= 5 &&
+      name.length >= 3 &&
       lastname.length >= 3 &&
       address.length >= 7 &&
       cnic.length >= 6
     ) {
-      alert("done");
+      const data = {email,name,address,phone,cnic,img,level}
+      axios.post('/api/user/join',data).then(res=>{
+        setname('')
+        setemail('')
+        setaddress('')
+        setphone('')
+        setcnic('')
+        setamount('')
+        setimg('')
+        setlevel('')
+        router.push('/')
+        toast.success("Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ", {
+          position: "top-right",
+          autoClose: 30000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
     } else {
       toast.error("Your info is incorrect please check it again", {
         position: "top-right",
@@ -112,7 +138,7 @@ const PlanForm = () => {
                   <input
                     type="text"
                     onChange={(e) => {
-                      setfirstname(e.target.value);
+                      setname(e.target.value);
                     }}
                     placeholder="Enter your name"
                     required

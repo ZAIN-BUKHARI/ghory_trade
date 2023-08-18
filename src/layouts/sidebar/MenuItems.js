@@ -5,51 +5,51 @@ const Menuitems = [
     href: "/admin",
   },
   {
-    title: "Add Products",
+    title: "Add Links",
     icon: "plus-circle",
     href: "/adminadd",
   },
   {
-    title: "View Products",
+    title: "View Customers",
     icon: "eye",
-    href: "/adminproducts",
+    href: "/adminview",
   },
   {
-    title: "Orders",
-    icon: "box",
-    href: "/adminorders",
+    title: "Join Plan",
+  icon: "box",
+    href: "/adminjoin",
   },
   {
-    title: "Sales",
+    title: "Withdrawl request",
     icon: "user",
-    href: "/adminsales",
+    href: "/adminwithdrawals",
   },
   {
-    title: "Search",
-    icon: "star",
-    href: "/admincustom",
-  },
-  {
-    title: "Marked",
+    title: "Successful withdrawals",
     icon: "grid",
-    href: "/adminmarked",
+    href: "/adminrecent",
   },
   {
-    title: "Delivered",
+    title: "Rejected withdrawals",
     icon: "image",
-    href: "/adminpayment",
+    href: "/adminreject",
   },
-  {
-    title: "Cancel",
-    icon: "star",
-    href: "/admincancel",
-  },
+  // {
+  //   title: "Search",
+  //   icon: "star",
+  //   href: "/admincustom",
+  // },
+  // {
+  //   title: "Cancel Withdrwal",
+  //   icon: "star",
+  //   href: "/admincancel",
+  // },
   
-  {
-    title: "Update",
-    icon: "grid",
-    href: "/update",
-  },
+  // {
+  //   title: "Update",
+  //   icon: "grid",
+  //   href: "/update",
+  // },
   
 ];
 

@@ -34,15 +34,24 @@ function MyApp({ Component, pageProps
     })
    
     },[])
-    //GLOBALLY HANDLE STATE VARIABLES 
+    //Loader
     const [loader,setLoader]=useState(false)
+    //Auth Modal
     const [Auth,setAuth]=useState(false)
+    //Payment Modal
     const [PaymentRequestModal,setPaymentRequestModal]=useState(false)
-    const [balance,setbalance]=useState("0")
+    //Balance
+    const [balance,setbalance]=useState(0)
+
+
+    // Admin
+    const [Admin,setAdmin]=useState(true)
+
+
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

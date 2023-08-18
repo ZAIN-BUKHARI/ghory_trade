@@ -9,13 +9,15 @@ import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
 import { FcServices } from 'react-icons/fc';
 import { FcPhone } from 'react-icons/fc';
+import { useRouter } from 'next/router';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 
 
 const Sidebar = () => {
-  const {setAuth,setPaymentRequestModal,router}=useContext(ThemeContext)
- var Hide = Hide;
+  const {setAuth,setPaymentRequestModal}=useContext(ThemeContext)
+  const router = useRouter()
+
   const INVESTCHECKER = () =>{
      if(!localStorage.getItem("isloggedin")==JSON.stringify("true")){
       toast.info('Login required', {
@@ -36,7 +38,7 @@ const Sidebar = () => {
   }
   return (
     <>
-    {Hide!='/register' && Hide!="/dailywork" && Hide!='/test' && Hide!='/adminlogin'  && Hide!="/admin"  &&   Hide!='/login' && Hide!='/intro'  && (
+    {router.asPath!='/register' && !router.asPath.includes("admin") && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
 
       <aside className="sidebar text-[10px]">
       <div className="logo">
