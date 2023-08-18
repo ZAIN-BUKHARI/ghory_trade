@@ -118,6 +118,7 @@
   .form-auth label .input:placeholder-shown + span {
     top: 15px;
     font-size: 0.9em;
+    
   }
   
   .form-auth label .input:focus + span,.form label .input:valid + span {
