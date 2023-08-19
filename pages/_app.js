@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps
     //Payment Modal
     const [PaymentRequestModal,setPaymentRequestModal]=useState(false)
     //Balance
-    const [balance,setbalance]=useState(0)
+    const [balance,setbalance]=useState(5)
 
 
     // Admin

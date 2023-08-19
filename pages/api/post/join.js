@@ -3,6 +3,7 @@ import Plan from '../../../models/Plan'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
+        console.log(req.body.name)
        try{ 
         let p = new Plan({
             name:req.body.name,
@@ -10,17 +11,17 @@ const handler= async (req, res)=> {
             phone:req.body.phone,
             address:req.body.address,
             cnic:req.body.cnic,
-            img:req.body.img,
+            img:"path",
             level:"1",
             investment:"200",
             
             
         })
          let a = await p.save()
-        res.status(200).json({ success:a })
+        res.status(200).json({ success:true })
        }
        catch(error){
-        res.status(200).json({ error:error })
+        res.status(200).json({ error:false })
        }
 }
 else{

@@ -14,7 +14,7 @@ const RequestSchema = new Schema({
         required:true,
     },
     amount:{
-        type:String,
+        type:Number,
         required:true,
     }
     
@@ -23,4 +23,4 @@ const RequestSchema = new Schema({
 },{timestamps:true})
 mongoose.models={}
 
-export default mongoose.model('Request',RequestSchema)
+export default mongoose.model('Request',RequestSchema);

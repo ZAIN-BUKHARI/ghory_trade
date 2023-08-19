@@ -5,24 +5,38 @@ import { toast } from "react-toastify";
 
 const FormModal = () => {
     //useContext
-    const {setPaymentRequestModal,balance} = useContext(ThemeContext)
+    const {setPaymentRequestModal,balance,setbalance} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
     const [address,setaddress]=useState("")
     const [method,setmethod]=useState("TRC20")
-    const [amount,setamount]=useState("")
+    const [amount,setamount]=useState(0)
   
+  //  derecemting in balance method is remaining
+    const requestSubmit = async () =>{
+    if(address.length==0 && amount==0  
+      ){
+        toast.error("Cannot submit empty request", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
 
-    const requestSubmit = () =>{
+      }else{
 
-      if(address.length>=5 
-        // && parseInt(amount)>0 && parseInt(amount)<=balance
-        ){
-          const Data = {method,address,amount,email:"ded"}
-          axios.post('/api/user/request',Data).then(res=>{
-            alert("done")
-            if("true"=="true"){
+
+        if( amount>=0 &&amount<=balance
+          ){
+          const data = {method,address,amount,email:"ded"}
+          let res = await axios.post('/api/post/request',data)
+          console.log(res)
+            if(res.data.success==true){
               toast.success("Your withdrawal request is in processing state it will take 12 to 24 hour", {
                 position: "top-right",
                 autoClose: 30000,
@@ -32,10 +46,11 @@ const FormModal = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-              });
+              })
               setPaymentRequestModal(false)
-            }else{
-              toast.error("Try again ", {
+            }
+            else{
+              toast.error("Withdrawal request failed try again! ", {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -47,8 +62,23 @@ const FormModal = () => {
               });
               setPaymentRequestModal(false)
             }
-          })
+          
       }
+      else{
+              toast.error("insufficient balance ", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+
+            }
+      }
+
 
     }
 
@@ -60,7 +90,7 @@ const FormModal = () => {
     <p class="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
     </p>
     <div class="card__form">
-        <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="text"/>
+        <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
         <div className='form-modal-select'>
 
         <select 

@@ -12,10 +12,10 @@ const handler= async (req, res)=> {
             
         })
          let a = await p.save()
-        res.status(200).json({ success:a })
+        res.status(200).json({ success:true })
        }
        catch(error){
-        res.status(200).json({ error:error })
+        res.status(200).json({ error:false })
        }
 }
 else{
