@@ -10,6 +10,10 @@ const PlanSchema = new Schema({
         type:String,
         required:true
     },
+    lastname:{
+        type:String,
+        default:"none"
+    },
     cnic:{
         type:String,
         required:true   
@@ -37,8 +41,11 @@ const PlanSchema = new Schema({
         required:true
     },
     investment:{
+        type:Number,
+        required:true
+    },
+    currency:{
         type:String,
-        default:'pending',
         required:true
     },
 

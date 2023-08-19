@@ -3,17 +3,20 @@ import Plan from '../../../models/Plan'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
-        console.log(req.body.name)
+        console.log(req.body.investment)
+        console.log(req.body.currency)
        try{ 
         let p = new Plan({
             name:req.body.name,
+            lastname:req.body.lastname,
             email:req.body.email,
             phone:req.body.phone,
             address:req.body.address,
             cnic:req.body.cnic,
             img:"path",
-            level:"1",
-            investment:"200",
+            level:req.body.level,
+            investment:req.body.investment,
+            currency:req.body.currency,
             
             
         })

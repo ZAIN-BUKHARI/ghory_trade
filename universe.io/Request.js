@@ -3,7 +3,7 @@ import { ThemeContext } from '../Context/ThemeContext';
 import axios from 'axios';
 import { toast } from "react-toastify";
 
-const FormModal = () => {
+const Request = () => {
     //useContext
     const {setPaymentRequestModal,balance,setbalance} = useContext(ThemeContext)
 
@@ -113,4 +113,4 @@ const FormModal = () => {
   )
 }
 
-export default FormModal
+export default Request

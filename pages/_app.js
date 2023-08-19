@@ -17,7 +17,7 @@ import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
 import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
-import FormModal from '../universe.io/FormModal';
+import Request from '../universe.io/Request';
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
-    {PaymentRequestModal && <FormModal/>}
+    {PaymentRequestModal && <Request/>}
     {loader && <Loading/>}
     {Auth   && <AuthFrom/>}
     <Component  {...pageProps} />

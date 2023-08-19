@@ -11,7 +11,7 @@ const PlanForm = () => {
 
   const [currency, setcurrency] = useState("USD");
   // DATA STATE VARIABLE
-  const [amount, setamount] = useState("");
+  const [investment, setinvestment] = useState();
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
@@ -28,19 +28,21 @@ const PlanForm = () => {
   const ChangeEvent = (e) => {
     if (e.target.name == "select") {
       setcurrency(e.target.value);
-    } else if (e.target.name == "amount") {
-      if (currency == "USD" && e.target.value < "100") {
+    } else if (e.target.name == "investment") {
+      setinvestment(e.target.value)
+      if (currency == "USD" && e.target.value >= 100) {
         var val = e.target.value;
-        if (val >= 100 && val < 200) setlevel("1");
-        else if (val >= 200 && val < 300) setlevel(2);
-        else if (val > 300 && val < 400) setlevel("3");
+        if      (val >= 100 && val < 200) setlevel("1");
+        else if (val >= 200 && val < 300) setlevel("2");
+        else if (val > 300 && val  < 400)  setlevel("3");
         else if (val >= 400 && val < 500) setlevel("4");
         else if (val >= 500 && val < 600) setlevel("5");
         else if (val >= 600 && val < 700) setlevel("6");
         else if (val >= 700 && val < 800) setlevel("7");
         else if (val >= 800 && val < 900) setlevel("8");
-        else if (val >= 900 && val < 1000) setlevel("9");
+        else if (val >= 900 && val < 1000)setlevel("9");
         else setlevel("10");
+        console.log(level)
         seterror(true);
         setpkrerror(false);
       } else if (currency == "PKR" && e.target.value < "30000") {
@@ -53,26 +55,24 @@ const PlanForm = () => {
     }
   };
   const submit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (
       email.length >= 5 &&
-      phone.length >= 5 &&
+      phone.length >= 8 &&
       name.length >= 3 &&
       lastname.length >= 3 &&
       address.length >= 7 &&
       cnic.length >= 6
     ) {
-      const data = {email,name,address,phone,cnic,img,level}
-      axios.post('/api/user/join',data).then(res=>{
+      const data = {email,name,lastname,address,phone,cnic,investment,currency,level}
+      axios.post('/api/post/join',data).then(res=>{
+        if(res.data.success==true){
+
         setname('')
         setemail('')
         setaddress('')
         setphone('')
         setcnic('')
-        setamount('')
-        setimg('')
-        setlevel('')
-        router.push('/')
         toast.success("Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ", {
           position: "top-right",
           autoClose: 30000,
@@ -83,6 +83,19 @@ const PlanForm = () => {
           progress: undefined,
           theme: "light",
         });
+      }
+      else {
+        toast.error("Your Request failed", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
       })
     } else {
       toast.error("Your info is incorrect please check it again", {
@@ -100,6 +113,7 @@ const PlanForm = () => {
 
   return (
     <>
+    
       <div className="PlanForm-Head">
         <div class="Invest-Container">
           <div class="title  space">
@@ -119,7 +133,8 @@ const PlanForm = () => {
                   <option value={"JAZZCASH"}>JAZZCASH</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"RASS"}>RASS</option>
-                </select>{" "}
+                </select>
+                {" "}
                 :{" "}
               </span>
               {wallet == "TRC20" && (
@@ -200,7 +215,7 @@ const PlanForm = () => {
                   />
                 </div>
                 <div class="input-box">
-                  <span class="details">Amount</span>
+                  <span class="details">investment</span>
                   <div className="flex">
                     <select
                       value={currency}
@@ -213,20 +228,21 @@ const PlanForm = () => {
                     </select>
                     <input
                       type="text"
-                      value={amount}
+                      value={investment}
                       onChange={ChangeEvent}
-                      name="amount"
+                      // onChange={(e)=>{setinvestment(e.target.value)}}
+                      name="investment"
                       placeholder="Enter your Amount"
                     />
                   </div>
                   {usderror && (
-                    <span class="PlanForm-Amount-error">
-                      Minimum Amount 100$
+                    <span class="PlanForm-investment-error">
+                      Minimum investment 100$
                     </span>
                   )}
                   {pkrerror && (
-                    <span class="PlanForm-Amount-error">
-                      Minimum Amount 3000PKR
+                    <span class="PlanForm-investment-error">
+                      Minimum investment 3000PKR
                     </span>
                   )}
                 </div>
@@ -266,54 +282,7 @@ const PlanForm = () => {
         </div>
       </div>
 
-      <style>
-        {`.custum-file-upload {
-          margin-top:17px;
-  height: 50px;
-  width: 300px;
-  display: flex;
-  // flex-direction: column;
-  align-items: space-between;
-  gap: 20px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #cacaca;
-  // background-color: rgba(255, 255, 255, 1);
-  // background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
-}
-
-.custum-file-upload .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-.custum-file-upload .icon svg {
-  height: 30px;
-  fill: rgba(75, 85, 99, 1);
-  
-}
-
-.custum-file-upload .text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.custum-file-upload .text span {
-  font-weight: 400;
-  color: rgba(75, 85, 99, 1);
-}
-
-.custum-file-upload input {
-  display: none;
-}`}
-      </style>
+      
     </>
   );
 };
