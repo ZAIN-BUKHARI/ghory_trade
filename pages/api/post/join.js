@@ -3,8 +3,6 @@ import Plan from '../../../models/Plan'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
-        console.log(req.body.investment)
-        console.log(req.body.currency)
        try{ 
         let p = new Plan({
             name:req.body.name,

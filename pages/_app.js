@@ -18,11 +18,33 @@ import Loading from '../universe.io/Loading'
 import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
 import Request from '../universe.io/Request';
+import axios from 'axios';
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
   const [progress, setProgress] = useState(0)
+
+  async function getUser()
+    {
+      let token = JSON.stringify(localStorage.getItem('token'))
+      if(token){
+        let res = await axios.post('/api/post/user',{token})
+        // if(res.data.success==true){
+          // setuser(res.data.user)
+          console.log(res)
+          
+        // }
+      }
+      
+    }
+
+
   useEffect(() => {
+    // getUser()
+    if(JSON.stringify(localStorage.getItem('token'))){
+      settoken(true)
+    }
+    
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
     })
@@ -47,11 +69,17 @@ function MyApp({ Component, pageProps
     // Admin
     const [Admin,setAdmin]=useState(true)
 
+    //USER
+    const [user,setuser]=useState({})
+
+    //Login confirmation
+    const[token,settoken]=useState(false)
+
 
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

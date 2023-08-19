@@ -7,13 +7,14 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 const AuthForm = () => {
+    //router
+    const router=useRouter()
     // state variables 
     const [firstname,setfirstname]=useState("")
     const [lastname,setlastname]=useState("")
     const [email,setemail]=useState("")
     const [password,setpassword]=useState("")
     const [cpassword,setcpassword]=useState("")
-    const router=useRouter();
 
     const {setAuth}=useContext(ThemeContext)
     const [ActiveLoginModal,setActiveLoginModal]=useState(false)
@@ -31,23 +32,14 @@ const AuthForm = () => {
        document.getElementById("form-remove").classList.add("form-auth-height")
     }
 
-    // toast.error('incorrect email', {
-    //     position: "top-right",
-    //     autoClose: 2000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
+    
     //SIGNUP
-    const auth = () =>{
-        var data;
-        if(!ActiveLoginModal){
+    const signup = (e) =>{
+        e.preventDefault()
             if(email.length>=5 && firstname.length>=2 && lastname.length>=2 && password.length>=3 && password==cpassword ){
-                data = {email,password,firstname,lastname} 
-                axios.post('/api/user/signup',data).then(res=>{
+               const data = {email,password,firstname,lastname} 
+                axios.post('/api/post/signup',data).then(res=>{
+                    if(res.data.success==true){
                     toast.success('successfully signup', {
                         position: "top-right",
                             autoClose: 2000,
@@ -58,11 +50,23 @@ const AuthForm = () => {
                             progress: undefined,
                             theme: "light",
                         });
-                        localStorage.setItem('login')
-                        setAuth(true)
+                        setActiveLoginModal(true)
+                        setAuth(false)
+                    }else{
+                        toast.error('Try again ', {
+                            position: "top-right",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                    }
                 })
             }else{
-                toast.error('Try again', {
+                toast.error('Try again ', {
                     position: "top-right",
                         autoClose: 2000,
                         hideProgressBar: false,
@@ -73,14 +77,16 @@ const AuthForm = () => {
                         theme: "light",
                     });
             }
-        }
-        // LOGIN SINGIN 
-        else{
-            if(email.length>=5 && password.length>=3 ){
-                data = {email,password} 
-                axios.post('/api/user/singin',data).then(res=>{
-                    toast.success('successfully logged in', {
-                        position: "top-right",
+    }
+    const signin =(e)=>{
+        e.preventDefault()   
+        if(email.length>=5 && password.length>=3 ){
+                const data = {email,password} 
+                axios.post('/api/post/signin',data).then(res=>{
+                    console.log(res)
+                    if(res.data.success==true){
+                        toast.success('successfully logged in', {
+                            position: "top-right",
                             autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
@@ -89,11 +95,27 @@ const AuthForm = () => {
                             progress: undefined,
                             theme: "light",
                         });
-                        localStorage.setItem('login')
+                        localStorage.setItem('token',res.data.user._id)
                         setAuth(true)
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    }else{
+                        toast.error(res.data.error, {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        localStorage.removeItem('token')
+                    }
                 })
             }else{
-                toast.error('Try again', {
+                toast.error('Invalid Credentials', {
                     position: "top-right",
                         autoClose: 2000,
                         hideProgressBar: false,
@@ -103,17 +125,16 @@ const AuthForm = () => {
                         progress: undefined,
                         theme: "light",
                     });
+                    localStorage.removeItem('token')
+
             }
 
-        }
-        
     }
-
         return (
             <>
     
     <div className='authform'>
-    <form class="form-auth form-auth-height" id='form-remove'>
+    <div class="form-auth form-auth-height" id='form-remove'>
     {ActiveLoginModal &&<p class="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
     {!ActiveLoginModal &&<p class="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
     
@@ -145,12 +166,12 @@ const AuthForm = () => {
         <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" class="input authform-input"/>
         <span className='authform-span'>Confirm password</span>
     </label>)}
-    <button class="submit">Submit</button>
+    {!ActiveLoginModal &&  <button onClick={signup} class="submit">Signup</button>}
+    {ActiveLoginModal &&  <button onClick={signin} class="submit">Signin</button>}
     {ActiveLoginModal && <p onClick={showsignup} class="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
     {!ActiveLoginModal && <p onClick={showsignin} class="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
-
-    {/* <p onClick={showsignin} class="signin ">{para}<a>{val}</a> </p> */}
-</form>
+   
+</div>
 </div>
     </>
   )

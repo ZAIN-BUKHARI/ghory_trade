@@ -20,8 +20,16 @@ const UserSchema = new Schema({
         required:true
     },
     balance:{
-        type:String,
+        type:Number,
+        default:0,
         required:true
+    },
+    subscription:{
+        type:String,
+        default:"no",
+    },
+    subtime:{
+        type:String,
     },
     
 

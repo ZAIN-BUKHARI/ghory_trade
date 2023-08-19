@@ -8,6 +8,7 @@ import { FcBusinessContact } from 'react-icons/fc';
 import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
 import { FcServices } from 'react-icons/fc';
+import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
 import { useRouter } from 'next/router';
 import { ThemeContext } from '../Context/ThemeContext';
@@ -15,11 +16,11 @@ import { toast } from 'react-toastify';
 
 
 const Sidebar = () => {
-  const {setAuth,setPaymentRequestModal}=useContext(ThemeContext)
+  const {setAuth,setPaymentRequestModal,token,settoken}=useContext(ThemeContext)
   const router = useRouter()
 
   const INVESTCHECKER = () =>{
-     if(!localStorage.getItem("isloggedin")==JSON.stringify("true")){
+     if(!token){
       toast.info('Login required', {
         position: "top-right",
         autoClose: 2000,
@@ -31,10 +32,44 @@ const Sidebar = () => {
         theme: "light",
       });
      }
-     else{
+     else
       router.push('/investment')
+  }
+  const Dailywork = () =>{
+    if(!token){
+      toast.info('Login required', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
      }
-
+     else
+      router.push('/work')
+  }
+  const withdraw =()=>{
+  if(!token){
+    toast.info('Login required', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+   }
+   else
+   setPaymentRequestModal(true)
+ }
+  const logout = () =>{
+    localStorage.removeItem('token')
+    settoken(false)
   }
   return (
     <>
@@ -87,25 +122,41 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcBarChart/>
           </span>
-          <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>
+          {/* //NOT LOGGIN */}
+          {!token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token && <FcLock/>}
+          {/* //LOGGIN */}
+          {token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+
         </li>
         <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
           </span>
-          <Link href="/work">Daily work</Link>
+          {/* //NOT LOGGIN */}
+          {!token  && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
+          {!token && <FcLock/>}
+          {/* //LOGGIN */}
+          {token  && <Link  href="/work">Daily work </Link>}
+
         </li>
         <li>
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
-          <Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>
+          {/* //NOT LOGGIN */}
+          {!token && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {!token && <FcLock/>}
+          {/* //LOGGIN */}
+          {token && <Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
+
         </li>
         <li className="logout-link">
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-          <Link onClick={()=>{setAuth(true)}}  href="/">Logout</Link>
+         {!token && <Link onClick={()=>{setAuth(true)}}  href={"#"}>Login</Link>}
+         {token &&  <Link onClick={logout}  href="/">Logout</Link>}
         </li>
       </ul>
     </aside>)}
