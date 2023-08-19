@@ -16,11 +16,14 @@ import {
 import BaseCard from "../src/components/baseCard/BaseCard";
 import { File } from 'react-feather';
 import { ThemeContext } from '../Context/ThemeContext';
-import { useContext } from 'react';
-import AdminWorkSheetUnreviewed from '../AdminComponents/AdminWorksheetUnreviewd';
+import { useContext,useEffect } from 'react';
+import AdminWorkSheet from '../AdminComponents/AdminWorkSheet';
 
 const adminview = () => {
-  const {Admin} =useContext(ThemeContext)
+  const {Admin,getAllCustomers} =useContext(ThemeContext)
+  useEffect(()=>{
+    getAllCustomers("pending");
+  },[])
   
   if(Admin){
     return (
@@ -31,7 +34,7 @@ const adminview = () => {
        <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-pink-500 text-center' >All Your Customers</h1>
       <Grid item xs={12} lg={12}>
-         <AdminWorkSheetUnreviewed/>
+         <AdminWorkSheet/>
       </Grid>
 
       

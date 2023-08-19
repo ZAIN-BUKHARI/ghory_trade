@@ -95,7 +95,7 @@ const AuthForm = () => {
                             progress: undefined,
                             theme: "light",
                         });
-                        localStorage.setItem('token',res.data.user._id)
+                        localStorage.setItem('token',res.data.user.email)
                         setAuth(true)
                         setTimeout(() => {
                             window.location.reload();

@@ -30,6 +30,7 @@ const UserSchema = new Schema({
     },
     subtime:{
         type:String,
+        default:"000"
     },
     
 

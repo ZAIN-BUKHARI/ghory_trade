@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const Request = () => {
     //useContext
-    const {setPaymentRequestModal,balance,setbalance} = useContext(ThemeContext)
+    const {setPaymentRequestModal,balance,setbalance,email} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
@@ -33,7 +33,7 @@ const Request = () => {
 
         if( amount>=0 &&amount<=balance
           ){
-          const data = {method,address,amount,email:"ded"}
+          const data = {method,address,amount,email}
           let res = await axios.post('/api/post/request',data)
           console.log(res)
             if(res.data.success==true){

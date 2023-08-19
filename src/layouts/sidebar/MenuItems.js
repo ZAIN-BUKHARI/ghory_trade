@@ -10,27 +10,32 @@ const Menuitems = [
     href: "/adminadd",
   },
   {
-    title: "View Customers",
+    title: "Verified Plans",
     icon: "eye",
     href: "/adminview",
   },
   {
-    title: "Join Plan",
+    title: "Pending Plans",
   icon: "box",
     href: "/adminjoin",
   },
   {
-    title: "Withdrawl request",
+    title: "Rejected Requests",
+    icon: "star",
+    href: "/adminplanreject",
+  },
+  {
+    title: "Pending Requests",
     icon: "user",
     href: "/adminwithdrawals",
   },
   {
-    title: "Successful withdrawals",
+    title: "Verified Requests",
     icon: "grid",
     href: "/adminrecent",
   },
   {
-    title: "Rejected withdrawals",
+    title: "Rejected Requests",
     icon: "image",
     href: "/adminreject",
   },
@@ -38,11 +43,6 @@ const Menuitems = [
   //   title: "Search",
   //   icon: "star",
   //   href: "/admincustom",
-  // },
-  // {
-  //   title: "Cancel Withdrwal",
-  //   icon: "star",
-  //   href: "/admincancel",
   // },
   
   // {

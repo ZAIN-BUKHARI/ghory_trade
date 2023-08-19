@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 const AdminWorkSheet = () => {
     //use Context 
-    const {balance,router}=useContext(ThemeContext)
+    const {balance,router,customers}=useContext(ThemeContext)
     const startWork = () =>{
         router.push('/admindetail')
     }
@@ -34,8 +34,10 @@ const AdminWorkSheet = () => {
             {/* </div> */}
         </section>
         <section class="table__body">
-            <table>
+
+                <table>
                 <thead>
+            
                     <tr>
                         <th> ID </th>
                         <th> Customer </th>
@@ -47,20 +49,21 @@ const AdminWorkSheet = () => {
                         <th className='work-start'> Details</th>
                     </tr>
                 </thead>
+                {customers.map((item)=>(
                 <tbody>
                     <tr>
                         <td> 1 </td>
-                        <td> Zain </td>
-                        <td>zainshorts@gmail.com</td>
+                        <td> {item.name} </td>
+                        <td> {item.email}</td>
                         <td> 17 Dec, 2022 </td>
                         <td> 1 </td>
                         
-                        <td> <strong> $200 </strong></td>
+                        <td> <strong> ${item.investment} </strong></td>
                         <td className='admin-sheet-reviewed'> <strong> reviewd </strong></td>
                         <td> <p onClick={startWork} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
-                     
                 </tbody>
+                ))}
             </table>
         </section>
         </main>

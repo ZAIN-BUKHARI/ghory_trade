@@ -16,6 +16,10 @@ const RequestSchema = new Schema({
     amount:{
         type:Number,
         required:true,
+    },
+    status:{
+        type:"String",
+        default:"pending"
     }
     
     

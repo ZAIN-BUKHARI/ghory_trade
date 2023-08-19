@@ -13,12 +13,13 @@ import { FcPhone } from 'react-icons/fc';
 import { useRouter } from 'next/router';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 
 const Sidebar = () => {
-  const {setAuth,setPaymentRequestModal,token,settoken}=useContext(ThemeContext)
+  const {setAuth,setPaymentRequestModal,token,settoken,subscription}=useContext(ThemeContext)
   const router = useRouter()
-
+  
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -37,7 +38,7 @@ const Sidebar = () => {
   }
   const Dailywork = () =>{
     if(!token){
-      toast.info('Login required', {
+      toast.info('Login required and Subscripe our plan', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -53,7 +54,7 @@ const Sidebar = () => {
   }
   const withdraw =()=>{
   if(!token){
-    toast.info('Login required', {
+    toast.info('Login required and Subscripe our plan', {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -74,7 +75,7 @@ const Sidebar = () => {
   return (
     <>
     {router.asPath!='/register' && !router.asPath.includes("admin") && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
-
+     
       <aside className="sidebar text-[10px]">
       <div className="logo">
         <img src="go2.png" alt="logo"/>
@@ -123,10 +124,10 @@ const Sidebar = () => {
             <FcBarChart/>
           </span>
           {/* //NOT LOGGIN */}
-          {!token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
           {!token && <FcLock/>}
           {/* //LOGGIN */}
-          {token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {token  &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
 
         </li>
         <li>
@@ -134,10 +135,12 @@ const Sidebar = () => {
             <FcBusinessContact/>
           </span>
           {/* //NOT LOGGIN */}
-          {!token  && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
-          {!token && <FcLock/>}
+          {!token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
+          {!token  && subscription=="no" && <FcLock/>}
+          {token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
+          {token  && subscription=="no" && <FcLock/>}
           {/* //LOGGIN */}
-          {token  && <Link  href="/work">Daily work </Link>}
+          {token  && subscription=="yes" && <Link  href="/work">Daily work </Link>}
 
         </li>
         <li>
@@ -145,10 +148,12 @@ const Sidebar = () => {
             <FcAutomatic/>
           </span>
           {/* //NOT LOGGIN */}
-          {!token && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
-          {!token && <FcLock/>}
+          {!token && subscription=="no" && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {!token && subscription=="no" && <FcLock/>}
+          {token && subscription=="no" && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {token && subscription=="no" && <FcLock/>}
           {/* //LOGGIN */}
-          {token && <Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
+          {token && subscription=="yes" &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
 
         </li>
         <li className="logout-link">

@@ -49,17 +49,54 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                   selected={location === item.href}
                   sx={{
                     mb: 1,
-                    ...(location === item.href && {
+                    ...(index === 0   && {
                       color: "white",
                       backgroundColor: (theme) =>
-                        `${theme.palette.primary.main}!important`,
+                        `blue!important`,
+                    }),
+                    ...(index === 1   && {
+                      color: "black",
+                      backgroundColor: (theme) =>
+                        `orange!important`,
+                    }),
+                    mb: 1,
+                    ...(index === 2   && {
+                      color: "white",
+                      backgroundColor: (theme) =>
+                        `green!important`,
+                    }),
+                    ...(index === 3   && {
+                      color: "black",
+                      backgroundColor: (theme) =>
+                        `yellow!important`,
+                    }),
+                    mb: 1,
+                    ...(index === 4   && {
+                      color: "white",
+                      backgroundColor: (theme) =>
+                        `red!important`,
+                    }),
+                    ...(index === 5   && {
+                      color: "black",
+                      backgroundColor: (theme) =>
+                        `yellow!important`,
+                    }),
+                    ...(index === 6   && {
+                      color: "white",
+                      backgroundColor: (theme) =>
+                        `green!important`,
+                    }),
+                    ...(index === 7   && {
+                      color: "white",
+                      backgroundColor: (theme) =>
+                        `red!important`,
                     }),
                   }}
                 >
                   <ListItemIcon>
                     <FeatherIcon
                       style={{
-                        color: `${location === item.href ? "white" : ""} `,
+                        color: `${location === "black" ? "black" : ""} `,
                       }}
                       icon={item.icon}
                       width="20"

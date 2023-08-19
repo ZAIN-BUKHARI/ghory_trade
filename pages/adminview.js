@@ -18,10 +18,13 @@ import { File } from 'react-feather';
 import { ThemeContext } from '../Context/ThemeContext';
 import { useContext } from 'react';
 import AdminWorkSheet from '../AdminComponents/AdminWorkSheet';
+import { useEffect } from 'react';
 
 const adminview = () => {
-  const {Admin} =useContext(ThemeContext)
-  
+  const {Admin,customers,getAllCustomers} =useContext(ThemeContext)
+  useEffect(()=>{
+    getAllCustomers("verified");
+  },[])
   if(Admin){
     return (
       
@@ -31,7 +34,7 @@ const adminview = () => {
        <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-pink-500 text-center' >All Your Customers</h1>
       <Grid item xs={12} lg={12}>
-         <AdminWorkSheet/>
+          <AdminWorkSheet customers={customers}  />
       </Grid>
 
       

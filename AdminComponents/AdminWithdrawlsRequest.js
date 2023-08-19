@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 const AdminWithdrawlsRequest = () => {
     //use Context 
-    const {balance,router}=useContext(ThemeContext)
+    const {balance,router,requests}=useContext(ThemeContext)
     const startWork = () =>{
         router.push('/admindetail')
     }
@@ -35,7 +35,8 @@ const AdminWithdrawlsRequest = () => {
         </section>
         <section class="table__body">
             <table>
-                <thead>
+                        
+                    <thead>
                     <tr>
                         <th> ID </th>
                         <th> Customer </th>
@@ -47,11 +48,14 @@ const AdminWithdrawlsRequest = () => {
                         <th className='work-start'> Details</th>
                     </tr>
                 </thead>
+                {requests.map((item)=>(
+                    <>
                 <tbody>
+                
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
-                        <td>324234543454rget</td>
+                        <td>{otem.address}</td>
                         <td> 17 Dec, 2022 </td>
                         <td> 1 </td>
                         
@@ -61,7 +65,7 @@ const AdminWithdrawlsRequest = () => {
                       name="select"
                     //   onChange={ChangeEvent}
                       className="Admin-select"
-                    >
+                      >
                       <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
                       <option className='admin-sheet-reviewed' value={"released"}>release</option>
                       <option className='admin-sheet-review' value={"rejected"}>rejected</option>
@@ -70,9 +74,12 @@ const AdminWithdrawlsRequest = () => {
                         <td> <p onClick={startWork} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
+                        
                 </tbody>
+                          </>
+                      ))}
             </table>
-        </section>
+            </section>
         </main>
         </div>
         <style>{`
