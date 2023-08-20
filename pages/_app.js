@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps
 //  get User func 
 async function getUser()
 {
+  setLoader(true)
   let token = JSON.stringify(localStorage.getItem('token'))
   if(token){
     let res = await axios.post(`/api/get/user?user=${token}`)
@@ -34,20 +35,27 @@ async function getUser()
       setemail(res.data.orders[0].email) 
       setbalance(parseFloat(res.data.orders[0].balance))
       setsubscription(res.data.orders[0].subscription) 
+      setTimeout(() => {setLoader(false) }, 2000);
+
+
   }
   
 }
   //Admin Get functions
 async function getAllCustomers(param){
+  setLoader(true)
     const res = await axios.get(`/api/get/join?status=${param}`)
     setcustomers(res.data.orders)
+  setTimeout(() => {setLoader(false) }, 2000);
+
+
 }
 async function getAllRequests(param){
+  setLoader(true)
     const res = await axios.get(`/api/get/request?status=${param}`)
-    console.log(res)
-    
     setrequests(res.data.orders)
-
+    setTimeout(() => {setLoader(false) }, 2000);
+  
 }
 
   useEffect(() => {
