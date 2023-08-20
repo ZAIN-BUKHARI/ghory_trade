@@ -35,7 +35,8 @@ async function getUser()
       setemail(res.data.orders[0].email) 
       setbalance(parseFloat(res.data.orders[0].balance))
       setsubscription(res.data.orders[0].subscription) 
-      setTimeout(() => {setLoader(false) }, 2000);
+      // setTimeout(() => {setLoader(false) }, 2000);
+      setLoader(false)
 
 
   }
@@ -46,7 +47,9 @@ async function getAllCustomers(param){
   setLoader(true)
     const res = await axios.get(`/api/get/join?status=${param}`)
       setcustomers(res.data.orders)
-      setTimeout(() => {setLoader(false) }, 2000);
+      // setTimeout(() => {setLoader(false) }, 2000);
+      setLoader(false)
+
 
 
 
@@ -58,7 +61,8 @@ async function getAllRequests(param){
   setLoader(true)
     const res = await axios.get(`/api/get/request?status=${param}`)
       setrequests(res.data.orders)
-      setTimeout(() => {setLoader(false) }, 2000);
+      // setTimeout(() => {setLoader(false) }, 2000);
+      setLoader(false)
 
 }
 

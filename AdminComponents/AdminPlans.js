@@ -30,7 +30,8 @@ const AdminPlans = () => {
         api(id)
     }
     const detail = (id) =>{
-        router.push(`/admindetail?id=${id}`)
+        var plan = "plan"
+        router.push(`/admindetail?id=${id}&plan=${plan}`)
     }
     async function api(id){
         await axios.get(`/api/admin/status?_id=${id}&status=${status}`)
@@ -65,13 +66,13 @@ const AdminPlans = () => {
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> 1 </td>
-                        <td> Zain </td>
+                        <td> {item._id.slice(0,5)} </td>
+                        <td> {item.name} </td>
                         <td>{item.email}</td>
-                        <td> 17 Dec, 2022 </td>
-                        <td> 1 </td>
+                        <td> {item.createdAt.slice(0,10)} </td>
+                        <td> {item.level} </td>
                         
-                        <td> <strong> $ </strong></td>
+                        <td> <strong> ${item.investment} </strong></td>
                         <td className=''>
                         <select 
                       name="select"
@@ -103,7 +104,7 @@ const AdminPlans = () => {
                      
                     </select>
                         </td>
-                        <td> <p onClick={(e)=>{startWork(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        <td> <p onClick={(e)=>{startWork(item._id)}} className='Left'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
@@ -116,6 +117,11 @@ const AdminPlans = () => {
         </main>
         </div>
         <style>{`
+        .Left{
+            font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+        }
         // .admin-sheet-reviewed{
         //     color:green;
         //     font-weight:bold;

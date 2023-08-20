@@ -45,11 +45,12 @@ async function api(id){
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Customer </th>
-                        <th> Address </th>
+                        {/* <th> Customer </th> */}
+                        <th> email </th>
                         <th> Join</th>
-                        <th> Level</th>
+                        {/* <th> Level</th> */}
                         <th> Amount </th>
+                        <th> Method </th>
                         <th> Update </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
@@ -60,13 +61,14 @@ async function api(id){
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> 1 </td>
-                        <td> Zain </td>
+                        <td> {item._id.slice(0,5)} </td>
+                        {/* <td> {item.name} </td> */}
                         <td>{item.email}</td>
-                        <td> 17 Dec, 2022 </td>
-                        <td> 1 </td>
+                        <td>{item.createdAt.slice(0,10)}</td>
+                        {/* <td> 1 </td> */}
                         
                         <td> <strong> ${item.amount} </strong></td>
+                        <td> <strong> {item.method} </strong></td>
                         <td className=''>
                         <select 
                       name="select"
@@ -98,7 +100,7 @@ async function api(id){
                      
                     </select>
                         </td>
-                        <td> <p onClick={()=>{startWork(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        <td > <p onClick={()=>{startWork(item._id)}} className='left'><FcRight /></p> </td>
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
@@ -111,6 +113,11 @@ async function api(id){
         </main>
         </div>
         <style>{`
+        .left{
+            font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+        }
         .admin-sheet-reviewed{
             color:green;
             font-weight:bold;
