@@ -4,30 +4,30 @@ const NewContact = () => {
   return (
     <>
     <section id="contact">
-    <div class="contact container">
+    <div className="contact container">
       <div>
-        <h1 class="section-title">Contact <span>info</span></h1>
+        <h1 className="section-title">Contact <span>info</span></h1>
       </div>
-      <div class="contact-items MEDIA-LEFT-CONTACT">
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
-          <div class="contact-info">
+      <div className="contact-items MEDIA-LEFT-CONTACT">
+        <div className="contact-item">
+          <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
+          <div className="contact-info">
             <h1>Phone</h1>
             <h2>+92 322 4959827</h2>
             <h2>+92 300 4360057</h2>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
-          <div class="contact-info">
+        <div className="contact-item">
+          <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
+          <div className="contact-info">
             <h1>Email</h1>
             <h2>info@gmail.com</h2>
             <h2>ghoryg7@gmail.com.com</h2>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
-          <div class="contact-info">
+        <div className="contact-item">
+          <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
+          <div className="contact-info">
             <h1>Address</h1>
             <h2>Lahore, Pakistan</h2>
           </div>

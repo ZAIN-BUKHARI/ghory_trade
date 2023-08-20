@@ -20,19 +20,19 @@
 //     },[])
 //   return (
 //     <>
-//     <div class="slider">
-//         <div class="list">
-//             <div class="item">
+//     <div className="slider">
+//         <div className="list">
+//             <div className="item">
 //                 <img src={`go${num}.png`} alt=""/>
 //             </div>
             
 //         </div>
-//         <div class="buttons">
+//         <div className="buttons">
 //             <button id="prev"></button>
 //             <button id="next"></button>
 //         </div>
-//         <ul class="dots">
-//             <li class="active"></li>
+//         <ul className="dots">
+//             <li className="active"></li>
 //             <li></li>
 //             <li></li>
 //             <li></li>

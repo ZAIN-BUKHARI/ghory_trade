@@ -4,16 +4,16 @@ const Header = () => {
   return (
     <>
      <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
+    <div className="header container">
+      <div className="nav-bar">
+        <div className="brand">
           <a href="#hero">
             <h1><span>S</span>haif <span>A</span>rfan</h1>
           </a>
         </div>
-        <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
+        <div className="nav-list">
+          <div className="hamburger">
+            <div className="bar"></div>
           </div>
           <ul>
             <li><a href="#hero" data-after="Home">Home</a></li>

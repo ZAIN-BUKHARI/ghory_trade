@@ -85,11 +85,11 @@ const Request = () => {
   return (
     <>
     <div className='FormModal'>
-    <div class="card">
-    <div class="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-    <p class="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
+    <div className="card">
+    <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
     </p>
-    <div class="card__form">
+    <div className="card__form">
         <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
         <div className='form-modal-select'>
 
@@ -105,7 +105,7 @@ const Request = () => {
                 </select>
         <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
                     </div>
-        <button onClick={requestSubmit} class="sign-up"> Submit Request</button>
+        <button onClick={requestSubmit} className="sign-up"> Submit Request</button>
     </div>
 </div>
     </div>

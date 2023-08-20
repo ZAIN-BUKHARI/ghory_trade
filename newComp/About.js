@@ -4,14 +4,14 @@ const About = () => {
   return (
     <>
       <section id="about">
-        <div class="about container">
-          <div class="col-left">
-            <div class="about-img MEDIA-LEFT-ABOUT">
+        <div className="about container">
+          <div className="col-left">
+            <div className="about-img MEDIA-LEFT-ABOUT">
               <img src="go2.png" alt="img" />
             </div>
           </div>
-          <div class="col-right">
-            <h1 class="section-title">
+          <div className="col-right">
+            <h1 className="section-title">
               About <span>us</span>
             </h1>
             <h2>ghory trade</h2>
@@ -26,7 +26,7 @@ const About = () => {
               defines our approach, making us a trusted player in the complex
               world of commodity trading.
             </p>
-            <a href="#" class="cta">
+            <a href="#" className="cta">
               Join us
             </a>
           </div>

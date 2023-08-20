@@ -80,7 +80,7 @@ const Sidebar = () => {
       <div className="logo">
         <img src="go2.png" alt="logo"/>
         {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
-        {/* <h1 class="section-title-sidebar">Ghory <span>Trading</span></h1> */}
+        {/* <h1 className="section-title-sidebar">Ghory <span>Trading</span></h1> */}
       </div>
       <ul className="links">
         <h4 >Main Menu</h4>

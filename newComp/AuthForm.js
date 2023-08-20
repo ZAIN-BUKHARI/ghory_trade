@@ -134,42 +134,42 @@ const AuthForm = () => {
             <>
     
     <div className='authform'>
-    <div class="form-auth form-auth-height" id='form-remove'>
-    {ActiveLoginModal &&<p class="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
-    {!ActiveLoginModal &&<p class="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
+    <div className="form-auth form-auth-height" id='form-remove'>
+    {ActiveLoginModal &&<p className="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
+    {!ActiveLoginModal &&<p className="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
     
     
-    {!ActiveLoginModal &&<p class="message">Signup now and get full access to our app. </p>}
-    {ActiveLoginModal &&<p class="message">Signin now and get full access to our app. </p>}
-    {!ActiveLoginModal && (  <div class="flex">
+    {!ActiveLoginModal &&<p className="message">Signup now and get full access to our app. </p>}
+    {ActiveLoginModal &&<p className="message">Signin now and get full access to our app. </p>}
+    {!ActiveLoginModal && (  <div className="flex">
         <label>
-            <input  required="" value={firstname} onChange={(e)=>{setfirstname(e.target.value)}} placeholder="" type="text" class="input authform-input"/>
+            <input  required="" value={firstname} onChange={(e)=>{setfirstname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
             <span className='authform-span'>Firstname</span>
         </label>
 
         <label>
-            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" class="input authform-input"/>
+            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
             <span className='authform-span'>Lastname</span>
         </label>
     </div>  )}
             
     <label>
-        <input required=""  value={email} onChange={(e)=>{setemail(e.target.value)}}placeholder="" type="email" class="input authform-input"/>
+        <input required=""  value={email} onChange={(e)=>{setemail(e.target.value)}}placeholder="" type="email" className="input authform-input"/>
         <span className='authform-span'>Email</span>
     </label> 
         
     <label>
-        <input required="" placeholder="" type="password" value={password} onChange={(e)=>{setpassword(e.target.value)}} class="input authform-input"/>
+        <input required="" placeholder="" type="password" value={password} onChange={(e)=>{setpassword(e.target.value)}} className="input authform-input"/>
         <span className='authform-span'>Password</span>
     </label>
    {!ActiveLoginModal && ( <label>
-        <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" class="input authform-input"/>
+        <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" className="input authform-input"/>
         <span className='authform-span'>Confirm password</span>
     </label>)}
-    {!ActiveLoginModal &&  <button onClick={signup} class="submit">Signup</button>}
-    {ActiveLoginModal &&  <button onClick={signin} class="submit">Signin</button>}
-    {ActiveLoginModal && <p onClick={showsignup} class="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
-    {!ActiveLoginModal && <p onClick={showsignin} class="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
+    {!ActiveLoginModal &&  <button onClick={signup} className="submit">Signup</button>}
+    {ActiveLoginModal &&  <button onClick={signin} className="submit">Signin</button>}
+    {ActiveLoginModal && <p onClick={showsignup} className="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
+    {!ActiveLoginModal && <p onClick={showsignin} className="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
    
 </div>
 </div>

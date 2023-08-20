@@ -61,24 +61,24 @@ const Adminlogin = () => {
             <>
     
     <div className='authform'>
-    <form class="form-auth " id='form-remove'>
-    <p class="title">Admin</p>
+    <form className="form-auth " id='form-remove'>
+    <p className="title">Admin</p>
 
     
     
-    <p class="message">Login now and get full access to our app. </p>
+    <p className="message">Login now and get full access to our app. </p>
     
             
     <label>
-        <input required="" onChange={(e)=>{setemail(e.target.value)}} placeholder="" type="email" class="input authform-input"/>
+        <input required="" onChange={(e)=>{setemail(e.target.value)}} placeholder="" type="email" className="input authform-input"/>
         <span className='authform-span'>Email</span>
     </label> 
         
     <label>
-        <input required="" onChange={(e)=>{setpassword(e.target.value)}} placeholder="" type="password" class="input authform-input"/>
+        <input required="" onChange={(e)=>{setpassword(e.target.value)}} placeholder="" type="password" className="input authform-input"/>
         <span className='authform-span'>Password</span>
     </label>
-    {email=="usmanadmin123@gmail.com" && password=="usmanadmin123"&&<Link onClick={adminlogin} href="/admin"><button class="submit">Submit</button></Link>}
+    {email=="usmanadmin123@gmail.com" && password=="usmanadmin123"&&<Link onClick={adminlogin} href="/admin"><button className="submit">Submit</button></Link>}
 
 </form>
 </div>

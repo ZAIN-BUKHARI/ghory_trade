@@ -94,7 +94,7 @@ const Loading = () => {
             `}
       </style>
       <div className='Loader-Main'>
-      <div class="spinner ">
+      <div className="spinner ">
     <span></span>
     <span></span>
     <span></span>
@@ -199,7 +199,7 @@ const Loading = () => {
             `}
       </style>
       <div className='Loader-Main'>
-      <div class="spinner ">
+      <div className="spinner ">
     <span></span>
     <span></span>
     <span></span>

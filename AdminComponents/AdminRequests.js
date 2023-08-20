@@ -13,18 +13,18 @@ const AdminRequests = () => {
   return (
     <>
     <div className='AdminWorksheet-body'>
-    <main class="table">
-    <section class="table__header">
+    <main className="table">
+    <section className="table__header">
             {/* <h1>Daily Assignments</h1> */}
             {/* <h1 className='WORK-WALLET'>Wallet {balance}$</h1> */}
-            {/* <div class="input-group">
+            {/* <div className="input-group">
                 <input type="search" placeholder="Search Data..."/>
                 <img src="images/search.png" alt=""/>
             </div> */}
-            {/* <div class="export__file">
-                <label for="export-file" class="export__file-btn" title="Export File"></label>
+            {/* <div className="export__file">
+                <label for="export-file" className="export__file-btn" title="Export File"></label>
                 <input type="checkbox" id="export-file"/> */}
-                {/* <div class="export__file-options">
+                {/* <div className="export__file-options">
                     <label>Export As &nbsp; &#10140;</label>
                     <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""/></label>
                     <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""/></label>
@@ -33,7 +33,7 @@ const AdminRequests = () => {
                 </div> */}
             {/* </div> */}
         </section>
-        <section class="table__body">
+        <section className="table__body">
             <table>
                         
                     <thead>

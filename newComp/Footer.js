@@ -9,20 +9,20 @@ const Footer = () => {
     <>
     {Hide!='/register' && Hide!='/work' && Hide!="/dailywork" && Hide!='/test' && !router.asPath.includes("admin")  && Hide!='/login' && Hide!='/intro' && Hide!='/investment'  && (
     <section id="footer">
-    <div class="footer container">
-      <div class="brand">
+    <div className="footer container">
+      <div className="brand">
         <h1><span>g</span>hory <span>T</span>aders</h1>
       </div>
       <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
-      <div class="social-icon">
+      <div className="social-icon">
         <Balls/>
-        {/* <div class="social-item">
+        {/* <div className="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
         </div>
-        <div class="social-item">
+        <div className="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
         </div>
-        <div class="social-item">
+        <div className="social-item">
           <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/behance.png" /></a>
         </div> */}
       </div>

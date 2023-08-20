@@ -9,27 +9,27 @@ const Contact = () => {
    
    
     
-    <div class="containerContact">
-      <div class="">        
-        <div class="contact-form">
+    <div className="containerContact">
+      <div className="">        
+        <div className="contact-form">
           <form action="" id="contact-form">
             <h2>Send Message</h2>
-            <div class="input-box">
+            <div className="input-box">
               <input type="text" required="true" name=""/>
               <span>Full Name</span>
             </div>
             
-            <div class="input-box">
+            <div className="input-box">
               <input type="email" required="true" name=""/>
               <span>Email</span>
             </div>
             
-            <div class="input-box">
+            <div className="input-box">
               <textarea required="true" name=""></textarea>
               <span>Type your Message...</span>
             </div>
             
-            <div class="input-box">
+            <div className="input-box">
               <input type="submit" value="Send" name=""/>
             </div>
           </form>

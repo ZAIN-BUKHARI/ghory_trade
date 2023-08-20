@@ -3,11 +3,11 @@ import React from 'react'
 const AdminTable = (props) => {
   return (
     <>
-    <div class="table-row">
-            <div class="table-cell first-cell">
+    <div className="table-row">
+            <div className="table-cell first-cell">
                 <p>{props.title}</p>
             </div>
-            <div class="table-cell">
+            <div className="table-cell">
                 <p>{props.desc}</p>
             </div>
         </div>

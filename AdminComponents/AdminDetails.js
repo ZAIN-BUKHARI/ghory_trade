@@ -5,7 +5,7 @@ const AdminDetails = () => {
 
   return (
     <>
-    <div class="table-box">
+    <div className="table-box">
     <AdminTable title={"ID"} desc={"12345678910"} />
     <AdminTable title={"NAME"} desc={"ZAIN-UL-ABDIN"} />
     <AdminTable title={"EMAIL"} desc={"zainyshorts@gmail.com"} />
