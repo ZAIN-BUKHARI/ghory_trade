@@ -45,17 +45,21 @@ async function getUser()
 async function getAllCustomers(param){
   setLoader(true)
     const res = await axios.get(`/api/get/join?status=${param}`)
-    setcustomers(res.data.orders)
-  setTimeout(() => {setLoader(false) }, 2000);
+      setcustomers(res.data.orders)
+      setTimeout(() => {setLoader(false) }, 2000);
+
+
+
+  
 
 
 }
 async function getAllRequests(param){
   setLoader(true)
     const res = await axios.get(`/api/get/request?status=${param}`)
-    setrequests(res.data.orders)
-    setTimeout(() => {setLoader(false) }, 2000);
-  
+      setrequests(res.data.orders)
+      setTimeout(() => {setLoader(false) }, 2000);
+
 }
 
   useEffect(() => {
