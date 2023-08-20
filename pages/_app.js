@@ -10,6 +10,7 @@ import '../styles/player.css'
 import '../styles/slider.css'
 import '../styles/worksheet.css'
 import '../styles/widthdraw.css'
+import '../styles/test.css'
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';

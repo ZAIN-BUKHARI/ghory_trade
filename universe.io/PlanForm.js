@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import {ThemeContext} from '../Context/ThemeContext'
 const PlanForm = () => {
+  //useContext
+  const {email} = useContext(ThemeContext)
   //useRouter
   const router = useRouter()
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -13,7 +15,7 @@ const PlanForm = () => {
   // DATA STATE VARIABLE
   const [investment, setinvestment] = useState();
   const [phone, setphone] = useState("");
-  const [email, setemail] = useState("");
+  // const [email, setemail] = useState("");
   const [name, setname] = useState("");
   const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
@@ -32,17 +34,16 @@ const PlanForm = () => {
       setinvestment(e.target.value)
       if (currency == "USD" && e.target.value >= 100) {
         var val = e.target.value;
-        if      (val >= 100 && val < 200) setlevel("1");
-        else if (val >= 200 && val < 300) setlevel("2");
+        if      (val >= 100 && val < 200)  setlevel("1");
+        else if (val >= 200 && val < 300)  setlevel("2");
         else if (val > 300 && val  < 400)  setlevel("3");
-        else if (val >= 400 && val < 500) setlevel("4");
-        else if (val >= 500 && val < 600) setlevel("5");
-        else if (val >= 600 && val < 700) setlevel("6");
-        else if (val >= 700 && val < 800) setlevel("7");
-        else if (val >= 800 && val < 900) setlevel("8");
-        else if (val >= 900 && val < 1000)setlevel("9");
+        else if (val >= 400 && val < 500)  setlevel("4");
+        else if (val >= 500 && val < 600)  setlevel("5");
+        else if (val >= 600 && val < 700)  setlevel("6");
+        else if (val >= 700 && val < 800)  setlevel("7");
+        else if (val >= 800 && val < 900)  setlevel("8");
+        else if (val >= 900 && val < 1000) setlevel("9");
         else setlevel("10");
-        console.log(level)
         seterror(true);
         setpkrerror(false);
       } else if (currency == "PKR" && e.target.value < "30000") {
@@ -83,6 +84,7 @@ const PlanForm = () => {
           progress: undefined,
           theme: "light",
         });
+        router.push('/')
       }
       else {
         toast.error("Your Request failed", {
@@ -174,9 +176,10 @@ const PlanForm = () => {
                   <span className="details">Email</span>
                   <input
                     type="text"
-                    onChange={(e) => {
-                      setemail(e.target.value);
-                    }}
+                    value={email}
+                    // onChange={(e) => {
+                    //   setemail(e.target.value);
+                    // }}
                     placeholder="Enter your email"
                     required
                   />

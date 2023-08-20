@@ -29,7 +29,7 @@ const detail = (id) =>{
     router.push(`/admindetail?id=${id}`)
 }
 async function api(id){
-    await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}`)
+    await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}&balance=${balance}`)
     window.location.reload()
 }
 
