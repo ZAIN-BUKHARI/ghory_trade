@@ -17,15 +17,14 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 import { File } from 'react-feather';
 import { ThemeContext } from '../Context/ThemeContext';
 import { useContext } from 'react';
-import AdminWorkSheet from '../AdminComponents/AdminWorkSheet';
 import { useEffect } from 'react';
-import AdminWithdrawlsRequest from '../AdminComponents/AdminWithdrawlsRequest';
+import AdminRequests from '../AdminComponents/AdminRequests';
 
 const adminwithdrawals = () => {
   const {Admin,getAllRequests} =useContext(ThemeContext)
   
   useEffect(()=>{
-    getAllRequests("verified")
+    getAllRequests("pending")
   },[])
   if(Admin){
     return (
@@ -34,9 +33,11 @@ const adminwithdrawals = () => {
           
        <FullLayout>
        <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >PENDING WITHDRAWALS REQUEST</h1>
+       <h1 className='text-5xl font-bold text-yellow-500 text-center ml-[450px]' >Pending Requests</h1>
+
       <Grid item xs={12} lg={12}>
-        <AdminWithdrawlsRequest/>
+        {/* <AdminWithdrawlsRequest/> */}
+        <AdminRequests/>
       </Grid>
 
       

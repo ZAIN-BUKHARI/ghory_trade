@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcRight } from "react-icons/fc";
 
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
-const AdminWorkSheet = () => {
+const AdminPlans = () => {
     //use Context 
     const {balance,router,customers}=useContext(ThemeContext)
     const startWork = () =>{
@@ -34,50 +34,70 @@ const AdminWorkSheet = () => {
             {/* </div> */}
         </section>
         <section class="table__body">
-
-                <table>
-                <thead>
-            
+            <table>
+                        
+                    <thead>
                     <tr>
                         <th> ID </th>
                         <th> Customer </th>
-                        <th> email </th>
+                        <th> Address </th>
                         <th> Join</th>
                         <th> Level</th>
-                        <th> Investent </th>
+                        <th> Amount </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
                     </tr>
                 </thead>
                 {customers.map((item)=>(
+                    <>
                 <tbody>
+                
                     <tr>
                         <td> 1 </td>
-                        <td> {item.name} </td>
-                        <td> {item.email}</td>
+                        <td> Zain </td>
+                        <td>{item.email}</td>
                         <td> 17 Dec, 2022 </td>
                         <td> 1 </td>
                         
-                        <td> <strong> ${item.investment} </strong></td>
-                        <td className='admin-sheet-reviewed'> <strong> reviewd </strong></td>
+                        <td> <strong> $200 </strong></td>
+                        <td className=''>
+                        <select 
+                      name="select"
+                    //   onChange={ChangeEvent}
+                      className="Admin-select"
+                      >
+                      <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
+                      <option className='admin-sheet-reviewed' value={"released"}>release</option>
+                      <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                    </select>
+                        </td>
                         <td> <p onClick={startWork} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
+                     
+                        
                 </tbody>
-                ))}
+                          </>
+                      ))}
             </table>
-        </section>
+            </section>
         </main>
         </div>
         <style>{`
         .admin-sheet-reviewed{
             color:green;
+            font-weight:bold;
         }
         .admin-sheet-review{
+            font-weight:bold;
             color:red;
+        }
+        .Admin-select{
+            outline:none;
+            color:green;
         }
         `}</style>
     </>
   )
 }
 
-export default AdminWorkSheet
+export default AdminPlans

@@ -11,18 +11,24 @@ const Menuitems = [
   },
   {
     title: "Verified Plans",
-    icon: "eye",
+    icon: "user-check",
+    
     href: "/adminview",
   },
   {
     title: "Pending Plans",
-  icon: "box",
+  icon: "user",
     href: "/adminjoin",
   },
   {
-    title: "Rejected Requests",
-    icon: "star",
+    title: "Rejected Plans",
+    icon: "user-x",
     href: "/adminplanreject",
+  },
+  {
+    title: "Verified Requests",
+    icon: "user-check",
+    href: "/adminrecent",
   },
   {
     title: "Pending Requests",
@@ -30,13 +36,8 @@ const Menuitems = [
     href: "/adminwithdrawals",
   },
   {
-    title: "Verified Requests",
-    icon: "grid",
-    href: "/adminrecent",
-  },
-  {
     title: "Rejected Requests",
-    icon: "image",
+    icon: "user-x",
     href: "/adminreject",
   },
   // {

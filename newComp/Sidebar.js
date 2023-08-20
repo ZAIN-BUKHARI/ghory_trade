@@ -37,8 +37,8 @@ const Sidebar = () => {
       router.push('/investment')
   }
   const Dailywork = () =>{
-    if(!token){
-      toast.info('Login required and Subscripe our plan', {
+    if(!token || subscription=="no"){
+      toast.info('Login required and subscribe our plan', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -53,8 +53,8 @@ const Sidebar = () => {
       router.push('/work')
   }
   const withdraw =()=>{
-  if(!token){
-    toast.info('Login required and Subscripe our plan', {
+  if(!token || subscription=="no"){
+    toast.info('Login required and subscribe our plan', {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,

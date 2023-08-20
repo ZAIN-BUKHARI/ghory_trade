@@ -45,6 +45,7 @@ async function getAllCustomers(param){
 async function getAllRequests(param){
     const res = await axios.get(`/api/get/request?status=${param}`)
     console.log(res)
+    
     setrequests(res.data.orders)
 
 }

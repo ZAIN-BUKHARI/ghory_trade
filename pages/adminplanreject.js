@@ -17,13 +17,13 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 import { File } from 'react-feather';
 import { ThemeContext } from '../Context/ThemeContext';
 import { useContext } from 'react';
-import AdminWorkSheet from '../AdminComponents/AdminWorkSheet';
 import { useEffect } from 'react';
+import AdminPlans from '../AdminComponents/AdminPlans';
 
 const adminplanreject = () => {
-  const {Admin,customers,getAllCustomers} =useContext(ThemeContext)
+  const {Admin,getAllCustomers} =useContext(ThemeContext)
   useEffect(()=>{
-    getAllCustomers("verified");
+    getAllCustomers("rejected");
   },[])
   
   if(Admin){
@@ -33,9 +33,10 @@ const adminplanreject = () => {
           
        <FullLayout>
        <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >All Your Customers</h1>
+       <h1 className='text-5xl font-bold text-red-500 text-center ml-[450px]' >Rejected Plans</h1>
+
       <Grid item xs={12} lg={12}>
-          <AdminWorkSheet  />
+          <AdminPlans/>
       </Grid>
 
       
