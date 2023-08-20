@@ -1,30 +1,66 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcRight } from "react-icons/fc";
 
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
+import { useRouter } from 'next/router';
 const AdminPlans = () => {
     //use Context 
-    const {balance,router,customers}=useContext(ThemeContext)
+    const {balance,customers}=useContext(ThemeContext)
+    
+    //router
+    const router = useRouter()
+    //state variables
+    const [status,setstatus]=useState("")
+    //useEffect for checking path and set status default 
+    useEffect(()=>{
+        if(router.asPath=="/adminview")
+            setstatus("verified")
+        else if(router.asPath=="/adminjoin")
+            setstatus("pending")
+        else if(router.asPath=="/adminplanreject")
+            setstatus("rejected")
+    },[])
+    
     const startWork = () =>{
-        router.push('/admindetail')
+        // router.push('/admindetail')
+        console.log(status)
+    }
+
+    const statusChanger = (e) =>{
+        var value = e.target.value
+        setstatus(e.target.value)
+        if(value=="verified"){
+            console.log("verified api call")
+            // window.location.reload()
+        }
+        else if(value=="pending"){
+            console.log("pending api call")
+            // window.location.reload()
+
+        }
+        else if(value=="rejected"){
+            console.log("rejected api call")
+            // window.location.reload()
+
+        }
     }
   return (
     <>
     <div className='AdminWorksheet-body'>
-    <main class="table">
-    <section class="table__header">
+    <main className="table">
+    <section className="table__header">
             {/* <h1>Daily Assignments</h1> */}
             {/* <h1 className='WORK-WALLET'>Wallet {balance}$</h1> */}
-            {/* <div class="input-group">
+            {/* <div className="input-group">
                 <input type="search" placeholder="Search Data..."/>
                 <img src="images/search.png" alt=""/>
             </div> */}
-            {/* <div class="export__file">
-                <label for="export-file" class="export__file-btn" title="Export File"></label>
+            {/* <div className="export__file">
+                <label for="export-file" className="export__file-btn" title="Export File"></label>
                 <input type="checkbox" id="export-file"/> */}
-                {/* <div class="export__file-options">
+                {/* <div className="export__file-options">
                     <label>Export As &nbsp; &#10140;</label>
                     <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""/></label>
                     <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""/></label>
@@ -33,7 +69,7 @@ const AdminPlans = () => {
                 </div> */}
             {/* </div> */}
         </section>
-        <section class="table__body">
+        <section className="table__body">
             <table>
                         
                     <thead>
@@ -63,12 +99,32 @@ const AdminPlans = () => {
                         <td className=''>
                         <select 
                       name="select"
-                    //   onChange={ChangeEvent}
                       className="Admin-select"
+                      value={status}
+                      onChange={statusChanger}
                       >
-                      <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
-                      <option className='admin-sheet-reviewed' value={"released"}>release</option>
-                      <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                    {status=="verified" && (
+                        <>
+                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
+                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
+                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                        </>
+                    )}
+                    {status=="pending" && (
+                        <>
+                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
+                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
+                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                        </>
+                    )}
+                    {status=="rejected" && (
+                        <>
+                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
+                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
+                        </>
+                    )}
+                     
                     </select>
                         </td>
                         <td> <p onClick={startWork} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
