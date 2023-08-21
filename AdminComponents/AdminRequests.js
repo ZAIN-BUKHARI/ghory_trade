@@ -22,15 +22,22 @@ useEffect(()=>{
         setstatus("rejected")
 },[])
 
-const startWork = (id) =>{
-    api(id)
+const startWork = (id,email) =>{
+    api(id,email)
 }
 const detail = (id) =>{
     router.push(`/admindetail?id=${id}`)
 }
-async function api(id){
-    await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}&balance=${balance}`)
-    window.location.reload()
+async function api(id,email){
+    let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}&email=${email}`)
+    const userBalance = res.data.response.balance
+    if(res.status==200){
+        const finalBalance = userBalance-balance
+        const data = {finalBalance,email}
+        if(await axios.post('/api/admin/decrementBalance',data))
+            window.location.reload()
+
+    }
 }
 
   return (
@@ -100,7 +107,7 @@ async function api(id){
                      
                     </select>
                         </td>
-                        <td > <p onClick={()=>{startWork(item._id)}} className='left'><FcRight /></p> </td>
+                        <td > <p onClick={()=>{startWork(item._id,item.email)}} className='left'><FcRight /></p> </td>
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
