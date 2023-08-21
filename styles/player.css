@@ -9,7 +9,7 @@
 } 
 .yt{
     pointer-events: none;
-    position: absolute;
+    /* position: absolute; */
     }
 .Player-Color{
     background: linear-gradient(135deg, #71b7e6, #9b59b6);

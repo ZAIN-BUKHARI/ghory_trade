@@ -32,6 +32,10 @@ const UserSchema = new Schema({
         type:String,
         default:"000"
     },
+    channel:{
+        type:String,
+        default:"no"
+    },
     
 
     },{timestamps:true})

@@ -70,7 +70,6 @@ const PlanForm = () => {
         if(res.data.success==true){
 
         setname('')
-        setemail('')
         setaddress('')
         setphone('')
         setcnic('')

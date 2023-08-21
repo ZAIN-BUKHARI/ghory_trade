@@ -20,25 +20,30 @@ import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
 import Request from '../universe.io/Request';
 import axios from 'axios';
+import { parse } from 'postcss';
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
   const [progress, setProgress] = useState(0)
-
+var access='ya29.a0AfB_byB_FHuiyFNMMPiB3Ud85R3yJ8Hj-GvMDW_iEFc3D9fxZSpW6xUYWJDKbGt0_RgOKSXMQD7i3zRGnAtx9oeTW5E3k709EEVlY7rDcljtr84rRKsSpPpBjYP20cxqUohj5IgK17NVIAJkcDlLn2B9TarEMkb_SIBOyAaCgYKAbgSARASFQHsvYlsmfkQsyvRKOyPqONpmzwIpg0173'
+var API_KEY='AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g'
 //  get User func 
 async function getUser()
 {
   setLoader(true)
   let token = JSON.stringify(localStorage.getItem('token'))
-  if(token){
-    let res = await axios.post(`/api/get/user?user=${token}`)
+  console.log(token)
+  if(token=="null"){
+      setLoader(false)
+  }else{
+    let res = await axios.get(`/api/get/user?user=${token}`)
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
       setbalance(parseFloat(res.data.orders[0].balance))
       setsubscription(res.data.orders[0].subscription) 
+      setchannel(res.data.orders[0].channel)
       // setTimeout(() => {setLoader(false) }, 2000);
       setLoader(false)
-
 
   }
   
@@ -65,6 +70,86 @@ async function getAllRequests(param){
       // setTimeout(() => {setLoader(false) }, 2000);
       setLoader(false)
 
+}
+async function PostComment(textarea){
+  setLoader(true)
+  const headers = {
+    'Content-Type': 'application/json', // Example header
+    'Authorization': `Bearer ${access}`, // Example authorization header
+    // 'Accept':'application/json'
+    
+  };
+  const data = {
+    "snippet": {
+      "videoId": "5Xs-awoSmhw",
+      "topLevelComment": {
+        "snippet": {
+          "textOriginal": textarea
+        }
+      }
+    }
+  }
+  let result = await axios.post(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&key=AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g`,data,{headers})
+  console.log(result.data)
+  if(result.status==200){
+    setLoader(false)
+    return true
+  }
+  else{
+    setLoader(false)
+    return false
+  }
+}
+async function SubscribeChannel(){
+  setLoader(true)
+  const headers = {
+    'Content-Type': 'application/json', // Example header
+    'Authorization': `Bearer ${access}`, // Example authorization header
+    'Accept':'application/json'
+    
+  };
+  const data = {
+    snippet: {
+      resourceId: {
+        channelId: "UC6LRyDpPgR2ypljDuCvU-cw",
+      },
+    },
+  }
+  try{
+    let result = await axios.post(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&key=AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g`,data,{headers})
+    if(result.status==200){
+      const data = {email}
+      let response = await axios.post('/api/get/user',data)
+      if(response.data==true){
+        setLoader(false)
+        return true
+      }else{
+        setLoader(false)
+        return false
+      }
+    }
+  }catch(e){
+    setLoader(false)
+    return false
+  }
+}
+// https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${VIDEO_ID}
+async function getVideoInfo(id){
+  setLoader(true)
+  // let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet&id=${id}`)
+  let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${id}`)
+  if(result.status==200){
+    var time = result.data.items[0].contentDetails.duration
+    setduration((parseInt(time.split('M')[0].slice(2)))*60000)
+
+    setvideoTitle(result.data.items[0].snippet.localized.title)
+    setLoader(false)
+    
+  }
+  else{
+    setLoader(false)
+    return false
+  }
 }
 
   useEffect(() => {
@@ -109,11 +194,16 @@ async function getAllRequests(param){
     const [Admin,setAdmin]=useState(true)
     const [customers,setcustomers]=useState([]) 
     const [requests,setrequests]=useState([]) 
+    
+    //youtube variables
+    const [channel,setchannel]=useState("") 
+    const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
+    const [duration,setduration]=useState(300000) 
 
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,getAllCustomers,customers,requests,getAllRequests}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

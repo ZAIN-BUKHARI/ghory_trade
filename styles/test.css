@@ -8,7 +8,7 @@
     /* align-items: center; */
     background-color: #36454F;
     /* background-color: #1B1212; */
-    padding-top: 40px;
+    padding-top: 10px;
     padding-left: 20px;
 }
 
@@ -50,6 +50,21 @@
 .test-bootom-sec{
     display: flex;
     justify-content: space-between;
+}
+.test-btn-subscribed{
+    background-color: #fa7b81;
+    height: 25px;
+    width: 90px;
+    /* padding: 10px; */
+    border: 2px solid white;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: serif;
+    border-radius: 10px;
+    display: flex;
+    
+
 }
 .test-btn{
     background-color: red;
