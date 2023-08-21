@@ -17,9 +17,8 @@ import { useEffect } from 'react';
 
 
 const Sidebar = () => {
-  const {setAuth,setPaymentRequestModal,token,settoken,subscription}=useContext(ThemeContext)
-  const router = useRouter()
-  
+  const {setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+ 
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -144,9 +143,12 @@ const Sidebar = () => {
           {/* user didnot login now but has subscription  */}
           {!token  && subscription=="yes" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="yes" && <FcLock/>}
+          
           {/* //LOGGIN */}
           {/* both login and subscription  */}
           {token  && subscription=="yes" && <Link  href="/work">Daily work </Link>}
+          
+          
 
         </li>
         <li>

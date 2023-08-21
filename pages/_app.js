@@ -185,7 +185,7 @@ async function getVideoInfo(id){
     const [user,setuser]=useState({})
     const [email,setemail]=useState("")
     const [balance,setbalance]=useState(0)
-    const [subscription,setsubscription]=useState("")
+    const [subscription,setsubscription]=useState("no")
     
     //Login confirmation
     const[token,settoken]=useState(false)
