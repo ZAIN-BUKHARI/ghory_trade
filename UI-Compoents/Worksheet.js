@@ -1,14 +1,30 @@
 import React from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
-import { useContext } from 'react';
+import { useContext,useEffect } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 const Worksheet = () => {
     //use Context 
-    const {balance,router}=useContext(ThemeContext)
+    const {balance,router,token,subscription}=useContext(ThemeContext)
     const startWork = () =>{
         router.push('/dailywork')
     }
+    useEffect(()=>{
+        if(!token && subscription=="no")
+        {
+          router.push('/')
+          toast.success("Not allowed here", {
+            position: "top-right",
+            autoClose: 30000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      },[])
   return (
     <>
     <div className='Worksheet-body'>
@@ -16,21 +32,6 @@ const Worksheet = () => {
     <section className="table__header">
             <h1>Daily Assignments</h1>
             <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
-            {/* <div className="input-group">
-                <input type="search" placeholder="Search Data..."/>
-                <img src="images/search.png" alt=""/>
-            </div> */}
-            {/* <div className="export__file">
-                <label for="export-file" className="export__file-btn" title="Export File"></label>
-                <input type="checkbox" id="export-file"/> */}
-                {/* <div className="export__file-options">
-                    <label>Export As &nbsp; &#10140;</label>
-                    <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""/></label>
-                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""/></label>
-                    <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""/></label>
-                    <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""/></label>
-                </div> */}
-            {/* </div> */}
         </section>
         <section className="table__body">
             <table>
@@ -62,6 +63,40 @@ const Worksheet = () => {
                     </tr>
                      
                 </tbody>
+                {/* testing purpose for showing to client  */}
+                {/* <tbody>
+                    <tr>
+                        <td> 1 </td>
+                        <td> Zain </td>
+                        <td> 17 Dec, 2022 </td>
+                        <td> 12:01pm </td>
+                        <td>
+                            <p className=" WorkSheet-Icon-Alert ">
+                               <FcHighPriority/>
+                            </p>
+                        </td>
+                        <td> <strong> $0.67 </strong></td>
+                        <td> <p  className="Done"><a href='https://www.youtube.com/@PakWheels'>start</a></p> </td>
+                    </tr>
+                     
+                </tbody> */}
+                {/* testing purpose for showing to client  */}
+                {/* <tbody>
+                    <tr>
+                        <td> 1 </td>
+                        <td> Zain </td>
+                        <td> 17 Dec, 2022 </td>
+                        <td> 12:01pm </td>
+                        <td>
+                            <p className=" WorkSheet-Icon-Alert ">
+                               <FcHighPriority/>
+                            </p>
+                        </td>
+                        <td> <strong> $0.67 </strong></td>
+                        <td> <p  className="Done"><a href='https://www.youtube.com/watch?v=CCU2TPj4O5A'>start</a></p> </td>
+                    </tr>
+                     
+                </tbody> */}
             </table>
         </section>
         </main>

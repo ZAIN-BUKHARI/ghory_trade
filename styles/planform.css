@@ -237,6 +237,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+.PlanForm-investment-error{
+  color: red;
+  font-weight: 700;
+}
+.PlanForm-investment-error-green{
+  color: green;
+  font-weight: 700;
+}
 
 .custum-file-upload .text span {
 font-weight: 400;

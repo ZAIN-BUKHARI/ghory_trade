@@ -19,12 +19,14 @@ const VideoPlayer = () => {
   const[textarea,settextarea]=useState("Post a comment ")
   const[SubscriberBtn,setSubscriberBtn]=useState(false)
 
-
-  const Player = () =>{
-    console.log('hello')
+  
+  const AddclassforVideoPLayerControlsDisable = () =>{
     var doc = document.getElementById("zain");
     doc.classList.add('yt');
-
+  }
+  const RemoveclassforVideoPLayerControlsEnables = () =>{
+    var doc = document.getElementById("zain");
+    doc.classList.remove('yt');
   }
   const next =()=>{
     router.push('/work')
@@ -124,9 +126,10 @@ const VideoPlayer = () => {
       theme: "light",
     });
     setTimeout(()=>{
-      Player()
+      AddclassforVideoPLayerControlsDisable()
     },100)
     setTimeout(()=>{
+      RemoveclassforVideoPLayerControlsEnables()
     },duration)
   },[])
 
@@ -194,12 +197,8 @@ const VideoPlayer = () => {
 
         <section class="TestBody-video-playlist">
             <h3 class="title">{videoTitle}</h3>
-            <p>10 lessions &nbsp; . &nbsp; 50m 48s</p>
+            <p>video length &nbsp; . &nbsp; {(duration/1000)/60} Minutes</p>
             <div class="TestBody-videos">
-                {/* <div className='playlist-video-test'></div>
-                <div className='playlist-video-test'></div>
-                <div className='playlist-video-test'></div>
-                <div className='playlist-video-test'></div> */}
                 <Comment/>
             </div>
         </section>
