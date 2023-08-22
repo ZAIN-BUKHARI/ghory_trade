@@ -42,7 +42,7 @@ async function getUser()
       setbalance(parseFloat(res.data.orders[0].balance))
       setsubscription(res.data.orders[0].subscription) 
       setchannel(res.data.orders[0].channel)
-      // setTimeout(() => {setLoader(false) }, 2000);
+      setworkStatus(res.data.orders[0].todaywork)
       setLoader(false)
 
   }
@@ -152,6 +152,27 @@ async function getVideoInfo(id){
   }
 }
 
+async function getTenvideos(){
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/search",
+      {
+        params: {
+          key: API_KEY,
+          channelId: "UC6LRyDpPgR2ypljDuCvU-cw",
+          part: "snippet",
+          maxResults: 10, // You can adjust this value
+          // order: "latest", // You can change the order as needed
+        },
+      }
+    );
+    setvideoLinks(response.data.items);
+    return true
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+  }
+}
+
   useEffect(() => {
     getUser()
     if(JSON.stringify(localStorage.getItem('token'))){
@@ -186,6 +207,7 @@ async function getVideoInfo(id){
     const [email,setemail]=useState("")
     const [balance,setbalance]=useState(0)
     const [subscription,setsubscription]=useState("no")
+    const [workStatus,setworkStatus]=useState("no")
     
     //Login confirmation
     const[token,settoken]=useState(false)
@@ -199,11 +221,12 @@ async function getVideoInfo(id){
     const [channel,setchannel]=useState("") 
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
     const [duration,setduration]=useState(300000) 
+    const [videoLinks,setvideoLinks]=useState("") 
 
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

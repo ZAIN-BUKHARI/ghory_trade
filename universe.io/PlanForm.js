@@ -72,8 +72,7 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
-    if (currency == "PKR" && investment >= 3000) {
-      if (currency == "USD" && investment >= 100) {
+    if (currency == "PKR" && investment >= 3000 || currency == "USD" && investment >= 100) {
         if (
           email.length >= 5 &&
           phone.length >= 8 &&
@@ -138,20 +137,8 @@ const PlanForm = () => {
             theme: "light",
           });
         }
-      } else {
-        toast.error("Minimum $100 dollars plan", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
     } else {
-      toast.error("Minimum 30000 PKR plan", {
+      toast.error("Minimum $100 dollars plan", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

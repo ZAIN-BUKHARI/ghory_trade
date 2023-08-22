@@ -36,6 +36,10 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    todaywork:{
+        type:String,
+        default:"no"
+    },
     
 
     },{timestamps:true})

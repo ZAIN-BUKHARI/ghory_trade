@@ -2,10 +2,11 @@ import React from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { useContext,useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { ThemeContext } from '../Context/ThemeContext'
 const Worksheet = () => {
     //use Context 
-    const {balance,router,token,subscription}=useContext(ThemeContext)
+    const {balance,router,token,subscription,workStatus}=useContext(ThemeContext)
     const startWork = () =>{
         router.push('/dailywork')
     }
@@ -54,12 +55,12 @@ const Worksheet = () => {
                         <td> 12:01pm </td>
                         <td>
                             <p className=" WorkSheet-Icon-Alert ">
-                               <FcHighPriority/>
-                               {/* <FcOk/> */}
+                             {workStatus=="no"  && <FcHighPriority/>}
+                             {workStatus=="yes" &&  <FcOk/> }
                             </p>
                         </td>
                         <td> <strong> $0.67 </strong></td>
-                        <td> <p onClick={startWork} className="Done">Start</p> </td>
+                       {workStatus=="no" && <td> <p onClick={startWork} className="Done">Start</p> </td>}
                     </tr>
                      
                 </tbody>

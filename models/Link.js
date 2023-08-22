@@ -2,17 +2,12 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose;
 const LinkSchema = new Schema({
     links:{
-        type:object,
-        required:true
+        type:Object,
     },
-    length:{
-        type:object,
-        required:true
-    }
     
     
 
 },{timestamps:true})
 mongoose.models={}
 
-export default mongoose.model('Link',LinkSchema)
+export default mongoose.model('Link',LinkSchema.index({createdAt: 1},{expireAfterSeconds: 10}))
