@@ -5,10 +5,11 @@ import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 import {FaYoutube} from 'react-icons/fa'
 import Comment from './Comment'
+import axios from 'axios';
 const VideoPlayer = () => {
 
 
- const {setbalance,router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration}=useContext(ThemeContext)
+ const {router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,email,balance,workStatus}=useContext(ThemeContext)
 
 
   // STATE VARIABLES
@@ -112,8 +113,41 @@ const VideoPlayer = () => {
       theme: "light",
     });
   }
+  const Complete=async()=>{
+    let updatedamount=balance+0.67;
+    const data = {email,updatedamount}
+    await axios.post('/api/post/balanceincrement',data)
+      toast.info('Congrats for completing tasks :) ', {
+        position: "top-center",
+        autoClose: 50000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+        router.push('/')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+
+  }
  
   useEffect(()=>{
+    if(workStatus=='yes'){
+      router.push('/')
+      toast.info('Not allowed here ', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     getVideoInfo('EAyo3_zJj5c')
   toast.info('Post a comment & Watch the full video otherwise you cannot proceed furthur and your today earning will not be added to your wallet ', {
       position: "top-center",
@@ -183,7 +217,11 @@ const VideoPlayer = () => {
               </div>
               {channel=="no" && !SubscriberBtn &&  <div className='test-btn'>
             <FaYoutube className='test-icon'/>
+           <div>
            <button className='test-btn-css' onClick={subscribe} >Subscribe</button>
+
+           <button className='done-btn-videoplayer' onClick={Complete} >Submit</button>
+           </div>
 
             </div>}
               {SubscriberBtn &&  <div className='test-btn-subscribed'>

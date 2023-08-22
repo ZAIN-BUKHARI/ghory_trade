@@ -42,6 +42,15 @@
   font-size: 0.8rem;
   letter-spacing: 1px;
 }
+.done-btn-videoplayer{
+  margin-top: 40px;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 5px;
+  width: 80px;
+}
 
 .dailywork-area {
   padding: 10px;
