@@ -64,8 +64,7 @@ const Worksheet = () => {
                     </tr>
                      
                 </tbody>
-                {/* testing purpose for showing to client  */}
-                {/* <tbody>
+                <tbody>
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
@@ -80,9 +79,8 @@ const Worksheet = () => {
                         <td> <p  className="Done"><a href='https://www.youtube.com/@PakWheels'>start</a></p> </td>
                     </tr>
                      
-                </tbody> */}
-                {/* testing purpose for showing to client  */}
-                {/* <tbody>
+                </tbody>
+                <tbody>
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
@@ -97,7 +95,7 @@ const Worksheet = () => {
                         <td> <p  className="Done"><a href='https://www.youtube.com/watch?v=CCU2TPj4O5A'>start</a></p> </td>
                     </tr>
                      
-                </tbody> */}
+                </tbody> 
             </table>
         </section>
         </main>

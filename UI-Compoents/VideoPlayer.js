@@ -204,7 +204,7 @@ const VideoPlayer = () => {
     <main class="TestBody-container">
         <section class="TestBody-main-video">
             {/* <video src="videos/manipulate text background.mp4" controls autoplay muted></video> */}
-    <iframe  id='zain' src="https://www.youtube.com/embed/OuaFVfN6eeQ?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe  id='zain' src="https://www.youtube.com/embed/tXNnFqRBTDw?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
             <h3 class="title">{videoTitle}</h3>
             <div className='test-bootom-sec'>
