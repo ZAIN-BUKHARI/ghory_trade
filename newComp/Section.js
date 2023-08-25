@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect,useContext } from 'react'
+import { ThemeContext } from '../Context/ThemeContext'
+
 const Section = () => {
+  const {mobile}=useContext(ThemeContext)
   useEffect(()=>{
     var videotag=document.getElementById('video')
     // videotag.muted=false
@@ -91,12 +94,12 @@ const Section = () => {
         <video className='VIDEO   ' id='video' src='ghory-intro-sound.mp4' autoPlay muted={true} loop />
         <section id="VIDEO-PAGE-CSS">
         <div className="VIDEO-PAGE-CSS container Ab ">
-      <div className='MEDIA-CON-SECTION'>
+      {!mobile && <div className='MEDIA-CON-SECTION'>
         <h1>Welcome, <span></span></h1>
         <h1>We are <span></span></h1>
         <h1>ghory.traders <span></span></h1>
         <a href="#projects" type="button" className="cta">Start</a>
-      </div>
+      </div>}
     </div>
     </section>
     </div>
