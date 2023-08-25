@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FcMenu } from "react-icons/fc";
+import { ThemeContext } from '../Context/ThemeContext';
+
 const Header = () => {
-  return (
+   
+    return (
     <>
     <style>
         {`
@@ -60,7 +63,7 @@ const Header = () => {
         <div className=' flex div-one'>
             {/* <h1>Ghory.trading</h1> */}
             <img className='mobile-img' src='remove_bg.png'/>
-            <FcMenu className='hamburger'/>
+            <FcMenu className='hamburger' />
         </div>
         <div className=''>
             <ul className='flex div-two'>

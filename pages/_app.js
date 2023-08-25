@@ -173,19 +173,17 @@ async function getTenvideos(){
     console.error("Error fetching data: ", error);
   }
 }
-// function resolutionChecker(){
-//   let mq = window.matchMedia("(max-width: 768px)");
-//   console.log(mq)
-//       if (mq.matches==true) {
-//         setmobile(false)
-//       } else {
-//         setmobile(true)
-//       }
-// }
+function resolutionChecker(){
+  let mq = window.matchMedia("(max-width: 768px)");
+      if (mq.matches==true) {
+        setmobile(true)
+      } else {
+        setmobile(false)
+      }
+}
 
   useEffect(() => {
-    setmobile(!!navigator.userAgent.match('/iphone|android|blackberry/ig') || false)
-    // resolutionChecker()
+    resolutionChecker()
     var local_token = JSON.stringify(localStorage.getItem('token'))
     if(local_token!="no"){
       settoken(false)
@@ -243,11 +241,11 @@ async function getTenvideos(){
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}
-    {mobile && <Header/>}
+    {mobile  &&<Header/>}
     {PaymentRequestModal && <Request/>}
     {loader && <Loading/>}
     {Auth   && <AuthFrom/>}
