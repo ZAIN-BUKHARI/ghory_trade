@@ -1,9 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import { FcMenu } from "react-icons/fc";
 import { ThemeContext } from '../Context/ThemeContext';
-
+import Link from 'next/link';
 const Header = () => {
-   
+    const [showMenu,setshowMenu]=useState(false)
+    function hamburgerMenu(){
+        if(showMenu)
+            setshowMenu(false)
+        else
+            setshowMenu(true)
+    }
     return (
     <>
     <style>
@@ -57,24 +63,56 @@ const Header = () => {
             margin-top:10px;
             font-size:20px;
         }
+        .header-hamburger-menu{
+            background-color:rgb(0,0,0,0.8);
+            height:100%;
+            width:100%;
+            position:absolute;
+
+        }
+        .list-hamburger{
+            color:white;
+            with:100%;
+            height:100%;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
+            font-size:30px;
+            font-family:serif;
+        }
+        .ham-l1{padding-bottom:35px;}
+        .ham-l2{padding-bottom:35px;}
+        .ham-l3{padding-bottom:35px;}
+        .ham-l4{padding-bottom:35px;}
+        .ham-l5{padding-bottom:35px;}
         `}
     </style>
     <div className='mobile-main'>
         <div className=' flex div-one'>
             {/* <h1>Ghory.trading</h1> */}
             <img className='mobile-img' src='remove_bg.png'/>
-            <FcMenu className='hamburger' />
+            <FcMenu className='hamburger' onClick={hamburgerMenu} />
         </div>
         <div className=''>
             <ul className='flex div-two'>
-                <li className='list1 mobile-list'>Home</li>
-                <li className='list2 mobile-list'>About</li>
-                <li className='list3 mobile-list'>Project</li>
-                <li className='list4 mobile-list'>Contact</li>
-                <li className='list5 mobile-list'>invest</li>
+                <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
+                <li className='list2 mobile-list'><Link href='/about'>About</Link></li>
+                <li className='list3 mobile-list'><Link href='/contact'>Contact</Link></li>
+                <li className='list4 mobile-list'><Link href='/investment'>Invest</Link></li>
+                <li className='list5 mobile-list'><Link href='/project'>Projects</Link></li>
             </ul>
         </div>
     </div>
+    {showMenu && <div className='header-hamburger-menu'>
+        <ul className='list-hamburger'>
+            <li className='ham-l1'>Singup</li>
+            <li className='ham-l2'><Link href='/work'>Dailywork</Link></li>
+            <li className='ham-l4'><Link href='/qrcode'>Invite</Link></li>
+            <li className='ham-l5'>Withdraw</li>
+        </ul>
+
+    </div>}
     </>
   )
 }
