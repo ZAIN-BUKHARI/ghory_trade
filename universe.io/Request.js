@@ -86,7 +86,7 @@ if(mobile){
     <>
     <div className='FormModal'>
     <div className='card-responsive'>
-    <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
+    <div className="card__title-mobile">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
     <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
     </p>
     <div className="card__form">

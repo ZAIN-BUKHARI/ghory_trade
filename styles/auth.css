@@ -14,6 +14,17 @@
     z-index: 50;
     position: absolute;
 }
+.authform-mobile{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0,0,0,0.8);
+    /* background-color: #eee; */
+    z-index: 50;
+    position: absolute;
+}
 .authform-span{
   font-size: 15px !important;
 }
@@ -33,6 +44,10 @@
   }
   .form-auth-height{
     height: 500px !important;
+
+  }
+  .form-auth-height-mobile{
+    height: 600px !important;
 
   }
   

@@ -32,6 +32,7 @@
   gap: 12px;
   background: #fff;
   border-radius: 20px;
+  
 }
 
 
@@ -46,6 +47,19 @@
   color: royalblue;
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+
+
+}
+.card__title-mobile {
+  font-size: 20px;
+  font-weight: 900;
+  /* color: #333; */
+  color: royalblue;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
 
 }
 .Form-modal-cross{
