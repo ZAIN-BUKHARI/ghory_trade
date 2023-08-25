@@ -40,6 +40,19 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    Rank:{
+        type:String,
+        default:"no"
+    },
+    teams:[{type:Object}],
+    nofteams:{
+        type:Number,
+        default:0
+    },
+    invite:{
+        type:String,
+        default:''
+    },
     
 
     },{timestamps:true})

@@ -22,7 +22,7 @@ const Invite = () => {
     <section className='Invite-body'>
       <main className='Invite-main'>
         <img className='Invite-img' src="qr-code.png" alt="QR code" width="288" height="288" />
-        <h1 className='Invite-h1'>Improve your front-end skills by building projects</h1>
+        <h1 className='Invite-h1'>Make your team</h1>
         {/* <p className='Invite-p'>Scan the QR code to visit Frontend Mentor and take your coding skills to the next level</p> */}
       </main>
         <LightButtonPlayer func={Copy} title={'Copy invite link'} disabled={false}/>

@@ -77,7 +77,7 @@ const Section = () => {
     `}</style>
     <div className='Head'
     >
-        <video className='VIDEO   ' src='FeatureVideo/v3.mp4' autoPlay muted loop />
+        <video className='VIDEO   ' src='ghory-intro-sound.mp4' autoPlay muted loop />
         <section id="VIDEO-PAGE-CSS">
         <div className="VIDEO-PAGE-CSS container Ab ">
       <div className='MEDIA-CON-SECTION'>

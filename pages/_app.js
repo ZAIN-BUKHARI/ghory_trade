@@ -33,7 +33,6 @@ async function getUser()
 {
   setLoader(true)
   let token = JSON.stringify(localStorage.getItem('token'))
-  console.log(token)
   if(token=="null"){
       setLoader(false)
   }else{
