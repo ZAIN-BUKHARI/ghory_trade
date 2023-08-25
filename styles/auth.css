@@ -14,9 +14,10 @@
     z-index: 50;
     position: absolute;
 }
+
 .authform-mobile{
     height: 100vh;
-    width: 300px;
+    /* width: 100px; */
     /* margin-left: 40px; */
     display: flex;
     justify-content: center;
@@ -27,7 +28,7 @@
     position: absolute;
 }
 .authform-span{
-  font-size: 15px !important;
+  /* font-size: 15px !important; */
 }
 .authform-input{
   /* width: 300px !important; */
@@ -37,7 +38,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 450px;
+    max-width: 460px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
@@ -114,13 +115,13 @@
   }
   
   .form-auth label .input {
-    width: 100%;
+    width: 90%;
     padding: 10px 10px 20px 10px;
     outline: 0;
     border: 1px solid rgba(105, 105, 105, 0.397);
     border-radius: 10px;
   }
-  
+
   .form-auth label .input + span {
     position: absolute;
     left: 10px;

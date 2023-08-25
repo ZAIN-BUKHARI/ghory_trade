@@ -129,7 +129,7 @@ const AuthForm = () => {
         </label>
 
         <label>
-            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
+            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input mobile-left-field authform-input"/>
             <span className='authform-span'>Lastname</span>
         </label>
     </div>  )}
