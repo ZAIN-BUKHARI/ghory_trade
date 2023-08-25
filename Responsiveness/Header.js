@@ -77,7 +77,7 @@ const Header = () => {
         .hamburger{
             margin-right:10px;
             margin-top:10px;
-            font-size:20px;
+            font-size:30px;
         }
         .header-hamburger-menu{
             background-color:rgb(0,0,0,0.8);

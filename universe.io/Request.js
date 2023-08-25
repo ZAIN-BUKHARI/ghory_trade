@@ -105,7 +105,7 @@ if(mobile){
                 </select>
         <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
                     </div>
-        <button onClick={requestSubmit} className="sign-up"> Submit Request</button>
+        <button onClick={requestSubmit} className="sign-up mobile-button"> Submit Request</button>
     </div>
 </div>
     </div>

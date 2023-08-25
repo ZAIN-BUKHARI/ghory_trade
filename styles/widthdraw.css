@@ -18,12 +18,12 @@
 }
 .card-responsive {
   width: 280px;
-  height: 320px;
+  height: 330px;
   padding: 0 15px;
   text-align: center;
   display: flex;
   position: absolute;
-  right:15%;
+  right:12%;
   z-index: 5;
   top: 20%;
   align-items: center;
@@ -109,6 +109,16 @@
   padding: 0.68em;
   border-radius: 14px;
   font-weight: bold;
+}
+.card__form .mobile-button {
+  border: 0;
+  /* background: #111; */
+  background-color: royalblue;
+  color: #fff;
+  padding: 0.68em;
+  border-radius: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .sign-up:hover {
