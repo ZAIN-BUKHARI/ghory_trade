@@ -173,18 +173,19 @@ async function getTenvideos(){
     console.error("Error fetching data: ", error);
   }
 }
-function resolutionChecker(){
-  let mq = window.matchMedia("(max-width: 768px)");
-  console.log(mq)
-      if (mq.matches==true) {
-        setmobile(false)
-      } else {
-        setmobile(true)
-      }
-}
+// function resolutionChecker(){
+//   let mq = window.matchMedia("(max-width: 768px)");
+//   console.log(mq)
+//       if (mq.matches==true) {
+//         setmobile(false)
+//       } else {
+//         setmobile(true)
+//       }
+// }
 
   useEffect(() => {
-    resolutionChecker()
+    setmobile(!!navigator.userAgent.match('/iphone|android|blackberry/ig') || false)
+    // resolutionChecker()
     var local_token = JSON.stringify(localStorage.getItem('token'))
     if(local_token!="no"){
       settoken(false)
