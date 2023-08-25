@@ -27,21 +27,21 @@ const PlanForm = () => {
   // TYPE-OF-USER
   const [level, setlevel] = useState("");
 
-  useEffect(() => {
-    if (!token && subscription == "no") {
-      router.push("/");
-      toast.success("Not allowed here", {
-        position: "top-right",
-        autoClose: 30000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token && subscription == "no") {
+  //     router.push("/");
+  //     toast.success("Not allowed here", {
+  //       position: "top-right",
+  //       autoClose: 30000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
+  //   }
+  // }, []);
   const ChangeEvent = (e) => {
     if (e.target.name == "select") {
       setcurrency(e.target.value);
@@ -82,7 +82,7 @@ const PlanForm = () => {
           cnic.length >= 6
         ) {
           const data = {
-            email,
+            email:1234,
             name,
             lastname,
             address,

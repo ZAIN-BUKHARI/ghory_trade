@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useEffect } from 'react';
 const AuthForm = () => {
     //router
     const router=useRouter()
@@ -16,8 +17,12 @@ const AuthForm = () => {
     const [password,setpassword]=useState("")
     const [cpassword,setcpassword]=useState("")
 
-    const {setAuth}=useContext(ThemeContext)
+    const {setAuth,Auth}=useContext(ThemeContext)
     const [ActiveLoginModal,setActiveLoginModal]=useState(false)
+
+   useEffect(()=>{
+
+   })
 
     const hideModla = ()=>{
         setAuth(false)
@@ -36,11 +41,10 @@ const AuthForm = () => {
     //SIGNUP
     const signup = (e) =>{
         e.preventDefault()
-            if(email.length>=5 && firstname.length>=2 && lastname.length>=2 && password.length>=3 && password==cpassword ){
-               const data = {email,password,firstname,lastname} 
+               const data = {email,password,firstname,lastname,cpassword} 
                 axios.post('/api/post/signup',data).then(res=>{
                     if(res.data.success==true){
-                    toast.success('successfully signup', {
+                    toast.success('Successfully signup', {
                         position: "top-right",
                             autoClose: 2000,
                             hideProgressBar: false,
@@ -53,7 +57,7 @@ const AuthForm = () => {
                         setActiveLoginModal(true)
                         setAuth(false)
                     }else{
-                        toast.error('Try again ', {
+                        toast.error(res.data.error, {
                             position: "top-right",
                                 autoClose: 2000,
                                 hideProgressBar: false,
@@ -65,26 +69,15 @@ const AuthForm = () => {
                             });
                     }
                 })
-            }else{
-                toast.error('Try again ', {
-                    position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-            }
+            
     }
     const signin =(e)=>{
-        e.preventDefault()   
-        if(email.length>=5 && password.length>=3 ){
+                e.preventDefault()
                 const data = {email,password} 
+                console.log(email,password)
                 axios.post('/api/post/signin',data).then(res=>{
                     console.log(res)
-                    if(res.data.success==true){
+                if(res.data.success==true){
                         toast.success('successfully logged in', {
                             position: "top-right",
                             autoClose: 2000,
@@ -111,25 +104,14 @@ const AuthForm = () => {
                             progress: undefined,
                             theme: "light",
                         });
-                        localStorage.removeItem('token')
+                        localStorage.setItem('token','no')
                     }
                 })
-            }else{
-                toast.error('Invalid Credentials', {
-                    position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                    localStorage.removeItem('token')
-
-            }
+            
 
     }
+   
+   
         return (
             <>
     

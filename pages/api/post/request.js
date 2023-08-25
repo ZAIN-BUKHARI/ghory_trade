@@ -21,6 +21,8 @@ const handler= async (req, res)=> {
             const invesetment=getdirectUserbyId.investment;
             const invested_time=p.createdAt;
             const finalPecentage=invesetment*100/5;
+            const finalbalance = getdirectUserbyId.balance+finalPecentage
+            await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
         }
         if(getUser.teams[i].indirect.plan=='yes')
         {
@@ -28,6 +30,8 @@ const handler= async (req, res)=> {
             const invesetment=getdirectUserbyId.investment;
             const invested_time=p.createdAt;
             const finalPecentage=invesetment*100/3;
+            const finalbalance = getdirectUserbyId.balance+finalPecentage
+            await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
         }
     }
         let a = await p.save()

@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 const Section = () => {
-
- 
+  useEffect(()=>{
+    var videotag=document.getElementById('video')
+    // videotag.muted=false
+    
+  },[])
   return (
     <>
+    
     
   <style jsx>{`
     #VIDEO-PAGE-CSS {
@@ -14,6 +18,7 @@ const Section = () => {
      
     }
     #VIDEO-PAGE-CSS .VIDEO-PAGE-CSS {
+      
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 50px;
@@ -45,7 +50,9 @@ const Section = () => {
       height: 100%;
       width: 0;
       /* background-color: crimson; */
-      background-color: rgb(35, 68, 177);
+      // background-color: rgb(35, 68, 177);
+      // background-color:#00C0F0;
+      background-color:#00A1C9;
       animation: text_reveal_box 1s ease;
       animation-delay: 0.5s;
     }
@@ -73,11 +80,15 @@ const Section = () => {
           left:10%;
 
         }
+        h1{
+      color:#00A1C9;
+
+        }
     
     `}</style>
     <div className='Head'
     >
-        <video className='VIDEO   ' src='ghory-intro-sound.mp4' autoPlay muted loop />
+        <video className='VIDEO   ' id='video' src='ghory-intro-sound.mp4' autoPlay muted={true} loop />
         <section id="VIDEO-PAGE-CSS">
         <div className="VIDEO-PAGE-CSS container Ab ">
       <div className='MEDIA-CON-SECTION'>

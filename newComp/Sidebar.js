@@ -14,11 +14,11 @@ import { useRouter } from 'next/router';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 const Sidebar = () => {
   const {setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
- 
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -68,16 +68,17 @@ const Sidebar = () => {
    setPaymentRequestModal(true)
  }
   const logout = () =>{
-    localStorage.removeItem('token')
+    localStorage.setItem('token','no')
     settoken(false)
   }
+ console.log(token)
   return (
     <>
     {router.asPath!='/register' && !router.asPath.includes("admin") && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
-      <div className="logo">
-        <img src="go2.png" alt="logo"/>
+      <div className="sidebar-logo">
+        <img src="remove_bg.png" alt="logo"/>
         {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
         {/* <h1 className="section-title-sidebar">Ghory <span>Trading</span></h1> */}
       </div>
@@ -177,7 +178,7 @@ const Sidebar = () => {
          {!token && <Link onClick={()=>{setAuth(true)}}  href={"#"}>Login</Link>}
          {!token && <FcLock/>}
 
-         {token &&  <Link onClick={logout}  href="/">Logout</Link>}
+         {!token &&  <Link onClick={logout}  href="/">Logout</Link>}
         </li>
       </ul>
     </aside>)}

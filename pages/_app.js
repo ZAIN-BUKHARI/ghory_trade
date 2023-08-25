@@ -22,6 +22,7 @@ import Toastify from '../UI-Compoents/Toastify';
 import Request from '../universe.io/Request';
 import axios from 'axios';
 import { parse } from 'postcss';
+import Header from '../Responsiveness/Header';
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -172,13 +173,26 @@ async function getTenvideos(){
     console.error("Error fetching data: ", error);
   }
 }
+function resolutionChecker(){
+  let mq = window.matchMedia("(max-width: 768px)");
+  console.log(mq)
+      if (mq.matches==true) {
+        setmobile(false)
+      } else {
+        setmobile(true)
+      }
+}
 
   useEffect(() => {
-    getUser()
-    if(JSON.stringify(localStorage.getItem('token'))){
+    resolutionChecker()
+    var local_token = JSON.stringify(localStorage.getItem('token'))
+    if(local_token!="no"){
+      settoken(false)
+    }
+    else{
       settoken(true)
     }
-    
+    getUser()
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
     })
@@ -222,14 +236,17 @@ async function getTenvideos(){
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
     const [duration,setduration]=useState(300000) 
     const [videoLinks,setvideoLinks]=useState("") 
-
+    //mobile responsiveness
+    const[mobile,setmobile]=useState()
+    
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
-    <Sidebar/>
+    {!mobile &&<Sidebar/>}
+    {mobile && <Header/>}
     {PaymentRequestModal && <Request/>}
     {loader && <Loading/>}
     {Auth   && <AuthFrom/>}

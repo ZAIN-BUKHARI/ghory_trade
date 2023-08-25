@@ -13,7 +13,8 @@
 } */
 
 /* body {
-    
+	color: white;
+	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
     overflow-x: hidden;
 
 } */
@@ -371,11 +372,13 @@ p {
 }
 .section-title span {
 	/* color: crimson; */
-	color: rgb(35, 68, 177);
+	/* color: rgb(35, 68, 177); */
+	color:#00A1C9;
 }
 .section-title-sidebar span {
 	/* color: crimson; */
-	color: rgb(35, 68, 177);
+	/* color: rgb(35, 68, 177); */
+	color: white;
 	
 }
 
@@ -761,16 +764,25 @@ p {
 	width: 100%;
 }
 #about .col-right h2 {
+	color: white;
 	font-size: 1.8rem;
 	font-weight: 500;
 	letter-spacing: 0.2rem;
 	margin-bottom: 10px;
+
+}
+.section-title{
+	color: white;
+
 }
 #about .col-right p {
 	margin-bottom: 20px;
+	color: white;
+
 }
 #about .col-right .cta {
-	color: black;
+	/* color: black; */
+	color: white;
 	margin-bottom: 50px;
 	padding: 10px 20px;
 	font-size: 2rem;

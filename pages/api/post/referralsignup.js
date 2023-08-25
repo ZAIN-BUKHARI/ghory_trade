@@ -16,7 +16,7 @@ const handler= async (req, res)=> {
                   direct:
                   {
                     level:1,
-                    id:B._id,
+                    id:B._id.toString(),
                     plan:"no"
                   },
                   indirect:
@@ -43,7 +43,7 @@ const handler= async (req, res)=> {
                   direct:
                   {
                     level:1,
-                    id:_id,
+                    id:_id.toString(),
                     plan:"no"
                   },
                   indirect:
@@ -66,7 +66,7 @@ const handler= async (req, res)=> {
                 direct:
                 {
                   level:1,
-                  id:A.teams[0].direct.id
+                  id:A.teams[0].direct.id.toString()
                 },
                 indirect:
                 {

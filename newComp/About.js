@@ -6,9 +6,10 @@ const About = () => {
       <section id="about">
         <div className="about container">
           <div className="col-left">
-            <div className="about-img MEDIA-LEFT-ABOUT">
-              <img src="go2.png" alt="img" />
-            </div>
+            {/* <div className="about-img MEDIA-LEFT-ABOUT"> */}
+              {/* <img src="go2.png" alt="img" /> */}
+              <img src="remove_bg.png" alt="img" />
+            {/* </div> */}
           </div>
           <div className="col-right">
             <h1 className="section-title">

@@ -5,6 +5,7 @@
                 box-sizing: border-box;
                 font-family: poppins;
             } */
+           
             #about-section {
                 width: 100%;
                 height: auto;
@@ -28,13 +29,14 @@
             }
 
             .about-right h1 {
-                color: #e74d06;
+                /* color: #e74d06; */
                 font-size: 37px;
                 margin-bottom: 5px;
             }
 
             .about-right p {
-                color: #444;
+                /* color: #444; */
+                color: white;
                 line-height: 26px;
                 font-size: 15px;
             }
@@ -49,7 +51,7 @@
 
             .address .address-logo {
                 margin-right: 15px;
-                color: #e74d06;
+                /* color: #e74d06; */
             }
 
             .address .saprater {
@@ -70,5 +72,10 @@
             .expertise .expertise-logo {
                 font-size: 19px;
                 margin-right: 10px;
-                color: #e74d06;
+                /* color: #e74d06; */
+            }
+
+
+
+            .ten{
             }
