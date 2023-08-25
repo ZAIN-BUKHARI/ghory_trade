@@ -31,7 +31,7 @@ const Header = () => {
     <style>
         {`
         .mobile-main{
-            height:80px;
+            height:100px;
             display:flex;
             flex-direction:column;
             justify-content:space-between;

@@ -18,7 +18,7 @@
 }
 .card-responsive {
   width: 280px;
-  height: 300px;
+  height: 320px;
   padding: 0 15px;
   text-align: center;
   display: flex;
@@ -32,6 +32,7 @@
   gap: 12px;
   background: #fff;
   border-radius: 20px;
+  border:1px solid royalblue ;
   
 }
 
@@ -47,7 +48,7 @@
   color: royalblue;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 
 
 }
@@ -58,7 +59,7 @@
   color: royalblue;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 15px;
 
 
 }
