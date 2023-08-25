@@ -128,8 +128,8 @@ const AuthForm = () => {
             <span className='authform-span'>Firstname</span>
         </label>
 
-        <label>
-            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input mobile-left-field authform-input"/>
+        <label className='mobile-left-field'>
+            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input  authform-input"/>
             <span className='authform-span'>Lastname</span>
         </label>
     </div>  )}
@@ -147,7 +147,7 @@ const AuthForm = () => {
         <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" className="input authform-input"/>
         <span className='authform-span'>Confirm password</span>
     </label>)}
-    {!ActiveLoginModal &&  <button onClick={signup} className="submit">Signup</button>}
+    {!ActiveLoginModal &&  <button onClick={signup} className=" mob-submit-req">Signup</button>}
     {ActiveLoginModal &&  <button onClick={signin} className="submit">Signin</button>}
     {ActiveLoginModal && <p onClick={showsignup} className="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
     {!ActiveLoginModal && <p onClick={showsignin} className="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}

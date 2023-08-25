@@ -14,11 +14,13 @@
     z-index: 50;
     position: absolute;
 }
-
+.mobile-left-field{
+  margin-right: 20px;
+}
 .authform-mobile{
     height: 100vh;
     /* width: 100px; */
-    /* margin-left: 40px; */
+    margin-left: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,6 +148,17 @@
   
   .form-auth label .input:valid + span {
     color: royalblue;
+  }
+  .mob-submit-req{
+    border: none;
+    outline: none;
+    background-color: royalblue;
+    padding: 10px;
+    border-radius: 10px;
+    width: 325px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
   }
   
   .submit {
