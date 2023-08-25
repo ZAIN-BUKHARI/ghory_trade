@@ -2,13 +2,29 @@ import React, { useContext,useState } from 'react'
 import { FcMenu } from "react-icons/fc";
 import { ThemeContext } from '../Context/ThemeContext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 const Header = () => {
+    const router=useRouter()
+    const {setAuth,setPaymentRequestModal}=useContext(ThemeContext)
     const [showMenu,setshowMenu]=useState(false)
     function hamburgerMenu(){
         if(showMenu)
             setshowMenu(false)
         else
             setshowMenu(true)
+    }
+    function LoginModaltoggle(){
+        setshowMenu(false)
+            setAuth(true)
+            
+    }
+    function invite(){
+        setshowMenu(false)
+        router.push('/qrcode')
+    }
+    function withdraw(){
+        setshowMenu(false)
+        setPaymentRequestModal(true)
     }
     return (
     <>
@@ -68,6 +84,8 @@ const Header = () => {
             height:100%;
             width:100%;
             position:absolute;
+            z-index:10;
+
 
         }
         .list-hamburger{
@@ -106,10 +124,10 @@ const Header = () => {
     </div>
     {showMenu && <div className='header-hamburger-menu'>
         <ul className='list-hamburger'>
-            <li className='ham-l1'>Singup</li>
+            <li className='ham-l1' onClick={LoginModaltoggle}>Singup</li>
             <li className='ham-l2'><Link href='/work'>Dailywork</Link></li>
-            <li className='ham-l4'><Link href='/qrcode'>Invite</Link></li>
-            <li className='ham-l5'>Withdraw</li>
+            <li className='ham-l4' onClick={invite}>Invite</li>
+            <li className='ham-l5' onClick={withdraw}>Withdraw</li>
         </ul>
 
     </div>}

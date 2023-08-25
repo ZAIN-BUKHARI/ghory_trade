@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const Request = () => {
     //useContext
-    const {setPaymentRequestModal,balance,setbalance,email} = useContext(ThemeContext)
+    const {setPaymentRequestModal,balance,email,mobile} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
@@ -81,11 +81,11 @@ const Request = () => {
 
 
     }
-
+if(mobile){
   return (
     <>
     <div className='FormModal'>
-    <div className="card">
+    <div className='card-responsive'>
     <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
     <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
     </p>
@@ -111,6 +111,38 @@ const Request = () => {
     </div>
     </>
   )
+}
+  else{
+    return (
+      <>
+      <div className='FormModal'>
+      <div className='card'>
+      <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
+      <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
+      </p>
+      <div className="card__form">
+          <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
+          <div className='form-modal-select'>
+  
+          <select 
+                    name="select"
+                    value={method} onChange={(e)=>{setmethod(e.target.value)}} 
+                    className="PlanForm-select modal-select"
+                  >
+                    <option value={"TRC20"}>TRC20</option>
+                    <option value={"JAZZCASH"}>JAZZCASH</option>
+                    <option value={"EASYPAISA"}>EASYPAISA</option>
+                    <option value={"RASS"}>RASS</option>
+                  </select>
+          <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
+                      </div>
+          <button onClick={requestSubmit} className="sign-up"> Submit Request</button>
+      </div>
+  </div>
+      </div>
+      </>
+    )
+  }
 }
 
 export default Request
