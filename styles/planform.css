@@ -17,7 +17,26 @@
     .Invest-Container{
       max-width: 700px;
       width: 100%;
+      /* width: 30%; */
       height: 550px;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .Invest-Container-authform{
+      max-width: 700px;
+      width: 30%;
+      height: 450px;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .Invest-Container-authform-signin{
+      max-width: 700px;
+      width: 30%;
+      height: 350px;
       background-color: #fff;
       padding: 25px 30px;
       border-radius: 5px;
@@ -66,10 +85,15 @@
     .Invest-Container form .user-details{
       display: flex;
       flex-wrap: wrap;
+      /* flex-direction: column; */
       justify-content: space-between;
       margin: 20px 0 12px 0;
     }
     form .user-details .input-box{
+      margin-bottom: 15px;
+      width: calc(100% / 2 - 20px);
+    }
+    form .user-details-auth .input-box{
       margin-bottom: 15px;
       width: calc(100% / 2 - 20px);
     }
@@ -81,6 +105,19 @@
     .user-details .input-box input{
       height: 45px;
       width: 100%;
+      /* width: 330px; */
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details-auth .input-box-auth input{
+      height: 45px;
+      width: 100%;
+      /* width: 330px; */
       outline: none;
       font-size: 16px;
       border-radius: 5px;
@@ -91,6 +128,10 @@
     }
     .user-details .input-box input:focus,
     .user-details .input-box input:valid{
+      border-color: #9b59b6;
+    }
+    .user-details-auth .input-box-auth input:focus,
+    .user-details-auth .input-box-auth input:valid{
       border-color: #9b59b6;
     }
      form .gender-details .gender-title{
@@ -133,6 +174,7 @@
      form .button input{
        height: 100%;
        width: 100%;
+       /* padding-left: 270px; for auth  */
        border-radius: 5px;
        border: none;
        color: #fff;
@@ -143,7 +185,27 @@
        transition: all 0.3s ease;
        background: linear-gradient(135deg, #71b7e6, #9b59b6);
      }
+     form .button-auth input{
+       height: 100%;
+       width: 100%;
+       /* padding-left: 120px; */
+       border-radius: 5px;
+       margin-top: 10px;
+       margin-bottom: 10px;
+       border: none;
+       color: #fff;
+       font-size: 18px;
+       font-weight: 500;
+       letter-spacing: 1px;
+       cursor: pointer;
+       transition: all 0.3s ease;
+       background: linear-gradient(135deg, #71b7e6, #9b59b6);
+     }
      form .button input:hover{
+      /* transform: scale(0.99); */
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+      }
+     form .button-auth input:hover{
       /* transform: scale(0.99); */
       background: linear-gradient(-135deg, #71b7e6, #9b59b6);
       }
@@ -159,6 +221,10 @@
         width: 100%;
       }
       .content form .user-details{
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+      .content form .user-details-auth{
         max-height: 300px;
         overflow-y: scroll;
       }
@@ -205,7 +271,6 @@
 height: 50px;
 width: 300px;
 display: flex;
-/* // flex-direction: column; */
 align-items: space-between;
 gap: 20px;
 cursor: pointer;
@@ -253,4 +318,22 @@ color: rgba(75, 85, 99, 1);
 
 .custum-file-upload input {
 display: none;
+}
+
+
+.authform-cancel-modal-button{
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* bottom spans  */
+
+.authform-invest-spanone{
+  padding: 80px;
+}
+.authform-invest-spantwo{
+  cursor: pointer;
+  color: navy;
+  font-weight: bold;
 }

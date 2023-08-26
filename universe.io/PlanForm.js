@@ -73,16 +73,8 @@ const PlanForm = () => {
   const submit = (e) => {
     e.preventDefault();
     if (currency == "PKR" && investment >= 3000 || currency == "USD" && investment >= 100) {
-        if (
-          email.length >= 5 &&
-          phone.length >= 8 &&
-          name.length >= 3 &&
-          lastname.length >= 3 &&
-          address.length >= 7 &&
-          cnic.length >= 6
-        ) {
           const data = {
-            email:1234,
+            email,
             name,
             lastname,
             address,
@@ -94,10 +86,6 @@ const PlanForm = () => {
           };
           axios.post("/api/post/join", data).then((res) => {
             if (res.data.success == true) {
-              setname("");
-              setaddress("");
-              setphone("");
-              setcnic("");
               toast.success(
                 "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
                 {
@@ -113,7 +101,7 @@ const PlanForm = () => {
               );
               router.push("/");
             } else {
-              toast.error("Your Request failed", {
+              toast.error(res.data.error, {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -125,18 +113,6 @@ const PlanForm = () => {
               });
             }
           });
-        } else {
-          toast.error("Your info is incorrect please check it again", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
     } else {
       toast.error("Minimum $100 dollars plan", {
         position: "top-right",

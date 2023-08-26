@@ -22,12 +22,12 @@ const handler= async (req, res)=> {
         res.status(200).json({ success:true })
        }
        catch(error){
-        res.status(200).json({ error:false })
+        res.status(200).json({ error:'Request failed' })
        }
 }
 else{
 
-    res.status(400).json({ error : 'this method is not defined' })
+    res.status(200).json({ error : 'request method is incorrect it should be post' })
 }
   }
   

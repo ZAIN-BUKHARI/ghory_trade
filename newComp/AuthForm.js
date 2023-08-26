@@ -28,11 +28,13 @@ const AuthForm = () => {
     }
     const showsignin = ()=>{
        setActiveLoginModal(true)
-       document.getElementById("form-remove").classList.remove("form-auth-height")
+       document.getElementById("zain").classList.remove("form-auth-height")
+       document.getElementById("zain").classList.add("Invest-Container-authform-signin")
+       
     }
     const showsignup = ()=>{
        setActiveLoginModal(false)
-       document.getElementById("form-remove").classList.add("form-auth-height")
+       document.getElementById("zain").classList.remove("Invest-Container-authform-signin")
     }
 
     
@@ -109,101 +111,151 @@ const AuthForm = () => {
 
     }
    
-   if(mobile){
 
-    return (
-           <>
-    
-    <div className='authform-mobile'>
-    <div className="form-auth form-auth-height-mobile" id='form-remove'>
-    {ActiveLoginModal &&<p className="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
-    {!ActiveLoginModal &&<p className="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
-    
-    
-    {!ActiveLoginModal &&<p className="message">Signup now and get full access to our app. </p>}
-    {ActiveLoginModal &&<p className="message">Signin now and get full access to our app. </p>}
-    {!ActiveLoginModal && (  <div className="flex">
-        <label>
-            <input  required="" value={firstname} onChange={(e)=>{setfirstname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
-            <span className='authform-span'>Firstname</span>
-        </label>
-
-        <label className='mobile-left-field'>
-            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input  authform-input"/>
-            <span className='authform-span'>Lastname</span>
-        </label>
-    </div>  )}
+if(mobile){
+return(
+    <>
+    <div className="PlanForm-Head">
+        <div className="Invest-Container">
+          <div className="title  space">
+            {" "}
+            Yearly Plan
             
-    <label>
-        <input required=""  value={email} onChange={(e)=>{setemail(e.target.value)}}placeholder="" type="email" className="input authform-input"/>
-        <span className='authform-span'>Email</span>
-    </label> 
-        
-    <label>
-        <input required="" placeholder="" type="password" value={password} onChange={(e)=>{setpassword(e.target.value)}} className="input authform-input"/>
-        <span className='authform-span'>Password</span>
-    </label>
-   {!ActiveLoginModal && ( <label>
-        <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" className="input authform-input"/>
-        <span className='authform-span'>Confirm password</span>
-    </label>)}
-    {!ActiveLoginModal &&  <button onClick={signup} className=" mob-submit-req">Signup</button>}
-    {ActiveLoginModal &&  <button onClick={signin} className="submit">Signin</button>}
-    {ActiveLoginModal && <p onClick={showsignup} className="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
-    {!ActiveLoginModal && <p onClick={showsignin} className="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
-   
-</div>
-</div>
+          </div>
+          <div className="content">
+            <form action="#" >
+              <div className="user-details">
+                <div className="input-box">
+                  <span className="details">First Name</span>
+                  <input
+                    type="text"
+                    onChange={(e)=>{setfirstname(e.target.value)}}
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Last Name</span>
+                  <input
+                    type="text"
+                    onChange={(e)=>{setfirstname(e.target.value)}}
+                    placeholder="Enter your lastname"
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Email</span>
+                  <input
+                    type="text"
+                    onChange={(e)=>{setemail(e.target.value)}}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Password</span>
+                  <input
+                    type="text"
+                    onChange={(e)=>{setpassword(e.target.value)}}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Confirm password</span>
+                  <input
+                    type="text"
+                    onChange={(e)=>{setcpassword(e.target.value)}}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="button-auth">
+                <input type="Signup" value="Subscribe" onClick={signup} />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
-  )
-}
-else{
-    return (
-        <>
- 
- <div className='authform'>
- <div className="form-auth form-auth-height" id='form-remove'>
- {ActiveLoginModal &&<p className="title">Login <span className='cross' onClick={hideModla}  >X</span></p>}
- {!ActiveLoginModal &&<p className="title">Register <span className='cross' onClick={hideModla}  >X</span></p>}
- 
- 
- {!ActiveLoginModal &&<p className="message">Signup now and get full access to our app. </p>}
- {ActiveLoginModal &&<p className="message">Signin now and get full access to our app. </p>}
- {!ActiveLoginModal && (  <div className="flex">
-     <label>
-         <input  required="" value={firstname} onChange={(e)=>{setfirstname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
-         <span className='authform-span'>Firstname</span>
-     </label>
-
-     <label>
-         <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
-         <span className='authform-span'>Lastname</span>
-     </label>
- </div>  )}
-         
- <label>
-     <input required=""  value={email} onChange={(e)=>{setemail(e.target.value)}}placeholder="" type="email" className="input authform-input"/>
-     <span className='authform-span'>Email</span>
- </label> 
-     
- <label>
-     <input required="" placeholder="" type="password" value={password} onChange={(e)=>{setpassword(e.target.value)}} className="input authform-input"/>
-     <span className='authform-span'>Password</span>
- </label>
-{!ActiveLoginModal && ( <label>
-     <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" className="input authform-input"/>
-     <span className='authform-span'>Confirm password</span>
- </label>)}
- {!ActiveLoginModal &&  <button onClick={signup} className="submit">Signup</button>}
- {ActiveLoginModal &&  <button onClick={signin} className="submit">Signin</button>}
- {ActiveLoginModal && <p onClick={showsignup} className="signin authform-span  ">Don't have an account?<a className='authform-span'>Signup</a> </p>}
- {!ActiveLoginModal && <p onClick={showsignin} className="signin authform-span  ">Already have an account?<a className='authform-span'>Login</a> </p>}
-
-</div>
-</div>
- </>
 )
+}else{
+    return(
+        <>
+        <div className="PlanForm-Head">
+            <div className="Invest-Container-authform" id='zain'>
+              <div className="title  authform-cancel-modal-button">
+                {" "}
+                {!ActiveLoginModal && 'Sign up'}
+                {ActiveLoginModal && 'Sign in'}
+                <h1 onClick={hideModla}>X</h1>
+                
+              </div>
+              <div className="content">
+                <form action="#" >
+                  <div className="user-details-auth">
+                  {!ActiveLoginModal && (<><div className="input-box-auth">
+                      <span className="details auth-authform-fields">First Name</span>
+                      <input
+                        type="text"
+                        onChange={(e)=>{setfirstname(e.target.value)}}
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details ">Last Name</span>
+                      <input
+                        type="text"
+                        onChange={(e)=>{setfirstname(e.target.value)}}
+                        placeholder="Enter your lastname"
+                        required
+                      />
+                    </div></>)}
+                    <div className="input-box-auth">
+                      <span className="details">Email</span>
+                      <input
+                        type="text"
+                        onChange={(e)=>{setemail(e.target.value)}}
+                        placeholder="Enter your email"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details">Password</span>
+                      <input
+                        type="text"
+                        onChange={(e)=>{setpassword(e.target.value)}}
+                        placeholder="Enter your password"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details">Confirm password</span>
+                      <input
+                        type="text"
+                        onChange={(e)=>{setcpassword(e.target.value)}}
+                        placeholder="Enter your password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="button-auth">
+                    {!ActiveLoginModal &&<input type="button" value="Signup" onClick={signup} />}
+                    {ActiveLoginModal &&<input type="button" value="Signin" onClick={signin} />}
+                  </div>
+                 {!ActiveLoginModal && <span className='authform-invest-spanone'>Already have an account?  <span className='authform-invest-spantwo' onClick={showsignin}>Signin</span></span>}
+                 {ActiveLoginModal && <span  className='authform-invest-spanone'>Don't have an account?  <span   className='authform-invest-spantwo' onClick={showsignup}>Signup</span></span>}
+                </form>
+              </div>
+            </div>
+          </div>
+        </>
+    )
 }
 }
+
+
 
 export default AuthForm

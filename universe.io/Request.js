@@ -31,7 +31,7 @@ const Request = () => {
       }else{
 
 
-        if( amount>=0 &&amount<=balance
+        if( amount>0 &&amount<=balance
           ){
           const data = {method,address,amount,email}
           let res = await axios.post('/api/post/request',data)

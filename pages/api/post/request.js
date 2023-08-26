@@ -12,29 +12,29 @@ const handler= async (req, res)=> {
             email:email,
             amount:amount  
         })
-        let getUser  = await User.findOne({email:email})
-        for(var i=0; i<=getUser.teams.length;i++)
-    {
-        if(getUser.teams[i].direct.plan=='yes')
-        {
-            let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].direct.id})
-            const invesetment=getdirectUserbyId.investment;
-            const invested_time=p.createdAt;
-            const finalPecentage=invesetment*100/5;
-            const finalbalance = getdirectUserbyId.balance+finalPecentage
-            await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
-        }
-        if(getUser.teams[i].indirect.plan=='yes')
-        {
-            let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].indirect.id})
-            const invesetment=getdirectUserbyId.investment;
-            const invested_time=p.createdAt;
-            const finalPecentage=invesetment*100/3;
-            const finalbalance = getdirectUserbyId.balance+finalPecentage
-            await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
-        }
-    }
-        let a = await p.save()
+    //     let getUser  = await User.findOne({email:email})
+    //     for(var i=0; i<=getUser.teams.length;i++)
+    // {
+    //     if(getUser.teams[i].direct.plan=='yes')
+    //     {
+    //         let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].direct.id})
+    //         const invesetment=getdirectUserbyId.investment;
+    //         const invested_time=p.createdAt;
+    //         const finalPecentage=invesetment*100/5;
+    //         const finalbalance = getdirectUserbyId.balance+finalPecentage
+    //         await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
+    //     }
+    //     if(getUser.teams[i].indirect.plan=='yes')
+    //     {
+    //         let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].indirect.id})
+    //         const invesetment=getdirectUserbyId.investment;
+    //         const invested_time=p.createdAt;
+    //         const finalPecentage=invesetment*100/3;
+    //         const finalbalance = getdirectUserbyId.balance+finalPecentage
+    //         await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
+    //     }
+    // }
+        await p.save()
         res.status(200).json({ success:true })
        }
        catch(error){

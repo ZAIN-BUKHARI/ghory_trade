@@ -184,8 +184,7 @@ function resolutionChecker(){
 
   useEffect(() => {
     resolutionChecker()
-    var local_token = JSON.stringify(localStorage.getItem('token'))
-    if(local_token!="no"){
+    if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
       settoken(false)
     }
     else{

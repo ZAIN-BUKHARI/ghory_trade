@@ -178,7 +178,7 @@ const Sidebar = () => {
          {!token && <Link onClick={()=>{setAuth(true)}}  href={"#"}>Login</Link>}
          {!token && <FcLock/>}
 
-         {!token &&  <Link onClick={logout}  href="/">Logout</Link>}
+         {token &&  <Link onClick={logout}  href="/">Logout</Link>}
         </li>
       </ul>
     </aside>)}
