@@ -115,9 +115,9 @@ const AuthForm = () => {
 if(mobile){
 return(
     <>
-    <div className="PlanForm-Head">
-        <div className="Invest-Container">
-          <div className="title  space">
+    <div className="PlanForm-Head-modal-auth">
+    <div className="Invest-Container" id='zain'>
+              <div className="title  authform-cancel-modal-button">
             {" "}
             Yearly Plan
             
@@ -174,6 +174,8 @@ return(
               <div className="button-auth">
                 <input type="Signup" value="Subscribe" onClick={signup} />
               </div>
+              {!ActiveLoginModal && <span className='authform-invest-spanone'>Already have an account?  <span className='authform-invest-spantwo' onClick={showsignin}>Signin</span></span>}
+                 {ActiveLoginModal && <span  className='authform-invest-spanone'>Don't have an account?  <span   className='authform-invest-spantwo' onClick={showsignup}>Signup</span></span>}
             </form>
           </div>
         </div>
@@ -208,7 +210,7 @@ return(
                       <span className="details ">Last Name</span>
                       <input
                         type="text"
-                        onChange={(e)=>{setfirstname(e.target.value)}}
+                        onChange={(e)=>{setlastname(e.target.value)}}
                         placeholder="Enter your lastname"
                         required
                       />
@@ -231,7 +233,7 @@ return(
                         required
                       />
                     </div>
-                    <div className="input-box-auth">
+                   {!ActiveLoginModal&& <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
                         type="text"
@@ -239,7 +241,7 @@ return(
                         placeholder="Enter your password"
                         required
                       />
-                    </div>
+                    </div>}
                   </div>
                   <div className="button-auth">
                     {!ActiveLoginModal &&<input type="button" value="Signup" onClick={signup} />}
