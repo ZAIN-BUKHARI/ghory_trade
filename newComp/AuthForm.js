@@ -183,7 +183,7 @@ return(
 }else{
     return(
         <>
-        <div className="PlanForm-Head">
+        <div className="PlanForm-Head-modal-auth">
             <div className="Invest-Container-authform" id='zain'>
               <div className="title  authform-cancel-modal-button">
                 {" "}
