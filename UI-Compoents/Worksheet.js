@@ -1,22 +1,29 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { useContext,useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { ThemeContext } from '../Context/ThemeContext'
+import axios from 'axios';
 const Worksheet = () => {
     //use Context 
     const {balance,router,token,subscription,workStatus}=useContext(ThemeContext)
+    const [dailywork,setdailywork]=useState('')
     const startWork = () =>{
         router.push('/dailywork')
+    }
+    async function getWorkdoc()
+    {
+        let response = await axios.get('/api/get/links')
+        setdailywork(response.data.links[0])
     }
     useEffect(()=>{
         if(!token && subscription=="no")
         {
           router.push('/')
-          toast.success("Not allowed here", {
+          toast.info("Not allowed here", {
             position: "top-right",
-            autoClose: 30000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -25,6 +32,7 @@ const Worksheet = () => {
             theme: "light",
           });
         }
+        getWorkdoc()
       },[])
   return (
     <>
@@ -51,8 +59,8 @@ const Worksheet = () => {
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
-                        <td> 17 Dec, 2022 </td>
-                        <td> 12:01pm </td>
+                        {/* <td> {dailywork.createdAt.slice(0,10)}</td> */}
+                        <td> 11:49pm </td>
                         <td>
                             <p className=" WorkSheet-Icon-Alert ">
                              {workStatus=="no"  && <FcHighPriority/>}
@@ -64,38 +72,6 @@ const Worksheet = () => {
                     </tr>
                      
                 </tbody>
-                <tbody>
-                    <tr>
-                        <td> 1 </td>
-                        <td> Zain </td>
-                        <td> 17 Dec, 2022 </td>
-                        <td> 12:01pm </td>
-                        <td>
-                            <p className=" WorkSheet-Icon-Alert ">
-                               <FcHighPriority/>
-                            </p>
-                        </td>
-                        <td> <strong> $0.67 </strong></td>
-                        <td> <p  className="Done"><a href='https://www.youtube.com/@PakWheels'>start</a></p> </td>
-                    </tr>
-                     
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> 1 </td>
-                        <td> Zain </td>
-                        <td> 17 Dec, 2022 </td>
-                        <td> 12:01pm </td>
-                        <td>
-                            <p className=" WorkSheet-Icon-Alert ">
-                               <FcHighPriority/>
-                            </p>
-                        </td>
-                        <td> <strong> $0.67 </strong></td>
-                        <td> <p  className="Done"><a href='https://www.youtube.com/watch?v=CCU2TPj4O5A'>start</a></p> </td>
-                    </tr>
-                     
-                </tbody> 
             </table>
         </section>
         </main>

@@ -12,6 +12,7 @@ import '../styles/worksheet.css'
 import '../styles/widthdraw.css'
 import '../styles/test.css'
 import '../styles/invite.css'
+import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
 import Footer from '../newComp/Footer';
@@ -181,8 +182,23 @@ function resolutionChecker(){
         setmobile(false)
       }
 }
+const schedulingTime = '*/1 * * * *'
 
   useEffect(() => {
+    scheduleJob(schedulingTime, async () => {
+      try {
+        let res = await axios.delete('/api/del/link'); 
+        if(res.data.success==true){
+          console.log('post link')
+          let res= await axios.get('/api/post/link'); 
+          if(res.data.success==true){
+            console.log('delete post link')
+          }
+       }
+      } catch (error) {
+        console.error('server error');
+      }
+    });
     resolutionChecker()
     if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
       settoken(false)

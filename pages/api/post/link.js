@@ -1,27 +1,27 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
-import Link from '../../../models/Link'
+import Video from '../../../models/Video'
 import User from '../../../models/User'
 
 const handler= async (req, res)=> {
-    if(req.method=='POST'){
+    if(req.method=='GET'){
         const links={
-            link1:req.body.videoLinks[0].id.videoId,
-            link2:req.body.videoLinks[1].id.videoId,
-            link3:req.body.videoLinks[2].id.videoId,
-            link4:req.body.videoLinks[3].id.videoId,
-            link5:req.body.videoLinks[4].id.videoId,
-            link6:req.body.videoLinks[5].id.videoId,
-            link7:req.body.videoLinks[6].id.videoId,
-            link8:req.body.videoLinks[7].id.videoId,
-            link9:req.body.videoLinks[8].id.videoId,
-            link10:req.body.videoLinks[9].id.videoId,
+            link1:'XCu7DsunC9',
+            // link2:req.body.videoLinks[1].id.videoId,
+            // link3:req.body.videoLinks[2].id.videoId,
+            // link4:req.body.videoLinks[3].id.videoId,
+            // link5:req.body.videoLinks[4].id.videoId,
+            // link6:req.body.videoLinks[5].id.videoId,
+            // link7:req.body.videoLinks[6].id.videoId,
+            // link8:req.body.videoLinks[7].id.videoId,
+            // link9:req.body.videoLinks[8].id.videoId,
+            // link10:req.body.videoLinks[9].id.videoId,
         }
         
        try{ 
-        let user = await User.updateOne({email:req.query.email},{todaywork:"no"})
+        let user = await User.updateMany({},{todaywork:"no"})
         if(user){
-
-            let p = new Link({
+            console.log(user)
+            let p = new Video({
                 links:links
                 
             })
