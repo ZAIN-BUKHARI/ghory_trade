@@ -41,14 +41,19 @@ const Menuitems = [
     href: "/adminreject",
   },
   {
-    title: "Users",
+    title: "Search & Update Users",
     icon: "grid",
     href: "/adminusers",
   },
   {
-    title: "Plans",
+    title: "Search & Update Plans",
     icon: "eye",
     href: "/adminallplans",
+  },
+  {
+    title: "Search & Update Request",
+    icon: "star",
+    href: "/adminallrequests",
   },
   
   

@@ -5,15 +5,17 @@ import { useRouter } from 'next/router'
 import { FcCancel } from "react-icons/fc";
 const Searchbar = (e) => {
   const router = useRouter()
-  const {setusersearchresults,setplanssearchresults} = useContext(ThemeContext)
+  const {setusersearchresults,setplanssearchresults,setsearchrequestresults} = useContext(ThemeContext)
   const [val,setval]=useState('')
   const [url,seturl]=useState('')
 
   useEffect(()=>{
     if(router.asPath=='/adminusers')
-          seturl('search')
+        seturl('search')
+    else if(router.asPath=='/adminallrequests')
+        seturl('searchrequest')
     else
-      seturl('searchplans')
+        seturl('searchplans')
     
   })
     const Search =async()=>{
@@ -23,6 +25,8 @@ const Searchbar = (e) => {
         {
           if(router.asPath=='/adminusers')
             setusersearchresults(res.data.event)
+          else if(router.asPath=='/adminallrequests')
+            setsearchrequestresults(res.data.event)
           else
             setplanssearchresults(res.data.event)
         }
@@ -37,6 +41,8 @@ const Searchbar = (e) => {
     const ClearListResults = () =>{
       setval('')
       setusersearchresults([])
+      setsearchrequestresults([])
+      setplanssearchresults([])
     }
   return (
     <>

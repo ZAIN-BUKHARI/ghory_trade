@@ -11,6 +11,7 @@ const handler= async (req, res)=> {
             res.status(200).send({success:true,user})
         }
     }
+    
 }
   
   

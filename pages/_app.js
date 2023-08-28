@@ -233,6 +233,15 @@ async function getAllPlans(){
     alert('Server error')
   }
 }
+async function getAllRequests(){
+  try{
+
+    let request = await axios.get('/api/get/allrequests')
+    if(request.status==200){setallrequests(request.data.request)}
+  }catch(e){
+    alert('Server error')
+  }
+}
 function resolutionChecker(){
   let mq = window.matchMedia("(max-width: 768px)");
       if (mq.matches==true) {
@@ -310,6 +319,8 @@ function resolutionChecker(){
     const [adminallplans,setadminallplans]=useState([])
     const [usersearchresults,setusersearchresults]=useState([])
     const [planssearchresults,setplanssearchresults]=useState([])
+    const [allrequests,setallrequests]=useState([])
+    const [searchrequestresults,setsearchrequestresults]=useState([])
 
     
     //youtube variables
@@ -325,7 +336,7 @@ function resolutionChecker(){
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequests,searchrequestresults,setsearchrequestresults}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

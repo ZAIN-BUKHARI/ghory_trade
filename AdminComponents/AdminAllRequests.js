@@ -8,26 +8,24 @@ import { useRouter } from 'next/router';
 import Searchbar from '../universe.io/Searchbar'
 
 
-const AdminPlans = () => {
+const AdminAllRequests = () => {
     //use Context 
-    const {adminallplans,planssearchresults}=useContext(ThemeContext)
+    const {allrequests,searchrequestresults}=useContext(ThemeContext)
     //router
     const router = useRouter()
     
     
-    const detail = (id) =>{
-        router.push(`/admindetail?id=${id}&plan=join`)
-    }
+    
     const Update =(id)=>{
         
-        router.push(`/adminupdate?id=${id}&model=plan`)
+        router.push(`/adminupdate?id=${id}&model=request`)
     }
 
 
   return (
     <>
     <Searchbar/>
-    {planssearchresults.length==0 && (
+    {searchrequestresults.length==0 && (
     <div className='AdminWorksheet-body'>
     <main className="table">
     <section className="table__header">
@@ -38,33 +36,29 @@ const AdminPlans = () => {
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Name </th>
                         <th> Email </th>
+                        <th> Method </th>
+                        <th> Amount </th>
+                        <th> Address</th>
                         <th> Join</th>
-                        <th> Level</th>
-                        <th> Investment </th>
                         <th> Status </th>
-                        <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
                     </tr>
                 </thead>
-                {adminallplans && adminallplans.map((item)=>(
+                {allrequests && allrequests.map((item)=>(
                     <>
                  <tbody key={item._id}>
                 
                 <tr>
                     <td> {item._id.slice(0,5)} </td>
-                    <td> {item.name} </td>
                     <td>{item.email}</td>
+                    <td> {item.method} </td>
+                    <td><strong> ${item.amount} </strong> </td>
+                    <td> {item.address} </td>
                     <td> {item.createdAt.slice(0,10)} </td>
-                    <td> {item.level} </td>
-                    
-                    <td> <strong> ${item.investment} </strong></td>
-                    <td className=''>
-                    
                     <td> {item.status} </td>
-                    </td>
-                    <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                    
+                    
                     <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                 </tr>
                  
@@ -76,7 +70,7 @@ const AdminPlans = () => {
             </section>
         </main>
         </div>)}
-        {planssearchresults &&(
+        {searchrequestresults &&(
             <>
             <div className='AdminWorksheet-body'>
     <main className="table">
@@ -88,39 +82,35 @@ const AdminPlans = () => {
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Name </th>
                         <th> Email </th>
+                        <th> Method </th>
+                        <th> Amount </th>
+                        <th> Address</th>
                         <th> Join</th>
-                        <th> Level</th>
-                        <th> Investment </th>
                         <th> Status </th>
-                        <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
                     </tr>
                 </thead>
-                {planssearchresults && planssearchresults.map((item)=>(
+                {searchrequestresults && searchrequestresults.map((item)=>(
                     <>
-                 <tbody key={item._id}>
-                
-                <tr>
-                    <td> {item._id.slice(0,5)} </td>
-                    <td> {item.name} </td>
-                    <td>{item.email}</td>
-                    <td> {item.createdAt.slice(0,10)} </td>
-                    <td> {item.level} </td>
+                    <tbody key={item._id}>
+                   
+                   <tr>
+                       <td> {item._id.slice(0,5)} </td>
+                       <td>{item.email}</td>
+                       <td> {item.method} </td>
+                       <td><strong> ${item.amount} </strong> </td>
+                       <td> {item.address} </td>
+                       <td> {item.createdAt.slice(0,10)} </td>
+                       <td> {item.status} </td>
+                       
+                       
+                       <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                   </tr>
                     
-                    <td> <strong> ${item.investment} </strong></td>
-                    <td className=''>
-                    
-                    <td> {item.status} </td>
-                    </td>
-                    <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
-                    <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
-                </tr>
-                 
-                    
-            </tbody>
-                          </>
+                       
+               </tbody>
+                             </>
                       ))}
             </table>
             </section>
@@ -151,4 +141,4 @@ const AdminPlans = () => {
   )
 }
 
-export default AdminPlans
+export default AdminAllRequests

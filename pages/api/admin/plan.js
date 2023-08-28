@@ -6,7 +6,7 @@ const handler= async (req, res)=> {
 
         if(req.method=='GET'){   
             let result = await Plan.findOne({_id:req.query._id})
-            res.status(200).send({'success':true,result})
+            res.status(200).send({success:true,result})
         }
         
     }catch(e){

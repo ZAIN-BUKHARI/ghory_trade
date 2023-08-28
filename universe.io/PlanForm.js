@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { ThemeContext } from "../Context/ThemeContext";
 const PlanForm = () => {
   //useContext
-  const { email, token, subscription } = useContext(ThemeContext);
+  const {  token, subscription } = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -15,7 +15,7 @@ const PlanForm = () => {
   // DATA STATE VARIABLE
   const [investment, setinvestment] = useState();
   const [phone, setphone] = useState("");
-  // const [email, setemail] = useState("");
+  const [email, setemail] = useState("");
   const [name, setname] = useState("");
   const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
@@ -203,9 +203,9 @@ const PlanForm = () => {
                   <input
                     type="text"
                     value={email}
-                    // onChange={(e) => {
-                    //   setemail(e.target.value);
-                    // }}
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
                     placeholder="Enter your email"
                     required
                   />

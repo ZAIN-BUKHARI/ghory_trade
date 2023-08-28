@@ -21,6 +21,10 @@ const AdminPlans = () => {
         var user = "user"
         router.push(`/admindetail?id=${id}&plan=${user}`)
     }
+    const Update =(id)=>{
+        
+        router.push(`/adminupdate?id=${id}&model=user`)
+    }
 
 
   return (
@@ -45,6 +49,7 @@ const AdminPlans = () => {
                         <th> Amount </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
+                        <th className='work-start'> Update</th>
                     </tr>
                 </thead>
                 {adminallusers && adminallusers.map((item)=>(
@@ -65,6 +70,7 @@ const AdminPlans = () => {
                     
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
                         
@@ -94,6 +100,7 @@ const AdminPlans = () => {
                         <th> Amount </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
+                        <th className='work-start'> Update</th>
                     </tr>
                 </thead>
                 {usersearchresults && usersearchresults.map((item)=>(
@@ -114,6 +121,7 @@ const AdminPlans = () => {
                     
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      
                         
