@@ -72,8 +72,10 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
-    if (currency == "PKR" && investment >= 3000 || currency == "USD" && investment >= 100) {
-          const data = {
+    try{
+
+      if (currency == "PKR" && investment >= 3000 || currency == "USD" && investment >= 100) {
+        const data = {
             email,
             name,
             lastname,
@@ -125,8 +127,20 @@ const PlanForm = () => {
         theme: "light",
       });
     }
+  }catch(e){
+    toast.info("Server down ", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
   };
-
+  
   return (
     <>
       <div className="PlanForm-Head">

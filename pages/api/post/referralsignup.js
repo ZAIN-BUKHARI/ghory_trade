@@ -59,7 +59,7 @@ const handler= async (req, res)=> {
             await User.updateOne({email:Leader.email},{teams:directteam,nofteams:nofteamsB})
             let A = await User.findOne({_id:Leader.invite})
             // indirect 
-            console.log(A.teams[0].direct.id)
+            // console.log(A.teams[0].direct.id)
             let indirectteam=[
               {
                 Leader:Leader.invite,

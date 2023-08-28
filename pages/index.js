@@ -7,7 +7,6 @@ import { ThemeContext } from '../Context/ThemeContext'
 export default function Home() {
   const {subscription} = useContext(ThemeContext)
   useEffect(()=>{
-    console.log(subscription)
   },[])
   return (
     <>

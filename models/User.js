@@ -53,6 +53,10 @@ const UserSchema = new Schema({
         type:String,
         default:''
     },
+    date:{
+        type:String,
+        default:''
+    },
     
 
     },{timestamps:true})

@@ -2,10 +2,17 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
 
 const handler= async (req, res)=> {
-    
-        let result = await Plan.findById({_id:req.query._id})
-        await result.save()
-        res.status(200).send({'success':true,result})
+    try{
+
+        if(req.method=='GET'){   
+            let result = await Plan.findOne({_id:req.query._id})
+            res.status(200).send({'success':true,result})
+        }
+        
+    }catch(e){
+        res.status(200).send({error:'server error'})
+
+    }
    
 }
   

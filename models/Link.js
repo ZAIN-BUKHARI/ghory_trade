@@ -4,6 +4,9 @@ const LinkSchema = new Schema({
     links:{
         type:Object,
     },
+    date:{
+        type:String,
+    },
     
     
 

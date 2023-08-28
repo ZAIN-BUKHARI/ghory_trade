@@ -22,21 +22,18 @@ useEffect(()=>{
         setstatus("rejected")
 },[])
 
-const startWork = (id,email) =>{
-    api(id,email)
+const startWork = (id) =>{
+    api(id)
 }
 const detail = (id) =>{
-    router.push(`/admindetail?id=${id}`)
+    router.push(`/admindetail?id=${id}&plan=request`)
 }
-async function api(id,email){
-    let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}&email=${email}`)
-    const userBalance = res.data.response.balance
-    if(res.status==200){
-        const finalBalance = userBalance-balance
-        const data = {finalBalance,email}
-        if(await axios.post('/api/admin/decrementBalance',data))
+async function api(id){
+    let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}`)
+    if(res.data.success==true){
             window.location.reload()
-
+    }else{
+        alert('Server error contact site developer for this issue')
     }
 }
 
@@ -107,7 +104,7 @@ async function api(id,email){
                      
                     </select>
                         </td>
-                        <td > <p onClick={()=>{startWork(item._id,item.email)}} className='left'><FcRight /></p> </td>
+                        <td > <p onClick={()=>{startWork(item._id)}} className='left'><FcRight /></p> </td>
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      

@@ -9,17 +9,24 @@ const AdminDetails = () => {
   const[doc,setdoc]=useState([])
   const {id,plan} = router.query
   useEffect(()=>{
-    if(plan=="plan"){
+    if(plan=='join'){
       axios.get(`/api/admin/plan?_id=${id}`).then(res=>{
-        console.log(res)
         if(res.data.success==true){
           setdoc(res.data.result)
+        }else{
+          alert(res.data.error)
         }
       })
     }
-    else{
+    else if(plan=='user'){
+      axios.get(`/api/get/userone?_id=${id}`).then(res=>{
+        if(res.data.success==true){
+          setdoc(res.data.user)
+        }
+      })
+    }
+    else if(plan=='request'){
       axios.get(`/api/admin/request?_id=${id}`).then(res=>{
-        console.log(res)
         if(res.data.success==true){
           setdoc(res.data.result)
         }
@@ -27,7 +34,7 @@ const AdminDetails = () => {
     }
 
   },[])
-  if(plan=="plan"){
+  if(plan=="join"){
     return (
       <>
       <div className="table-box">
@@ -51,7 +58,25 @@ const AdminDetails = () => {
       </>
     )
   
-}else{
+}else if(plan=='user'){
+  return(
+    <>
+    <div className="table-box">
+      <AdminTable title={"ID"} desc={doc._id} />
+      <AdminTable title={"NAME"} desc={doc.firstname} />
+      <AdminTable title={"EMAIL"} desc={doc.email} />
+      <AdminTable title={"BALANCE"} desc={doc.balance} />
+      <AdminTable title={"SUBSCRIPTION"} desc={doc.subscription} />
+      <AdminTable title={"CHANNEL"} desc={doc.channel} />
+      <AdminTable title={"TODAY-WORK"} desc={`$${doc.todaywork}`} />
+      <AdminTable title={"TEAMS"} desc={doc.nofteams} />
+      <AdminTable title={"JOIN-DATE"} desc={doc.createdAt} />
+      <AdminTable title={"IMAGE"} desc={'doc.img'} />
+      </div>
+    </>
+  )
+}
+else{
   return (
     <>
     <div className="table-box">

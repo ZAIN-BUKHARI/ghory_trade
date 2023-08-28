@@ -4,6 +4,14 @@ import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='GET'){
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        const formattedToday = dd + '/' + mm + '/' + yyyy;
         const links={
             link1:'XCu7DsunC9',
             // link2:req.body.videoLinks[1].id.videoId,
@@ -15,17 +23,18 @@ const handler= async (req, res)=> {
             // link8:req.body.videoLinks[7].id.videoId,
             // link9:req.body.videoLinks[8].id.videoId,
             // link10:req.body.videoLinks[9].id.videoId,
+            
         }
         
        try{ 
         let user = await User.updateMany({},{todaywork:"no"})
         if(user){
-            console.log(user)
             let p = new Video({
-                links:links
+                links:links,
+                date:formattedToday
                 
             })
-            let a = await p.save()
+            await p.save()
             res.status(200).json({ success:true })
         }else{
             res.status(500).json({ success:false })

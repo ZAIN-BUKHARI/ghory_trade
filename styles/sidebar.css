@@ -19,16 +19,25 @@
 
 .sidebar:hover {
     width: 260px;
-	.section-title-sidebar {
-		font-size: 24px;
-		font-weight: bold;
-		color: black;
-		font-family: sans-serif;
-		margin-bottom: 10px;
-		text-transform: uppercase;
-		text-align: center;
-	}
+	/* .section-title-sidebar {
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: sans-serif;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        text-align: center;
+    } */
 	
+}
+.section-title-sidebar {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .sidebar .sidebar-logo {

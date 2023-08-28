@@ -71,7 +71,6 @@ const Sidebar = () => {
     localStorage.setItem('token','no')
     settoken(false)
   }
- console.log(token)
   return (
     <>
     {router.asPath!='/register' && !router.asPath.includes("admin") && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (

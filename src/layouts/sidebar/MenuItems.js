@@ -40,17 +40,17 @@ const Menuitems = [
     icon: "user-x",
     href: "/adminreject",
   },
-  // {
-  //   title: "Search",
-  //   icon: "star",
-  //   href: "/admincustom",
-  // },
+  {
+    title: "Users",
+    icon: "grid",
+    href: "/adminusers",
+  },
+  {
+    title: "Plans",
+    icon: "eye",
+    href: "/adminallplans",
+  },
   
-  // {
-  //   title: "Update",
-  //   icon: "grid",
-  //   href: "/update",
-  // },
   
 ];
 

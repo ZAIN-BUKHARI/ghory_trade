@@ -114,8 +114,7 @@ const VideoPlayer = () => {
     });
   }
   const Complete=async()=>{
-    let updatedamount=balance+0.67;
-    const data = {email,updatedamount}
+    const data = {email}
     await axios.post('/api/post/balanceincrement',data)
       toast.info('Congrats for completing tasks :) ', {
         position: "top-center",
@@ -201,12 +200,12 @@ const VideoPlayer = () => {
    
     <div className='TestBody'>
 
-    <main class="TestBody-container">
-        <section class="TestBody-main-video">
+    <main className="TestBody-container">
+        <section className="TestBody-main-video">
             {/* <video src="videos/manipulate text background.mp4" controls autoplay muted></video> */}
     <iframe  id='zain' src="https://www.youtube.com/embed/tXNnFqRBTDw?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-            <h3 class="title">{videoTitle}</h3>
+            <h3 className="title">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div className='test-comment-head'>
             <textarea placeholder='Post a comment' onChange={(e)=>{settextarea(e.target.value)}}  className='test-textarea'></textarea>
@@ -233,10 +232,10 @@ const VideoPlayer = () => {
             </div>
         </section>
 
-        <section class="TestBody-video-playlist">
-            <h3 class="title">{videoTitle}</h3>
+        <section className="TestBody-video-playlist">
+            <h3 className="title">{videoTitle}</h3>
             <p>video length &nbsp; . &nbsp; {(duration/1000)/60} Minutes</p>
-            <div class="TestBody-videos">
+            <div className="TestBody-videos">
                 <Comment/>
             </div>
         </section>

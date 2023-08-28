@@ -12,6 +12,7 @@ import '../styles/worksheet.css'
 import '../styles/widthdraw.css'
 import '../styles/test.css'
 import '../styles/invite.css'
+import '../styles/searchbar.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
@@ -22,8 +23,9 @@ import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
 import Request from '../universe.io/Request';
 import axios from 'axios';
-import { parse } from 'postcss';
 import Header from '../Responsiveness/Header';
+import { toast } from 'react-toastify';
+
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -35,7 +37,9 @@ async function getUser()
 {
   setLoader(true)
   let token = JSON.stringify(localStorage.getItem('token'))
-  if(token=="null"){
+  try{
+
+    if(token=="null"){
       setLoader(false)
   }else{
     let res = await axios.get(`/api/get/user?user=${token}`)
@@ -46,17 +50,37 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setLoader(false)
-
+      
+    }
+  }catch(e){
+    localStorage.setItem('token','no')
+    setLoader(false)
+    toast.info('Server down', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
   
 }
   //Admin Get functions
 async function getAllCustomers(param){
-  setLoader(true)
+  try{
+
+    setLoader(true)
     const res = await axios.get(`/api/get/join?status=${param}`)
-      setcustomers(res.data.orders)
-      // setTimeout(() => {setLoader(false) }, 2000);
-      setLoader(false)
+    setcustomers(res.data.orders)
+    // setTimeout(() => {setLoader(false) }, 2000);
+    setLoader(false)
+  }catch(e){
+    setLoader(false)
+    alert('Server error')
+  }
 
 
 
@@ -66,16 +90,25 @@ async function getAllCustomers(param){
 
 }
 async function getAllRequests(param){
-  setLoader(true)
+  try{
+
+    setLoader(true)
     const res = await axios.get(`/api/get/request?status=${param}`)
-      setrequests(res.data.orders)
-      // setTimeout(() => {setLoader(false) }, 2000);
-      setLoader(false)
+    setrequests(res.data.orders)
+    // setTimeout(() => {setLoader(false) }, 2000);
+    setLoader(false)
+  }
+catch(e){
+    setLoader(false)
+    alert('Server error')
+  }
 
 }
 async function PostComment(textarea){
-  setLoader(true)
-  const headers = {
+  try{
+
+    setLoader(true)
+    const headers = {
     'Content-Type': 'application/json', // Example header
     'Authorization': `Bearer ${access}`, // Example authorization header
     // 'Accept':'application/json'
@@ -92,7 +125,6 @@ async function PostComment(textarea){
     }
   }
   let result = await axios.post(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&key=AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g`,data,{headers})
-  console.log(result.data)
   if(result.status==200){
     setLoader(false)
     return true
@@ -101,6 +133,10 @@ async function PostComment(textarea){
     setLoader(false)
     return false
   }
+}catch(e){
+  setLoader(false)
+  alert('Server error')
+}
 }
 async function SubscribeChannel(){
   setLoader(true)
@@ -137,8 +173,10 @@ async function SubscribeChannel(){
 }
 // https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${VIDEO_ID}
 async function getVideoInfo(id){
-  setLoader(true)
-  // let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet&id=${id}`)
+  try{
+
+    setLoader(true)
+    // let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet&id=${id}`)
   let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${id}`)
   if(result.status==200){
     var time = result.data.items[0].contentDetails.duration
@@ -152,6 +190,9 @@ async function getVideoInfo(id){
     setLoader(false)
     return false
   }
+}catch(e){
+  alert('Server error')
+}
 }
 
 async function getTenvideos(){
@@ -171,7 +212,25 @@ async function getTenvideos(){
     setvideoLinks(response.data.items);
     return true
   } catch (error) {
-    console.error("Error fetching data: ", error);
+    alert("Error fetching data: ", error);
+  }
+}
+async function getAllUsers(){
+  try{
+
+    let users = await axios.get('/api/get/user')
+    if(users.status==200){setadminallusers(users.data.orders)}
+  }catch(e){
+    alert('Server error')
+  }
+}
+async function getAllPlans(){
+  try{
+
+    let plan = await axios.get('/api/get/plans')
+    if(plan.status==200){setplanssearchresults(plan.data.plan)}
+  }catch(e){
+    alert('Server error')
   }
 }
 function resolutionChecker(){
@@ -182,23 +241,25 @@ function resolutionChecker(){
         setmobile(false)
       }
 }
-const schedulingTime = '*/1 * * * *'
+
+// const schedulingTime = '*/1 * * * *'
 
   useEffect(() => {
-    scheduleJob(schedulingTime, async () => {
-      try {
-        let res = await axios.delete('/api/del/link'); 
-        if(res.data.success==true){
-          console.log('post link')
-          let res= await axios.get('/api/post/link'); 
-          if(res.data.success==true){
-            console.log('delete post link')
-          }
-       }
-      } catch (error) {
-        console.error('server error');
-      }
-    });
+    
+    // scheduleJob(schedulingTime, async () => {
+    //   try {
+    //     let res = await axios.delete('/api/del/link'); 
+    //     if(res.data.success==true){
+    //       console.log('post link')
+    //       let res= await axios.get('/api/post/link'); 
+    //       if(res.data.success==true){
+    //         console.log('delete post link')
+    //       }
+    //    }
+    //   } catch (error) {
+    //     console.error('server error');
+    //   }
+    // });
     resolutionChecker()
     if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
       settoken(false)
@@ -230,13 +291,14 @@ const schedulingTime = '*/1 * * * *'
     //Balance
     // const [balance,setbalance]=useState(5) before fake balance 
     
-    //USER
+    //Login USER Details
     const [user,setuser]=useState({})
     const [email,setemail]=useState("")
     const [balance,setbalance]=useState(0)
     const [subscription,setsubscription]=useState("no")
     const [workStatus,setworkStatus]=useState("no")
     
+
     //Login confirmation
     const[token,settoken]=useState(false)
     
@@ -244,6 +306,11 @@ const schedulingTime = '*/1 * * * *'
     const [Admin,setAdmin]=useState(true)
     const [customers,setcustomers]=useState([]) 
     const [requests,setrequests]=useState([]) 
+    const [adminallusers,setadminallusers]=useState([])
+    const [adminallplans,setadminallplans]=useState([])
+    const [usersearchresults,setusersearchresults]=useState([])
+    const [planssearchresults,setplanssearchresults]=useState([])
+
     
     //youtube variables
     const [channel,setchannel]=useState("") 
@@ -252,11 +319,13 @@ const schedulingTime = '*/1 * * * *'
     const [videoLinks,setvideoLinks]=useState("") 
     //mobile responsiveness
     const[mobile,setmobile]=useState()
+
+    
     
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

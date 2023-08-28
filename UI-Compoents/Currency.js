@@ -4,7 +4,6 @@ const Currency = () => {
   const convert = async() =>{
     
     let res=await axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=0c35753bd08f5bcbf79aec35c4708445`)
-console.log(res)
   }
   return (
     <>

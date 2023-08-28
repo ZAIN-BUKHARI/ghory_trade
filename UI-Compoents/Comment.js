@@ -92,21 +92,21 @@ const Comment = () => {
     color:white !important;
 
 }`}</style>
-     <section class="main">
-        <div class="full-boxer">
-            <div class="comment-box">
-                <div class="box-top">
-                    <div class="Profile">
-                        <div class="profile-image">
+     <section className="main">
+        <div className="full-boxer">
+            <div className="comment-box">
+                <div className="box-top">
+                    <div className="Profile">
+                        <div className="profile-image">
                             <img src="images/alson.jpg"/>
                         </div>
-                        <div class="Name">
+                        <div className="Name">
                             <strong>Ranidi Lochana</strong>
                             <span>@Ranidi Lochana</span>
                         </div>
                     </div>
                 </div>
-                <div class="comment">
+                <div className="comment">
                     <p>
                         I invest $5000 and yeah they are actually giving profit on daily basis.
                         profite depends upon your investment.The more you put the more you get
@@ -114,57 +114,57 @@ const Comment = () => {
                 </div>
             </div>
 
-            <div class="comment-box">
-                <div class="box-top">
-                    <div class="Profile">
-                        <div class="profile-image">
+            <div className="comment-box">
+                <div className="box-top">
+                    <div className="Profile">
+                        <div className="profile-image">
                             <img src="images/alex.jpg"/>
                         </div>
-                        <div class="Name">
+                        <div className="Name">
                             <strong>Senuda Dilwan</strong>
                             <span>@senuda dilwan</span>
                         </div>
                     </div>
                 </div>
-                <div class="comment">
+                <div className="comment">
                     <p>
                     Individuals who have had successful campaigns might express gratitude for the opportunity to access funding that might have been otherwise difficult to secure..
                     </p>
                 </div>
             </div>
 
-            <div class="comment-box">
-                <div class="box-top">
-                    <div class="Profile">
-                        <div class="profile-image">
+            <div className="comment-box">
+                <div className="box-top">
+                    <div className="Profile">
+                        <div className="profile-image">
                             <img src="images/jeet.jpg"/>
                         </div>
-                        <div class="Name">
+                        <div className="Name">
                             <strong>Rumali fernando</strong>
                             <span>@Rumali fernando</span>
                         </div>
                     </div>
                 </div>
-                <div class="comment">
+                <div className="comment">
                     <p>
                     Supporters may feel empowered by their ability to contribute directly to projects and causes they believe in, bypassing traditional gatekeepers.
                     </p>
                 </div>
             </div>
 
-            {/* <div class="comment-box">
-                <div class="box-top">
-                    <div class="Profile">
-                        <div class="profile-image">
+            {/* <div className="comment-box">
+                <div className="box-top">
+                    <div className="Profile">
+                        <div className="profile-image">
                             <img src="image/4.png"/>
                         </div>
-                        <div class="Name">
+                        <div className="Name">
                             <strong>Midinu Thiranjana</strong>
                             <span>@Midinu Thiranjana</span>
                         </div>
                     </div>
                 </div>
-                <div class="comment">
+                <div className="comment">
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.

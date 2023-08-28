@@ -18,9 +18,13 @@ const RequestSchema = new Schema({
         required:true,
     },
     status:{
-        type:"String",
+        type:String,
         default:"pending"
-    }
+    },
+    date:{
+        type:String,
+        default:"pending"
+    },
     
     
 

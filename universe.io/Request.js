@@ -35,7 +35,6 @@ const Request = () => {
           ){
           const data = {method,address,amount,email}
           let res = await axios.post('/api/post/request',data)
-          console.log(res)
             if(res.data.success==true){
               toast.success("Your withdrawal request is in processing state it will take 12 to 24 hour", {
                 position: "top-right",

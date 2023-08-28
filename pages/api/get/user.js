@@ -7,7 +7,6 @@ const handler= async (req, res)=> {
         res.status(200).json(true)
     }
     else{
-        console.log(req.query.token)
         let orders = await User.find()
         res.status(200).send({orders})
     }

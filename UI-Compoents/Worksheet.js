@@ -59,7 +59,7 @@ const Worksheet = () => {
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
-                        {/* <td> {dailywork.createdAt.slice(0,10)}</td> */}
+                        <td> {dailywork.createdAt}</td>
                         <td> 11:49pm </td>
                         <td>
                             <p className=" WorkSheet-Icon-Alert ">

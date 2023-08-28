@@ -5,12 +5,22 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
     if(req.method=='POST'){
        try{ 
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const formattedToday = dd + '/' + mm + '/' + yyyy;
         const {email,method,address,amount} = req.body
         let p = new Request({
             method:method,
             address:address,
             email:email,
-            amount:amount  
+            amount:amount,
+            date:formattedToday  
         })
     //     let getUser  = await User.findOne({email:email})
     //     for(var i=0; i<=getUser.teams.length;i++)

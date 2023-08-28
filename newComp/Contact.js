@@ -15,17 +15,17 @@ const Contact = () => {
           <form action="" id="contact-form">
             <h2>Send Message</h2>
             <div className="input-box">
-              <input type="text" required="true" name=""/>
+              <input type="text" required name=""/>
               <span>Full Name</span>
             </div>
             
             <div className="input-box">
-              <input type="email" required="true" name=""/>
+              <input type="email" required name=""/>
               <span>Email</span>
             </div>
             
             <div className="input-box">
-              <textarea required="true" name=""></textarea>
+              <textarea required name=""></textarea>
               <span>Type your Message...</span>
             </div>
             

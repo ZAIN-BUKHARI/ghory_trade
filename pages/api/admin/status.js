@@ -9,7 +9,7 @@ const handler= async (req, res)=> {
         await result.save()
         if(result && req.query.status=='verified'){
                 await User.updateOne({email:result.email},{subscription:'yes'})
-                
+                res.status(200).send({'success':true})
         }else{
                 await User.updateOne({email:result.email},{subscription:'no'})
                 res.status(200).send({'success':true})

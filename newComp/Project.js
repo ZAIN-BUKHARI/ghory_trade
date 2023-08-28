@@ -13,7 +13,7 @@ const Project = () => {
           <div className="all-projects MEDIA-LEFT-PROJECT">
             {ProjectsData &&
               ProjectsData.map((item) => (
-                <div  className="project-item">
+                <div key={item.id} className="project-item">
                   <div className="project-info">
                     <h1>Project 1</h1>
                     <h2>{item.title}</h2>
