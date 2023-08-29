@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const AdminRequests = () => {
     //use Context 
-    const {balance,router,requests}=useContext(ThemeContext)
+    const {router,requests}=useContext(ThemeContext)
    
     
 //state variables

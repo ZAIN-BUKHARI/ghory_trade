@@ -2,6 +2,7 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
         
         const handler= async (req, res)=> {
+            console.log('hit')
             if(req.method=='POST'){
             
                 const {_id,name,email,cnic,address,phone,status,createdAt,id,level,investment}=req.body
@@ -18,6 +19,7 @@ import Plan from '../../../models/Plan'
                     level:level,
                     investment:investment
                 })
+                console.log(plan)
                 await plan.save()
                 res.status(200).json({ success:true })
                }

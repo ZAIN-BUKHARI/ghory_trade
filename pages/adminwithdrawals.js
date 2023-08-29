@@ -2,29 +2,18 @@ import React from 'react'
 import FullLayout from "../src/layouts/FullLayout";
 import theme from "../src/theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import {useState }from 'react'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import { flushSync } from 'react-dom';
-import {
-  Grid,
-  Stack,
-  TextField,
-  Button,
-} from "@mui/material";
-import BaseCard from "../src/components/baseCard/BaseCard";
-import { File } from 'react-feather';
+import {Grid,} from "@mui/material";
 import { ThemeContext } from '../Context/ThemeContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import AdminRequests from '../AdminComponents/AdminRequests';
 
 const adminwithdrawals = () => {
-  const {Admin,getAllRequests} =useContext(ThemeContext)
+  const {Admin,getAllRequest} =useContext(ThemeContext)
   
   useEffect(()=>{
-    getAllRequests("pending")
+    getAllRequest("pending")
   },[])
   if(Admin){
     return (

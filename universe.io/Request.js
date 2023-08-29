@@ -30,8 +30,8 @@ const Request = () => {
 
       }else{
 
-
-        if( amount>0 &&amount<=balance
+        if(amount>=20){
+        if( amount<=balance
           ){
           const data = {method,address,amount,email}
           let res = await axios.post('/api/post/request',data)
@@ -76,7 +76,20 @@ const Request = () => {
               });
 
             }
+      }else{
+        toast.error("More than 20$ withdarwal allowed ", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
+    }
+
 
 
     }

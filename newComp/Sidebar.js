@@ -36,8 +36,31 @@ const Sidebar = () => {
       router.push('/investment')
   }
   const Dailywork = () =>{
-    if(!token || subscription=="no"){
+    if(!token && subscription=="no"){
       toast.info('Login required and subscribe our plan', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+     }
+     else if(!token && subscription=='yes'){
+      toast.info('Login required', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+     }else if(token && subscription=='no'){
+      toast.info('Subscribe our plan  ', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -51,22 +74,7 @@ const Sidebar = () => {
      else
       router.push('/work')
   }
-  const withdraw =()=>{
-  if(!token || subscription=="no"){
-    toast.info('Login required and subscribe our plan', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-   }
-   else
-   setPaymentRequestModal(true)
- }
+ 
   const logout = () =>{
     localStorage.setItem('token','no')
     settoken(false)
@@ -157,13 +165,13 @@ const Sidebar = () => {
           </span>
           {/* //NOT LOGGIN */}
           {/*  neither login nor subscription  */}
-          {!token && subscription=="no" && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {!token && subscription=="no" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
           {!token && subscription=="no" && <FcLock/>}
           {/*  login now but not has subscription  */}
-          {token && subscription=="no" && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {token && subscription=="no" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
           {token && subscription=="no" && <FcLock/>}
           {/* user didnot login now but has subscription  */}
-          {!token && subscription=="yes" && <Link href={'#'} onClick={withdraw}  >widthdraw</Link>}
+          {!token && subscription=="yes" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
           {!token && subscription=="yes" && <FcLock/>}
           {/* //LOGGIN */}
           {/* both login and subscription  */}

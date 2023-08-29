@@ -4,7 +4,7 @@ import Plan from '../../../models/Plan'
 const handler= async (req, res)=> {
     try{
 
-        if(req.method=='GET'){   
+        if(req.method=='GET'){  
             let result = await Plan.findOne({_id:req.query._id})
             res.status(200).send({success:true,result})
         }

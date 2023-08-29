@@ -36,13 +36,15 @@ var API_KEY='AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g'
 async function getUser()
 {
   setLoader(true)
-  let token = JSON.stringify(localStorage.getItem('token'))
+  let token = localStorage.getItem('token')
   try{
 
-    if(token=="null"){
+    if(token=="null" || token=='no'){
       setLoader(false)
   }else{
-    let res = await axios.get(`/api/get/user?user=${token}`)
+    let res = await axios.get(`/api/get/localstorage?token=${token}`,)
+    if(res.data.success==true)
+    {
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
       setbalance(parseFloat(res.data.orders[0].balance))
@@ -50,21 +52,11 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setLoader(false)
+    }
       
     }
   }catch(e){
-    localStorage.setItem('token','no')
     setLoader(false)
-    toast.info('Server down', {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   }
   
 }
@@ -89,11 +81,12 @@ async function getAllCustomers(param){
 
 
 }
-async function getAllRequests(param){
+async function getAllRequest(param){
   try{
 
     setLoader(true)
     const res = await axios.get(`/api/get/request?status=${param}`)
+    console.log(res)
     setrequests(res.data.orders)
     // setTimeout(() => {setLoader(false) }, 2000);
     setLoader(false)
@@ -336,7 +329,7 @@ function resolutionChecker(){
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequests,searchrequestresults,setsearchrequestresults}}>
+<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}
