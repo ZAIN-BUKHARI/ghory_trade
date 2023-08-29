@@ -70,7 +70,7 @@ const AdminAllRequests = () => {
             </section>
         </main>
         </div>)}
-        {searchrequestresults &&(
+        {searchrequestresults!=0 &&(
             <>
             <div className='AdminWorksheet-body'>
     <main className="table">

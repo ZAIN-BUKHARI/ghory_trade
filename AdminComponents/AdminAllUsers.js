@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { FcHighPriority } from "react-icons/fc";
+import React from 'react'
 import { FcRight } from "react-icons/fc";
 
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Searchbar from '../universe.io/Searchbar';
 
 
 const AdminPlans = () => {
     //use Context 
     const {adminallusers,usersearchresults}=useContext(ThemeContext)
-    console.log('allusers'+adminallusers)
     //router
     const router = useRouter()
     
@@ -81,7 +78,7 @@ const AdminPlans = () => {
             </section>
         </main>          
         </div>)}
-        {usersearchresults && (
+        {usersearchresults!=0 && (
             <>
             <div className='AdminWorksheet-body'>
     <main className="table">
@@ -115,11 +112,9 @@ const AdminPlans = () => {
                         <td> {item.todaywork} </td>
                         
                         <td> <strong> $ {item.balance} </strong></td>
-                        {/* <td className=''> */}
                         <td> <strong> {item.subscription} </strong></td>
                         
                     
-                        {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
@@ -133,7 +128,7 @@ const AdminPlans = () => {
         </main>          
         </div>
             </>
-        ) }
+        )}
         <style>{`
         .Left{
             font-size: 20px;

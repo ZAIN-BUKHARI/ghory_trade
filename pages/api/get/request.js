@@ -2,7 +2,6 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Request from '../../../models/Request'
 
 const handler= async (req, res)=> {
-     console.log('Hit')
     if(req.query.status=="verified"){
         let orders = await Request.find({status:"verified"})
         res.status(200).send({orders})

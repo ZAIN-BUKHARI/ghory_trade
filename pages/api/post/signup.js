@@ -1,6 +1,7 @@
 import User from '../../../models/User'
 import ConnectMongoDB from '../../../middleware/mongoose'
 var CryptoJS = require("crypto-js");
+import mail from '../mailsender/email';
 
 const handler= async (req, res)=> {
   const {firstname,lastname,email,password,cpassword}=req.body
@@ -14,18 +15,31 @@ const handler= async (req, res)=> {
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;
         const formattedToday = dd + '/' + mm + '/' + yyyy;
-        if(firstname.length!=0&&lastname.length!=0&&email.length!=0&&password.length!=0){
-          if(password == cpassword){
-            let u = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),date:formattedToday})
-           await u.save()
-             res.status(200).json({ success:true })
-          }
-         else
-         res.status(200).json({ error:'Password not macthed' })
-    }
-    else
-      res.status(200).json({ error:'Empty field' })
-   }
+        
+          if(email.includes('@')){
+          if(firstname.length!=0&&lastname.length!=0&&email.length!=0&&password.length!=0  ){
+            if(password == cpassword){
+              let u = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),date:formattedToday})
+              if(u.email==email){
+                u.save()
+                try{
+                  const name = u.firstname;
+                    if(mail('garbage1','garbage2','garbage3','garbage4','signup',name))
+                      res.status(200).json({success:true})
+                   
+                   }catch(e){
+                    res.status(200).json({success:true})
+                   }     
+              }
+            }
+            else
+            res.status(200).json({ error:'Password not match' })
+        }
+        else
+        res.status(200).json({ error:'Empty field' })
+      }else
+      res.status(200).json({ error:'Email must be unique' })
+  }
     catch{
       res.status(200).json({ error: 'You missed something' })
     }

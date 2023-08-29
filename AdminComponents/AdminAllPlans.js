@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { FcHighPriority } from "react-icons/fc";
+import React from 'react'
 import { FcRight } from "react-icons/fc";
-
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 import { useRouter } from 'next/router';
