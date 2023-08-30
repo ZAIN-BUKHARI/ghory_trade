@@ -27,9 +27,9 @@ const ProfileDD = () => {
   const handleClose4 = () => {
     setAnchorEl4(null);
   };
-  const logout =()=>{
-    setAdmin(false)
-  }
+  // const logout =()=>{
+  //   setAdmin(false)
+  // }
   return (
     <>
       <Button
@@ -90,7 +90,7 @@ const ProfileDD = () => {
         }}
       >
         <Box>
-          <Box p={2} pt={0}>
+          {/* <Box p={2} pt={0}>
             <List
               component="nav"
               aria-label="secondary mailbox folder"
@@ -98,13 +98,13 @@ const ProfileDD = () => {
             >
             
             </List>
-          </Box>
+          </Box> */}
           <Divider />
           <Box p={2}>
             <Link to="/">
-              <Button onClick={logout} fullWidth variant="contained" color="primary">
+              {/* <Button onClick={logout} fullWidth variant="contained" color="primary">
                 Logout
-              </Button>
+              </Button> */}
             </Link>
           </Box>
         </Box>

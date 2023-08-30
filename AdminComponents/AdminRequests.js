@@ -82,23 +82,23 @@ async function api(id){
                       >
                     {status=="verified" && (
                         <>
-                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
-                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
-                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                         <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
+                         <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
+                         <option className='admin-sheet-review option-three' value={"rejected"}>rejected</option>
                         </>
                     )}
                     {status=="pending" && (
                         <>
-                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
-                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
-                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
+                         <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
+                         <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
+                         <option className='admin-sheet-review   option-three' value={"rejected"}>rejected</option>
                         </>
                     )}
                     {status=="rejected" && (
                         <>
-                         <option className='admin-sheet-review' value={"rejected"}>rejected</option>
-                         <option className='admin-sheet-reviewed' value={"pending"}>pending</option>
-                         <option className='admin-sheet-reviewed' value={"verified"}>verified</option>
+                         <option className='admin-sheet-review option-three' value={"rejected"}>rejected</option>
+                         <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
+                         <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
                         </>
                     )}
                      

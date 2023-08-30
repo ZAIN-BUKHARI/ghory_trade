@@ -11,7 +11,9 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 } */
-
+.option-one{ color: green; font-weight: bold;}
+.option-two{ color: brown; font-weight: bold;}
+.option-three{color: red; font-weight: bold;}
 /* body {
     
     overflow-x: hidden;
