@@ -53,6 +53,12 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setLoader(false)
+      if(res.data.orders[0].admin=='yes')
+      {
+        setAdmin(true)
+      }else{
+        setAdmin(false)
+      }
     }
       
     }
@@ -315,7 +321,7 @@ function currencyConverter() {
     const[token,settoken]=useState(false)
     
     // Admin Variables
-    const [Admin,setAdmin]=useState(true)
+    const [Admin,setAdmin]=useState(false)
     const [customers,setcustomers]=useState([]) 
     const [requests,setrequests]=useState([]) 
     const [adminallusers,setadminallusers]=useState([])
