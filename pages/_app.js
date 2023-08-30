@@ -11,6 +11,7 @@ import '../styles/slider.css'
 import '../styles/worksheet.css'
 import '../styles/widthdraw.css'
 import '../styles/test.css'
+import '../styles/currency.css'
 import '../styles/invite.css'
 import '../styles/searchbar.css'
 import { scheduleJob } from 'node-schedule';
@@ -244,10 +245,18 @@ function resolutionChecker(){
       }
 }
 
+function currencyConverter() {
+  fetch(`https://v6.exchangerate-api.com/v6/b71ba5a6f69833fe3ac900ec/latest/USD`)
+    .then((res) => res.json())
+    .then((data) => {
+        setrate(data.conversion_rates.PKR);
+    });
+}
+
 // const schedulingTime = '*/1 * * * *'
 
   useEffect(() => {
-    
+   
     // scheduleJob(schedulingTime, async () => {
     //   try {
     //     let res = await axios.delete('/api/del/link'); 
@@ -270,6 +279,7 @@ function resolutionChecker(){
       settoken(true)
     }
     getUser()
+    currencyConverter()
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
     })
@@ -321,15 +331,17 @@ function resolutionChecker(){
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
     const [duration,setduration]=useState(300000) 
     const [videoLinks,setvideoLinks]=useState("") 
+
     //mobile responsiveness
     const[mobile,setmobile]=useState()
 
-    
+    //current currency rate USD TO PKR
+    const [rate,setrate]=useState(0)
     
   return(
   
 <>
-<ThemeContext.Provider value={{setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{rate,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

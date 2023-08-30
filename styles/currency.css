@@ -1,29 +1,47 @@
-body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-  }
+.currecny-head-height{
+  height: 240px;
   
-  h1 {
-    margin: 0;
-    margin-bottom: .5rem;
-  }
+}
+
+.btn-converter-currency{
+  width: 40%;
+}
+.converter-fields-left-margin{
+  margin-left: 300px;
+}
+.Converter-Head{
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.box-converter-currency{
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  background-color: #eee;
+}
+.currency-button{
+  width: 500px;
+  height: 50px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  border-radius: 20px;
+  margin-left:50px;
+  position: relative;
+  cursor: pointer;
   
-  .input {
-    border: 1px solid #333;
-    border-radius: .3em;
-    padding: .25rem;
-    width: 7em;
-  }
+}
+.currency-btn-input{
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  align-items: center;
+  position: absolute;
+  top: 20%;
+  right: 43%;
+  cursor: pointer;
   
-  select {
-    margin-left: .5rem;
-  }
-  
-  .equals {
-    font-weight: bold;
-    font-size: 2rem;
-  }
+}

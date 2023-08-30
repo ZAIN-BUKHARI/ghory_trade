@@ -249,11 +249,9 @@ const PlanForm = () => {
                     <select
                       value={currency}
                       name="select"
-                      onChange={ChangeEvent}
                       className="PlanForm-select"
                     >
                       <option value={"USD"}>USD</option>
-                      <option value={"PKR"}>PKR</option>
                     </select>
                     <input
                       type="number"
@@ -267,33 +265,19 @@ const PlanForm = () => {
                   {currency == "USD" &&
                     investment > 0 &&
                     investment < 100 &&
-                    currency != "PKR" && (
+                    (
                       <span className="PlanForm-investment-error">
                         Minimum investment 100$
                       </span>
                     )}
                   {currency == "USD" &&
                     investment >= 100 &&
-                    currency != "PKR" && (
+                    (
                       <span className="PlanForm-investment-error-green">
                         Minimum investment 100$
                       </span>
                     )}
-                  {currency == "PKR" &&
-                    investment > 0 &&
-                    investment < 30000 &&
-                    currency != "USD" && (
-                      <span className="PlanForm-investment-error">
-                        Minimum investment 3000PKR
-                      </span>
-                    )}
-                  {currency == "PKR" &&
-                    investment >= 30000 &&
-                    currency != "USD" && (
-                      <span className="PlanForm-investment-error-green">
-                        Minimum investment 3000PKR
-                      </span>
-                    )}
+                  
                 </div>
 
                 {/* //file  */}
@@ -345,6 +329,7 @@ const PlanForm = () => {
             </form>
           </div>
         </div>
+        
       </div>
     </>
   );

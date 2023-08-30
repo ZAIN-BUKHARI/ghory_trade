@@ -7,14 +7,11 @@ import { FcList } from 'react-icons/fc';
 import { FcBusinessContact } from 'react-icons/fc';
 import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
-import { FcServices } from 'react-icons/fc';
 import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
-import { useRouter } from 'next/router';
+import { FcCurrencyExchange } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
 
 const Sidebar = () => {
@@ -178,6 +175,14 @@ const Sidebar = () => {
           {token && subscription=="yes" &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
 
         </li>
+
+        <li>
+        <span className="material-symbols-outlined">
+          <FcCurrencyExchange/>
+          </span>
+          <Link href='/currency'>Currency </Link>
+          </li>
+      
         <li className="logout-link">
           <span className="material-symbols-outlined">
             <FcLeft/>
