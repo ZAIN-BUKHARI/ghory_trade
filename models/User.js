@@ -28,38 +28,51 @@ const UserSchema = new Schema({
         type:String,
         default:"no",
     },
-    subtime:{
+    subtime:
+    {
         type:String,
         default:"000"
     },
-    channel:{
+    channel:
+    {
         type:String,
         default:"no"
     },
-    todaywork:{
+    todaywork:
+    {
         type:String,
         default:"no"
     },
-    Rank:{
+    Rank:
+    {
         type:String,
         default:"no"
     },
     teams:[{type:Object}],
-    nofteams:{
+    nofteams:
+    {
         type:Number,
         default:0
     },
-    invite:{
+    invite:
+    {
         type:String,
         default:''
     },
-    date:{
+    date:
+    {
         type:String,
         default:''
     },
-    admin:{
+    admin:
+    {
         type:String,
         default:'no'
+    },
+    perDayProfit:
+    {
+        type:Number,
+        default:0
     },
     
 

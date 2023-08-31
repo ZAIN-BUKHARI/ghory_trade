@@ -25,6 +25,8 @@ const PlanForm = () => {
   const [pkrerror, setpkrerror] = useState(false);
   // TYPE-OF-USER
   const [level, setlevel] = useState("");
+  // investment formula
+  const [formula, setformula] = useState(true);
 
   useEffect(() => {
   }, []);
@@ -32,19 +34,25 @@ const PlanForm = () => {
     if (e.target.name == "select") {
       setcurrency(e.target.value);
     } else if (e.target.name == "investment") {
-      setinvestment(e.target.value);
+      setinvestment(e.target.value)
+      if((e.target.value/100).toString().includes('.')){
+        setformula(true)
+      }else{
+        setformula(false)
+      }
       if (currency == "USD" && e.target.value >= 100) {
         var val = e.target.value;
-        if (val >= 100 && val < 200) setlevel("1");
-        else if (val >= 200 && val < 300) setlevel("2");
-        else if (val > 300 && val < 400) setlevel("3");
-        else if (val >= 400 && val < 500) setlevel("4");
-        else if (val >= 500 && val < 600) setlevel("5");
-        else if (val >= 600 && val < 700) setlevel("6");
-        else if (val >= 700 && val < 800) setlevel("7");
-        else if (val >= 800 && val < 900) setlevel("8");
-        else if (val >= 900 && val < 1000) setlevel("9");
+        if (val = 100 ) setlevel("1");
+        else if (val = 200) setlevel("2");
+        else if (val = 300 ) setlevel("3");
+        else if (val = 400 ) setlevel("4");
+        else if (val = 500 ) setlevel("5");
+        else if (val = 600 ) setlevel("6");
+        else if (val = 700 ) setlevel("7");
+        else if (val = 800 ) setlevel("8");
+        else if (val = 900 ) setlevel("9");
         else setlevel("10");
+        
         seterror(true);
         setpkrerror(false);
       } else if (currency == "PKR" && e.target.value < "30000") {
@@ -58,51 +66,64 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
-    try{
+    if(!formula){
+      try{
 
-      if (currency == "PKR" && investment >= 3000 || currency == "USD" && investment >= 100) {
-        const data = {
-            email,
-            name,
-            lastname,
-            address,
-            phone,
-            cnic,
-            investment,
-            currency,
-            level,
-          };
-          axios.post("/api/post/join", data).then((res) => {
-            if (res.data.success == true) {
-              toast.success(
-                "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
-                {
+        if (currency == "USD" && investment >= 100) {
+          const data = {
+              email,
+              name,
+              lastname,
+              address,
+              phone,
+              cnic,
+              investment,
+              currency,
+              level,
+            };
+            axios.post("/api/post/join", data).then((res) => {
+              if (res.data.success == true) {
+                toast.success(
+                  "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
+                  {
+                    position: "top-right",
+                    autoClose: 30000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  }
+                );
+                router.push("/");
+              } else {
+                toast.error(res.data.error, {
                   position: "top-right",
-                  autoClose: 30000,
+                  autoClose: 2000,
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
                   draggable: true,
                   progress: undefined,
                   theme: "light",
-                }
-              );
-              router.push("/");
-            } else {
-              toast.error(res.data.error, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            }
-          });
-    } else {
-      toast.error("Minimum $100 dollars plan", {
+                });
+              }
+            });
+      } else {
+        toast.error("Minimum $100 dollars plan", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }catch(e){
+      toast.info("Server down ", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -113,17 +134,22 @@ const PlanForm = () => {
         theme: "light",
       });
     }
-  }catch(e){
-    toast.info("Server down ", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    }
+  else{
+    toast.
+    info(
+      "Amount should be divisible by 0",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
   }
   };
   
@@ -237,6 +263,7 @@ const PlanForm = () => {
                     >
                       <option value={"USD"}>USD</option>
                     </select>
+                  
                     <input
                       type="number"
                       value={investment}

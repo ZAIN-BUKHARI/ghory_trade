@@ -46,6 +46,7 @@ async function getUser()
     let res = await axios.get(`/api/get/localstorage?token=${token}`,)
     if(res.data.success==true)
     {
+      setperDayProfit(res.data.orders[0].perDayProfit)
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
       setbalance(parseFloat(res.data.orders[0].balance)) 
@@ -323,6 +324,7 @@ function fetchDailyWork()
     const [balance,setbalance]=useState(0)
     const [subscription,setsubscription]=useState("no")
     const [workStatus,setworkStatus]=useState("no")
+    const [perDayProfit,setperDayProfit]=useState(0)
     
 
     //Login confirmation
@@ -356,7 +358,7 @@ function fetchDailyWork()
   return(
   
 <>
-<ThemeContext.Provider value={{allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

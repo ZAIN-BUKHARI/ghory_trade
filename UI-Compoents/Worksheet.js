@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { ThemeContext } from '../Context/ThemeContext'
 const Worksheet = () => {
     //use Context 
-    const {balance,router,token,subscription,workStatus,fetchDailyWork,dailyWork,workUploadedDate}=useContext(ThemeContext)
+    const {perDayProfit,balance,router,token,subscription,workStatus,fetchDailyWork,dailyWork,workUploadedDate}=useContext(ThemeContext)
     
     const startWork = () =>{
         router.push('/dailywork')
@@ -68,7 +68,7 @@ const Worksheet = () => {
                              {workStatus=="yes" &&  <FcOk/> }
                             </p>
                         </td>
-                        <td> <strong> $0.67 </strong></td>
+                        <td> <strong> ${perDayProfit} </strong></td>
                        {workStatus=="no" && <td> <p onClick={startWork} className="Done">Start</p> </td>}
                     </tr>
                      
