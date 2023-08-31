@@ -2,8 +2,9 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Video from '../../../models/Video'
 
 const handler= async (req, res)=> {
-    if(req.method=='DELETE'){
-        await Video.deleteOne()
+    if(req.method=='GET'){
+        const {del} = req.query
+        await Video.deleteOne(del)
         res.status(200).send({success:true})
     }
 }

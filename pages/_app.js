@@ -48,23 +48,20 @@ async function getUser()
     {
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
-      setbalance(parseFloat(res.data.orders[0].balance))
+      setbalance(parseFloat(res.data.orders[0].balance)) 
       setsubscription(res.data.orders[0].subscription) 
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setLoader(false)
       if(res.data.orders[0].admin=='yes')
-      {
         setAdmin(true)
-      }else{
+      else
         setAdmin(false)
-      }
     }
-      
-    }
-  }catch(e){
-    setLoader(false)
   }
+}catch(e){
+    setLoader(false)
+}
   
 }
   //Admin Get functions
@@ -259,6 +256,26 @@ function currencyConverter() {
     });
 }
 
+function fetchDailyWork()
+{
+  try{
+  axios.get('/api/get/links').then(res=>{
+
+      if(res.status==200 && res.data.links.length!=0)
+      {
+      setallLinks(res.data.links)
+      setdailyWork(res.data.links[0].links)
+      setworkUploadedDate(res.data.links[0].date)
+    }
+  })
+}catch(e)
+{
+  setallLinks([])
+  setdailyWork([])
+  setworkUploadedDate([])
+}
+}
+
 // const schedulingTime = '*/1 * * * *'
 
   useEffect(() => {
@@ -330,6 +347,7 @@ function currencyConverter() {
     const [planssearchresults,setplanssearchresults]=useState([])
     const [allrequests,setallrequests]=useState([])
     const [searchrequestresults,setsearchrequestresults]=useState([])
+    const [allLinks,setallLinks]=useState([])
 
     
     //youtube variables
@@ -337,6 +355,8 @@ function currencyConverter() {
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
     const [duration,setduration]=useState(300000) 
     const [videoLinks,setvideoLinks]=useState("") 
+    const [dailyWork,setdailyWork]=useState([]) 
+    const [workUploadedDate,setworkUploadedDate]=useState('') 
 
     //mobile responsiveness
     const[mobile,setmobile]=useState()
@@ -347,7 +367,7 @@ function currencyConverter() {
   return(
   
 <>
-<ThemeContext.Provider value={{rate,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{allLinks,workUploadedDate,dailyWork,fetchDailyWork,rate,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

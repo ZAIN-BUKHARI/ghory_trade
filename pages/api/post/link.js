@@ -3,7 +3,7 @@ import Video from '../../../models/Video'
 import User from '../../../models/User'
 
 const handler= async (req, res)=> {
-    if(req.method=='GET'){
+    if(req.method=='POST'){
         const today = new Date();
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1; // Months start at 0!
@@ -13,40 +13,40 @@ const handler= async (req, res)=> {
         if (mm < 10) mm = '0' + mm;
         const formattedToday = dd + '/' + mm + '/' + yyyy;
         const links={
-            link1:'XCu7DsunC9',
-            // link2:req.body.videoLinks[1].id.videoId,
-            // link3:req.body.videoLinks[2].id.videoId,
-            // link4:req.body.videoLinks[3].id.videoId,
-            // link5:req.body.videoLinks[4].id.videoId,
-            // link6:req.body.videoLinks[5].id.videoId,
-            // link7:req.body.videoLinks[6].id.videoId,
-            // link8:req.body.videoLinks[7].id.videoId,
-            // link9:req.body.videoLinks[8].id.videoId,
-            // link10:req.body.videoLinks[9].id.videoId,
+            link1:req.body.link1,
+            link2:req.body.link2,
+            link3:req.body.link3,
+            link4:req.body.link4,
+            link5:req.body.link5,
+            link6:req.body.link6,
+            link7:req.body.link7,
+            link8:req.body.link8,
+            link9:req.body.link9,
+            link10:req.body.link10,
             
-        }
-        
+        }    
        try{ 
-        let user = await User.updateMany({},{todaywork:"no"})
-        if(user){
             let p = new Video({
                 links:links,
-                date:formattedToday
+                date:formattedToday.toString()
                 
             })
             await p.save()
-            res.status(200).json({ success:true })
-        }else{
-            res.status(500).json({ success:false })
-        }
+            let user = await User.updateMany({},{todaywork:"no"})
+            if(user){
+                res.status(200).json({ success:true })
+            }
+            else{
+            res.status(200).json({ success:false })
+            }
        }
        catch(error){
-        res.status(500).json({ error:error })
+        res.status(200).json({ error:'server error catch ' })
        }
 }
 else{
 
-    res.status(400).json({ error : 'this method is not defined' })
+    res.status(200).json({ error : 'this method is not defined' })
 }
   }
   

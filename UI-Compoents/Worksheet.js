@@ -7,16 +7,12 @@ import { ThemeContext } from '../Context/ThemeContext'
 import axios from 'axios';
 const Worksheet = () => {
     //use Context 
-    const {balance,router,token,subscription,workStatus}=useContext(ThemeContext)
-    const [dailywork,setdailywork]=useState('')
+    const {balance,router,token,subscription,workStatus,fetchDailyWork,dailyWork,workUploadedDate}=useContext(ThemeContext)
+    
     const startWork = () =>{
         router.push('/dailywork')
     }
-    async function getWorkdoc()
-    {
-        let response = await axios.get('/api/get/links')
-        setdailywork(response.data.links[0])
-    }
+   
     useEffect(()=>{
         if(!token && subscription=="no")
         {
@@ -32,10 +28,11 @@ const Worksheet = () => {
             theme: "light",
           });
         }
-        getWorkdoc()
+        fetchDailyWork()
       },[])
   return (
     <>
+
     <div className='Worksheet-body'>
     <main className="table">
     <section className="table__header">
@@ -55,11 +52,16 @@ const Worksheet = () => {
                         <th className='work-start'> Start</th>
                     </tr>
                 </thead>
-                <tbody>
+                {dailyWork.length==0 && (
+                    <h1>Todays work is not uploaded yet</h1>
+                )}
+                {dailyWork!=0 && (
+
+                    <tbody>
                     <tr>
                         <td> 1 </td>
                         <td> Zain </td>
-                        <td> {dailywork.createdAt}</td>
+                        <td> {workUploadedDate}</td>
                         <td> 11:49pm </td>
                         <td>
                             <p className=" WorkSheet-Icon-Alert ">
@@ -72,7 +74,10 @@ const Worksheet = () => {
                     </tr>
                      
                 </tbody>
+            )}
+
             </table>
+            
         </section>
         </main>
         </div>

@@ -5,6 +5,12 @@
       box-sizing: border-box;
       font-family: 'Poppins',sans-serif;
     } */
+
+    /* //refferal modal css */
+    .refferal-modal-invite{
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+
+    }
     .planform-converter-div{
       max-width: 300px;
       width: 300px;

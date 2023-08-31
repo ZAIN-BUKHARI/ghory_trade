@@ -1,11 +1,11 @@
 import User from '../../../models/User'
 import ConnectMongoDB from '../../../middleware/mongoose'
-import { Loader } from 'react-feather';
 var CryptoJS = require("crypto-js");
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {firstname,lastname,email,_id}=req.body
+        console.log(_id)
         let Leader = await User.findOne({_id:_id})
       try{
         if(Leader.invite==""){

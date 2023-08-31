@@ -23,10 +23,15 @@ const invite = () => {
   const router=useRouter()
   const {_id}=router.query
 
+  const hideModla = () =>{
+    router.push('/')
+  }
  
   const signup =async (e) =>{
     e.preventDefault()
-        // if(email.length>=5 && firstname.length>=2 && lastname.length>=2 && password.length>=3 ){
+    if(email.includes('@')){
+        if(password==cpassword){
+            if(firstname.length>0 && lastname.length>0){
         const data = {email,password,firstname,lastname,_id} 
             axios.post('/api/post/referralsignup',data).then(res=>{
                 if(res.data==true){
@@ -55,57 +60,141 @@ const invite = () => {
                         });
                 }
             })
-        // }
-//         else{
-//             toast.error('Try again  ', {
-//                 position: "top-right",
-//                     autoClose: 2000,
-//                     hideProgressBar: false,
-//                     closeOnClick: true,
-//                     pauseOnHover: true,
-//                     draggable: true,
-//                     progress: undefined,
-//                     theme: "light",
-//                 });
-//   }
+        }
+        else{
+            toast.error('Please fill remaining data', {
+                position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+        }  
+
+        }
+
+        else{
+            toast.error('Password and Confirm Password should be same ', {
+                position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+        }   
+
+
+    }
+    else{
+        toast.error('inccorect email address ', {
+            position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+    }
+
+      
         
 }
-  return (
+return (
     <>
-    <div className='authform'>
-    <div className="form-auth form-auth-height" id='form-remove'>
-    
-    <p className="message">Signup now and get full access to our app. </p>
-    <div className="flex">
-        <label>
-            <input  required="" value={firstname} onChange={(e)=>{setfirstname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
-            <span className='authform-span'>Firstname</span>
-        </label>
-
-        <label>
-            <input required="" value={lastname} onChange={(e)=>{setlastname(e.target.value)}} placeholder="" type="text" className="input authform-input"/>
-            <span className='authform-span'>Lastname</span>
-        </label>
-    </div>  
-            
-    <label>
-        <input required=""  value={email} onChange={(e)=>{setemail(e.target.value)}}placeholder="" type="email" className="input authform-input"/>
-        <span className='authform-span'>Email</span>
-    </label> 
-        
-    <label>
-        <input required="" placeholder="" type="password" value={password} onChange={(e)=>{setpassword(e.target.value)}} className="input authform-input"/>
-        <span className='authform-span'>Password</span>
-    </label> <label>
-        <input required="" placeholder="" value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}}  type="password" className="input authform-input"/>
-        <span className='authform-span'>Confirm password</span>
-    </label>
-    {!ActiveLoginModal &&  <button onClick={signup} className="submit">Signup</button>}
-   
-</div>
-</div>
+      <div className="PlanForm-Head-modal-auth refferal-modal-invite">
+        <div className="Invest-Container-authform" id="zain">
+          <div className="title  authform-cancel-modal-button">
+            {" "}
+            Sign up 
+            <h1 onClick={hideModla}>X</h1>
+          </div>
+          <div className="content">
+            <form action="#">
+              <div className="user-details-auth">
+                
+                  
+                    <div className="input-box-auth">
+                      <span className="details auth-authform-fields">
+                        First Name
+                      </span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setfirstname(e.target.value);
+                        }}
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details ">Last Name</span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setlastname(e.target.value);
+                        }}
+                        placeholder="Enter your lastname"
+                        required
+                      />
+                    </div>
+                  
+                
+                <div className="input-box-auth">
+                  <span className="details">Email</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="input-box-auth">
+                  <span className="details">Password</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                  <div className="input-box-auth">
+                    <span className="details">Confirm password</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {
+                        setcpassword(e.target.value);
+                      }}
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+              </div>
+              
+            </form>
+            {/* <div className="button " onClick={signup}>
+                <input className='currency-btn-input' type="button" value="Singup"   />
+              </div> */}
+              <div className="button-auth">
+                
+                  <input type="button" value="Signup" onClick={signup} />
+              </div>
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export default invite

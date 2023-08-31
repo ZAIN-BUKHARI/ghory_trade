@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import FeatherIcon from "feather-icons-react";
 import Image from "next/image";
-import userimg from "../../../assets/images/users/user2.jpg";
+// import userimg from "../../../assets/images/users/user2.jpg";
 import {ThemeContext} from '../../../Context/ThemeContext'
 import { useRouter } from 'next/router'
 import {
@@ -37,7 +37,7 @@ const ProfileDD = () => {
         color="inherit"
         aria-controls="profile-menu"
         aria-haspopup="true"
-        onClick={handleClick4}
+        // onClick={handleClick4}
       >
         <Box display="flex" alignItems="center">
           {/* <img

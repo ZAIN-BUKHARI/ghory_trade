@@ -4,6 +4,9 @@ const VideoSchema = new Schema({
     links:{
         type:Object,
     },
+    date:{
+        type:String,
+    },
     
     
 

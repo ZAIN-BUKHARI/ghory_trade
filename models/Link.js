@@ -1,9 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 const LinkSchema = new Schema({
-    links:{
-        type:Object,
-    },
+    links:[Object],
     date:{
         type:String,
     },
