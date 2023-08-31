@@ -1,10 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { FcHighPriority } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { useContext,useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { ThemeContext } from '../Context/ThemeContext'
-import axios from 'axios';
 const Worksheet = () => {
     //use Context 
     const {balance,router,token,subscription,workStatus,fetchDailyWork,dailyWork,workUploadedDate}=useContext(ThemeContext)
@@ -14,6 +13,7 @@ const Worksheet = () => {
     }
    
     useEffect(()=>{
+        fetchDailyWork()
         if(!token && subscription=="no")
         {
           router.push('/')
@@ -28,7 +28,6 @@ const Worksheet = () => {
             theme: "light",
           });
         }
-        fetchDailyWork()
       },[])
   return (
     <>
@@ -52,10 +51,10 @@ const Worksheet = () => {
                         <th className='work-start'> Start</th>
                     </tr>
                 </thead>
-                {dailyWork.length==0 && (
+                {!dailyWork && (
                     <h1>Todays work is not uploaded yet</h1>
                 )}
-                {dailyWork!=0 && (
+                 {dailyWork!=0 && (
 
                     <tbody>
                     <tr>
@@ -74,7 +73,7 @@ const Worksheet = () => {
                     </tr>
                      
                 </tbody>
-            )}
+            )} 
 
             </table>
             

@@ -248,14 +248,6 @@ function resolutionChecker(){
       }
 }
 
-function currencyConverter() {
-  fetch(`https://v6.exchangerate-api.com/v6/b71ba5a6f69833fe3ac900ec/latest/USD`)
-    .then((res) => res.json())
-    .then((data) => {
-        setrate(data.conversion_rates.PKR);
-    });
-}
-
 function fetchDailyWork()
 {
   try{
@@ -302,7 +294,6 @@ function fetchDailyWork()
       settoken(true)
     }
     getUser()
-    currencyConverter()
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
     })
@@ -361,13 +352,11 @@ function fetchDailyWork()
     //mobile responsiveness
     const[mobile,setmobile]=useState()
 
-    //current currency rate USD TO PKR
-    const [rate,setrate]=useState(0)
     
   return(
   
 <>
-<ThemeContext.Provider value={{allLinks,workUploadedDate,dailyWork,fetchDailyWork,rate,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

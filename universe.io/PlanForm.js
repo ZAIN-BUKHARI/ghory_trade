@@ -27,19 +27,6 @@ const PlanForm = () => {
   const [level, setlevel] = useState("");
 
   useEffect(() => {
-    if (!token && subscription == "no") {
-      router.push("/");
-      toast.success("Not allowed here", {
-        position: "top-right",
-        autoClose: 30000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
   }, []);
   const ChangeEvent = (e) => {
     if (e.target.name == "select") {
@@ -142,6 +129,7 @@ const PlanForm = () => {
   
   return (
     <>
+    {token  && (
       <div className="PlanForm-Head">
         <div className="Invest-Container">
           <div className="title  space">
@@ -326,7 +314,7 @@ const PlanForm = () => {
           </div>
         </div>
         
-      </div>
+      </div>)}
     </>
   );
 };

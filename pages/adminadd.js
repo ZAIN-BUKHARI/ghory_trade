@@ -33,6 +33,7 @@ const addProducts = () => {
   const [link8,setlink8]=useState('')
   const [link9,setlink9]=useState('')
   const [link10,setlink10]=useState('')
+  const [Rate,setRate]=useState(0)
  
   const submitLinks = () =>{
     try{
@@ -55,6 +56,24 @@ const addProducts = () => {
   }
   }
   
+  const currencyRate = () =>{
+    const data = {Rate}
+    try{
+
+      axios.post('/api/rate/update',data).then(res=>{
+        if(res.data.success==true)
+      {
+        alert('Rate set successfully')
+      }
+      else{
+        alert('Server error try again ')
+      }
+    })
+  }catch(e)
+  {
+    alert('Server error caught successfully try again')
+  }
+  }
   if(Admin){
     return (
       
@@ -98,8 +117,50 @@ const addProducts = () => {
 
      
     </Grid>
-<h1 className='text-3xl text-blue-500 my-5 text-center'>DELETE OLD LINKS</h1>
+
+    {/* currency daily Rate  */}
+    <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-pink-500 text-center' >DAILY USD TO PKR Rate</h1>
+      <Grid item xs={12} lg={12}>
+        <BaseCard >
+          <Stack spacing={3}>
+       
+            <TextField value={Rate} onChange={(e)=>{setRate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
+          </Stack>
+          <br />
+          <Button onClick={currencyRate} variant="outlined" mt={2}>
+            Submit
+          </Button>
+          
+        </BaseCard>
+      </Grid>
+    </Grid>
+
+
+{/* DELETE OLD LINKS  */}
+<h1 className='text-3xl font-bold text-pink-500 text-center' >DELETE OLD LINKS</h1>
+
       <AdminAllLinks/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </FullLayout>
         </ThemeProvider>
       );

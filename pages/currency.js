@@ -1,14 +1,19 @@
-import React,{useContext, useState} from 'react'
-import { ThemeContext } from '../Context/ThemeContext'
+import axios from 'axios'
+import React,{ useState} from 'react'
+import { useEffect } from 'react'
 
 const converter = () => {
-  const {rate} = useContext(ThemeContext)
   const [USD,setUSD]=useState(0)
   const [PKR,setPKR]=useState(0)
-
+  const [rate,seterate]=useState(0)
+  useEffect(()=>{
+    axios.get('/api/rate/get').then(res=>{
+      seterate(res.data.rate.Rate)
+    })
+  },[])
   const changeAmountRate = () =>
   {
-      setPKR(Math.floor(rate*USD))
+      setPKR(USD*rate)
   }
  
   return (
