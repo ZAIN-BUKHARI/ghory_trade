@@ -21,8 +21,8 @@ const NewContact = () => {
           <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
           <div className="contact-info">
             <h1>Email</h1>
-            <h2>info@gmail.com</h2>
-            <h2>ghoryg7@gmail.com.com</h2>
+            <h2>usman@ghory.trade</h2>
+            <h2>ghoryg7@gmail.com</h2>
           </div>
         </div>
         <div className="contact-item">

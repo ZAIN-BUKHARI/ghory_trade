@@ -84,7 +84,7 @@ const Section = () => {
         <video
           className="VIDEO   "
           id="video"
-          src="ghory-intro-sound.mp4"
+          src="ghory-intro.mp4"
           autoPlay
           muted={true}
           loop

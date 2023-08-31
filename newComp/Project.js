@@ -15,7 +15,7 @@ const Project = () => {
               ProjectsData.map((item) => (
                 <div key={item.id} className="project-item">
                   <div className="project-info">
-                    <h1>Project 1</h1>
+                    <h1>Project {item.id}</h1>
                     <h2>{item.title}</h2>
                     <p>{item.desc}</p>
                   </div>
