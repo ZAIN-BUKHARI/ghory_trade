@@ -9,7 +9,7 @@ import axios from 'axios';
 const VideoPlayer = () => {
 
 
- const {router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,email,balance,workStatus}=useContext(ThemeContext)
+ const {level,router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,email,balance,workStatus}=useContext(ThemeContext)
 
 
   // STATE VARIABLES
@@ -113,25 +113,25 @@ const VideoPlayer = () => {
       theme: "light",
     });
   }
-  const Complete=async()=>{
-    const data = {email}
-    await axios.post('/api/post/balanceincrement',data)
-      toast.info('Congrats for completing tasks :) ', {
-        position: "top-center",
-        autoClose: 50000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-        router.push('/')
-      setTimeout(() => {
-        window.location.reload()
-      }, 1000);
+  // const Complete=async()=>{
+  //   const data = {email}
+  //   await axios.post('/api/post/balanceincrement',data)
+  //     toast.info('Congrats for completing tasks :) ', {
+  //       position: "top-center",
+  //       autoClose: 50000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
+  //       router.push('/')
+  //     setTimeout(() => {
+  //       window.location.reload()
+  //     }, 1000);
 
-  }
+  // }
  
   useEffect(()=>{
     if(workStatus=='yes'){
@@ -167,34 +167,26 @@ const VideoPlayer = () => {
   },[])
 
   
+  const Viewincrement=async()=>{
+    const data = {email}
+    await axios.post('/api/post/videoswatch',data)
+      toast.info(`task complete`, {
+        position: "top-center",
+        autoClose: 50000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+        router.push('/')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
 
+  }
   
-//   return (
-//     <>
-//     <div className='flex'>
-
-//     <div className='Player-Main Player-Color'> 
-//     <iframe width="1000" height="600" id='zain' src="https://www.youtube.com/embed/OuaFVfN6eeQ?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-//     <div>
-//       <div className='Player-next '>
-//       {/* <label for="story" className='dailywork-label'>Tell us your story:</label> */}
-// <div>
-// <textarea onChange={(e)=>{settextarea(e.target.value)}} value={textarea} className='dailywork-textarea'  rows="5" cols="33"/>
-//     {/* <button>df</button> */}
-//     <LightButtonPlayer func={postComment}  title={"Submit"}   DisableButton={false}/>
-// </div>
-
-//     {/* {!comment && !DisableButton && <LightButtonPlayer func={next} title={buttonText}   DisableButton={DisableButton}/>} */}
-//      <Btn func={next} title={buttonText}   DisableButton={DisableButton}/>
-//       </div>
-//     </div>
-//     </div>
-   
-//     </div>
-
-//     </>
-//   ) 
-  // old video player 
   return (
     <>
    
@@ -219,7 +211,7 @@ const VideoPlayer = () => {
            <div>
            <button className='test-btn-css' onClick={subscribe} >Subscribe</button>
 
-           <button className='done-btn-videoplayer' onClick={Complete} >Submit</button>
+           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>
            </div>
 
             </div>}

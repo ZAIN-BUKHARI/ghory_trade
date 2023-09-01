@@ -42,17 +42,17 @@ const PlanForm = () => {
       }
       if (currency == "USD" && e.target.value >= 100) {
         var val = e.target.value;
-        if (val = 100 ) setlevel("1");
-        else if (val = 200) setlevel("2");
-        else if (val = 300 ) setlevel("3");
-        else if (val = 400 ) setlevel("4");
-        else if (val = 500 ) setlevel("5");
-        else if (val = 600 ) setlevel("6");
-        else if (val = 700 ) setlevel("7");
-        else if (val = 800 ) setlevel("8");
-        else if (val = 900 ) setlevel("9");
-        else setlevel("10");
-        
+        if (val >=100 && val<200 ){setlevel("1");}
+        else if (val >= 200 && val<300){setlevel("2");}
+        else if (val >= 300 && val<400){setlevel("3");}
+        else if (val >= 400 && val<500) {setlevel("4");}
+        else if (val >= 500 && val<600) {setlevel("5");}
+        else if (val >= 600 && val<700) {setlevel("6");}
+        else if (val >= 700 && val<800) {setlevel("7");}
+        else if (val >= 800 && val<900) {setlevel("8");}
+        else if (val >= 900 && val<1000) {setlevel("9");}
+        else if (val>=1000)   {setlevel("10");}
+        console.log(level)
         seterror(true);
         setpkrerror(false);
       } else if (currency == "PKR" && e.target.value < "30000") {

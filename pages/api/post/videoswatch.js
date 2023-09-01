@@ -5,12 +5,8 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {email} = req.body
         let user = await User.findOne({email})
-        const balance=user.balance+user.perDayProfit;
-        await User.updateOne({email:email},{
-        balance:balance,
-        todaywork:'yes',
-        views:0
-    })
+        const views=user.views+1;
+        await User.updateOne({email:email},{views:views})
         res.status(200).send(true)   
     }
 }

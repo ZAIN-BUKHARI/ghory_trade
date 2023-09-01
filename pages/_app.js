@@ -46,6 +46,10 @@ async function getUser()
     let res = await axios.get(`/api/get/localstorage?token=${token}`,)
     if(res.data.success==true)
     {
+      
+      setviews(res.data.orders[0].views)
+      setlevel(res.data.orders[0].level)
+      setUname(res.data.orders[0].firstname)
       setperDayProfit(res.data.orders[0].perDayProfit)
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
@@ -58,6 +62,7 @@ async function getUser()
         setAdmin(true)
       else
         setAdmin(false)
+      
     }
   }
 }catch(e){
@@ -256,6 +261,12 @@ function fetchDailyWork()
 
       if(res.status==200 && res.data.links.length!=0)
       {
+        let arr=[]
+      for(let i=0;i<level;i++)
+      {
+        arr.push(res.data.links[0].links[i])
+      }
+      setlinktoLevel(arr)
       setallLinks(res.data.links)
       setdailyWork(res.data.links[0].links)
       setworkUploadedDate(res.data.links[0].date)
@@ -321,10 +332,13 @@ function fetchDailyWork()
     //Login USER Details
     const [user,setuser]=useState({})
     const [email,setemail]=useState("")
+    const [Uname,setUname]=useState("")
     const [balance,setbalance]=useState(0)
     const [subscription,setsubscription]=useState("no")
     const [workStatus,setworkStatus]=useState("no")
     const [perDayProfit,setperDayProfit]=useState(0)
+    const [level,setlevel]=useState("0")
+    const [views,setviews]=useState(0)
     
 
     //Login confirmation
@@ -350,15 +364,17 @@ function fetchDailyWork()
     const [videoLinks,setvideoLinks]=useState("") 
     const [dailyWork,setdailyWork]=useState([]) 
     const [workUploadedDate,setworkUploadedDate]=useState('') 
-
+    const [linktoLevel,setlinktoLevel]=useState([]) 
+    
     //mobile responsiveness
     const[mobile,setmobile]=useState()
 
     
+
   return(
   
 <>
-<ThemeContext.Provider value={{perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

@@ -12,27 +12,25 @@ const handler= async (req, res)=> {
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;
         const formattedToday = dd + '/' + mm + '/' + yyyy;
-        const links={
-            link1:req.body.link1,
-            link2:req.body.link2,
-            link3:req.body.link3,
-            link4:req.body.link4,
-            link5:req.body.link5,
-            link6:req.body.link6,
-            link7:req.body.link7,
-            link8:req.body.link8,
-            link9:req.body.link9,
-            link10:req.body.link10,
-            
-        }    
+        const links1={link:req.body.link1,}   
+        const links2={link:req.body.link2,}   
+        const links3={link:req.body.link3,}   
+        const links4={link:req.body.link4,}   
+        const links5={link:req.body.link5,}   
+        const links6={link:req.body.link6,}   
+        const links7={link:req.body.link7,}   
+        const links8={link:req.body.link8,}   
+        const links9={link:req.body.link9,}   
+        const links10={link:req.body.link10,}   
+         
        try{ 
             let p = new Video({
-                links:links,
+                links:[links1,links2,links3,links4,links5,links6,links7,links8,links9,links10],
                 date:formattedToday.toString()
                 
             })
             await p.save()
-            let user = await User.updateMany({},{todaywork:"no"})
+            let user = await User.updateMany({},{todaywork:"no",views:0})
             if(user){
                 res.status(200).json({ success:true })
             }

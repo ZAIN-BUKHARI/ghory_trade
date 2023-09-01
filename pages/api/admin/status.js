@@ -10,7 +10,7 @@ const handler= async (req, res)=> {
         if(result && req.query.status=='verified'){
                 const percentage = (result.investment*20)/100
                 const perDayBalance = percentage/30;
-                await User.updateOne({email:result.email},{subscription:'yes',perDayProfit:perDayBalance})
+                await User.updateOne({email:result.email},{subscription:'yes',perDayProfit:perDayBalance,level:result.level})
                try{
                         
                        mail('1','2','3','4','5','6');

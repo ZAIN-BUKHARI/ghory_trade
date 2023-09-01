@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer');
 
 export default async function mail(date,amount,id,address,method,name){
-  const FROM = 'usman@ghory.trade'
+  const FROM = 'usmanghory726@gmail.com'
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
   auth: {
-      user: 'zainnnnnnnnnnnnnnnnnnnn@gmail.com', 
+      user: 'usman@ghory.trade', 
       pass: 'rcagtodrccdnxsay' 
   }
   });
