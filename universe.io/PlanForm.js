@@ -3,9 +3,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { ThemeContext } from "../Context/ThemeContext";
+import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {  token, subscription ,email} = useContext(ThemeContext);
+  const {setLoader, token, subscription ,email} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -19,7 +20,8 @@ const PlanForm = () => {
   const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
-  const [img, setimg] = useState("path");
+  const [img1, setimg1] = useState("");
+  const [img2, setimg2] = useState("");
   // ERROR STATE
   const [usderror, seterror] = useState(false);
   const [pkrerror, setpkrerror] = useState(false);
@@ -80,6 +82,8 @@ const PlanForm = () => {
               investment,
               currency,
               level,
+              img1,
+              img2,
             };
             axios.post("/api/post/join", data).then((res) => {
               if (res.data.success == true) {
@@ -153,12 +157,40 @@ const PlanForm = () => {
   }
   };
   
+  const cloudinaryonChange=(e)=>{
+    if(e.target.name=='cloud1'){
+      setLoader(true)
+      const data= new FormData()
+    data.append('file',e.target.files[0])
+    data.append('upload_preset','vru3vgic')
+    data.append('cloud_name','dklqbx5k0')
+    const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'
+    axios.post(url,data).then(res=>{
+      setimg1(res.data.secure_url)
+      setLoader(false)
+    })
+    }else{
+      setLoader(true)
+      const data= new FormData()
+    data.append('file',e.target.files[0])
+    data.append('upload_preset','vru3vgic')
+    data.append('cloud_name','dklqbx5k0')
+    const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'
+    axios.post(url,data).then(res=>{
+      setimg2(res.data.secure_url)
+      setLoader(false)
+    })
+    }
+  }
+
+ 
   return (
     <>
     {token  && (
       <div className="PlanForm-Head">
         <div className="Invest-Container">
-          <div className="title  space">
+          <div className=" title ">
+            <img src='remove_bg.png'  className="img-planfirm-upload-top" />
             {" "}
             Yearly Plan
             <span className="Address">
@@ -175,15 +207,17 @@ const PlanForm = () => {
                   <option value={"JAZZCASH"}>JAZZCASH</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"RASS"}>RASS</option>
-                </select>{" "}
-                :{" "}
+                </select>
+                {/* {" "} */}
+                {/* :{" "} */}
+
               </span>
               {wallet == "TRC20" && (
-                <span>TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
-              )}{" "}
-              {wallet == "JAZZCASH" && <span>03364569511</span>}{" "}
-              {wallet == "EASYPAISA" && <span>03364569822</span>}{" "}
-              {wallet == "RASS" && <span>03364569533</span>}
+                <span className="planfirm-space-span-address">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
+                )}{" "}
+              {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "}
+              {wallet == "EASYPAISA" && <span  className="planfirm-space-span">03364569822</span>}{" "}
+              {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>}
             </span>
           </div>
           <div className="content">
@@ -259,7 +293,7 @@ const PlanForm = () => {
                     <select
                       value={currency}
                       name="select"
-                      className="PlanForm-select"
+                      className="PlanForm-select-usd"
                     >
                       <option value={"USD"}>USD</option>
                     </select>
@@ -291,20 +325,8 @@ const PlanForm = () => {
                   
                 </div>
 
-                {/* //file  */}
-                {/* <div className="input-box">
-                  <input
-                    type="file"
-                    id="real-file"
-                    hidden
-                    className="PlanForm-ScreenShot"
-                  />
-                  <button type="button" id="custom-button">
-                    Payment Screenshot
-                  </button>
-                  <span id="custom-text">No file chosen, yet.</span>
-                </div> */}
-                <label className="custum-file-upload" for="file">
+               {img1!=""  && <img src={img1} className="img-planfirm-upload" />}
+                {img1=="" && <label className="custum-file-upload" for="file">
                   <div className="icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -328,20 +350,84 @@ const PlanForm = () => {
                       </g>
                     </svg>
                   </div>
-                  <div className="text">
-                    <span>Click to upload image</span>
+                  {/* <div className=" flexing-span-plan-form"> */}
+                    <div>Click to upload payment screenshot</div>
+                  {/* </div> */}
+                  <input onChange={cloudinaryonChange} name="cloud1" type="file" id="file" />
+                </label>}
+
+               {img2!=""  && <img src={img2} className="img-planfirm-upload" />}
+                {img2=="" && <label className="custum-file-upload" for="file">
+                  <div className="icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill=""
+                      viewBox="0 0 24 24"
+                    >
+                      <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                      <g
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        id="SVGRepo_tracerCarrier"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          fill=""
+                          d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                          clip-rule="evenodd"
+                          fill-rule="evenodd"
+                        ></path>{" "}
+                      </g>
+                    </svg>
                   </div>
-                  <input type="file" id="file" />
-                </label>
+                  {/* <div className=" flexing-span-plan-form"> */}
+                    <div>Click to upload youtube  screenshot </div>
+                  {/* </div> */}
+                  <input onChange={cloudinaryonChange} name="cloud2" type="file" id="file" />
+                </label>}
               </div>
               <div className="button">
+                <div className='space'>
+<div class="g-ytsubscribe space" data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
+
+    </div>
                 <input type="submit" value="Subscribe" />
               </div>
+              <script>
+    <Script src="https://apis.google.com/js/platform.js"></Script>
+    </script>
+   
+
+    <style></style>
             </form>
           </div>
         </div>
         
       </div>)}
+      <style>{`
+      .flexing-span-plan-form{
+        display:flex !important;
+        
+      }
+      .img-planfirm-upload-top{
+        // margin-top:10px;
+        // margin:auto;
+        width:70px;
+        height:70px;
+        // margin-right:20px;
+      }
+      .img-planfirm-upload{
+        margin-top:10px;
+        margin:auto;
+        width:50px;
+        height:50px;
+      }
+      .space{
+        // margin-bottom:10px;
+        margin-left:250px;
+      }
+      `}</style>
     </>
   );
 };

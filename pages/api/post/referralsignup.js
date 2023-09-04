@@ -5,30 +5,26 @@ var CryptoJS = require("crypto-js");
 const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {firstname,lastname,email,_id}=req.body
-        console.log(_id)
         let Leader = await User.findOne({_id:_id})
       try{
         if(Leader.invite==""){
           let B = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
-          let teams=[
-            {
-                  Leader:_id,
-                  direct:
-                  {
+          let teams={
+                 direct:{
                     level:1,
-                    id:B._id.toString(),
+                    id:B._id,
                     plan:"no"
                   },
-                  indirect:
-                  {
+                  
+                 indirect:{
                     level:2,
                     id:'no',
                     plan:"no"
                   }
-                },
-              ]
+                
+                }
               const incrementTeamsA=Leader.nofteams+1
-              await User.updateOne({email:Leader.email},{teams:teams,nofteams:incrementTeamsA})
+              await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
               await B.save()
             res.status(200).json(true)
           }
@@ -37,45 +33,28 @@ const handler= async (req, res)=> {
           
           let C = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
               // direct 
-              let directteam=[
-                {
-                  Leader:_id,
-                  direct:
-                  {
-                    level:1,
-                    id:_id.toString(),
-                    plan:"no"
-                  },
-                  indirect:
-                  {
-                    level:2,
-                    id:'no',
-                    plan:"no"
-                  }
-                },
-              ]
-              // 
-            const nofteamsB=Leader.nofteams+1
-            await User.updateOne({email:Leader.email},{teams:directteam,nofteams:nofteamsB})
-            let A = await User.findOne({_id:Leader.invite})
-            // indirect 
-            // console.log(A.teams[0].direct.id)
-            let indirectteam=[
-              {
-                Leader:Leader.invite,
-                direct:
-                {
+              let directteam={
+                direct:{
                   level:1,
-                  id:A.teams[0].direct.id.toString()
-                },
-                indirect:
-                {
+                  id:C._id,
+                  plan:"no"
+                 },
+                 
+                indirect:{
                   level:2,
-                  id:C._id.toString()
-                }
-              },
-            ]
-            await User.findByIdAndUpdate({_id:Leader.invite},{teams:indirectteam})
+                  id:'no',
+                  plan:"no"
+                 }
+               
+               }
+            const nofteamsB=Leader.nofteams+1
+            await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
+            let A = await User.findOne({_id:Leader.invite})
+            
+            await User.findByIdAndUpdate(
+            {_id:Leader.invite},
+            {$set:{[`teams.${A.nofteams-1}.indirect.id`]:C._id}}
+            )
             await C.save()
             res.status(200).json(true)
           

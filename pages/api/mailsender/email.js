@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
 export default async function mail(date,amount,id,address,method,name){
-  const FROM = 'usmanghory726@gmail.com'
+  const FROM = 'usman@ghory.trade'
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
   auth: {

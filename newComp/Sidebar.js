@@ -9,6 +9,7 @@ import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
 import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
+import { FcShare } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
@@ -78,7 +79,7 @@ const Sidebar = () => {
   }
   return (
     <>
-    {router.asPath!='/register' && !router.asPath.includes("admin") && router.asPath!="/dailywork" && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
+    {router.asPath!='/register' && !router.asPath.includes("admin") && !router.asPath.includes('/dailywork?videoID=') && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">
@@ -181,6 +182,12 @@ const Sidebar = () => {
           <FcCurrencyExchange/>
           </span>
           <Link href='/currency'>Currency </Link>
+          </li>
+        <li>
+        <span className="material-symbols-outlined">
+          <FcShare/>
+          </span>
+          <Link href='/qrcode'>Invite </Link>
           </li>
       
         <li className="logout-link">

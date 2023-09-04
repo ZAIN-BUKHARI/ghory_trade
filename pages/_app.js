@@ -182,8 +182,8 @@ async function getVideoInfo(id){
     // let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet&id=${id}`)
   let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${id}`)
   if(result.status==200){
-    var time = result.data.items[0].contentDetails.duration
-    setduration((parseInt(time.split('M')[0].slice(2)))*60000)
+    // var time = result.data.items[0].contentDetails.duration
+    // setduration((parseInt(time.split('M')[0].slice(2)))*60000)
 
     setvideoTitle(result.data.items[0].snippet.localized.title)
     setLoader(false)
@@ -360,7 +360,6 @@ function fetchDailyWork()
     //youtube variables
     const [channel,setchannel]=useState("") 
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
-    const [duration,setduration]=useState(300000) 
     const [videoLinks,setvideoLinks]=useState("") 
     const [dailyWork,setdailyWork]=useState([]) 
     const [workUploadedDate,setworkUploadedDate]=useState('') 
@@ -374,7 +373,7 @@ function fetchDailyWork()
   return(
   
 <>
-<ThemeContext.Provider value={{views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     {!mobile &&<Sidebar/>}

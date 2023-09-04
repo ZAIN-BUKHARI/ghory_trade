@@ -8,11 +8,11 @@ import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = () => {
     //use Context 
-    const {todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,fetchDailyWork,workUploadedDate}=useContext(ThemeContext)
+    const {todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
    
-    const startWork = () =>{
-        router.push('/dailywork')
+    const startWork = (link,length) =>{
+        router.push(`/dailywork?videoID=${link}&Length=${length}`)
     }
     const Complete=async()=>{
       const data = {email}
@@ -43,27 +43,11 @@ const Worksheet = () => {
         }
       })
     }
-    useEffect(()=>{
-        fetchDailyWork()
-        if(!token && subscription=="no")
-        {
-          router.push('/')
-          toast.info("Not allowed here", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      },[])
-     
+    
   return (
     <>
-
+    {token && subscription == 'yes' && (
+    <>
     <div className='Worksheet-body'>
     <main className="table">
     <section className="table__header">
@@ -86,7 +70,7 @@ const Worksheet = () => {
                 {linktoLevel==0 &&  (
                     <h1>Todays work is not uploaded yet</h1>
                 )}
-                 {linktoLevel!=0 && linktoLevel.map((item,index)=>{
+                 {linktoLevel!=0 && linktoLevel.slice(0,parseInt(level)-views).map((item,index)=>{
 
 
                    return  <tbody>
@@ -101,8 +85,8 @@ const Worksheet = () => {
                              {workStatus=="yes" &&  <FcOk/> }
                             </p>
                         </td>
-                        <td> <strong> ${perDayProfit} </strong></td>
-                       {workStatus=="no" && <td> <p onClick={startWork} className="Done">Start</p> </td>}
+                        <td> <strong> ${(perDayProfit/parseInt(level))} </strong></td>
+                       {workStatus=="no" && <td> <p onClick={()=>{startWork(item.link,item.length)}} className="Done">Start</p> </td>}
                     </tr>
                      
                 </tbody>
@@ -132,7 +116,9 @@ const Worksheet = () => {
        }
      
        `}</style>
-    </>
+       </>
+       )}
+       </>
     
   )
 }

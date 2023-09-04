@@ -67,7 +67,7 @@
     padding-left: 30px;
   }
   
-  .title::before,.title::after {
+  /* .title::before,.title::after {
     position: absolute;
     content: "";
     height: 16px;
@@ -75,7 +75,7 @@
     border-radius: 50%;
     left: 0px;
     background-color: royalblue;
-  }
+  } */
   
   .title::before {
     width: 18px;
@@ -83,11 +83,11 @@
     background-color: royalblue;
   }
   
-  .title::after {
+  /* .title::after {
     width: 18px;
     height: 18px;
     animation: pulse 1s linear infinite;
-  }
+  } */
   
   .message, .signin {
     color: rgba(88, 87, 87, 0.822);

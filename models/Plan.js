@@ -35,9 +35,12 @@ const PlanSchema = new Schema({
         type:String,
         default:'pending'
     },
-    img:{
+    img1:{
         type:String,
-        default:'pending',
+        required:true
+    },
+    img2:{
+        type:String,
         required:true
     },
     investment:{

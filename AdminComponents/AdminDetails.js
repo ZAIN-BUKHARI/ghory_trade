@@ -46,7 +46,8 @@ const AdminDetails = () => {
       <AdminTable title={"ADDRESS"} desc={doc.address} />
       <AdminTable title={"BALANCE"} desc={`$${doc.investment}`} />
       <AdminTable title={"LEVEL"} desc={doc.level} />
-      <AdminTable title={"SCREENSHOT"} desc={"ONE.PNG"} />
+      <AdminTable title={"Payment SS"} desc={doc.img1} />
+      <AdminTable title={"Channel SS"} desc={doc.img2} />
       </div>
       <style>{`
   .table-box

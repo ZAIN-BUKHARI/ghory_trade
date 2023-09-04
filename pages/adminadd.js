@@ -33,18 +33,35 @@ const addProducts = () => {
   const [link8,setlink8]=useState('')
   const [link9,setlink9]=useState('')
   const [link10,setlink10]=useState('')
+
+  const [length1,setlength1]=useState('')
+  const [length2,setlength2]=useState('')
+  const [length3,setlength3]=useState('')
+  const [length4,setlength4]=useState('')
+  const [length5,setlength5]=useState('')
+  const [length6,setlength6]=useState('')
+  const [length7,setlength7]=useState('')
+  const [length8,setlength8]=useState('')
+  const [length9,setlength9]=useState('')
+  const [length10,setlength10]=useState('')
   const [Rate,setRate]=useState(0)
  
   const submitLinks = () =>{
     try{
 
-      const data = {link1,link2,link3,link4,link5,link6,link7,link8,link9,link10}
+      const data = {
+        link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,
+        length1,length2,length3,length4,length5,length6,length7,length8,length9,length10
+      }
       axios.post('/api/post/link',data).then(res=>{
       if(res.data.success==true){
         alert('Successfully youtube videos link uploaded')
         setlink1('');setlink2('');setlink3('');setlink4('')
         setlink5('');setlink6('');setlink7('');setlink8('')
         setlink9('');setlink10('')
+        setlength1('');setlength2('');setlength3('');setlength4('')
+        setlength5('');setlength6('');setlength7('');setlength8('')
+        setlength9('');setlength10('')
       }else if(res.data.success==false){
           alert('Error try again')
       }else{
@@ -89,16 +106,37 @@ const addProducts = () => {
          {/* // TOTAL 10x */}
             {/* //5 */}
             <TextField value={link1} onChange={(e)=>{setlink1(e.target.value)}} label="Link 1" variant="outlined"  />
+            <TextField value={length1} onChange={(e)=>{setlength1(e.target.value)}} label="Length 1" variant="outlined"  />
+
             <TextField value={link2} onChange={(e)=>{setlink2(e.target.value)}} label="Link 2" variant="outlined" />
+            <TextField value={length2} onChange={(e)=>{setlength2(e.target.value)}} label="Length 2" variant="outlined" />
+
             <TextField value={link3} onChange={(e)=>{setlink3(e.target.value)}} label="Link 3" variant="outlined" />
+            <TextField value={length3} onChange={(e)=>{setlength3(e.target.value)}} label="Length 3" variant="outlined" />
+
             <TextField value={link4} onChange={(e)=>{setlink4(e.target.value)}} label="Link 4" variant="outlined" />
+            <TextField value={length4} onChange={(e)=>{setlength4(e.target.value)}} label="Length 4" variant="outlined" />
+
             <TextField value={link5} onChange={(e)=>{setlink5(e.target.value)}} label="Link 5" variant="outlined" />
+            <TextField value={length5} onChange={(e)=>{setlength5(e.target.value)}} label="Length 5" variant="outlined" />
+
             {/* //5  */}
             <TextField value={link6} onChange={(e)=>{setlink6(e.target.value)}} label="Link 6" variant="outlined"  />
+            <TextField value={length6} onChange={(e)=>{setlength6(e.target.value)}} label="Length 6" variant="outlined"  />
+
             <TextField value={link7} onChange={(e)=>{setlink7(e.target.value)}} label="Link 7" variant="outlined" />
+            <TextField value={length7} onChange={(e)=>{setlength7(e.target.value)}} label="Length 7" variant="outlined" />
+
             <TextField value={link8} onChange={(e)=>{setlink8(e.target.value)}} label="Link 8" variant="outlined" />
+            <TextField value={length8} onChange={(e)=>{setlength8(e.target.value)}} label="Length 8" variant="outlined" />
+            
             <TextField value={link9} onChange={(e)=>{setlink9(e.target.value)}} label="Link 9" variant="outlined" />
+            <TextField value={length9} onChange={(e)=>{setlength9(e.target.value)}} label="Length 9" variant="outlined" />
+            
             <TextField value={link10} onChange={(e)=>{setlink10(e.target.value)}} label="Link 10" variant="outlined" />
+            <TextField value={length10} onChange={(e)=>{setlength10(e.target.value)}} label="Length 10" variant="outlined" />
+
+            
             
             
             

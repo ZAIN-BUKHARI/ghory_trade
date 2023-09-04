@@ -48,7 +48,23 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
-    teams:[{type:Object}],
+    // teams:[
+    //     {
+           
+    //         direct:{
+    //           level:1,
+    //         //   id:mongoose.Schema.Types.ObjectId || 'no',
+    //           plan:"no"
+    //          },
+             
+    //         indirect:{
+    //           level:2,
+    //         //   id:mongoose.Schema.Types.ObjectId || 'no',
+    //           plan:"no"
+              
+    //          }
+    //     }
+    // ],
     nofteams:
     {
         type:Number,

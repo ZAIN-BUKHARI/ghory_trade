@@ -7,7 +7,7 @@ const handler= async (req, res)=> {
         let user = await User.findOne({email})
         const views=user.views+1;
         await User.updateOne({email:email},{views:views})
-        res.status(200).send(true)   
+        res.status(200).send({success:true})   
     }
 }
   

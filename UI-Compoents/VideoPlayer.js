@@ -8,18 +8,18 @@ import Comment from './Comment'
 import axios from 'axios';
 const VideoPlayer = () => {
 
-
- const {level,router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,duration,email,balance,workStatus}=useContext(ThemeContext)
-
-
+  
+  const {router,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,email,workStatus}=useContext(ThemeContext)
+  
+  const {videoID,Length} = router.query
   // STATE VARIABLES
-  const [time,setIme]=useState(10000);
-  const[buttonText,setButtonTex]=useState('Wait')
-  const[DisableButton,setDsableButton]=useState(true)
-  const[comment,setcomment]=useState(true)
+  // const [time,setIme]=useState(10000);
+  // const[buttonText,setButtonTex]=useState('Wait')
+  // const[DisableButton,setDsableButton]=useState(true)
+  // const[comment,setcomment]=useState(true)
   const[textarea,settextarea]=useState("Post a comment ")
   const[SubscriberBtn,setSubscriberBtn]=useState(false)
-
+  const[HideCompleteWorkbtn,setHideCompleteWorkbtn]=useState(true)
   
   const AddclassforVideoPLayerControlsDisable = () =>{
     var doc = document.getElementById("zain");
@@ -147,7 +147,7 @@ const VideoPlayer = () => {
         theme: "light",
       });
     }
-    getVideoInfo('EAyo3_zJj5c')
+    getVideoInfo(videoID)
   toast.info('Post a comment & Watch the full video otherwise you cannot proceed furthur and your today earning will not be added to your wallet ', {
       position: "top-center",
       autoClose: 50000,
@@ -163,39 +163,41 @@ const VideoPlayer = () => {
     },100)
     setTimeout(()=>{
       RemoveclassforVideoPLayerControlsEnables()
-    },duration)
+      setHideCompleteWorkbtn(false)
+    },length*60000)
   },[])
 
   
   const Viewincrement=async()=>{
     const data = {email}
-    await axios.post('/api/post/videoswatch',data)
-      toast.info(`task complete`, {
-        position: "top-center",
-        autoClose: 50000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+    let res = await axios.post('/api/post/videoswatch',data)
+      if(res.data.success==true)
+      {
+        alert('Task complete')
         router.push('/')
-      setTimeout(() => {
-        window.location.reload()
-      }, 1000);
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      }else{
+        alert('Server error try again')
+        router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      }
 
   }
   
   return (
     <>
-   
+
+
     <div className='TestBody'>
 
     <main className="TestBody-container">
         <section className="TestBody-main-video">
             {/* <video src="videos/manipulate text background.mp4" controls autoplay muted></video> */}
-    <iframe  id='zain' src="https://www.youtube.com/embed/tXNnFqRBTDw?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
             <h3 className="title">{videoTitle}</h3>
             <div className='test-bootom-sec'>
@@ -210,8 +212,8 @@ const VideoPlayer = () => {
             <FaYoutube className='test-icon'/>
            <div>
            <button className='test-btn-css' onClick={subscribe} >Subscribe</button>
-
-           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>
+          {!HideCompleteWorkbtn &&
+           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>}
            </div>
 
             </div>}
@@ -226,7 +228,7 @@ const VideoPlayer = () => {
 
         <section className="TestBody-video-playlist">
             <h3 className="title">{videoTitle}</h3>
-            <p>video length &nbsp; . &nbsp; {(duration/1000)/60} Minutes</p>
+            <p>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <div className="TestBody-videos">
                 <Comment/>
             </div>
