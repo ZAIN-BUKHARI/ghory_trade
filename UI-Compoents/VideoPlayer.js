@@ -164,7 +164,7 @@ const VideoPlayer = () => {
     setTimeout(()=>{
       RemoveclassforVideoPLayerControlsEnables()
       setHideCompleteWorkbtn(false)
-    },length*60000)
+    },parseInt(length)*60000)
   },[])
 
   
