@@ -182,14 +182,14 @@ return (
                   </div>
               </div>
               
+            <div className="button-auth">
+              
+                <input className='' type="button" value="Signup" onClick={signup} />
+            </div>
             </form>
             {/* <div className="button " onClick={signup}>
                 <input className='currency-btn-input' type="button" value="Singup"   />
               </div> */}
-              <div className="button-auth">
-                
-                  <input type="button" value="Signup" onClick={signup} />
-              </div>
           </div>
         </div>
       </div>

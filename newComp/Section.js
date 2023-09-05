@@ -24,9 +24,10 @@ const Section = () => {
         #VIDEO-PAGE-CSS h1 {
           display: block;
           width: fit-content;
-          font-size: 6rem;
+          font-size: 4rem;
           position: relative;
-          color: transparent;
+          // color: transparent;
+          color: #00a1c9;
           animation: text_reveal 0.5s ease forwards;
           animation-delay: 1s;
         }
@@ -50,6 +51,7 @@ const Section = () => {
           // background-color: rgb(35, 68, 177);
           // background-color:#00C0F0;
           background-color: #00a1c9;
+          color:#00a1c9;
           animation: text_reveal_box 1s ease;
           animation-delay: 0.5s;
         }
@@ -79,6 +81,10 @@ const Section = () => {
         h1 {
           color: #00a1c9;
         }
+        .section-text-color
+        {
+          color:#00a1c9;
+        }
       `}</style>
       <div className="Head">
         <video
@@ -89,17 +95,17 @@ const Section = () => {
           muted={true}
           loop
         />
-        <section id="VIDEO-PAGE-CSS">
+        <section id="VIDEO-PAGE-CSS" className="section-text-color">
           <div className="VIDEO-PAGE-CSS container Ab ">
             {!mobile && (
               <div className="MEDIA-CON-SECTION">
-                <h1>
+                <h1 className="section-text">
                   Welcome, <span></span>
                 </h1>
-                <h1>
+                <h1 className="section-text">
                   We are <span></span>
                 </h1>
-                <h1>
+                <h1 className="section-text">
                   ghory.traders <span></span>
                 </h1>
                 <a href="#projects" type="button" className="cta">
