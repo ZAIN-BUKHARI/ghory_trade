@@ -134,6 +134,7 @@ const VideoPlayer = () => {
   // }
  
   useEffect(()=>{
+    
     if(workStatus=='yes'){
       router.push('/')
       toast.info('Not allowed here ', {
@@ -164,8 +165,18 @@ const VideoPlayer = () => {
     setTimeout(()=>{
       RemoveclassforVideoPLayerControlsEnables()
       setHideCompleteWorkbtn(false)
-    },parseInt(length)*60000)
-  },[])
+    },parseInt(Length)*60000)
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        router.push('/');
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  },[router])
 
   
   const Viewincrement=async()=>{
@@ -208,22 +219,12 @@ const VideoPlayer = () => {
 
             </div>
               </div>
-              {channel=="no" && !SubscriberBtn &&  <div className='test-btn'>
-            <FaYoutube className='test-icon'/>
-           <div>
-           <button className='test-btn-css' onClick={subscribe} >Subscribe</button>
+              
           {!HideCompleteWorkbtn &&
            <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>}
            </div>
 
-            </div>}
-              {SubscriberBtn &&  <div className='test-btn-subscribed'>
-            <FaYoutube className='test-icon'/>
-           <button className='test-btn-css' onClick={subscribed} >Subscribed</button>
-
-            </div>}
-
-            </div>
+            
         </section>
 
         <section className="TestBody-video-playlist">

@@ -1,12 +1,13 @@
 const nodemailer = require('nodemailer');
 
-export default async function mail(date,amount,id,address,method,name){
-  const FROM = 'usman@ghory.trade'
+export default async function mail(date,amount,id,address,method,name,emailaddressto){
+  const FROM = 'usmanghory3@gmail.com'
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
   auth: {
-      user: 'usman@ghory.trade', 
-      pass: 'rcagtodrccdnxsay' 
+      user: 'usmanghory3@gmail.com', 
+      // pass: 'rcagtodrccdnxsay' //old
+      pass: 'xuujhdwlohdhdcpq' //Ghory
   }
   });
   let mailOptions;
@@ -15,7 +16,7 @@ export default async function mail(date,amount,id,address,method,name){
       // Email content
        mailOptions = {
           from: FROM, 
-          to: 'zainyshorts@gmail.com',
+          to: emailaddressto,
   subject: 'GHORY.TRADE',
   text: `Withdrawal Details:
   Request Date: [${address}]
@@ -37,7 +38,7 @@ export default async function mail(date,amount,id,address,method,name){
          // Email content
        mailOptions = {
         from: FROM, 
-        to: 'zainyshorts@gmail.com',
+        to: emailaddressto,
 subject: 'GHORY.TRADE',
 text: `Dear ${name},
 
@@ -48,7 +49,7 @@ With your new account, you can start exploring all that ghory.trade has to offer
 }else{
   mailOptions = {
     from: FROM, 
-    to: 'zainyshorts@gmail.com',
+    to: emailaddressto,
 subject: 'GHORY.TRADE',
 text: `Dear sir,
 

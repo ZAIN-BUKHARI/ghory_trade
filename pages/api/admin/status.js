@@ -14,11 +14,11 @@ const handler= async (req, res)=> {
                 await User.updateOne({email:result.email},{subscription:'yes',perDayProfit:perDayBalance,level:result.level})
                 let user = await User.findOne({email:result.email})
                 
+                let emailaddressto;
                 try{
                   if(user.invite!=""){
                     let u = await  User.findOne({_id:user.invite})
-                    
-                    console.log(req.query._id)
+                    emailaddressto = u.email
                     console.log(u.teams[0]['direct'].id)
                     for(let i=0;i<u.teams.length;i++)
                     {
@@ -33,7 +33,7 @@ const handler= async (req, res)=> {
                         }
                     }
                 }
-                     //   mail('1','2','3','4','5','6');
+                       mail('1','2','3','4','5','6',emailaddressto);
                        res.status(200).send({'success':true})
                 }catch(e){
                        res.status(200).send({'success':true})

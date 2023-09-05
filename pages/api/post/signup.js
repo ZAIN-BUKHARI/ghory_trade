@@ -24,7 +24,8 @@ const handler= async (req, res)=> {
                 u.save()
                 try{
                   const name = u.firstname;
-                    if(mail('garbage1','garbage2','garbage3','garbage4','signup',name))
+                  const emailaddressto = u.email
+                    if(mail('garbage1','garbage2','garbage3','garbage4','signup',name,emailaddressto))
                       res.status(200).json({success:true})
                    
                    }catch(e){

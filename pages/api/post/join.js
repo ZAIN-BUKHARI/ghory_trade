@@ -2,20 +2,31 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
 import User from '../../../models/User'
 
+const end = new Date();
+        const yyyyy = end.getFullYear() + 1;
+        let mmm = end.getMonth() + 1; // Months start at 0!
+        let ddd = end.getDate();
+
+        if (ddd < 10) ddd = '0' + ddd;
+        if (mmm < 10) mmm = '0' + mmm;
+
+        const endDate= ddd + '/' + mmm + '/' + yyyyy;
+
+const join = new Date();
+        const yyyy = join.getFullYear();
+        let mm = join.getMonth() + 1; // Months start at 0!
+        let dd = join.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const joinDate = dd + '/' + mm + '/' + yyyy;
 const handler= async (req, res)=> {
     if(req.method=='POST'){
         if(req.body.img1 && req.body.img2!="")
         {
 
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        let mm = today.getMonth() + 1; // Months start at 0!
-        let dd = today.getDate();
-
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
-
-        const formattedToday = dd + '/' + mm + '/' + yyyy;
+        
        try{ 
         let p = new Plan({
             name:req.body.name,
@@ -29,7 +40,8 @@ const handler= async (req, res)=> {
             level:req.body.level,
             investment:req.body.investment,
             currency:req.body.currency,
-            date:formattedToday
+            date:joinDate,
+            enddate:endDate
             
             
         })

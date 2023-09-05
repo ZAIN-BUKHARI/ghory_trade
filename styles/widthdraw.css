@@ -1,4 +1,9 @@
-
+.request-select-modal{
+  outline: none;
+  font-weight: bold;
+  font-size: 15px;
+ 
+}
 .card {
   width: 280px;
   height: 300px;
@@ -93,6 +98,7 @@
   box-shadow: transparent 0px 0px 0px 1px inset;
   padding: 0.6em;
   width: 250px;
+  /* margin-left: 55px; */
   border-radius: 14px;
   border: 1px solid #333;
   color: black;
@@ -107,6 +113,8 @@
   background-color: royalblue;
   color: #fff;
   padding: 0.68em;
+  width: 250px;
+  /* margin-left: 55px; */
   border-radius: 14px;
   font-weight: bold;
 }

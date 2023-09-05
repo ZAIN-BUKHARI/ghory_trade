@@ -161,19 +161,12 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
-          {/* //NOT LOGGIN */}
-          {/*  neither login nor subscription  */}
-          {!token && subscription=="no" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
-          {!token && subscription=="no" && <FcLock/>}
-          {/*  login now but not has subscription  */}
-          {token && subscription=="no" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
-          {token && subscription=="no" && <FcLock/>}
-          {/* user didnot login now but has subscription  */}
-          {!token && subscription=="yes" && <Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
-          {!token && subscription=="yes" && <FcLock/>}
+          
+          {!token &&<Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
+          {!token &&<FcLock/>}
           {/* //LOGGIN */}
           {/* both login and subscription  */}
-          {token && subscription=="yes" &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
+          {token &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
 
         </li>
 

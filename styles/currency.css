@@ -1,14 +1,18 @@
 .currecny-head-height{
   height: 240px;
   
+  
 }
 
 .btn-converter-currency{
   width: 40%;
+  
 }
 .converter-fields-left-margin{
   margin-left: 300px;
+  
 }
+
 .Converter-Head{
   width: 100vw;
   height: 100vh;
@@ -16,13 +20,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 
 }
 .box-converter-currency{
   width: 400px;
-  height: 250px;
+  height: 250px ;
   border-radius: 20px;
   background-color: #eee;
+  
 }
 .currency-button{
   width: 500px;
@@ -43,5 +49,21 @@
   top: 20%;
   right: 43%;
   cursor: pointer;
+  
+}
+
+.currency-detail 
+{
+  font-weight: 600;
+  
+
+}
+
+.currency-input
+{
+  border: 0.5px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
   
 }

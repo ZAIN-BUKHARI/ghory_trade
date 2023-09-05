@@ -15,7 +15,6 @@ import Request from '../../../models/Request'
                     status:status,
                     createdAt:createdAt,
                 })
-                console.log(request)
                 await request.save()
                 res.status(200).json({ success:true })
                }

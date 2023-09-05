@@ -5,7 +5,7 @@ const Section = () => {
   const { mobile } = useContext(ThemeContext);
   useEffect(() => {
     var videotag = document.getElementById("video");
-    videotag.muted=false
+    // videotag.muted=false
   }, []);
   return (
     <>

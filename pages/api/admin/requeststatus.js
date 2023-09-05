@@ -25,7 +25,7 @@ const handler= async (req, res)=> {
                                        const amount=response.amount
                                        const date=formattedToday
                                        const method = 'request'
-                                       mail(id,address,amount,date,method)
+                                       mail(id,address,amount,date,method,'d',emailaddressto)
                                         const decrementAmount = user.balance - response.amount;
                                        let updateOneuser =  await User.updateOne({email:response.email},{balance:decrementAmount})
                                        if(updateOneuser){

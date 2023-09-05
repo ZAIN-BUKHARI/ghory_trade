@@ -55,6 +55,11 @@ const PlanSchema = new Schema({
         type:String,
         required:true
     },
+    enddate:
+    {
+        type:String,
+        default:''
+    },
 
 },{timestamps:true})
 mongoose.models={}

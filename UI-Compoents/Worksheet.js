@@ -51,7 +51,7 @@ const Worksheet = () => {
     <div className='Worksheet-body'>
     <main className="table">
     <section className="table__header">
-            <h1>Daily Assignments</h1>
+            <h1><strong className='strong-tag'> Daily Profit ${perDayProfit} </strong></h1>
             <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
         </section>
         <section className="table__body">
@@ -63,7 +63,7 @@ const Worksheet = () => {
                         <th> Assign</th>
                         <th> Deadline</th>
                         <th className='work-start'> Status</th>
-                        <th> Amount </th>
+                        {/* <th> Amount </th> */}
                         <th className='work-start'> Start</th>
                     </tr>
                 </thead>
@@ -85,7 +85,7 @@ const Worksheet = () => {
                              {workStatus=="yes" &&  <FcOk/> }
                             </p>
                         </td>
-                        <td> <strong> ${(perDayProfit/parseInt(level))} </strong></td>
+                        {/* <td> <strong> ${(perDayProfit/parseInt(level))} </strong></td> */}
                        {workStatus=="no" && <td> <p onClick={()=>{startWork(item.link,item.length)}} className="Done">Start</p> </td>}
                     </tr>
                      
@@ -110,6 +110,9 @@ const Worksheet = () => {
         width:200px;
         // cursor: none;
 
+       }
+       .strong-tag{
+        font-size:20px;
        }
        .dim{
         width:200px;

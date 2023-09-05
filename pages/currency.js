@@ -18,19 +18,19 @@ const converter = () => {
  
   return (
     <>
-    <div className="PlanForm-Head">
-        <div className="Invest-Container currecny-head-height">
+    <div className="PlanForm-Head ">
+        <div className="Invest-Container  currecny-head-height">
          
-          <div className="content">
+          <div className="content ">
             <form action='#'>
-              <div className="user-details">
+              <div className="user-details currency-detail">
                
                
                 
                
                 
                
-                <div className="input-box">
+                <div className=" ">
                   <span className="details">FROM</span>
                   <div className="flex">
                     <select
@@ -40,6 +40,7 @@ const converter = () => {
                       <option value={"USD"}>USD</option>
                     </select>
                     <input
+                    className='currency-input'
                       type="number"
                       onChange={(e)=>{setUSD(e.target.value)}}
                       name="usd"
@@ -49,7 +50,7 @@ const converter = () => {
                  
                   
                 </div>
-                <div className="input-box">
+                <div className=" ">
                   <span className="details">TO</span>
                   <div className="flex">
                     <select
@@ -59,6 +60,7 @@ const converter = () => {
                       <option value={"PKR"}>PKR</option>
                     </select>
                     <input
+                    className='currency-input'
                       type="number"
                       name="investment"
                       placeholder="PKR"
