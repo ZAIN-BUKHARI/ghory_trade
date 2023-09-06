@@ -31,23 +31,23 @@ const Header = () => {
             
         }
         .list1{
-            margin-right:25px
+            margin-right:20px
         }
         .list2{
-            margin-right:25px
+            margin-right:20px
         }
         .list3{
-            margin-right:25px
+            margin-right:20px
         }
         .list4{
-            margin-right:25px
+            margin-right:20px
         }
         .list5{
             margin-right:15px
         }
         
         .mobile-list {
-            font-size:17px;
+            font-size:15px;
             font-family:serif;
             font-weight:bold;
         }
