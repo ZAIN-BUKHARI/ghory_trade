@@ -87,14 +87,22 @@ const Section = () => {
         }
       `}</style>
       <div className="Head">
-        <video
+       {!mobile && <video
           className="VIDEO   "
           id="video"
           src="ghory-intro.mp4"
           autoPlay
           muted={true}
           loop
-        />
+        />}
+       {mobile && <video
+          className="VIDEO   "
+          id="video"
+          src="intro-new.mp4"
+          autoPlay
+          muted={true}
+          loop
+        />}
         <section id="VIDEO-PAGE-CSS" className="section-text-color">
           <div className="VIDEO-PAGE-CSS container Ab ">
             {!mobile && (
