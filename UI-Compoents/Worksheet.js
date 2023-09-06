@@ -8,7 +8,7 @@ import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = () => {
     //use Context 
-    const {mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
    
     const startWork = (link,length) =>{
@@ -43,7 +43,12 @@ const Worksheet = () => {
         }
       })
     }
-    
+    useEffect(()=>{
+      if(mobile && hideSidebar)
+      {
+        sethideSidebar(false)
+      }
+    })
     if(!mobile)
     {
 

@@ -2,7 +2,10 @@ import React,{useContext} from 'react'
 import { FcMenu } from "react-icons/fc";
 import Link from 'next/link';
 import { ThemeContext } from '../Context/ThemeContext';
+import { useRouter } from 'next/router';
+
 const Header = () => {
+    const router = useRouter()
     const {hideSidebar,sethideSidebar}=useContext(ThemeContext)
 
     function hamburgerMenu(){
@@ -11,7 +14,9 @@ const Header = () => {
         else
             sethideSidebar(true)
     }
-   
+   if(!router.asPath.includes('/work'))
+   {
+
     return (
     <>
     <style>
@@ -119,6 +124,7 @@ const Header = () => {
     </div>} */}
     </>
   )
+}
 }
 
 export default Header

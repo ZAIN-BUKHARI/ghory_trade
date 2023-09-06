@@ -131,13 +131,13 @@ const Sidebar = () => {
         <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
-            <FcBarChart/>
+           {subscription=='no' && <FcBarChart/> }
           </span>
           {/* //NOT LOGGIN */}
-          {!token &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
-          {!token && <FcLock/>}
+          {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token && subscription=='no' &&  <FcLock/>}
           {/* //LOGGIN */}
-          {token  &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
         <li>
@@ -192,7 +192,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-         {!token && <Link onClick={()=>{setAuth(true)}}  href={"#"}>Login</Link>}
+         {!token && <Link onClick={()=>{setAuth(true);sethideSidebar(false)}}  href={"#"}>Login</Link>}
          {!token && <FcLock/>}
 
          {token &&  <Link onClick={logout}  href="/">Logout</Link>}

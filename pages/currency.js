@@ -1,16 +1,24 @@
 import axios from 'axios'
-import React,{ useState} from 'react'
+import React,{ useContext, useState} from 'react'
 import { useEffect } from 'react'
+import { ThemeContext } from '../Context/ThemeContext'
 
 const converter = () => {
   const [USD,setUSD]=useState(0)
   const [PKR,setPKR]=useState(0)
   const [rate,seterate]=useState(0)
+  const {sethideSidebar,hideSidebar,mobile} = useContext(ThemeContext)
   useEffect(()=>{
+    if(mobile && hideSidebar)
+    {
+      sethideSidebar(false)
+    }
     axios.get('/api/rate/get').then(res=>{
       seterate(res.data.rate.Rate)
     })
+
   },[])
+    
   const changeAmountRate = () =>
   {
       setPKR(USD*rate)

@@ -24,18 +24,34 @@ const AuthForm = () => {
     setAuth(false);
   };
   const showsignin = () => {
-    setActiveLoginModal(true);
-    document.getElementById("zain").classList.remove("signup-height");
-    document
+    if(mobile)
+    {
+
+      setActiveLoginModal(true);
+      document.getElementById("zain").classList.remove("signup-height");
+      document
       .getElementById("zain")
       .classList.add("signin-height");
+    }else{
+      setActiveLoginModal(true);
+      document.getElementById("window").classList.remove("Invest-Container-authform");
+      document.getElementById("window").classList.add("Invest-Container-authform-singin-height");
+
+    }
   };
   const showsignup = () => {
-    setActiveLoginModal(false);
-    document.getElementById("zain").classList.remove('signin-height')
-    document
+    if(mobile)
+    {
+      setActiveLoginModal(false);
+      document.getElementById("zain").classList.remove('signin-height')
+      document
       .getElementById("zain")
       .classList.add("signup-height");
+    }else{
+      setActiveLoginModal(false);
+      document.getElementById("window").classList.remove("Invest-Container-authform-singin-height");
+      document.getElementById("window").classList.add("Invest-Container-authform");
+    }
   };
 
   //SIGNUP
@@ -216,7 +232,7 @@ const AuthForm = () => {
     return (
       <>
         <div className="PlanForm-Head-modal-auth">
-          <div className="Invest-Container-authform" id="zain">
+          <div className="Invest-Container-authform" id="window" >
             <div className="title  authform-cancel-modal-button">
               {" "}
               {!ActiveLoginModal && "Sign up"}
