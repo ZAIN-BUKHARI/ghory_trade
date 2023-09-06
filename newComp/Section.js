@@ -71,7 +71,7 @@ const Section = () => {
           position: relative;
         }
         .VIDEO {
-          width: 100%;
+          // width: 100%;
         }
         .Ab {
           position: absolute;
@@ -104,8 +104,8 @@ const Section = () => {
           loop
         />}
         <section id="VIDEO-PAGE-CSS" className="section-text-color">
-          <div className="VIDEO-PAGE-CSS container Ab ">
-            {!mobile && (
+        {!mobile && ( <div className="VIDEO-PAGE-CSS container Ab ">
+            
               <div className="MEDIA-CON-SECTION">
                 <h1 className="section-text">
                   Welcome, <span></span>
@@ -120,8 +120,8 @@ const Section = () => {
                   Start
                 </a>
               </div>
-            )}
-          </div>
+            
+          </div>)}
         </section>
       </div>
     </>
