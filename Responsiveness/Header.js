@@ -31,23 +31,23 @@ const Header = () => {
             
         }
         .list1{
-            margin-right:15px
+            margin-right:25px
         }
         .list2{
-            margin-right:15px
+            margin-right:25px
         }
         .list3{
-            margin-right:15px
+            margin-right:25px
         }
         .list4{
-            margin-right:15px
+            margin-right:25px
         }
         .list5{
             margin-right:15px
         }
         
         .mobile-list {
-            font-size:12px;
+            font-size:17px;
             font-family:serif;
             font-weight:bold;
         }
@@ -103,8 +103,8 @@ const Header = () => {
                 <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
                 <li className='list2 mobile-list'><Link href='/about'>About</Link></li>
                 <li className='list3 mobile-list'><Link href='/contact'>Contact</Link></li>
-                <li className='list4 mobile-list'><Link href='/investment'>Invest</Link></li>
                 <li className='list5 mobile-list'><Link href='/project'>Projects</Link></li>
+                {/* <li className='list4 mobile-list'><Link href='/investment'>currency</Link></li> */}
             </ul>
         </div>
     </div>
