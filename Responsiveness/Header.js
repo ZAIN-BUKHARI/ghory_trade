@@ -1,31 +1,17 @@
-import React, { useContext,useState } from 'react'
+import React,{useContext} from 'react'
 import { FcMenu } from "react-icons/fc";
-import { ThemeContext } from '../Context/ThemeContext';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { ThemeContext } from '../Context/ThemeContext';
 const Header = () => {
-    const router=useRouter()
-    const {setAuth,setPaymentRequestModal}=useContext(ThemeContext)
-    const [showMenu,setshowMenu]=useState(false)
+    const {hideSidebar,sethideSidebar}=useContext(ThemeContext)
+
     function hamburgerMenu(){
-        if(showMenu)
-            setshowMenu(false)
+        if(hideSidebar)
+            sethideSidebar(false)
         else
-            setshowMenu(true)
+            sethideSidebar(true)
     }
-    function LoginModaltoggle(){
-        setshowMenu(false)
-            setAuth(true)
-            
-    }
-    function invite(){
-        setshowMenu(false)
-        router.push('/qrcode')
-    }
-    function withdraw(){
-        setshowMenu(false)
-        setPaymentRequestModal(true)
-    }
+   
     return (
     <>
     <style>
@@ -122,7 +108,7 @@ const Header = () => {
             </ul>
         </div>
     </div>
-    {showMenu && <div className='header-hamburger-menu'>
+    {/* {showMenu && <div className='header-hamburger-menu'>
         <ul className='list-hamburger'>
             <li className='ham-l1' onClick={LoginModaltoggle}>Singup</li>
             <li className='ham-l2'><Link href='/work'>Dailywork</Link></li>
@@ -130,7 +116,7 @@ const Header = () => {
             <li className='ham-l5' onClick={withdraw}>Withdraw</li>
         </ul>
 
-    </div>}
+    </div>} */}
     </>
   )
 }
