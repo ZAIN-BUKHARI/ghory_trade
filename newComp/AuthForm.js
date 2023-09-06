@@ -25,16 +25,17 @@ const AuthForm = () => {
   };
   const showsignin = () => {
     setActiveLoginModal(true);
-    document.getElementById("zain").classList.remove("form-auth-height");
+    document.getElementById("zain").classList.remove("signup-height");
     document
       .getElementById("zain")
-      .classList.add("Invest-Container-authform-signin");
+      .classList.add("signin-height");
   };
   const showsignup = () => {
     setActiveLoginModal(false);
+    document.getElementById("zain").classList.remove('signin-height')
     document
       .getElementById("zain")
-      .classList.remove("Invest-Container-authform-signin");
+      .classList.add("signup-height");
   };
 
   //SIGNUP
@@ -112,12 +113,14 @@ const AuthForm = () => {
           <div className="Invest-Container" id="zain">
             <div className="title  authform-cancel-modal-button">
               {" "}
-              Yearly Plan
+              {!ActiveLoginModal && "Sign up"}
+              {ActiveLoginModal && "Sign in"}
+              <h1 onClick={hideModla}>X</h1>
             </div>
             <div className="content">
               <form action="#">
                 <div className="user-details">
-                  <div className="input-box">
+                {!ActiveLoginModal &&  <div className="input-box">
                     <span className="details">First Name</span>
                     <input
                       type="text"
@@ -127,8 +130,8 @@ const AuthForm = () => {
                       placeholder="Enter your name"
                       required
                     />
-                  </div>
-                  <div className="input-box">
+                  </div>}
+                 {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Last Name</span>
                     <input
                       type="text"
@@ -138,7 +141,7 @@ const AuthForm = () => {
                       placeholder="Enter your lastname"
                       required
                     />
-                  </div>
+                  </div>}
                   <div className="input-box">
                     <span className="details">Email</span>
                     <input
@@ -161,7 +164,7 @@ const AuthForm = () => {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                  {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Confirm password</span>
                     <input
                       type="text"
@@ -171,10 +174,11 @@ const AuthForm = () => {
                       placeholder="Enter your password"
                       required
                     />
-                  </div>
+                  </div>}
                 </div>
                 <div className="button-auth">
-                  <input type="Signup" value="Subscribe" onClick={signup} />
+                 {!ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> }
+                 {ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign in" onClick={signin} /> }
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">

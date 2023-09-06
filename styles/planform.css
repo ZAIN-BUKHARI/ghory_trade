@@ -60,6 +60,14 @@
       border-radius: 5px;
       box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
+    .signin-height{
+      height: 350px !important;
+
+    }
+    .signup-height{
+      height: 570px !important;
+
+    }
     .Invest-Container-authform{
       max-width: 700px;
       width: 30%;
@@ -394,4 +402,7 @@ display: none;
   cursor: pointer;
   color: navy;
   font-weight: bold;
+}
+.authform-text-submit{
+  text-align: center;
 }
