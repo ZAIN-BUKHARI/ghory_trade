@@ -218,7 +218,7 @@ const PlanForm = () => {
                   onChange={(e) => {
                     setwallet(e.target.value);
                   }}
-                  className="PlanForm-select"
+                  className="PlanForm-select-main"
                 >
                   <option value={"TRC20"}>TRC20</option>
                   <option value={"JAZZCASH"}>JAZZCASH</option>
@@ -458,20 +458,20 @@ const PlanForm = () => {
     <>
     {token  && (
       <div className="PlanForm-Head">
-        <div className="Invest-Container">
-          {/* <div className=" title ">
-            <img src='remove_bg.png'  className="img-planfirm-upload-top" />
+        <div className="Invest-Container-mobile-planform">
+          <div className=" mobile-planform-title ">
             {" "}
             Yearly Plan
             <span className="Address">
               <span className="wallet">
+                <img src='remove_bg.png'  className="img-planfirm-upload-top" />
                 <select
                   value={wallet}
                   name="select"
                   onChange={(e) => {
                     setwallet(e.target.value);
                   }}
-                  className="PlanForm-select"
+                  className="PlanForm-select-mobile"
                 >
                   <option value={"TRC20"}>TRC20</option>
                   <option value={"JAZZCASH"}>JAZZCASH</option>
@@ -480,13 +480,13 @@ const PlanForm = () => {
                 </select>
               </span>
               {wallet == "TRC20" && (
-                <span className="planfirm-space-span-address">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
+                <span className="trc-address-text">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
                 )}{" "}
-              {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "}
-              {wallet == "EASYPAISA" && <span  className="planfirm-space-span">03364569822</span>}{" "}
-              {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>}
+              {wallet == "JAZZCASH" && <span  >03364569511</span>}{" "}
+              {wallet == "EASYPAISA" && <span  >03364569822</span>}{" "}
+              {wallet == "RASS" && <span  >03364569533</span>}
             </span>
-          </div> */}
+          </div>
           <div className="content">
             <form action="#" onSubmit={submit}>
               <div className="user-details">

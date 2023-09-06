@@ -60,6 +60,16 @@
       border-radius: 5px;
       box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
+    .Invest-Container-mobile-planform{
+      max-width: 700px;
+      width: 100%;
+      /* width: 30%; */
+      height: 630px;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
     .signin-height{
       height: 350px !important;
 
@@ -101,10 +111,34 @@
       border: 1px solid #ccc;
       border-bottom-width: 2px;
       transition: all 0.3s ease;
-      margin-left: 80px; /*/ win problem*/
+      margin-left: 80px;
       display: flex;
       /* justify-content: space-between; */
     }
+    .PlanForm-select-main{
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      /* padding-left: 15px; */
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+      margin-left: 235px;
+      display: flex;
+      /* justify-content: space-between; */
+    }
+    .PlanForm-select-mobile{
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      /* padding-left: 15px; */
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+      /* display: flex; */
+      /* justify-content: space-between; */
+    }
+    
     .PlanForm-select-usd{
       outline: none;
       font-size: 16px;
@@ -132,6 +166,17 @@
       position: relative;
       /* justify-content: space-between; */
             
+    }
+    .mobile-planform-title{
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+      justify-content: space-between;
+      color: #71b7e6;
+    }
+    .trc-address-text
+    {
+      font-size: 14px;
     }
     /* .Invest-Container .title::before{
       content: "";

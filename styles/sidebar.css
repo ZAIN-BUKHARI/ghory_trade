@@ -15,22 +15,11 @@
     transition: width 0.3s ease;
     z-index: 10;
     font-size: 20px;
-    display: none; /*/ remove if not work*/
     
 }
 
 .sidebar:hover {
     width: 260px;
-	/* .section-title-sidebar {
-        font-size: 24px;
-        font-weight: bold;
-        color: black;
-        font-family: sans-serif;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        text-align: center;
-    } */
-	
 }
 .section-title-sidebar {
     font-size: 24px;
