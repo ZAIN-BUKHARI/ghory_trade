@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 
 
 const Sidebar = () => {
-  const {mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -69,14 +69,16 @@ const Sidebar = () => {
         theme: "light",
       });
      }
-     else
-      router.push('/work')
+     else{
+       router.push('/work')
+     }
   }
  
   const logout = () =>{
     localStorage.setItem('token','no')
     settoken(false)
   }
+
   if(!mobile)
   {
 
@@ -292,7 +294,7 @@ else{
           {!token &&<FcLock/>}
           {/* //LOGGIN */}
           {/* both login and subscription  */}
-          {token &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
+          {token &&<Link onClick={()=>{setPaymentRequestModal(true);sethideSidebar(false)}} href="#">widthdraw</Link>}
 
         </li>
 
@@ -313,7 +315,7 @@ else{
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
-         {!token && <Link onClick={()=>{setAuth(true)}}  href={"#"}>Login</Link>}
+         {!token && <Link onClick={()=>{setAuth(true);sethideSidebar(false)}}  href={"#"}>Login</Link>}
          {!token && <FcLock/>}
 
          {token &&  <Link onClick={logout}  href="/">Logout</Link>}

@@ -17,7 +17,7 @@ const AuthForm = () => {
   const [password, setpassword] = useState("");
   const [cpassword, setcpassword] = useState("");
 
-  const { setAuth, mobile } = useContext(ThemeContext);
+  const { setAuth, mobile,setLoader } = useContext(ThemeContext);
   const [ActiveLoginModal, setActiveLoginModal] = useState(false);
 
   const hideModla = () => {
@@ -41,6 +41,7 @@ const AuthForm = () => {
   //SIGNUP
   const signup = (e) => {
     e.preventDefault();
+    setLoader(true)
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/signup", data).then((res) => {
       if (res.data.success == true) {
@@ -69,9 +70,11 @@ const AuthForm = () => {
         });
       }
     });
+    setLoader(false)
   };
   const signin = (e) => {
     e.preventDefault();
+    setLoader(true)
     const data = { email, password };
     axios.post("/api/post/signin", data).then((res) => {
       if (res.data.success == true) {
@@ -104,6 +107,7 @@ const AuthForm = () => {
         localStorage.setItem("token", "no");
       }
     });
+    setLoader(false)
   };
 
   if (mobile) {
