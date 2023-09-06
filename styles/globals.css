@@ -245,38 +245,38 @@
 @media (max-width: 991px) {
 	/* service section fr media query */
 	.Service-Media-P{
-		margin-left: 10;
+		/* margin-left: 10; */
 		padding: 50px;
 	}
 	
 	.service-bottom{
-		margin-left: 20px;
+		/* margin-left: 20px; */
 	}
 
 
 	/* SECTION MEDIA QUERT  */
 	.MEDIA-CON-SECTION{
-		margin-left: 10px !important;
+		/* margin-left: 10px !important; */
 	}
 	
 	/* PROJECT MEDIA QUERY  */
 	.MEDIA-LEFT-PROJECT{
-		margin-left: 20px;
+		/* margin-left: 20px; */
 	}
 	/* ABOUT US PAGE MEDIA QUERY  */
 	.MEDIA-LEFT-ABOUT{
-		margin-left: 50px;
+		/* margin-left: 50px; */
 		width: 200px !important;
 		height: 200px !important;
 	}
 	/* Contact US PAGE MEDIA QUERY  */
 	.MEDIA-LEFT-CONTACT{
-		margin-left: 10px;
+		/* margin-left: 10px; */
 	}
 	/* footer  */
 	.MEDIA-FOOTER-COPYRIGHT{
 		/* padding: 10px; */
-		margin-left: 15px;
+		/* margin-left: 15px; */
 		font-size: 10px !important;
 	}
 	.media-footer-font{
