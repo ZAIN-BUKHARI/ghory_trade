@@ -92,7 +92,7 @@ const Request = () => {
 
 
 
-    }
+    };
 if(mobile){
   return (
     <>
@@ -102,7 +102,7 @@ if(mobile){
     <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
     </p>
     <div className="card__form">
-        <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
+        <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
         <div className='form-modal-select'>
 
         <select 
@@ -133,7 +133,7 @@ if(mobile){
       <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
       </p>
       <div className="card__form">
-          <input placeholder="Your Amount" value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
+          <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
           <div className='form-modal-select'>
   
           <select 

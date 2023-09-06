@@ -6,7 +6,7 @@ import { ThemeContext } from "../Context/ThemeContext";
 import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {setLoader, token, subscription ,email} = useContext(ThemeContext);
+  const {setLoader, token, subscription ,email,mobile} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -399,10 +399,12 @@ const PlanForm = () => {
                 </label>}
               </div>
               <div className="button">
-                <div className='space'>
-<div class="g-ytsubscribe space" data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
-
-    </div>
+              {!mobile && ( <div className='space'>
+                  <div class="g-ytsubscribe " data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
+                 </div>)}
+              {mobile && ( <div className=''>
+                  <div class="g-ytsubscribe " data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
+                 </div>)}
                 <input type="submit" value="Subscribe" />
               </div>
               <script>
@@ -437,6 +439,10 @@ const PlanForm = () => {
       .space{
         // margin-bottom:10px;
         margin-left:250px;
+      }
+      .space-mobile{
+        // margin-bottom:10px;
+        // margin-left:100px;
       }
       `}</style>
     </>

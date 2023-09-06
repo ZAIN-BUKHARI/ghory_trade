@@ -22,7 +22,7 @@
   border-radius: 20px;
 }
 .card-responsive {
-  width: 280px;
+  width: 300px;
   height: 340px;
   padding: 0 15px;
   text-align: center;
@@ -98,7 +98,7 @@
   box-shadow: transparent 0px 0px 0px 1px inset;
   padding: 0.6em;
   width: 250px;
-  /* margin-left: 55px; */
+  margin-right: -10px;
   border-radius: 14px;
   border: 1px solid #333;
   color: black;
@@ -114,7 +114,7 @@
   color: #fff;
   padding: 0.68em;
   width: 250px;
-  /* margin-left: 55px; */
+  margin-left: 10px;
   border-radius: 14px;
   font-weight: bold;
 }
@@ -132,3 +132,6 @@
 .sign-up:hover {
   opacity: 0.8;
 } 
+.request-mobile-tilt{
+  margin-left: 10px;
+}
