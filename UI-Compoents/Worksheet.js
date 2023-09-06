@@ -8,7 +8,7 @@ import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = () => {
     //use Context 
-    const {todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
    
     const startWork = (link,length) =>{
@@ -44,6 +44,9 @@ const Worksheet = () => {
       })
     }
     
+    if(!mobile)
+    {
+
   return (
     <>
     {token && subscription == 'yes' && (
@@ -124,6 +127,91 @@ const Worksheet = () => {
        </>
     
   )
+}
+else{
+  return (
+    <>
+    {token && subscription == 'yes' && (
+    <>
+    <div className='worksheet-flow'>
+    <div className='Worksheet-body-mobile'>
+    <main className="table">
+    <section className="table__header">
+            <h1><strong className='strong-tag'> Daily Profit ${perDayProfit} </strong></h1>
+            <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
+        </section>
+        <section className="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Work </th>
+                        <th> Customer </th>
+                        <th> Assign</th>
+                        <th> Deadline</th>
+                        <th className='work-start'> Status</th>
+                        {/* <th> Amount </th> */}
+                        <th className='work-start'> Start</th>
+                    </tr>
+                </thead>
+                {linktoLevel==0 &&  (
+                    <h1>Todays work is not uploaded yet</h1>
+                )}
+                 {linktoLevel!=0 && linktoLevel.slice(0,parseInt(level)-views).map((item,index)=>{
+
+
+                   return  <tbody>
+                    <tr>
+                        <td> {index+1} </td>
+                        <td> {Uname} </td>
+                        <td> {workUploadedDate}</td>
+                        <td> 11:49pm </td>
+                        <td>
+                            <p className=" WorkSheet-Icon-Alert ">
+                             {workStatus=="no"  && <FcHighPriority/>}
+                             {workStatus=="yes" &&  <FcOk/> }
+                            </p>
+                        </td>
+                        {/* <td> <strong> ${(perDayProfit/parseInt(level))} </strong></td> */}
+                       {workStatus=="no" && <td> <p onClick={()=>{startWork(item.link,item.length)}} className="Done">Start</p> </td>}
+                    </tr>
+                     
+                </tbody>
+                 }
+                 )} 
+
+            </table>
+        
+        {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}} className="Done ">Complete</p> </td>} 
+        {workStatus=='no'  && views!=parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn">click when your task complete</p> </td>} 
+        {views==parseInt(level) &&  <td> <p onClick={Complete}  className={`Done dim `}>click here for submision</p> </td>} 
+            
+        </section>
+        </main>
+        </div>
+        </div>
+       <style>{`
+       .dim-btn{
+        background-color:#f1807e;
+        font-size:12px;
+        color:black !important;
+        width:200px;
+        // cursor: none;
+
+       }
+       .strong-tag{
+        font-size:20px;
+       }
+       .dim{
+        width:200px;
+       }
+     
+       `}</style>
+       </>
+       )}
+       </>
+    
+  )
+}
 }
 
 export default Worksheet
