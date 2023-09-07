@@ -82,9 +82,9 @@ const converter = () => {
                 
               </div>
             </form>
-              <div className="button currency-button" onClick={changeAmountRate}>
+              {/* <div className="button currency-button" onClick={changeAmountRate}>
                 <input className='currency-btn-input' type="submit" value="Convert"   />
-              </div>
+              </div> */}
           </div>
         </div>
         

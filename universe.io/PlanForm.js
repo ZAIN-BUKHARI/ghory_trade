@@ -6,7 +6,7 @@ import { ThemeContext } from "../Context/ThemeContext";
 import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {setLoader, token, subscription ,email,mobile} = useContext(ThemeContext);
+  const {setLoader, token, subscription ,email,mobile,sethideSidebar,} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -31,6 +31,10 @@ const PlanForm = () => {
   const [formula, setformula] = useState(true);
 
   useEffect(() => {
+    if(mobile)
+    {
+      sethideSidebar(false)
+    }
   }, []);
   const ChangeEvent = (e) => {
     if (e.target.name == "select") {
