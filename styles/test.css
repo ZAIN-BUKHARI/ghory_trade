@@ -12,6 +12,23 @@
     padding-top: 10px;
     padding-left: 20px;
 }
+.mobile-title-player{
+    color: #fff !important;
+}
+.TestBody-mobile {
+    min-height: 120vh;
+    background-image: var(--primary);
+    font-family: sans-serif;
+    color: var(--text);
+
+    display: flex;
+    /* align-items: center; */
+    background-color: #36454F;
+    /* background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); */
+    /* background-color: #1B1212; */
+    padding-top: 10px;
+    /* padding-left: 20px; */
+}
 
 .TestBody-container {
     width: 100vw;
@@ -67,6 +84,16 @@
     
 
 }
+.mobile-submit-player
+{
+    margin-left: 10px;
+}
+.video-timer-player{
+    display: flex;
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 600;
+}
 .test-btn{
     background-color: red;
     height: 25px;
@@ -100,9 +127,11 @@
     
 
 }
+
 .test-comment-head{
     display: flex;
 }
+
 .test-btn-css{
     margin-right: 5px;
 }

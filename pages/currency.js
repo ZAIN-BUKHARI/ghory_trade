@@ -13,10 +13,11 @@ const converter = () => {
     {
       sethideSidebar(false)
     }
-    axios.get('/api/rate/get').then(res=>{
-      seterate(res.data.rate.Rate)
-    })
-
+      axios.get('/api/rate/get').then(res=>{
+        seterate(res.data.rate.Rate)
+      }).catch(e=>{
+        alert('server down')
+      })
   },[])
     
   const changeAmountRate = () =>
@@ -43,7 +44,7 @@ const converter = () => {
                   <div className="flex">
                     <select
                       name="select"
-                      className="PlanForm-select"
+                      className="PlanForm-select select-color"
                     >
                       <option value={"USD"}>USD</option>
                     </select>
@@ -63,7 +64,7 @@ const converter = () => {
                   <div className="flex">
                     <select
                       name="select"
-                      className="PlanForm-select"
+                      className="PlanForm-select select-color"
                     >
                       <option value={"PKR"}>PKR</option>
                     </select>
@@ -82,9 +83,9 @@ const converter = () => {
                 
               </div>
             </form>
-              {/* <div className="button currency-button" onClick={changeAmountRate}>
+              <div className="button currency-button" onClick={changeAmountRate}>
                 <input className='currency-btn-input' type="submit" value="Convert"   />
-              </div> */}
+              </div>
           </div>
         </div>
         

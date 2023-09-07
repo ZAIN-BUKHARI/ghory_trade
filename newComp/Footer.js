@@ -11,7 +11,7 @@ const Footer = () => {
     <section id="footer">
     <div className="footer container">
       <div className="brand">
-        <h1><span>g</span>hory <span>T</span>aders</h1>
+        <h1><span className='footer-G'>G</span>hory <span className='footer-T'>T</span>aders</h1>
       </div>
       <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
       <div className="social-icon">
