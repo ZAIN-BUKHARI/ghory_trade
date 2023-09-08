@@ -14,6 +14,7 @@ import '../styles/test.css'
 import '../styles/currency.css'
 import '../styles/invite.css'
 import '../styles/searchbar.css'
+import '../styles/download.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
