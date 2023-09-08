@@ -12,6 +12,7 @@ import { FcPhone } from 'react-icons/fc';
 import { FcShare } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FcSmartphoneTablet } from 'react-icons/fc';
+import { FcPositiveDynamic } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 
@@ -133,6 +134,13 @@ const Sidebar = () => {
             <FcSmartphoneTablet />
           </span>
           <Link href="/download">Download</Link>
+        </li>
+        <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcPositiveDynamic />
+          </span>
+          <Link href="/chart">Profit Chart</Link>
         </li>
         <hr/>
         <hr/>
@@ -266,6 +274,13 @@ else{
             <FcSmartphoneTablet />
           </span>
           <Link href="/download">Download</Link>
+        </li>
+        <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcPositiveDynamic />
+          </span>
+          <Link href="/chart">Profit Chart</Link>
         </li>
         <hr/>
         <hr/>

@@ -352,3 +352,20 @@ thead th.active,tbody td.active {
     cursor: pointer;
     margin-left: 50px;
 }
+
+
+/* worksheet internal css style comp */
+.dim-btn{
+    background-color:#f1807e;
+    font-size:12px;
+    color:black !important;
+    width:200px;
+
+   }
+   .strong-tag{
+    font-size:20px;
+   }
+   .dim{
+    width:200px;
+   }
+   

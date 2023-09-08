@@ -1066,3 +1066,23 @@ p {
 /* //FOOTER GHORY TRADING G AND T COLOR  */
 .footer-G{ color: #00a1c9 !important;}
 .footer-T{ color: #00a1c9 !important;}
+
+
+
+.Chart-divider{
+	height: 10px;
+}
+.chart-table-text
+{
+	font-size: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+.ghory-theme-color{
+	color: #00a1c9;
+}
+.chart-span{
+	font-size: 12px !important;
+	font-weight: bold;
+	color: black;
+}

@@ -12,9 +12,10 @@ const download = () => {
             <img src='remove_bg.png' className='ghory-logo-ios'/>
             <img src='both-phone-remove.png' />
             <button class="Btn android-btn">
-  Download
+              <a href='ghory.apk'>Download</a>
+  
 </button>
-            <button class="Btn android-ios">
+            <button class="Btn android-ios" onClick={()=>{alert('Not available for ios')}}>
   Download
 </button>
           </div>
