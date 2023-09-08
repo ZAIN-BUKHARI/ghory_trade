@@ -83,3 +83,25 @@
     background: #E4405F;
     color: #fff;
   }
+  .wrapper .youtube:hover,
+  .wrapper .youtube:hover .tooltip,
+  .wrapper .youtube:hover .tooltip::before {
+    background: red;
+    color: #fff;
+  }
+  .wrapper .tiktok:hover,
+  .wrapper .tiktok:hover .tooltip,
+  .wrapper .tiktok:hover .tooltip::before {
+    background: #1DA1F2;
+    color: #fff;
+  }
+  .youtube-logo-footer{
+    width: 50px;
+    border: 5px solid white;
+    border-radius: 20px;
+  }
+  .tiktok-logo-footer{
+    width: 50px;
+    border: 5px solid white;
+    border-radius: 20px;
+  }
