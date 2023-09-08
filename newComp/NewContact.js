@@ -12,9 +12,9 @@ const NewContact = () => {
         <div className="contact-item">
           <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
           <div className="contact-info">
-            <h1>Phone</h1>
-            <h2>+92 322 4959827</h2>
-            <h2>+92 300 4360057</h2>
+            <h1>Telegran</h1>
+            <h2>+92 0322 4959827</h2>
+            {/* <h2>+92 300 4360057</h2> */}
           </div>
         </div>
         <div className="contact-item">
