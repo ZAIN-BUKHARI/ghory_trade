@@ -31,13 +31,14 @@
   
 }
 .currency-button{
-  width: 570px;
+  width: 300px;
   height: 50px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
   border-radius: 20px;
-  margin-left:70px;
+  /* margin-left:20px; */
   position: relative;
   cursor: pointer;
+  margin-top: 20px;
   
 }
 .currency-btn-input{
@@ -54,11 +55,11 @@
 @media (max-width: 768px) {
   
   .currency-button{
-    width: 230px;
+    width: 300px;
     height: 50px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
     border-radius: 20px;
-    margin-left:75px;
+    /* margin-left:75px; */
     position: relative;
     cursor: pointer;
     
@@ -85,3 +86,57 @@
   font-weight: 600;
   
 }
+
+.currency-from{
+  font-size: 15px;
+  font-family: serif;
+  font-weight: 600;
+}
+.currency-To{
+  font-size: 15px;
+  font-family: serif;
+  font-weight: 600;
+}
+.currency-input-usd{
+   width: 300px;
+   padding: 10px;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid grey;
+   text-align: center;
+   font-size: 10px;
+   color: black;
+}
+.currency-input-pkr{
+ width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+ outline: none;
+ border: 1px solid grey;
+ text-align: center;
+ font-size: 10px;
+ color: black;
+}
+.currency-body
+    {
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .currency-white-box{
+        width: 400px;
+        height: 300px;
+        background-color: #eee;
+        border-radius: 30px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items: center;
+    }
+    .convert-heading{
+      /* margin-bottom: 100px; */
+    }

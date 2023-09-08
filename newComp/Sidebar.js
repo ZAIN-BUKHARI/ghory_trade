@@ -11,6 +11,7 @@ import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
 import { FcShare } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
+import { FcSmartphoneTablet } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 
@@ -126,6 +127,13 @@ const Sidebar = () => {
           </span>
           <Link href="/about">About us</Link>
         </li>
+        <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcSmartphoneTablet />
+          </span>
+          <Link href="/download">Download</Link>
+        </li>
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -185,7 +193,10 @@ const Sidebar = () => {
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
-          <Link href='/qrcode'>Invite </Link>
+          {token &&<Link  href='/qrcode'>Invite </Link>}
+          {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
+          {!token &&<FcLock/>}
+
           </li>
       
         <li className="logout-link">
@@ -249,6 +260,13 @@ else{
           </span>
           <Link href="/about">About us</Link>
         </li>
+        <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcSmartphoneTablet />
+          </span>
+          <Link href="/download">Download</Link>
+        </li>
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -308,7 +326,9 @@ else{
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
-          <Link href='/qrcode'>Invite </Link>
+          {token &&<Link  href='/qrcode'>Invite </Link>}
+          {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
+          {!token &&<FcLock/>}
           </li>
       
         <li className="logout-link">
