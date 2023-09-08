@@ -1,7 +1,7 @@
 const Chart =[
     {
         invest:100,
-        day:0.6666,
+        day:0.6,
         one:20,
         two:40,
         six:120,
@@ -9,7 +9,7 @@ const Chart =[
     },
     {
         invest:200,
-        day:1.3333,
+        day:1.3,
         one:40,
         two:80,
         six:240,
@@ -25,7 +25,7 @@ const Chart =[
     },
     {
         invest:400,
-        day:2.6666,
+        day:2.6,
         one:80,
         two:160,
         six:480,
@@ -33,7 +33,7 @@ const Chart =[
     },
     {
         invest:500,
-        day:3.3333,
+        day:3.3,
         one:100,
         two:200,
         six:600,
@@ -49,7 +49,7 @@ const Chart =[
     },
     {
         invest:700,
-        day:4.6666,
+        day:4.6,
         one:140,
         two:140*2,
         six:140*6,
@@ -57,7 +57,7 @@ const Chart =[
     },
     {
         invest:800,
-        day:5.3333,
+        day:5.3,
         one:160,
         two:160*2,
         six:160*6,
@@ -73,7 +73,7 @@ const Chart =[
     },
     {
         invest:1000,
-        day:6.6666,
+        day:6.6,
         one:200,
         two:200*2,
         six:200*6,
@@ -81,7 +81,7 @@ const Chart =[
     },
     {
         invest:2000,
-        day:13.3333,
+        day:13.3,
         one:400,
         two:400*2,
         six:400*6,
@@ -97,7 +97,7 @@ const Chart =[
     },
     {
         invest:4000,
-        day:26.6666,
+        day:26.6,
         one:800,
         two:800*2,
         six:800*6,
@@ -105,7 +105,7 @@ const Chart =[
     },
     {
         invest:5000,
-        day:33.333,
+        day:33.3,
         one:1000,
         two:1000*2,
         six:1000*6,
@@ -121,7 +121,7 @@ const Chart =[
     },
     {
         invest:7000,
-        day:46.666,
+        day:46.6,
         one:1400,
         two:1400*2,
         six:1400*6,
@@ -129,7 +129,7 @@ const Chart =[
     },
     {
         invest:8000,
-        day:53.333,
+        day:53.3,
         one:1600,
         two:1600*2,
         six:1600*6,
@@ -145,7 +145,7 @@ const Chart =[
     },
     {
         invest:10000,
-        day:66.666,
+        day:66.6,
         one:2000,
         two:2000*2,
         six:2000*6,

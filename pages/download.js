@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { ThemeContext } from '../Context/ThemeContext'
 
 const download = () => {
+  const {mobile,sethideSidebar} = useContext(ThemeContext)
+  useEffect(()=>{
+    if(mobile)
+      sethideSidebar(false) 
+  },[])
   return (
     <>
     <div className='download-body'>

@@ -7,14 +7,14 @@ import { useRouter } from 'next/router';
 const Header = () => {
     const router = useRouter()
     const {hideSidebar,sethideSidebar}=useContext(ThemeContext)
-
+    
     function hamburgerMenu(){
         if(hideSidebar)
             sethideSidebar(false)
         else
             sethideSidebar(true)
     }
-   if(!router.asPath.includes('/work'))
+   if(!router.asPath.includes('/work') && router.asPath!='/chart')
    {
 
     return (

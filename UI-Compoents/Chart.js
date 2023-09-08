@@ -1,11 +1,14 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Chart from '../MappingData/Chart'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = () => {
-    const {mobile}=useContext(ThemeContext)
-   
+    const {mobile,sethideSidebar}=useContext(ThemeContext)
+    useEffect(()=>{
+      if(mobile)
+        sethideSidebar(false) 
+    },[])
     if(!mobile)
     {
 
@@ -66,13 +69,13 @@ else{
     <div className='Worksheet-body-mobile'>
     <main className="table">
     <section className="table__header">
-            <h1><strong className='strong-tag ghory-theme-color'>Ghory Trading Profit Chart </strong></h1>
-            <h1 className='strong-tag ghory-theme-color'>Remark [<span className='chart-span'> The calculation has not been deducted the 5% fee on withdrawal</span>]</h1>
+            <h1><strong className=' ghory-theme-color'>Ghory Trading Profit Chart </strong></h1>
+            <h1 className=' ghory-theme-color'>Remark [<span className='chart-span'> The calculation has not been deducted the 5% fee on withdrawal</span>]</h1>
         </section>
         <section className="table__body">
             <table>
                 <thead>
-                    <tr className='chart-table-text'>
+                    <tr className='chart-table-text-mob'>
                         <th> Amount </th>
                         <th> 1day </th>
                         <th> 1month</th>
@@ -88,7 +91,7 @@ else{
                    return  <tbody>
 
                 <hr className='Chart-divider'/> 
-                    <tr className='chart-table-text'>
+                    <tr className='chart-table-text-mob'>
                         <td>$ {item.invest} </td>
                         <td>$ {item.day} </td>
                         <td>$ {item.one}</td>

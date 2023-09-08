@@ -137,6 +137,13 @@
     margin-top: 20px;
 }
 @media (max-width: 768px) {
+    /* //chart */
+    .chart-table-text-mob{
+        font-size: 20px;
+	font-family: sans-serif;
+	font-weight: bold;
+
+    }
     .sidebar:hover {
         width: 160px;
     }
