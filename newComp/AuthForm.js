@@ -57,9 +57,10 @@ const AuthForm = () => {
   //SIGNUP
   const signup = (e) => {
     e.preventDefault();
-    setLoader(true)
+    
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/signup", data).then((res) => {
+      setLoader(true)
       if (res.data.success == true) {
         toast.success("Successfully signup", {
           position: "top-right",

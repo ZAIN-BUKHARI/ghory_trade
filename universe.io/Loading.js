@@ -11,7 +11,7 @@ const Loading = () => {
             background-color: #29323c;
             position: absolute;
             top: 50%;
-            z-index: 2;
+            z-index: 100;
             left: 50%;
           }
           .spinner {
@@ -116,7 +116,7 @@ const Loading = () => {
             background-color: black;
             position: absolute;
             top: 50%;
-            z-index: 2;
+            z-index: 100;
             left: 50%;
           }
           .spinner {
