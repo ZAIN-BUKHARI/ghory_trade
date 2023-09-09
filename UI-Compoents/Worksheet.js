@@ -5,6 +5,7 @@ import { useContext,useEffect,useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../Context/ThemeContext'
+import { FcLeft } from "react-icons/fc";
 
 const Worksheet = () => {
     //use Context 
@@ -142,8 +143,8 @@ else{
     <div className='Worksheet-body-mobile'>
     <main className="table">
     <section className="table__header">
-            <h1><strong className='strong-tag'> Daily Profit ${perDayProfit} </strong></h1>
-            <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
+            <h1 className='flex'><FcLeft onClick={()=>{router.push('/')}} className='back-arr-mob-chart'/><strong className='strong-tag'> Daily Profit ${perDayProfit} </strong></h1>
+            <h1 className='WORK-WALLET '>Wallet {balance}$</h1>
         </section>
         <section className="table__body">
             <table>

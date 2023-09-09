@@ -2,9 +2,11 @@ import React,{useEffect} from 'react'
 import Chart from '../MappingData/Chart'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
+import { FcLeft } from "react-icons/fc";
+
 
 const Worksheet = () => {
-    const {mobile,sethideSidebar}=useContext(ThemeContext)
+    const {mobile,sethideSidebar,router}=useContext(ThemeContext)
     useEffect(()=>{
       if(mobile)
         sethideSidebar(false) 
@@ -69,7 +71,7 @@ else{
     <div className='Worksheet-body-mobile'>
     <main className="table">
     <section className="table__header">
-            <h1><strong className=' ghory-theme-color'>Ghory Trading Profit Chart </strong></h1>
+            <h1 className='flex chart-mob-h1'><FcLeft onClick={()=>{router.push('/')}} className='back-arr-mob-chart'/><strong className=' ghory-theme-color'>Ghory Trading Profit Chart </strong></h1>
             <h1 className=' ghory-theme-color'>Remark [<span className='chart-span'> The calculation has not been deducted the 5% fee on withdrawal</span>]</h1>
         </section>
         <section className="table__body">
