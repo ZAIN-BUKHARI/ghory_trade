@@ -6,6 +6,7 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {firstname,lastname,email,_id}=req.body
         let Leader = await User.findOne({_id:_id})
+        console.log(Leader)
       try{
         if(Leader.invite==""){
           let B = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
@@ -24,7 +25,8 @@ const handler= async (req, res)=> {
                 
                 }
               const incrementTeamsA=Leader.nofteams+1
-              await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
+              let rspo = await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
+              console.log(rspo)
               await B.save()
             res.status(200).json(true)
           }

@@ -1,3 +1,5 @@
+import { Type } from 'react-feather';
+
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
@@ -48,23 +50,7 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
-    // teams:[
-    //     {
-           
-    //         direct:{
-    //           level:1,
-    //         //   id:mongoose.Schema.Types.ObjectId || 'no',
-    //           plan:"no"
-    //          },
-             
-    //         indirect:{
-    //           level:2,
-    //         //   id:mongoose.Schema.Types.ObjectId || 'no',
-    //           plan:"no"
-              
-    //          }
-    //     }
-    // ],
+    teams:[{type:Object}],
     nofteams:
     {
         type:Number,
