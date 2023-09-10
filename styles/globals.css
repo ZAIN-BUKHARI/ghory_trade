@@ -1094,3 +1094,7 @@ p {
 .back-arr-mob-chart{
 	font-size: 30px !important;
 }
+.reset-calculator{
+	font-size: 20px;
+	cursor: pointer;
+}

@@ -6,27 +6,28 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {firstname,lastname,email,_id}=req.body
         let Leader = await User.findOne({_id:_id})
-        console.log(Leader)
       try{
         if(Leader.invite==""){
           let B = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
           let teams={
+                 Rank:"no",
                  direct:{
                     level:1,
                     id:B._id,
-                    plan:"no"
+                    plan:"no",
+                    investment:0,
                   },
                   
                  indirect:{
                     level:2,
                     id:'no',
-                    plan:"no"
+                    plan:"no",
+                    investment:0,
                   }
                 
                 }
               const incrementTeamsA=Leader.nofteams+1
-              let rspo = await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
-              console.log(rspo)
+              await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
               await B.save()
             res.status(200).json(true)
           }
@@ -36,16 +37,19 @@ const handler= async (req, res)=> {
           let C = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
               // direct 
               let directteam={
+                Rank:"no",
                 direct:{
                   level:1,
                   id:C._id,
-                  plan:"no"
+                  plan:"no",
+                  investment:0
                  },
                  
                 indirect:{
                   level:2,
                   id:'no',
-                  plan:"no"
+                  plan:"no",
+                  investment:0
                  }
                
                }

@@ -293,7 +293,27 @@ function fetchDailyWork()
   setLoader(false)
 }
 }
-
+async function GiveRank()
+{
+  const data = {Userid}
+  axios.post('/api/TTL/teaminvestment',data).then(res=>{
+    if(res.data.success==true)
+    {
+      axios.post('/api/TTL/giverank',data).then(res=>{
+        if(res.data.success==true)
+          axios.post('/api/TTL/rank',data)
+      })
+    }
+    else if(res.data.success==false)
+    {
+      //salary system work
+      axios.post('/api/TTL/salary',data)
+    }else if(res.data.success=='no'){
+        // team didn't invest 
+    }
+  }) 
+  
+}
 // const schedulingTime = '*/1 * * * *'
 
   useEffect(() => {

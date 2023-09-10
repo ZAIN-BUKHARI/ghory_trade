@@ -9,7 +9,7 @@ import { FcLeft } from "react-icons/fc";
 
 const Worksheet = () => {
     //use Context 
-    const {sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,balance,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
    
     const startWork = (link,length) =>{
@@ -49,6 +49,11 @@ const Worksheet = () => {
       {
         sethideSidebar(false)
       }
+      const data = {email}
+      axios.post('/api/get/balance',data).then(res=>{
+        if(res.data.success==true)
+          setbalance(res.data.balance)
+      })
     })
     if(!mobile)
     {
