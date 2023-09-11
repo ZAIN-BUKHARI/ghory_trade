@@ -109,10 +109,11 @@ const AuthForm = () => {
         });
         localStorage.setItem("token", res.data.user.email);
         setAuth(true);
-        // router.push('/')
-        // setTimeout(() => {
-          window.location.reload();
-        // }, 1000);
+        alert('Login')
+        router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
       } else {
         toast.error(res.data.error, {
           position: "top-right",
