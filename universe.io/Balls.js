@@ -23,7 +23,7 @@ const Balls = () => {
     </li>
     <li className="icon tiktok">
         <span className="tooltip">Tiktok</span>
-        <a href="https://www.tiktok.com/@ghory.trading.wit"><img className='tiktok-logo-footer' src="https://img.icons8.com/ios-filled/50/tiktok--v1.png" /></a>
+        <a href="https://www.tiktok.com/@ghory962"><img className='tiktok-logo-footer' src="https://img.icons8.com/ios-filled/50/tiktok--v1.png" /></a>
         <span><i className="fab fa-youtube"></i></span>
     </li>
 </ul>

@@ -81,7 +81,7 @@ async function getUser()
 }catch(e){
     setLoader(false)
 }
-GiveRank(_id)
+// GiveRank(_id)
 }
   //Admin Get functions
 async function getAllCustomers(param){
