@@ -5,6 +5,7 @@ const handler= async (req, res)=>
 {
     if(req.method=='POST')
     {
+        console.log('hit')
         const {Userid} = req.body
         let user = await User.findOne({_id:Userid});
         let RankAmount = user.balance;
@@ -24,8 +25,8 @@ const handler= async (req, res)=>
                 RankAmount = RankAmount + 500
             }
         }
-                await User.updateOne({_id:id},{balance:RankAmount})
-                res.status(200).json({msg:'increment '})
+                await User.updateOne({_id:Userid},{balance:RankAmount})
+                res.status(200).json({'success':true})
 
     }
 

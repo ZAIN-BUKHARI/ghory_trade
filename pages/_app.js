@@ -37,6 +37,7 @@ var API_KEY='AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g'
 //  get User func 
 async function getUser()
 {
+  let _id;
   setLoader(true)
   let token = localStorage.getItem('token')
   try{
@@ -59,6 +60,7 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setUserid(res.data.orders[0]._id)
+      _id=res.data.orders[0]._id
       if(res.data.orders[0].admin=='yes')
         setAdmin(true)
       else
@@ -79,7 +81,7 @@ async function getUser()
 }catch(e){
     setLoader(false)
 }
-  
+GiveRank(_id)
 }
   //Admin Get functions
 async function getAllCustomers(param){
@@ -293,26 +295,39 @@ function fetchDailyWork()
   setLoader(false)
 }
 }
-async function GiveRank()
+async function GiveRank(_id)
 {
+  const Userid = _id
   const data = {Userid}
-  axios.post('/api/TTL/teaminvestment',data).then(res=>{
-    if(res.data.success==true)
-    {
-      axios.post('/api/TTL/giverank',data).then(res=>{
-        if(res.data.success==true)
-          axios.post('/api/TTL/rank',data)
-      })
-    }
-    else if(res.data.success==false)
-    {
+  axios.post('/api/TTL/planid',data).then(res=>{
+    
+    if(res.data.success==true){
+    axios.post('/api/TTL/teaminvestment',data).then(res=>{
+      if(res.data.success==true)
+      {
+        axios.post('/api/TTL/giverank',data).then(res=>{
+        if(res.status==200){
+          axios.post('/api/TTL/rank',data).then(res=>{
+            if(res.data.success==true)
+             alert('rank amount done')
+            }).catch((e)=>{console.log(e)})
+          }
+        }).catch((e)=>{console.log(e)})
+      }
+      else if(res.data.success==false)
+      {
       //salary system work
-      axios.post('/api/TTL/salary',data)
-    }else if(res.data.success=='no'){
+      // axios.post('/api/TTL/salary',data)
+      alert('Salary system work')
+      }else if(res.data.success=='no'){
         // team didn't invest 
+        alert("team didn't invest")
     }
-  }) 
-  
+  }).catch((e)=>{console.log(e)}) 
+}
+
+
+}).catch((e)=>{console.log(e)})
 }
 // const schedulingTime = '*/1 * * * *'
 

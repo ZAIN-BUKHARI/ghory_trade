@@ -87,6 +87,11 @@ const UserSchema = new Schema({
         type:Number,
         default:"0"
     },
+    planId:
+    {
+        type:String,
+        default:""
+    },
     
 
     },{timestamps:true})
