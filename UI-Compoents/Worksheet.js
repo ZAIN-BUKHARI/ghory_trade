@@ -49,12 +49,7 @@ const Worksheet = () => {
       {
         sethideSidebar(false)
       }
-      const data = {email}
-      axios.post('/api/get/balance',data).then(res=>{
-        if(res.data.success==true)
-          setbalance(res.data.balance)
-      })
-    })
+    },[])
     if(!mobile)
     {
 

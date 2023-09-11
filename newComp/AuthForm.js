@@ -17,7 +17,7 @@ const AuthForm = () => {
   const [password, setpassword] = useState("");
   const [cpassword, setcpassword] = useState("");
 
-  const { setAuth, mobile,setLoader } = useContext(ThemeContext);
+  const {Auth, setAuth, mobile,setLoader } = useContext(ThemeContext);
   const [ActiveLoginModal, setActiveLoginModal] = useState(false);
 
   const hideModla = () => {
@@ -53,7 +53,9 @@ const AuthForm = () => {
       document.getElementById("window").classList.add("Invest-Container-authform");
     }
   };
-
+ useEffect(()=>{
+    
+ },[])
   //SIGNUP
   const signup = (e) => {
     setLoader(true)
@@ -107,9 +109,10 @@ const AuthForm = () => {
         });
         localStorage.setItem("token", res.data.user.email);
         setAuth(true);
-        setTimeout(() => {
+        // router.push('/')
+        // setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        // }, 1000);
       } else {
         toast.error(res.data.error, {
           position: "top-right",
