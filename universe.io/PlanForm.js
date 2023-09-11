@@ -105,6 +105,7 @@ const PlanForm = () => {
                     theme: "light",
                   }
                 );
+                downloadPDF()
                 router.push("/");
               } else {
                 toast.error(res.data.error, {
@@ -200,6 +201,17 @@ const PlanForm = () => {
     alert('Server down try again later')
   }
   setLoader(false)
+  }
+  const downloadPDF = () =>{
+     // Define the path to the PDF file in the public directory
+     const pdfPath = 'Ghory-Trading.pdf';
+
+     // Create an anchor element
+     const anchor = document.createElement('a');
+     anchor.href = pdfPath;
+     anchor.target = '_blank'; // Open the link in a new tab/window
+     anchor.download = pdfPath; // Name for the downloaded file
+     anchor.click();
   }
 
  if(!mobile)

@@ -24,8 +24,8 @@ const About = () => {
               defines our approach, making us a trusted player in the complex
               world of commodity trading.
             </p>
-            <a href="#" className="cta">
-              Join us
+            <a href="Ghory-Trading.pdf" className="cta">
+              Download Company  Profile
             </a>
           </div>
         </div>
