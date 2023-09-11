@@ -109,6 +109,44 @@ const AuthForm = () => {
         });
         localStorage.setItem("token", res.data.user.email);
         setAuth(true);
+        router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      } else {
+        toast.error(res.data.error, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        localStorage.setItem("token", "no");
+      }
+    });
+    setLoader(false)
+  };
+  const signinmobile = (e) => {
+    e.preventDefault();
+    setLoader(true)
+    const data = { email, password };
+    axios.post("/api/post/signin", data).then((res) => {
+      if (res.data.success == true) {
+        toast.success("successfully logged in", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        localStorage.setItem("token", res.data.user.email);
+        setAuth(true);
         alert('Login')
         router.push('/')
         setTimeout(() => {
@@ -203,7 +241,7 @@ const AuthForm = () => {
                 </div>
                 <div className="button-auth">
                  {!ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> }
-                 {ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign in" onClick={signin} /> }
+                 {ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> }
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">

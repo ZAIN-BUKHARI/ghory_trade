@@ -1095,6 +1095,14 @@ p {
 	font-size: 30px !important;
 }
 .reset-calculator{
+	margin-left: 5px;
 	font-size: 20px;
 	cursor: pointer;
+}
+
+.profit-calculator-h1-tag{
+	font-size: 15px;
+	font-family: serif;
+	padding-left: 20px;
+	background-color: #eee;
 }
