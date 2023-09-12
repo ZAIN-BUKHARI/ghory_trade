@@ -14,6 +14,8 @@ const AdminUpdate = () => {
     const [createdAt,setcreatedAt]=useState('')
     const [password,setpassword]=useState('')
     const [balance,setbalance]=useState(0)
+    const [admin,setadmin]=useState('')
+    const [pdprofit,setpdprofit]=useState(0)
     //Plan modal variables Total 10
     // id from user varibles
     // email from user varibles
@@ -37,7 +39,6 @@ const AdminUpdate = () => {
                 try{
                 
                 axios.get(`/api/get/userone?_id=${id}`).then(res=>{
-                    console.log(res)
             if(res.data.success==true){
                 set_id(res.data.user._id)
                 setfirstname(res.data.user.firstname)
@@ -46,7 +47,10 @@ const AdminUpdate = () => {
                 setbalance(res.data.user.balance)
                 settodaywork(res.data.user.todaywork)
                 setsubscription(res.data.user.subscription)
-                setcreatedAt(res.data.user.createdAt)
+                setcreatedAt(res.data.user.date)
+                setlevel(res.data.user.level)
+                setadmin(res.data.user.admin)
+                setpdprofit(res.data.user.pdprofit)
             }else{
                 alert('server error')
             }
@@ -67,7 +71,7 @@ const AdminUpdate = () => {
             setinvestment(res.data.result.investment)
             setlevel(res.data.result.level)
             setstatus(res.data.result.status)
-            setcreatedAt(res.data.result.createdAt)
+            setcreatedAt(res.data.result.date)
             setaddress(res.data.result.address)
             setcnic(res.data.result.cnic)
         }else{
@@ -88,7 +92,7 @@ const AdminUpdate = () => {
                     set_id(res.data.result._id)
                     setemail(res.data.result.email)
                     setstatus(res.data.result.status)
-                    setcreatedAt(res.data.result.createdAt)
+                    setcreatedAt(res.data.result.date)
                     setaddress(res.data.result.address)
                     setmethod(res.data.result.method)
                     setamount(res.data.result.amount)
@@ -109,7 +113,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,model}
+            const data = {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level}
             let res = await axios.post('/api/post/update',data)
         if(res.data.success==true){
             alert('Update successfully')
@@ -168,7 +172,7 @@ const AdminUpdate = () => {
         return (
             <>
     <div className="PlanForm-Head">
-    <div className="Invest-Container">
+    <div className="Invest-Container admin-planform-height">
       <div className="content">
         <form action="#" >
           <div className="user-details">
@@ -254,8 +258,41 @@ const AdminUpdate = () => {
                   name="date"
                   />
               </div>
-            
             </div>
+            <div className="input-box">
+              <span className="details">Admin access</span>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={admin}
+                  onChange={(e)=>{setadmin(e.target.value)}}
+                  name="admin"
+                  />
+              </div>
+            </div>
+            <div className="input-box">
+              <span className="details">Perday Profit</span>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={pdprofit}
+                  onChange={(e)=>{setpdprofit(e.target.value)}}
+                  name="pdprofit"
+                  />
+              </div>
+            </div>
+            <div className="input-box">
+              <span className="details">Level</span>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={level}
+                  onChange={(e)=>{setlevel(e.target.value)}}
+                  name="level"
+                  />
+              </div>
+            </div>
+
             <div className="input-box">
               <span className="details">Today work</span>
               <div className="flex">

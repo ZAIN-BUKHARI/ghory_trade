@@ -15,7 +15,7 @@ import Plan from '../../../models/Plan'
                     address:address,
                     phone:phone,
                     status:status,
-                    createdAt:createdAt,
+                    date:createdAt,
                     level:level,
                     investment:investment
                 })

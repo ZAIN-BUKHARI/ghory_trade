@@ -13,7 +13,7 @@ import Request from '../../../models/Request'
                     email:email,
                     amount:amount,
                     status:status,
-                    createdAt:createdAt,
+                    date:createdAt,
                 })
                 await request.save()
                 res.status(200).json({ success:true })

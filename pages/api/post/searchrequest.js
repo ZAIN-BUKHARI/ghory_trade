@@ -17,7 +17,7 @@ const handler= async (req, res)=> {
             return res.status(200).json({event})
           }else{
             var event = await Request.find({
-                createdAt: { $regex: req.query.name, $options: "i" },
+              date: { $regex: req.query.name, $options: "i" },
             })
             if(event.length >0){
               return res.status(200).json({event})
