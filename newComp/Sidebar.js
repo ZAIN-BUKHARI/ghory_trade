@@ -13,12 +13,13 @@ import { FcShare } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FcSmartphoneTablet } from 'react-icons/fc';
 import { FcPositiveDynamic } from 'react-icons/fc';
+import { FcBusinessman } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 
 
 const Sidebar = () => {
-  const {sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -142,6 +143,13 @@ const Sidebar = () => {
           </span>
           <Link href="/chart">Profit Chart</Link>
         </li>
+       {usman && <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcBusinessman />
+          </span>
+          <Link href="/admin">Admin Panel</Link>
+        </li>}
         <hr/>
         <hr/>
         <h4>Account</h4>
