@@ -25,7 +25,7 @@ const AdminAllRequests = () => {
   return (
     <>
     <Searchbar/>
-    {searchrequestresults.length==0 && (
+    {searchrequestresults=='' && (
     <div className='AdminWorksheet-body'>
     <main className="table">
     <section className="table__header">

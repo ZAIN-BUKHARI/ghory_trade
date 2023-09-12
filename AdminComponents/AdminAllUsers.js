@@ -27,7 +27,7 @@ const AdminPlans = () => {
   return (
     <>
     <Searchbar/>
-    {usersearchresults.length==0 && (
+    {usersearchresults=='' && (
 
     <div className='AdminWorksheet-body'>
     <main className="table">
@@ -78,7 +78,7 @@ const AdminPlans = () => {
             </section>
         </main>          
         </div>)}
-        {usersearchresults!=0 && (
+        {usersearchresults!=0 && usersearchresults!=undefined && (
             <>
             <div className='AdminWorksheet-body'>
     <main className="table">

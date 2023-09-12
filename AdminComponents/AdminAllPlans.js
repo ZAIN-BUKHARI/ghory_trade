@@ -25,7 +25,7 @@ const AdminPlans = () => {
   return (
     <>
     <Searchbar/>
-    {planssearchresults.length==0 && (
+    {planssearchresults=='' && (
     <div className='AdminWorksheet-body'>
     <main className="table">
     <section className="table__header">

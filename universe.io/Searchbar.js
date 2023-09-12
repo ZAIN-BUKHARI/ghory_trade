@@ -18,9 +18,8 @@ const Searchbar = (e) => {
         seturl('searchplans')
     
   })
-    const Search =async()=>{
-      try{
-        let res = await axios.get(`/api/post/${url}?name=${val}`)
+    const Search =()=>{
+        axios.get(`/api/post/${url}?name=${val}`).then(res=>{
         if(res.data.error!=false)
         {
           if(router.asPath=='/adminusers')
@@ -32,11 +31,10 @@ const Searchbar = (e) => {
         }
         else{
           alert('No results found')
-          
         }
-      }catch(e){
-        alert('Server error')
-      }
+      }).catch(e=>{
+        alert('server down')
+      })
     }
     const ClearListResults = () =>{
       setval('')
