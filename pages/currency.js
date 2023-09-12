@@ -40,8 +40,8 @@ const converter = () => {
   }
   const investmentPlan = () =>{
     setoneday((((investment*20)/100)/30).toString())
-    settwomonth(((investment*20)/100).toString())
-    setonemonth((((investment*20)/100)*2).toString())
+    setonemonth((((investment*20)/100)*1).toString())
+    settwomonth(((investment*20)/100*2).toString())
     setsixmonth((((investment*20)/100)*6).toString())
     setyear((((investment*20)/100)*12).toString())
   }
