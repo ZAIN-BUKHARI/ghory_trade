@@ -30,7 +30,7 @@ const AdminPlans = () => {
         api(id)
     }
     const detail = (id) =>{
-        var plan = "plan"
+        var plan = "join"
         router.push(`/admindetail?id=${id}&plan=${plan}`)
     }
     async function api(id){

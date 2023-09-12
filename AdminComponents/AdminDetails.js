@@ -66,13 +66,12 @@ const AdminDetails = () => {
       <AdminTable title={"ID"} desc={doc._id} />
       <AdminTable title={"NAME"} desc={doc.firstname} />
       <AdminTable title={"EMAIL"} desc={doc.email} />
-      <AdminTable title={"BALANCE"} desc={doc.balance} />
+      <AdminTable title={"BALANCE"} desc={`$${doc.balance}`} />
       <AdminTable title={"SUBSCRIPTION"} desc={doc.subscription} />
       <AdminTable title={"CHANNEL"} desc={doc.channel} />
-      <AdminTable title={"TODAY-WORK"} desc={`$${doc.todaywork}`} />
+      <AdminTable title={"TODAY-WORK"} desc={doc.todaywork} />
       <AdminTable title={"TEAMS"} desc={doc.nofteams} />
       <AdminTable title={"JOIN-DATE"} desc={doc.createdAt} />
-      <AdminTable title={"IMAGE"} desc={'doc.img'} />
       </div>
     </>
   )
@@ -82,14 +81,10 @@ else{
     <>
     <div className="table-box">
     <AdminTable title={"ID"} desc={doc._id} />
-    {/* <AdminTable title={"NAME"} desc={doc.name} /> */}
     <AdminTable title={"EMAIL"} desc={doc.email} />
-    {/* <AdminTable title={"PHONE"} desc={doc.phone} /> */}
     <AdminTable title={"METHOD"} desc={doc.method} />
     <AdminTable title={"ADDRESS"} desc={doc.address} />
     <AdminTable title={"BALANCE"} desc={`$${doc.amount}`} />
-    {/* <AdminTable title={"LEVEL"} desc={doc.level} /> */}
-    {/* <AdminTable title={"SCREENSHOT"} desc={"ONE.PNG"} /> */}
     </div>
     <style>{`
 .table-box

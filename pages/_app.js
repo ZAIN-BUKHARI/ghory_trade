@@ -267,8 +267,8 @@ function resolutionChecker(){
 
 function fetchDailyWork()
 {
-  setLoader(true)
   try{
+    // setLoader(true)
   axios.get('/api/get/links').then(res=>{
 
       if(res.status==200 && res.data.links.length!=0)
@@ -282,9 +282,9 @@ function fetchDailyWork()
       setallLinks(res.data.links)
       setdailyWork(res.data.links[0].links)
       setworkUploadedDate(res.data.links[0].date)
-      setLoader(false)
+      // setLoader(false)
     }else{
-      setLoader(false)
+      // setLoader(false)
     }
   })
 }catch(e)
@@ -292,7 +292,7 @@ function fetchDailyWork()
   setallLinks([])
   setdailyWork([])
   setworkUploadedDate([])
-  setLoader(false)
+  // setLoader(false)
 }
 }
 async function GiveRank(_id)

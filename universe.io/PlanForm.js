@@ -165,9 +165,8 @@ const PlanForm = () => {
   setLoader(false)
   };
   const cloudinaryonChange=(e)=>{
-    setLoader(true)
     try{
-
+      setLoader(true)
     if(e.target.name=='cloud1'){
       setLoader(true)
       const data= new FormData()
@@ -200,7 +199,6 @@ const PlanForm = () => {
     setLoader(false)
     alert('Server down try again later')
   }
-  setLoader(false)
   }
   const downloadPDF = () =>{
      // Define the path to the PDF file in the public directory

@@ -16,13 +16,13 @@ const handler= async (req, res)=>
                 if(user.teams[i].Rank=='GM')
                 RankAmount = RankAmount + 100
                 else if(user.teams[i].Rank=='VP')
-                RankAmount = RankAmount + 200
+                RankAmount = RankAmount + 150
                 else if(user.teams[i].Rank=='SVP')
-                RankAmount = RankAmount + 300
+                RankAmount = RankAmount + 600
                 else if(user.teams[i].Rank=='ED')
-                RankAmount = RankAmount + 400
+                RankAmount = RankAmount + 1500
                 else if(user.teams[i].Rank=='MD')
-                RankAmount = RankAmount + 500
+                RankAmount = RankAmount + 13000
             }
         }
                 await User.updateOne({_id:Userid},{balance:RankAmount})

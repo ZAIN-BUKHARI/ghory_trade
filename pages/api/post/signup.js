@@ -7,6 +7,15 @@ const handler= async (req, res)=> {
   const {firstname,lastname,email,password,cpassword}=req.body
     if(req.method=='POST'){
       try{
+        try{
+
+          let f = await User.findOne({email:email})
+          if(f.email==email)
+          {
+            res.status(200).json({error:'Email must be unique'})
+          }
+        }catch(e){
+
         const today = new Date();
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1; // Months start at 0!
@@ -29,7 +38,7 @@ const handler= async (req, res)=> {
                       res.status(200).json({success:true})
                    
                    }catch(e){
-                    res.status(200).json({success:true})
+                    res.status(200).json({error:'server down'})
                    }     
               }
             }
@@ -41,6 +50,7 @@ const handler= async (req, res)=> {
       }else
       res.status(200).json({ error:'Email must be unique' })
   }
+}
     catch{
       res.status(200).json({ error: 'You missed something' })
     }

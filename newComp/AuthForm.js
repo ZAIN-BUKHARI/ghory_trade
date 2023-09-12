@@ -58,11 +58,10 @@ const AuthForm = () => {
  },[])
   //SIGNUP
   const signup = (e) => {
-    setLoader(true)
     e.preventDefault();
-    
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/signup", data).then((res) => {
+    setLoader(true)
       if (res.data.success == true) {
         toast.success("Successfully signup", {
           position: "top-right",
@@ -76,6 +75,7 @@ const AuthForm = () => {
         });
         setActiveLoginModal(true);
         setAuth(false);
+
       } else {
         toast.error(res.data.error, {
           position: "top-right",
@@ -88,8 +88,8 @@ const AuthForm = () => {
           theme: "light",
         });
       }
-    });
-    setLoader(false)
+      setLoader(false)
+    }).catch(e=>{alert('Check your network')});
   };
   const signin = (e) => {
     e.preventDefault();
@@ -187,9 +187,7 @@ const AuthForm = () => {
                     <span className="details">First Name</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setfirstname(e.target.value);
-                      }}
+                      onChange={(e) => {setfirstname(e.target.value)}}
                       placeholder="Enter your name"
                       required
                     />
@@ -198,9 +196,7 @@ const AuthForm = () => {
                     <span className="details">Last Name</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setfirstname(e.target.value);
-                      }}
+                      onChange={(e) => {setlastname(e.target.value)}}
                       placeholder="Enter your lastname"
                       required
                     />
@@ -209,8 +205,7 @@ const AuthForm = () => {
                     <span className="details">Email</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setemail(e.target.value);
+                      onChange={(e) => {setemail(e.target.value)
                       }}
                       placeholder="Enter your email"
                       required
@@ -220,9 +215,7 @@ const AuthForm = () => {
                     <span className="details">Password</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setpassword(e.target.value);
-                      }}
+                      onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
@@ -231,17 +224,15 @@ const AuthForm = () => {
                     <span className="details">Confirm password</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setcpassword(e.target.value);
-                      }}
+                      onChange={(e) => {setcpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
                   </div>}
                 </div>
                 <div className="button-auth">
-                 {!ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> }
-                 {ActiveLoginModal && <input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> }
+                 {!ActiveLoginModal && (<input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> )}
+                 {ActiveLoginModal && (<input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> )}
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">
@@ -293,9 +284,7 @@ const AuthForm = () => {
                         </span>
                         <input
                           type="text"
-                          onChange={(e) => {
-                            setfirstname(e.target.value);
-                          }}
+                          onChange={(e) => {setfirstname(e.target.value)}}
                           placeholder="Enter your name"
                           required
                         />
@@ -317,9 +306,7 @@ const AuthForm = () => {
                     <span className="details">Email</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setemail(e.target.value);
-                      }}
+                      onChange={(e) => {setemail(e.target.value)}}
                       placeholder="Enter your email"
                       required
                     />
