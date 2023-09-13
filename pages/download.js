@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 
 const download = () => {
-  const {mobile,sethideSidebar} = useContext(ThemeContext)
+  const {mobile,sethideSidebar,router} = useContext(ThemeContext)
   useEffect(()=>{
+    router.push('/download')
     if(mobile)
       sethideSidebar(false) 
   },[])

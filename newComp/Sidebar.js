@@ -331,7 +331,7 @@ else{
             <FcAutomatic/>
           </span>
           
-          {!token &&<Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
+          {!token &&<Link href={''} onClick={Dailywork}  >widthdraw</Link>}
           {!token &&<FcLock/>}
           {/* //LOGGIN */}
           {/* both login and subscription  */}

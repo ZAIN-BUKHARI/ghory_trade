@@ -4,7 +4,7 @@ import LightButtonPlayer from '../universe.io/LightButtonPlayer'
 import {ThemeContext} from '../Context/ThemeContext'
 
 const Invite = () => {
-    const {Userid} = useContext(ThemeContext)
+    const {Userid,mobile} = useContext(ThemeContext)
     const Copy = () =>{
         navigator.clipboard.writeText(`http://www.ghory.trade/invite?_id=${Userid}`)
         toast.success('Link copied to your clipboard  ', {
@@ -25,7 +25,8 @@ const Invite = () => {
         <img className='Invite-img' src="qr-code.png" alt="QR code" width="288" height="288" />
         <h1 className='Invite-h1'>Make your team</h1>
       </main>
-        <LightButtonPlayer func={Copy} title={'Copy invite link'} disabled={false}/>
+        {!mobile && <LightButtonPlayer func={Copy} title={'Copy invite link'} disabled={false}/>}
+        {mobile && <LightButtonPlayer  title={`http://www.ghory.trade/invite?_id=${Userid}`} disabled={false}/> }
     </section>
     </>
   )
