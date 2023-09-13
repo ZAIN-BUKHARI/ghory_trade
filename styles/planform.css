@@ -67,7 +67,7 @@
       max-width: 700px;
       width: 100%;
       /* width: 30%; */
-      height: 630px;
+      height: 650px;
       background-color: #fff;
       padding: 25px 30px;
       border-radius: 5px;
@@ -189,7 +189,7 @@
     }
     .trc-address-text
     {
-      font-size: 14px;
+      font-size: 10px;
     }
     /* .Invest-Container .title::before{
       content: "";
