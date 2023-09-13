@@ -49,8 +49,9 @@
   }
   
   .Invite-img {
-    max-width: 100%;
-    height: auto;
+    margin: auto;
+    width:  200px !important;
+    height: 200px !important;
   }
   
   /* --------------------------------------------- */
@@ -59,7 +60,8 @@
   
   .Invite-main {
     background-color: var(--color-white);
-    max-width: 320px;
+    width: 250px !important;
+    height: 300px;
     padding: 1.075em;
     border-radius: 1.35em;
     box-shadow: 0 1.6em 1.6em hsla(0, 0%, 0%, 0.05);
@@ -82,4 +84,11 @@
     line-height: 1.3;
     color: var(--color-blue);
     margin: 1.075em;
+  }
+  .invite-link-tag-mob{
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 40px;
+    margin-bottom: 100px;
   }
