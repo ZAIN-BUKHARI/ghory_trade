@@ -496,9 +496,9 @@ const PlanForm = () => {
               {wallet == "TRC20" && (
                 <span className="trc-address-text">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
                 )}{" "}
-              {wallet == "JAZZCASH" && <span  >03364569511</span>}{" "}
-              {wallet == "EASYPAISA" && <span  >03364569822</span>}{" "}
-              {wallet == "RASS" && <span  >03364569533</span>}
+              {wallet == "JAZZCASH" && <span  >03224959827</span>}{" "}
+              {wallet == "EASYPAISA" && <span  >03224959827</span>}{" "}
+              {wallet == "RASS" && <span  >03224959827</span>}
             </span>
           </div>
           <div className="content">
