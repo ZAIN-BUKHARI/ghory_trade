@@ -182,6 +182,7 @@ const AuthForm = () => {
    axios.post('/api/post/forgot',data).then(res=>{
     if(res.data.success==true)
     {
+      setAuth(false);
       toast.success("Password changed :)", {
         position: "top-right",
         autoClose: 2000,
@@ -263,7 +264,7 @@ const AuthForm = () => {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                {!forgotModal && (  <div className="input-box">
                     <span className="details">Password</span>
                     <input
                       type="text"
@@ -271,7 +272,16 @@ const AuthForm = () => {
                       placeholder="Enter your password"
                       required
                     />
-                  </div>
+                  </div>)}
+                {forgotModal && (  <div className="input-box">
+                    <span className="details">New Password</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {setpassword(e.target.value)}}
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>)}
                   {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Confirm password</span>
                     <input
