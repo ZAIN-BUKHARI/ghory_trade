@@ -76,10 +76,10 @@ const VideoPlayer = () => {
       if(res.data.success==true)
       {
         alert('Task complete')
-        // router.push('/')
+        router.push('/')
         setTimeout(() => {
-           window.open(`https://www.youtube.com/watch?v=${videoID}`)
-          // window.location.reload()
+          //  window.open(`https://www.youtube.com/watch?v=${videoID}`)
+          window.location.reload()
         }, 1000);
       }else{
         alert('Server error try again')
