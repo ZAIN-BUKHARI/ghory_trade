@@ -50,7 +50,7 @@ const AdminUpdate = () => {
                 setcreatedAt(res.data.user.date)
                 setlevel(res.data.user.level)
                 setadmin(res.data.user.admin)
-                setpdprofit(res.data.user.pdprofit)
+                setpdprofit(res.data.user.perDayProfit)
             }else{
                 alert('server error')
             }
