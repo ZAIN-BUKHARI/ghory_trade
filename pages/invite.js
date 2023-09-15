@@ -18,7 +18,7 @@ const invite = () => {
   //useContext
   const {setAuth}=useContext(ThemeContext)
   //security
-  const [ActiveLoginModal,setActiveLoginModal]=useState(false)
+  const [ActiveLoginModal,setActiveLoginModal,mobile]=useState(false)
   //useRouter
   const router=useRouter()
   const {_id}=router.query
@@ -107,94 +107,169 @@ const invite = () => {
       
         
 }
-return (
-    <>
-      <div className="PlanForm-Head-modal-auth refferal-modal-invite">
-        <div className="Invest-Container-authform" id="zain">
-          <div className="title  authform-cancel-modal-button">
-            {" "}
-            Sign up 
-            <h1 onClick={hideModla}>X</h1>
-          </div>
-          <div className="content">
-            <form action="#">
-              <div className="user-details-auth">
-                
-                  
-                    <div className="input-box-auth">
-                      <span className="details auth-authform-fields">
-                        First Name
-                      </span>
-                      <input
-                        type="text"
-                        onChange={(e) => {
-                          setfirstname(e.target.value);
-                        }}
-                        placeholder="Enter your name"
-                        required
-                      />
-                    </div>
-                    <div className="input-box-auth">
-                      <span className="details ">Last Name</span>
-                      <input
-                        type="text"
-                        onChange={(e) => {
-                          setlastname(e.target.value);
-                        }}
-                        placeholder="Enter your lastname"
-                        required
-                      />
-                    </div>
-                  
-                
-                <div className="input-box-auth">
-                  <span className="details">Email</span>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setemail(e.target.value);
-                    }}
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="input-box-auth">
-                  <span className="details">Password</span>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setpassword(e.target.value);
-                    }}
-                    placeholder="Enter your password"
-                    required
-                  />
-                </div>
-                  <div className="input-box-auth">
-                    <span className="details">Confirm password</span>
+
+// if (!mobile) {
+    return (
+      <>
+        <div className="PlanForm-Head-modal-auth">
+          <div className="Invest-Container" id="zain">
+            <div className="title  authform-cancel-modal-button">
+              {" "}
+              Referral Invite  
+              <h1 onClick={hideModla}>X</h1>
+            </div>
+            <div className="content">
+              <form action="#">
+                <div className="user-details">
+                 <div className="input-box">
+                    <span className="details">First Name</span>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setcpassword(e.target.value);
+                      onChange={(e) => {setfirstname(e.target.value)}}
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+                 <div className="input-box">
+                    <span className="details">Last Name</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {setlastname(e.target.value)}}
+                      placeholder="Enter your lastname"
+                      required
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Email</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {setemail(e.target.value)
                       }}
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Password</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
                   </div>
-              </div>
-              
-            <div className="button-auth">
-              
-                <input className='' type="button" value="Signup" onClick={signup} />
+                   <div className="input-box">
+                    <span className="details">Confirm password</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {setcpassword(e.target.value)}}
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="button-auth">
+                 <input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> 
+                </div>
+                
+              </form>
             </div>
-            </form>
-            {/* <div className="button " onClick={signup}>
-                <input className='currency-btn-input' type="button" value="Singup"   />
-              </div> */}
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+//   }
+//  else {
+//     return (
+//       <>
+//       <div className="PlanForm-Head-modal-auth refferal-modal-invite">
+//         <div className="Invest-Container-authform" id="zain">
+//           <div className="title  authform-cancel-modal-button">
+//             {" "}
+//             Sign up 
+//             <h1 onClick={hideModla}>X</h1>
+//           </div>
+//           <div className="content">
+//             <form action="#">
+//               <div className="user-details-auth">
+                
+                  
+//                     <div className="input-box-auth">
+//                       <span className="details auth-authform-fields">
+//                         First Name
+//                       </span>
+//                       <input
+//                         type="text"
+//                         onChange={(e) => {
+//                           setfirstname(e.target.value);
+//                         }}
+//                         placeholder="Enter your name"
+//                         required
+//                       />
+//                     </div>
+//                     <div className="input-box-auth">
+//                       <span className="details ">Last Name</span>
+//                       <input
+//                         type="text"
+//                         onChange={(e) => {
+//                           setlastname(e.target.value);
+//                         }}
+//                         placeholder="Enter your lastname"
+//                         required
+//                       />
+//                     </div>
+                  
+                
+//                 <div className="input-box-auth">
+//                   <span className="details">Email</span>
+//                   <input
+//                     type="text"
+//                     onChange={(e) => {
+//                       setemail(e.target.value);
+//                     }}
+//                     placeholder="Enter your email"
+//                     required
+//                   />
+//                 </div>
+//                 <div className="input-box-auth">
+//                   <span className="details">Password</span>
+//                   <input
+//                     type="text"
+//                     onChange={(e) => {
+//                       setpassword(e.target.value);
+//                     }}
+//                     placeholder="Enter your password"
+//                     required
+//                   />
+//                 </div>
+//                   <div className="input-box-auth">
+//                     <span className="details">Confirm password</span>
+//                     <input
+//                       type="text"
+//                       onChange={(e) => {
+//                         setcpassword(e.target.value);
+//                       }}
+//                       placeholder="Enter your password"
+//                       required
+//                     />
+//                   </div>
+//               </div>
+              
+//             <div className="button-auth">
+              
+//                 <input className='' type="button" value="Signup" onClick={signup} />
+//             </div>
+//             </form>
+//             {/* <div className="button " onClick={signup}>
+//                 <input className='currency-btn-input' type="button" value="Singup"   />
+//               </div> */}
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//     );
+//   }
+
 }
 
 export default invite

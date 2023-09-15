@@ -109,6 +109,15 @@
       border-radius: 5px;
       box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
+    .Invest-Container-authform-forgot-height{
+      max-width: 700px;
+      width: 30%;
+      height: 350px;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
     .planfirm-space-span{
       margin-left: 250px;
     }
@@ -458,9 +467,39 @@ display: none;
 }
 .authform-invest-spantwo{
   cursor: pointer;
-  color: navy;
+  color: blue;
   font-weight: bold;
 }
 .authform-text-submit{
   text-align: center;
+}
+.forgot-planform{
+  color: blue;
+  font-weight: bold;
+  margin-left: 120px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.forgot-planform-mob{
+  color: blue;
+  font-weight: bold;
+  margin-left: 100px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.signin-planform{
+  font-size: 12px;
+  margin-left: 150px;
+  font-weight: bold;
+  color: blue;
+  cursor: pointer;
+}
+.planform-logo-web{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 0;
+}
+.span-title-palnform-web{
+  margin-left: 10px;
 }

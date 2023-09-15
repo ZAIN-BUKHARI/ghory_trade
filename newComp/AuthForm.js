@@ -19,6 +19,7 @@ const AuthForm = () => {
 
   const {Auth, setAuth, mobile,setLoader } = useContext(ThemeContext);
   const [ActiveLoginModal, setActiveLoginModal] = useState(false);
+  const [forgotModal, setforgotModal] = useState(false);
 
   const hideModla = () => {
     setAuth(false);
@@ -28,11 +29,13 @@ const AuthForm = () => {
     {
 
       setActiveLoginModal(true);
+      setforgotModal(false)
       document.getElementById("zain").classList.remove("signup-height");
       document
       .getElementById("zain")
       .classList.add("signin-height");
     }else{
+      setforgotModal(false)
       setActiveLoginModal(true);
       document.getElementById("window").classList.remove("Invest-Container-authform");
       document.getElementById("window").classList.add("Invest-Container-authform-singin-height");
@@ -43,16 +46,22 @@ const AuthForm = () => {
     if(mobile)
     {
       setActiveLoginModal(false);
+      setforgotModal(false)
       document.getElementById("zain").classList.remove('signin-height')
       document
       .getElementById("zain")
       .classList.add("signup-height");
     }else{
       setActiveLoginModal(false);
+      setforgotModal(false)
       document.getElementById("window").classList.remove("Invest-Container-authform-singin-height");
       document.getElementById("window").classList.add("Invest-Container-authform");
     }
   };
+  const showforgot =() =>{
+    setforgotModal(true)
+    
+  }
  useEffect(()=>{
     
  },[])
@@ -168,6 +177,46 @@ const AuthForm = () => {
     });
     setLoader(false)
   };
+  const forgot = (e) =>{
+    const data = {email,password,cpassword}
+   axios.post('/api/post/forgot',data).then(res=>{
+    if(res.data.success==true)
+    {
+      toast.success("Password changed :)", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }else{
+      toast.success(res.data.error, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+   }).catch(err=>{
+    toast.success('Server down try again later', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+   })
+  }
 
   if (mobile) {
     return (
@@ -175,9 +224,12 @@ const AuthForm = () => {
         <div className="PlanForm-Head-modal-auth">
           <div className="Invest-Container" id="zain">
             <div className="title  authform-cancel-modal-button">
+            <img src="remove_bg.png" className="planform-logo-web"/>
               {" "}
-              {!ActiveLoginModal && "Sign up"}
-              {ActiveLoginModal && "Sign in"}
+              {!ActiveLoginModal &&  <span className="span-title-palnform-web">Sign up</span>}
+              {ActiveLoginModal && !forgotModal &&  <span className="span-title-palnform-web">Sign in</span>}
+              {forgotModal &&  <span className="span-title-palnform-web">Forgot Password</span>}
+
               <h1 onClick={hideModla}>X</h1>
             </div>
             <div className="content">
@@ -232,7 +284,8 @@ const AuthForm = () => {
                 </div>
                 <div className="button-auth">
                  {!ActiveLoginModal && (<input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> )}
-                 {ActiveLoginModal && (<input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> )}
+                 {ActiveLoginModal && !forgotModal &&(<input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> )}
+                 {forgotModal && ( <input type="button" value="Forgot" onClick={forgot} /> )}
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">
@@ -245,7 +298,7 @@ const AuthForm = () => {
                     </span>
                   </span>
                 )}
-                {ActiveLoginModal && (
+                {ActiveLoginModal && !forgotModal && (
                   <span className="authform-invest-spanone">
                     Don't have an account?{" "}
                     <span
@@ -255,6 +308,11 @@ const AuthForm = () => {
                       Signup
                     </span>
                   </span>
+                )}
+                {ActiveLoginModal && !forgotModal && (
+                    <h1 onClick={showforgot} className="forgot-planform-mob">
+                      Forgot Password
+                    </h1>
                 )}
               </form>
             </div>
@@ -268,9 +326,11 @@ const AuthForm = () => {
         <div className="PlanForm-Head-modal-auth">
           <div className="Invest-Container-authform" id="window" >
             <div className="title  authform-cancel-modal-button">
+            <img src="remove_bg.png" className="planform-logo-web"/>
               {" "}
-              {!ActiveLoginModal && "Sign up"}
-              {ActiveLoginModal && "Sign in"}
+              {!ActiveLoginModal &&  <span className="span-title-palnform-web">Sign up</span>}
+              {ActiveLoginModal && !forgotModal &&  <span className="span-title-palnform-web">Sign in</span>}
+              {forgotModal &&  <span className="span-title-palnform-web">Forgot Password</span>}
               <h1 onClick={hideModla}>X</h1>
             </div>
             <div className="content">
@@ -335,13 +395,29 @@ const AuthForm = () => {
                       />
                     </div>
                   )}
+                  {forgotModal && (
+                    <div className="input-box-auth">
+                      <span className="details">Confirm password</span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setcpassword(e.target.value);
+                        }}
+                        placeholder="Enter your password"
+                        required
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="button-auth">
                   {!ActiveLoginModal && (
                     <input type="button" value="Signup" onClick={signup} />
                   )}
-                  {ActiveLoginModal && (
+                  {ActiveLoginModal && !forgotModal && (
                     <input type="button" value="Signin" onClick={signin} />
+                  )}
+                  {forgotModal && (
+                    <input type="button" value="Forgot" onClick={forgot} />
                   )}
                 </div>
                 {!ActiveLoginModal && (
@@ -355,7 +431,7 @@ const AuthForm = () => {
                     </span>
                   </span>
                 )}
-                {ActiveLoginModal && (
+                {ActiveLoginModal && !forgotModal && (
                   <span className="authform-invest-spanone">
                     Don't have an account?{" "}
                     <span
@@ -365,6 +441,11 @@ const AuthForm = () => {
                       Signup
                     </span>
                   </span>
+                )}
+                {ActiveLoginModal && !forgotModal && (
+                    <h1 onClick={showforgot} className="forgot-planform">
+                      Forgot Password
+                    </h1>
                 )}
               </form>
             </div>
