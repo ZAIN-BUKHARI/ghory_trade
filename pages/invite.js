@@ -1,8 +1,8 @@
-import axios from 'axios'
+import React,{useState,useContext} from 'react'
 import { useRouter } from 'next/router'
-import React,{useEffect,useState,useContext} from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 import { toast } from 'react-toastify';
+import axios from 'axios'
 
 
 const invite = () => {
@@ -13,13 +13,8 @@ const invite = () => {
   const [email,setemail]=useState("")
   const [password,setpassword]=useState("")
   const [cpassword,setcpassword]=useState("")
-  //state variables
-  const [Inviter,setInviter]=useState([])
-  //useContext
-  const {setAuth}=useContext(ThemeContext)
-  //security
-  const [ActiveLoginModal,setActiveLoginModal,mobile]=useState(false)
   //useRouter
+  const { mobile } = useContext(ThemeContext)
   const router=useRouter()
   const {_id}=router.query
 
@@ -107,168 +102,190 @@ const invite = () => {
       
         
 }
+if(!mobile)
+{
+return (
+    <>
+      <div className="PlanForm-Head-modal-auth refferal-modal-invite">
+        <div className="Invest-Container-authform" id="zain">
+          <div className="title  authform-cancel-modal-button">
+          <img src="remove_bg.png" className="planform-logo-web"/>
 
-// if (!mobile) {
-    return (
-      <>
-        <div className="PlanForm-Head-modal-auth">
-          <div className="Invest-Container" id="zain">
-            <div className="title  authform-cancel-modal-button">
-              {" "}
-              Referral Invite  
-              <h1 onClick={hideModla}>X</h1>
-            </div>
-            <div className="content">
-              <form action="#">
-                <div className="user-details">
-                 <div className="input-box">
-                    <span className="details">First Name</span>
-                    <input
-                      type="text"
-                      onChange={(e) => {setfirstname(e.target.value)}}
-                      placeholder="Enter your name"
-                      required
-                    />
-                  </div>
-                 <div className="input-box">
-                    <span className="details">Last Name</span>
-                    <input
-                      type="text"
-                      onChange={(e) => {setlastname(e.target.value)}}
-                      placeholder="Enter your lastname"
-                      required
-                    />
-                  </div>
-                  <div className="input-box">
-                    <span className="details">Email</span>
-                    <input
-                      type="text"
-                      onChange={(e) => {setemail(e.target.value)
-                      }}
-                      placeholder="Enter your email"
-                      required
-                    />
-                  </div>
-                  <div className="input-box">
-                    <span className="details">Password</span>
-                    <input
-                      type="text"
-                      onChange={(e) => {setpassword(e.target.value)}}
-                      placeholder="Enter your password"
-                      required
-                    />
-                  </div>
-                   <div className="input-box">
+            {" "}
+            <span className='span-title-palnform-web'>Referral Invite</span>  
+            <h1 onClick={hideModla}>X</h1>
+          </div>
+          <div className="content">
+            <form action="#">
+              <div className="user-details-auth">
+                
+                  
+                    <div className="input-box-auth">
+                      <span className="details auth-authform-fields">
+                        First Name
+                      </span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setfirstname(e.target.value);
+                        }}
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details ">Last Name</span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setlastname(e.target.value);
+                        }}
+                        placeholder="Enter your lastname"
+                        required
+                      />
+                    </div>
+                  
+                
+                <div className="input-box-auth">
+                  <span className="details">Email</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="input-box-auth">
+                  <span className="details">Password</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                  <div className="input-box-auth">
                     <span className="details">Confirm password</span>
                     <input
                       type="text"
-                      onChange={(e) => {setcpassword(e.target.value)}}
+                      onChange={(e) => {
+                        setcpassword(e.target.value);
+                      }}
                       placeholder="Enter your password"
                       required
                     />
                   </div>
-                </div>
-                <div className="button-auth">
-                 <input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> 
-                </div>
-                
-              </form>
+              </div>
+              
+            <div className="button-auth">
+              
+                <input className='' type="button" value="Signup" onClick={signup} />
             </div>
+            </form>
+            {/* <div className="button " onClick={signup}>
+                <input className='currency-btn-input' type="button" value="Singup"   />
+              </div> */}
           </div>
         </div>
-      </>
-    );
-//   }
-//  else {
-//     return (
-//       <>
-//       <div className="PlanForm-Head-modal-auth refferal-modal-invite">
-//         <div className="Invest-Container-authform" id="zain">
-//           <div className="title  authform-cancel-modal-button">
-//             {" "}
-//             Sign up 
-//             <h1 onClick={hideModla}>X</h1>
-//           </div>
-//           <div className="content">
-//             <form action="#">
-//               <div className="user-details-auth">
+      </div>
+    </>
+  );
+}else{
+  return (
+    <>
+      <div className="PlanForm-Head-modal-auth refferal-modal-invite">
+        <div className="Invest-Container-invite-mob" id="zain">
+          <div className="title  authform-cancel-modal-button">
+          <img src="remove_bg.png" className="planform-logo-web"/>
+
+            {" "}
+            <span className='span-title-palnform-web'>Referral Invite</span>  
+            <h1 onClick={hideModla}>X</h1>
+          </div>
+          <div className="content">
+            <form action="#">
+              <div className="user-details-auth">
                 
                   
-//                     <div className="input-box-auth">
-//                       <span className="details auth-authform-fields">
-//                         First Name
-//                       </span>
-//                       <input
-//                         type="text"
-//                         onChange={(e) => {
-//                           setfirstname(e.target.value);
-//                         }}
-//                         placeholder="Enter your name"
-//                         required
-//                       />
-//                     </div>
-//                     <div className="input-box-auth">
-//                       <span className="details ">Last Name</span>
-//                       <input
-//                         type="text"
-//                         onChange={(e) => {
-//                           setlastname(e.target.value);
-//                         }}
-//                         placeholder="Enter your lastname"
-//                         required
-//                       />
-//                     </div>
+                    <div className="input-box-auth">
+                      <span className="details auth-authform-fields">
+                        First Name
+                      </span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setfirstname(e.target.value);
+                        }}
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div className="input-box-auth">
+                      <span className="details ">Last Name</span>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setlastname(e.target.value);
+                        }}
+                        placeholder="Enter your lastname"
+                        required
+                      />
+                    </div>
                   
                 
-//                 <div className="input-box-auth">
-//                   <span className="details">Email</span>
-//                   <input
-//                     type="text"
-//                     onChange={(e) => {
-//                       setemail(e.target.value);
-//                     }}
-//                     placeholder="Enter your email"
-//                     required
-//                   />
-//                 </div>
-//                 <div className="input-box-auth">
-//                   <span className="details">Password</span>
-//                   <input
-//                     type="text"
-//                     onChange={(e) => {
-//                       setpassword(e.target.value);
-//                     }}
-//                     placeholder="Enter your password"
-//                     required
-//                   />
-//                 </div>
-//                   <div className="input-box-auth">
-//                     <span className="details">Confirm password</span>
-//                     <input
-//                       type="text"
-//                       onChange={(e) => {
-//                         setcpassword(e.target.value);
-//                       }}
-//                       placeholder="Enter your password"
-//                       required
-//                     />
-//                   </div>
-//               </div>
+                <div className="input-box-auth">
+                  <span className="details">Email</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="input-box-auth">
+                  <span className="details">Password</span>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                  <div className="input-box-auth">
+                    <span className="details">Confirm password</span>
+                    <input
+                      type="text"
+                      onChange={(e) => {
+                        setcpassword(e.target.value);
+                      }}
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+              </div>
               
-//             <div className="button-auth">
+            <div className="button-auth">
               
-//                 <input className='' type="button" value="Signup" onClick={signup} />
-//             </div>
-//             </form>
-//             {/* <div className="button " onClick={signup}>
-//                 <input className='currency-btn-input' type="button" value="Singup"   />
-//               </div> */}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//     );
-//   }
+                <input className='' type="button" value="Signup" onClick={signup} />
+            </div>
+            </form>
+            {/* <div className="button " onClick={signup}>
+                <input className='currency-btn-input' type="button" value="Singup"   />
+              </div> */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 
 }
 
