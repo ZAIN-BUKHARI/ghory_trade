@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useEffect } from "react";
+import { AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineEyeInvisible } from 'react-icons/ai';
+
 const AuthForm = () => {
   //router
   const router = useRouter();
@@ -20,6 +23,8 @@ const AuthForm = () => {
   const {Auth, setAuth, mobile,setLoader } = useContext(ThemeContext);
   const [ActiveLoginModal, setActiveLoginModal] = useState(false);
   const [forgotModal, setforgotModal] = useState(false);
+  //show password
+  const [toggle,settoggle]=useState('password')
 
   const hideModla = () => {
     setAuth(false);
@@ -218,7 +223,10 @@ const AuthForm = () => {
     });
    })
   }
-
+  const toggleBtn = (e)=>{
+    if(toggle=='password')settoggle('text');
+    else settoggle('password');
+  }
   if (mobile) {
     return (
       <>
@@ -267,20 +275,22 @@ const AuthForm = () => {
                 {!forgotModal && (  <div className="input-box">
                     <span className="details">Password</span>
                     <input
-                      type="text"
+                      type="password"
                       onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
+
                   </div>)}
                 {forgotModal && (  <div className="input-box">
                     <span className="details">New Password</span>
                     <input
-                      type="text"
+                      type="password"
                       onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
+                    
                   </div>)}
                   {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Confirm password</span>
@@ -384,38 +394,50 @@ const AuthForm = () => {
                   <div className="input-box-auth">
                     <span className="details">Password</span>
                     <input
-                      type="text"
+                      type={toggle}
+                      
                       onChange={(e) => {
                         setpassword(e.target.value);
                       }}
                       placeholder="Enter your password"
                       required
                     />
+                        {!ActiveLoginModal && toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
+                        {ActiveLoginModal && toggle=='password' &&  <AiOutlineEye onClick={toggleBtn} className="securityToggle-signin"/>}
+
+                        {!ActiveLoginModal && toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle"/>}
+                        {ActiveLoginModal && toggle=='text' &&  <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-signin"/>}
+
                   </div>
                   {!ActiveLoginModal && (
                     <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
-                        type="text"
+                        type={toggle}
                         onChange={(e) => {
                           setcpassword(e.target.value);
                         }}
                         placeholder="Enter your password"
                         required
-                      />
+                        />
+                       {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
+                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>}
+
                     </div>
                   )}
                   {forgotModal && (
                     <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
-                        type="text"
+                        type={toggle}
                         onChange={(e) => {
                           setcpassword(e.target.value);
                         }}
                         placeholder="Enter your password"
                         required
                       />
+                        {toggle == 'password' &&<AiOutlineEye onClick={toggleBtn} className="securityToggle-forgotconfirm"/>}
+                        {toggle == 'text' &&<AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-forgotconfirm"/>}
                     </div>
                   )}
                 </div>

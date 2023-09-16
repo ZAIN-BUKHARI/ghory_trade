@@ -267,6 +267,45 @@
       border: 1px solid #ccc;
       border-bottom-width: 2px;
       transition: all 0.3s ease;
+      position: relative;
+    }
+    .securityToggle{
+      font-size: 20px;
+      position: absolute;
+      right: 530px;
+      top: 375px;
+      cursor: pointer;
+
+    }
+    .securityToggle-mob{
+      font-size: 20px;
+      position: absolute;
+      right: 60px;
+      top: 335px; 
+      cursor: pointer;
+    }
+    .securityToggle-signin{
+      font-size: 20px;
+      position: absolute;
+      right: 530px;
+      top: 330px;
+      cursor: pointer;
+
+    }
+    .securityToggle-forgotconfirm{
+      font-size: 20px;
+      position: absolute;
+      right: 530px;
+      top: 390px;
+      cursor: pointer;
+
+    }
+    .securityToggle-confirm{
+      font-size: 20px;
+      position: absolute;
+      right: 530px;
+      top: 435px;
+      cursor: pointer;
     }
     .user-details .input-box input:focus,
     .user-details .input-box input:valid{

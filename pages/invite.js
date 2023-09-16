@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import { ThemeContext } from '../Context/ThemeContext'
 import { toast } from 'react-toastify';
 import axios from 'axios'
+import { AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineEyeInvisible } from 'react-icons/ai';
 
 
 const invite = () => {
@@ -18,6 +20,7 @@ const invite = () => {
   const router=useRouter()
   const {_id}=router.query
 
+  const [toggle,settoggle]=useState('password')
   const hideModla = () =>{
     router.push('/')
   }
@@ -102,6 +105,11 @@ const invite = () => {
       
         
 }
+const toggleBtn = (e)=>{
+  if(toggle=='password')settoggle('text');
+  else settoggle('password');
+}
+
 if(!mobile)
 {
 return (
@@ -160,24 +168,30 @@ return (
                 <div className="input-box-auth">
                   <span className="details">Password</span>
                   <input
-                    type="text"
+                    type={toggle}
                     onChange={(e) => {
                       setpassword(e.target.value);
                     }}
                     placeholder="Enter your password"
                     required
                   />
+                  {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
+
+{toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle"/>}
                 </div>
                   <div className="input-box-auth">
                     <span className="details">Confirm password</span>
                     <input
-                      type="text"
+                      type={toggle}
                       onChange={(e) => {
                         setcpassword(e.target.value);
                       }}
                       placeholder="Enter your password"
                       required
                     />
+                    {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
+                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>}
+
                   </div>
               </div>
               
@@ -258,6 +272,7 @@ return (
                     placeholder="Enter your password"
                     required
                   />
+                  
                 </div>
                   <div className="input-box-auth">
                     <span className="details">Confirm password</span>
@@ -269,6 +284,9 @@ return (
                       placeholder="Enter your password"
                       required
                     />
+                    {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
+                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>}
+
                   </div>
               </div>
               
