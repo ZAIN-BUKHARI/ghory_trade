@@ -273,22 +273,22 @@
       font-size: 20px;
       position: absolute;
       right: 530px;
-      top: 375px;
+      top: 360px;/*before 375*/
       cursor: pointer;
 
     }
-    .securityToggle-mob{
+    /* .securityToggle-mob{
       font-size: 20px;
       position: absolute;
       right: 60px;
-      top: 335px; 
+      top: 300px; 
       cursor: pointer;
-    }
+    } */
     .securityToggle-signin{
       font-size: 20px;
       position: absolute;
       right: 530px;
-      top: 330px;
+      top: 315px;
       cursor: pointer;
 
     }
@@ -296,7 +296,7 @@
       font-size: 20px;
       position: absolute;
       right: 530px;
-      top: 390px;
+      top: 375px;
       cursor: pointer;
 
     }
@@ -304,7 +304,7 @@
       font-size: 20px;
       position: absolute;
       right: 530px;
-      top: 435px;
+      top: 420px;
       cursor: pointer;
     }
     .user-details .input-box input:focus,
