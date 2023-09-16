@@ -6,7 +6,7 @@ const handler= async (req, res)=> {
     
         const {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,admin,level,pdprofit}=req.body
         try{ 
-        let user = await User.findByIdAndUpdate({_id:id},{_id,firstname,email,password,balance,todaywork,subscription,date:createdAt,admin,level,pdprofit})
+        let user = await User.findByIdAndUpdate({_id:id},{_id,firstname,email,password,balance,todaywork,subscription,date:createdAt,admin,level,perDayProfit:pdprofit})
             await user.save()
             res.status(200).json({ success:true })
        }
