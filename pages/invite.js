@@ -15,18 +15,21 @@ const invite = () => {
   const [email,setemail]=useState("")
   const [password,setpassword]=useState("")
   const [cpassword,setcpassword]=useState("")
+
+  const[ disable,setdisable]=useState(false)
+
   //useRouter
   const { mobile } = useContext(ThemeContext)
   const router=useRouter()
   const {_id}=router.query
 
-  const [toggle,settoggle]=useState('password')
   const hideModla = () =>{
     router.push('/')
   }
  
   const signup =async (e) =>{
     e.preventDefault()
+    setdisable(true)
     if(email.includes('@')){
         if(password==cpassword){
             if(firstname.length>0 && lastname.length>0){
@@ -168,36 +171,30 @@ return (
                 <div className="input-box-auth">
                   <span className="details">Password</span>
                   <input
-                    type={toggle}
+                    type='password'
                     onChange={(e) => {
                       setpassword(e.target.value);
                     }}
                     placeholder="Enter your password"
                     required
                   />
-                  {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
-
-{toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle"/>}
                 </div>
                   <div className="input-box-auth">
                     <span className="details">Confirm password</span>
                     <input
-                      type={toggle}
+                      type='password'
                       onChange={(e) => {
                         setcpassword(e.target.value);
                       }}
                       placeholder="Enter your password"
                       required
                     />
-                    {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
-                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>}
-
                   </div>
               </div>
               
             <div className="button-auth">
               
-                <input className='' type="button" value="Signup" onClick={signup} />
+                <input className='' type="button" value="Signup" disabled={disable} onClick={signup} />
             </div>
             </form>
             {/* <div className="button " onClick={signup}>
@@ -292,7 +289,7 @@ return (
               
             <div className="button-auth">
               
-                <input className='' type="button" value="Signup" onClick={signup} />
+                <input className='' type="button" value="Signup" disabled={disable} onClick={signup} />
             </div>
             </form>
             {/* <div className="button " onClick={signup}>

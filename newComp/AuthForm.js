@@ -23,8 +23,8 @@ const AuthForm = () => {
   const {Auth, setAuth, mobile,setLoader } = useContext(ThemeContext);
   const [ActiveLoginModal, setActiveLoginModal] = useState(false);
   const [forgotModal, setforgotModal] = useState(false);
-  //show password
-  const [toggle,settoggle]=useState('password')
+
+  const[ disable,setdisable]=useState(false)
 
   const hideModla = () => {
     setAuth(false);
@@ -73,6 +73,7 @@ const AuthForm = () => {
   //SIGNUP
   const signup = (e) => {
     e.preventDefault();
+    setdisable(true)
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/signup", data).then((res) => {
     setLoader(true)
@@ -107,6 +108,7 @@ const AuthForm = () => {
   };
   const signin = (e) => {
     e.preventDefault();
+    setdisable(true)
     setLoader(true)
     const data = { email, password };
     axios.post("/api/post/signin", data).then((res) => {
@@ -145,6 +147,7 @@ const AuthForm = () => {
   };
   const signinmobile = (e) => {
     e.preventDefault();
+    setdisable(true)
     setLoader(true)
     const data = { email, password };
     axios.post("/api/post/signin", data).then((res) => {
@@ -295,7 +298,7 @@ const AuthForm = () => {
                   {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Confirm password</span>
                     <input
-                      type="text"
+                      type="password"
                       onChange={(e) => {setcpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
@@ -303,9 +306,9 @@ const AuthForm = () => {
                   </div>}
                 </div>
                 <div className="button-auth">
-                 {!ActiveLoginModal && (<input className="authform-text-submit" type="button" value="Sign up" onClick={signup} /> )}
-                 {ActiveLoginModal && !forgotModal &&(<input className="authform-text-submit" type="button" value="Sign in" onClick={signinmobile} /> )}
-                 {forgotModal && ( <input type="button" value="Forgot" onClick={forgot} /> )}
+                 {!ActiveLoginModal && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> )}
+                 {ActiveLoginModal && !forgotModal &&(<input className="authform-text-submit" disabled={disable} type="button" value="Sign in" onClick={signinmobile} /> )}
+                 {forgotModal && ( <input type="button" value="Forgot" disabled={disable} onClick={forgot} /> )}
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">
@@ -394,7 +397,7 @@ const AuthForm = () => {
                   <div className="input-box-auth">
                     <span className="details">Password</span>
                     <input
-                      type={toggle}
+                      type='password'
                       
                       onChange={(e) => {
                         setpassword(e.target.value);
@@ -402,26 +405,26 @@ const AuthForm = () => {
                       placeholder="Enter your password"
                       required
                     />
-                        {!ActiveLoginModal && toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
+                        {/* {!ActiveLoginModal && toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
                         {ActiveLoginModal && toggle=='password' &&  <AiOutlineEye onClick={toggleBtn} className="securityToggle-signin"/>}
 
                         {!ActiveLoginModal && toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle"/>}
-                        {ActiveLoginModal && toggle=='text' &&  <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-signin"/>}
+                        {ActiveLoginModal && toggle=='text' &&  <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-signin"/>} */}
 
                   </div>
                   {!ActiveLoginModal && (
                     <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
-                        type={toggle}
+                        type='password'
                         onChange={(e) => {
                           setcpassword(e.target.value);
                         }}
                         placeholder="Enter your password"
                         required
                         />
-                       {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
-                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>}
+                       {/* {toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle-confirm"/>}
+                       {toggle=='text' && <AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-confirm"/>} */}
 
                     </div>
                   )}
@@ -429,27 +432,27 @@ const AuthForm = () => {
                     <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
-                        type={toggle}
+                        type='password'
                         onChange={(e) => {
                           setcpassword(e.target.value);
                         }}
                         placeholder="Enter your password"
                         required
                       />
-                        {toggle == 'password' &&<AiOutlineEye onClick={toggleBtn} className="securityToggle-forgotconfirm"/>}
-                        {toggle == 'text' &&<AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-forgotconfirm"/>}
+                        {/* {toggle == 'password' &&<AiOutlineEye onClick={toggleBtn} className="securityToggle-forgotconfirm"/>}
+                        {toggle == 'text' &&<AiOutlineEyeInvisible onClick={toggleBtn} className="securityToggle-forgotconfirm"/>} */}
                     </div>
                   )}
                 </div>
                 <div className="button-auth">
                   {!ActiveLoginModal && (
-                    <input type="button" value="Signup" onClick={signup} />
+                    <input type="button" disabled={disable} value="Signup" onClick={signup} />
                   )}
                   {ActiveLoginModal && !forgotModal && (
-                    <input type="button" value="Signin" onClick={signin} />
+                    <input type="button" disabled={disable} value="Signin" onClick={signin} />
                   )}
                   {forgotModal && (
-                    <input type="button" value="Forgot" onClick={forgot} />
+                    <input type="button" disabled={disable} value="Forgot" onClick={forgot} />
                   )}
                 </div>
                 {!ActiveLoginModal && (

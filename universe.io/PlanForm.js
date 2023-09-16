@@ -29,6 +29,8 @@ const PlanForm = () => {
   const [level, setlevel] = useState("");
   // investment formula
   const [formula, setformula] = useState(true);
+  //after subit disable subscribebtn
+  const[ disable,setdisable]=useState(false)
 
   useEffect(() => {
     if(mobile)
@@ -73,6 +75,7 @@ const PlanForm = () => {
   const submit = (e) => {
     e.preventDefault();
     setLoader(true)
+    setdisable(true)
     if(!formula){
       try{
 
@@ -422,7 +425,7 @@ const PlanForm = () => {
               <div className='space'>
                   <div class="g-ytsubscribe " data-channelid="UC8fgDqHGY6ETUl6buqwsLcg" data-layout="default" data-count="default"></div>
                  </div>
-                <input type="submit" value="Subscribe" />
+                <input type="submit" value="Subscribe" disabled={disable} />
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>

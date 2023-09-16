@@ -34,7 +34,7 @@
     width: 100vw;
 
     display: grid;
-    grid-template-columns: 1.8fr 1.2fr;
+    /* grid-template-columns: 1.8fr 1.2fr; */
     gap: 1rem;
     
     padding: .5rem 1rem;

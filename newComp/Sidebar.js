@@ -295,13 +295,13 @@ else{
         <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
-            <FcBarChart/>
+           {subscription=='no' && <FcBarChart/> }
           </span>
           {/* //NOT LOGGIN */}
-          {!token &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
-          {!token && <FcLock/>}
+          {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token && subscription=='no' &&  <FcLock/>}
           {/* //LOGGIN */}
-          {token  &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
         <li>

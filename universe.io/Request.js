@@ -13,8 +13,11 @@ const Request = () => {
     const [method,setmethod]=useState("TRC20")
     const [amount,setamount]=useState(0)
   
+  const[ disable,setdisable]=useState(false)
+
   //  derecemting in balance method is remaining
     const requestSubmit = async () =>{
+      setdisable(true)
     if(address.length==0 && amount==0  
       ){
         toast.error("Cannot submit empty request", {
@@ -148,7 +151,7 @@ if(mobile){
                   </select>
           <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
                       </div>
-          <button onClick={requestSubmit} className="sign-up"> Submit Request</button>
+          <button onClick={requestSubmit} className="sign-up" disabled={disable}> Submit Request</button>
       </div>
   </div>
       </div>
