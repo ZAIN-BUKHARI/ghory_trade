@@ -39,12 +39,12 @@ const AdminPlans = () => {
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Customer </th>
-                        <th> Address </th>
+                        <th> Name </th>
+                        <th> Email </th>
                         <th> Join</th>
                         <th> Today-Work</th>
                         <th> Amount </th>
-                        <th> Status </th>
+                        <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
                     </tr>

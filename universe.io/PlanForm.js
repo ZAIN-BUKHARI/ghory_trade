@@ -420,7 +420,7 @@ const PlanForm = () => {
               </div>
               <div className="button">
               <div className='space'>
-                  <div class="g-ytsubscribe " data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
+                  <div class="g-ytsubscribe " data-channelid="UC8fgDqHGY6ETUl6buqwsLcg" data-layout="default" data-count="default"></div>
                  </div>
                 <input type="submit" value="Subscribe" />
               </div>
@@ -667,7 +667,7 @@ const PlanForm = () => {
               </div>
               <div className="button">
               <div className='space'>
-                  <div class="g-ytsubscribe " data-channelid="UCHXv0CJEQCKJ4Ca9H-yPvxA" data-layout="default" data-count="default"></div>
+                  <div class="g-ytsubscribe " data-channelid="UC8fgDqHGY6ETUl6buqwsLcg" data-layout="default" data-count="default"></div>
                  </div>
              
                 <input type="submit" value="Subscribe" />
