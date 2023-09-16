@@ -76,9 +76,9 @@ const VideoPlayer = () => {
       if(res.data.success==true)
       {
         alert('Task complete')
-        router.push('/')
+        window.open(`https://www.youtube.com/watch?v=${videoID}`)
         setTimeout(() => {
-          //  window.open(`https://www.youtube.com/watch?v=${videoID}`)
+          router.push('/')
           window.location.reload()
         }, 1000);
       }else{
