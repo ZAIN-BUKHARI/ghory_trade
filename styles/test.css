@@ -40,6 +40,16 @@
     padding: .5rem 1rem;
     text-transform: capitalize;
 }
+.TestBody-container-mob {
+    width: 100vw;
+
+    display: grid;
+    /* grid-template-columns: 1.8fr 1.2fr; */
+    gap: 1rem;
+    
+    padding: .5rem 1rem;
+    text-transform: capitalize;
+}
 .playlist-video-test{
     background-image: url('https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-position: center;

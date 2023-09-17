@@ -134,7 +134,7 @@ const Sidebar = () => {
             {/* <Report/> */}
             <FcSmartphoneTablet />
           </span>
-          <Link href="/download">Download</Link>
+          <Link href="/download">Download App</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
@@ -281,7 +281,7 @@ else{
             {/* <Report/> */}
             <FcSmartphoneTablet />
           </span>
-          <Link href="/download">Download</Link>
+          <Link href="/download">Download App</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">

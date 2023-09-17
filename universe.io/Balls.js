@@ -26,6 +26,11 @@ const Balls = () => {
         <a href="https://www.tiktok.com/@ghory962"><img className='tiktok-logo-footer' src="https://img.icons8.com/ios-filled/50/tiktok--v1.png" /></a>
         <span><i className="fab fa-youtube"></i></span>
     </li>
+    <li className="icon tiktok">
+        <span className="tooltip">Telegram</span>
+        <a href="https://t.me/+8UTo0gEoydlhZTE0"><img className='tiktok-logo-footer' src="https://img.icons8.com/color/48/telegram-app--v1.png" /></a>
+        <span><i className="fab fa-youtube"></i></span>
+    </li>
 </ul>
 
     </>

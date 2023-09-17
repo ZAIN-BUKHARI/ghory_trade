@@ -25,7 +25,7 @@ const About = () => {
               world of commodity trading.
             </p>
             <a href="Ghory-Trading.pdf" className="cta">
-              Download Company  Profile
+              Download Company  Profile PDF
             </a>
           </div>
         </div>
