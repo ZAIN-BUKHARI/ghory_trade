@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
-// import {FaYoutube} from 'react-icons/fa'
 import Comment from './Comment'
 import axios from 'axios';
 const VideoPlayer = () => {
@@ -58,8 +57,7 @@ const VideoPlayer = () => {
     setTimeout(()=>{
       RemoveclassforVideoPLayerControlsEnables()
       setHideCompleteWorkbtn(false)
-    },1000)
-    // parseInt(Length)*60000
+    },parseInt(Length)*60000)
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
