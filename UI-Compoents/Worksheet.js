@@ -9,11 +9,13 @@ import { FcLeft } from "react-icons/fc";
 
 const Worksheet = () => {
     //use Context 
-    const {balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
    
     const startWork = (link,length) =>{
-        router.push(`/dailywork?videoID=${link}&Length=${length}`)
+        setvideoID(link)
+        setLength(length)
+        router.push(`/dailywork`)
     }
     const Complete=async()=>{
       const data = {email}

@@ -87,7 +87,7 @@ const Sidebar = () => {
 
   return (
     <>
-    {router.asPath!='/register'  && !router.asPath.includes("admin") && !router.asPath.includes('/dailywork?videoID=') && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
+    {router.asPath!='/register'  && !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">
@@ -234,7 +234,7 @@ const Sidebar = () => {
 else{
   return (
     <>
-    {hideSidebar && router.asPath!='/register' &&  !router.asPath.includes("admin") && !router.asPath.includes('/dailywork?videoID=') && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
+    {hideSidebar && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">

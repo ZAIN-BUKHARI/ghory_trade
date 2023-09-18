@@ -209,6 +209,7 @@ async function getVideoInfo(id){
   }
 }catch(e){
   alert('Server error')
+  router.push('/')
 }
 }
 
@@ -421,12 +422,14 @@ async function GiveRank(_id)
     const[mobile,setmobile]=useState()
     const[hideSidebar,sethideSidebar]=useState(false)
 
-    
+    //Daily work + video player
+    const [videoID,setvideoID]=useState('')
+    const [Length,setLength]=useState('')
 
   return(
   
 <>
-<ThemeContext.Provider value={{usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

@@ -3,15 +3,14 @@ import { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
-import {FaYoutube} from 'react-icons/fa'
+// import {FaYoutube} from 'react-icons/fa'
 import Comment from './Comment'
 import axios from 'axios';
 const VideoPlayer = () => {
 
   
-  const {router,getVideoInfo,videoTitle,email,workStatus,mobile}=useContext(ThemeContext)
+  const {videoID,Length,router,getVideoInfo,videoTitle,email,workStatus,mobile}=useContext(ThemeContext)
   
-  const {videoID,Length} = router.query
   // STATE VARIABLES
   const[HideCompleteWorkbtn,setHideCompleteWorkbtn]=useState(true)
   
@@ -30,6 +29,7 @@ const VideoPlayer = () => {
       router.push('/')
       setTimeout(() => {
         window.location.reload()
+        alert('Task Complete')
         
       },1000);
       localStorage.setItem('youtube','false');
@@ -49,17 +49,9 @@ const VideoPlayer = () => {
         theme: "light",
       });
     }
-    getVideoInfo(videoID)
-  toast.info('Post a comment & Watch the full video otherwise you cannot proceed furthur and your today earning will not be added to your wallet ', {
-      position: "top-center",
-      autoClose: 50000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    setTimeout(() => {
+      getVideoInfo(videoID)
+    }, 500);
     setTimeout(()=>{
       AddclassforVideoPLayerControlsDisable()
     },100)
@@ -84,6 +76,8 @@ const VideoPlayer = () => {
   
   const Viewincrement=async()=>{
     const data = {email}
+    try{
+
     let res = await axios.post('/api/post/videoswatch',data)
       if(res.data.success==true)
       {
@@ -98,6 +92,13 @@ const VideoPlayer = () => {
           window.location.reload()
         }, 1000);
       }
+    }catch(e)
+    {
+      router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+    }
 
   }
   
@@ -111,26 +112,19 @@ const VideoPlayer = () => {
 
     <main className="TestBody-container">
         <section className="TestBody-main-video">
-            {/* <video src="videos/manipulate text background.mp4" controls autoplay muted></video> */}
-    <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
             <h3 className="title">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div className='test-comment-head'>
-            {/* <textarea placeholder='Post a comment' onChange={(e)=>{settextarea(e.target.value)}}  className='test-textarea'></textarea>
-            <div className='test-btn-p'>
-            <button className='test-btn-css' onClick={postComment} >Post</button>
-
-            </div> */}
               </div>
               
           {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>}
+           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>
+           }
            </div>
 
-            
         </section>
-
         <section className="TestBody-video-playlist">
             <h3 className="title">{videoTitle}</h3>
             <p>video length &nbsp; . &nbsp; {Length} Minutes</p>
