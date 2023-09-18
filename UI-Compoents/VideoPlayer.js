@@ -25,7 +25,14 @@ const VideoPlayer = () => {
   }
   
   useEffect(()=>{
-    
+    if(localStorage.getItem('youtube')=='true')
+    {
+      localStorage.setItem('youtube','false')
+      router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+    }
     if(workStatus=='yes'){
       router.push('/')
       toast.info('Not allowed here ', {
@@ -91,6 +98,23 @@ const VideoPlayer = () => {
       }
 
   }
+  const ViewincrementMobile=async()=>{
+    const data = {email}
+    let res = await axios.post('/api/post/videoswatch',data)
+      if(res.data.success==true)
+      {
+        alert('Task complete')
+        window.open(`https://www.youtube.com/watch?v=${videoID}`)
+        localStorage.setItem('youtube','true')
+      }else{
+        alert('Server error try again')
+        router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      }
+
+  }
   
   if(!mobile)
   {
@@ -142,35 +166,19 @@ const VideoPlayer = () => {
 
 
     <div className='TestBody-mobile'>
-
     <main className="TestBody-container-mob">
         <section className="TestBody-main-video">
-            {/* <video src="videos/manipulate text background.mp4" controls autoplay muted></video> */}
     <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
             <h3 className="title mobile-title-player">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div>
-
-            {/* <textarea placeholder='Post a comment' onChange={(e)=>{settextarea(e.target.value)}}  className='test-textarea'></textarea>
-            <div className='test-btn-p'>
-            <button className='test-btn-css' onClick={postComment} >Post</button>
-
-            </div> */}
           {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer mobile-submit-player' onClick={Viewincrement} >Submit</button>}
+           <button className='done-btn-videoplayer mobile-submit-player' onClick={ViewincrementMobile} >Submit</button>}
             <p className=' mobile-title-player video-timer-player '>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <p className=' mobile-title-player  '>Disclaimer : Watch the whole video until you see a submit button on your screen and post a comment </p>
               </div>
-              
            </div>
-
-            
         </section>
-            {/* <h3 className="title">{videoTitle}</h3> */}
-            {/* <div className="TestBody-videos"> */}
-                {/* <Comment/> */}
-            {/* </div> */}
 
     </main>
     </div>
