@@ -281,7 +281,7 @@ else{
             {/* <Report/> */}
             <FcSmartphoneTablet />
           </span>
-          <Link href="/download">Download App</Link>
+          <Link href="/download">Application </Link>
         </li>
         <li>
           <span className="material-symbols-outlined">

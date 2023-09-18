@@ -1,0 +1,66 @@
+  // Montly Salary According to Rank 
+    // let countTotalDirectInestment = 0;
+    // if(user.teams[i]['direct'].plan=='yes' )
+    // {   countTotalDirectInestment = user.balance
+    //     countTotalDirectInestment =  countTotalDirectInestment + user.teams[i]['direct'].investment; //1st team direct
+    //     if(countTotalDirectInestment>=10000 && countTotalDirectInestment<20000 )
+    //     {
+    //         console.log('hit')
+    //         countTotalDirectInestment = user.balance + 100;
+    //         await User.updateOne({_id:user._id},{balance:countTotalDirectInestment})
+    //     }
+    //     else if(countTotalDirectInestment>=20000 && countTotalDirectInestment<30000)
+    //     {
+    //         countTotalDirectInestment = user.balance + 100;
+    //         await User.updateOne({_id:user._id},{balance:countTotalDirectInestment})
+    //     }
+    //     else if(countTotalDirectInestment>=30000 && countTotalDirectInestment<40000)
+    //     {
+    //         countTotalDirectInestment = user.balance + 100;
+    //         await User.updateOne({_id:user._id},{balance:countTotalDirectInestment})
+    //     }
+    //     else if(countTotalDirectInestment>=40000 && countTotalDirectInestment<50000)
+    //     {
+    //         countTotalDirectInestment = user.balance + 100;
+    //         await User.updateOne({_id:user._id},{balance:countTotalDirectInestment})
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     let salary=0;
+          if(A>=10000 && A<20000)
+          {
+            salary = user.balance + 100; 
+            await User.updateOne({_id:user._id},{balance:salary})
+          }
+          else if(A>=20000 && A<30000)
+          {
+            salary = user.balance + 200; 
+            await User.updateOne({_id:user._id},{balance:salary})
+          }
+          else if(A>=30000 && A<40000)
+          {
+            salary = user.balance + 300; 
+            await User.updateOne({_id:user._id},{balance:salary})
+          }
+          else if(A>=40000 && A<50000)
+          {
+            salary = user.balance + 400; 
+            await User.updateOne({_id:user._id},{balance:salary})
+          }

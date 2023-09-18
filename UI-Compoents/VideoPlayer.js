@@ -56,7 +56,8 @@ const VideoPlayer = () => {
     setTimeout(()=>{
       RemoveclassforVideoPLayerControlsEnables()
       setHideCompleteWorkbtn(false)
-    },parseInt(Length)*60000)
+    },1000)
+    // parseInt(Length)*60000
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
