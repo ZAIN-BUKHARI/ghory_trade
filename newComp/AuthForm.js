@@ -92,6 +92,7 @@ const AuthForm = () => {
         setAuth(false);
 
       } else {
+        setdisable(false)
         toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
@@ -104,7 +105,7 @@ const AuthForm = () => {
         });
       }
       setLoader(false)
-    }).catch(e=>{alert('Check your network')});
+    }).catch(e=>{alert('Check your network');setdisable(false)});
   };
   const signin = (e) => {
     e.preventDefault();
@@ -130,6 +131,7 @@ const AuthForm = () => {
           window.location.reload()
         }, 1000);
       } else {
+        setdisable(false)
         toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
@@ -170,6 +172,7 @@ const AuthForm = () => {
           window.location.reload()
         }, 1000);
       } else {
+        setdisable(false)
         toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
@@ -186,6 +189,7 @@ const AuthForm = () => {
     setLoader(false)
   };
   const forgot = (e) =>{
+    setdisable(true)
     const data = {email,password,cpassword}
    axios.post('/api/post/forgot',data).then(res=>{
     if(res.data.success==true)
@@ -202,6 +206,7 @@ const AuthForm = () => {
         theme: "light",
       });
     }else{
+      setdisable(false)
       toast.success(res.data.error, {
         position: "top-right",
         autoClose: 2000,
