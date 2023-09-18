@@ -27,12 +27,15 @@ const VideoPlayer = () => {
   useEffect(()=>{
     if(localStorage.getItem('youtube')=='true')
     {
-      localStorage.setItem('youtube','false')
       router.push('/')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000);
+      setTimeout(() => {
+        window.location.reload()
+        
+      },1000);
+      localStorage.setItem('youtube','false');
     }
+    else{
+
     if(workStatus=='yes'){
       router.push('/')
       toast.info('Not allowed here ', {
@@ -75,6 +78,7 @@ const VideoPlayer = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
+  }
   },[router])
 
   
@@ -83,29 +87,10 @@ const VideoPlayer = () => {
     let res = await axios.post('/api/post/videoswatch',data)
       if(res.data.success==true)
       {
-        alert('Task complete')
-        window.open(`https://www.youtube.com/watch?v=${videoID}`)
-        setTimeout(() => {
-          router.push('/')
-          window.location.reload()
-        }, 1000);
-      }else{
-        alert('Server error try again')
-        router.push('/')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000);
-      }
+        localStorage.setItem('youtube','true');
+        window.location.href = `https://www.youtube.com/watch?v=${videoID}`
 
-  }
-  const ViewincrementMobile=async()=>{
-    const data = {email}
-    let res = await axios.post('/api/post/videoswatch',data)
-      if(res.data.success==true)
-      {
-        alert('Task complete')
-        window.open(`https://www.youtube.com/watch?v=${videoID}`)
-        localStorage.setItem('youtube','true')
+        
       }else{
         alert('Server error try again')
         router.push('/')
@@ -173,7 +158,7 @@ const VideoPlayer = () => {
             <div className='test-bootom-sec'>
               <div>
           {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer mobile-submit-player' onClick={ViewincrementMobile} >Submit</button>}
+           <button className='done-btn-videoplayer mobile-submit-player' onClick={Viewincrement} >Submit</button>}
             <p className=' mobile-title-player video-timer-player '>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <p className=' mobile-title-player  '>Disclaimer : Watch the whole video until you see a submit button on your screen and post a comment </p>
               </div>
