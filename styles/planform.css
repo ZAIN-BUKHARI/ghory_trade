@@ -129,7 +129,7 @@
       box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
     .planfirm-space-span{
-      margin-left: 250px;
+      margin-left: 200px;
     }
     .planfirm-space-span-address{
       margin-left: 200px;
@@ -549,6 +549,15 @@ display: none;
   position: absolute;
   left: 0;
 }
+.planform-logo-web-planform{
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: 0;
+}
 .span-title-palnform-web{
   margin-left: 10px;
+}
+.planform-main-web-title{
+  margin-left: 40px;
 }

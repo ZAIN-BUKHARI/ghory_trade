@@ -7,8 +7,6 @@ const handler= async (req, res)=> {
     let user;
     let stop=0;
     let A=0;
-    let directbalance=0;
-    let indirectbalance=0;
     let totalSalary = 0;
     if(req.method=='POST'){
         const {Userid} = req.body
@@ -43,32 +41,38 @@ const handler= async (req, res)=> {
             
             }
             A = A + user.balance;
-
+            console.log('A' + A)
         for(let i=0;i<user.teams.length;i++)
         {
           user = await User.findOne({_id:Userid})
           
             
             const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
-            const threePercentSalary = ((user.teams[i]['indirect'].investment*3/100)*3/100)
-
+            const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
         if(A<10000)
         {
-        if(user.teams[i]['direct'].plan=='yes'){
-          directbalance = fivePercentSalary;//5%
-          let u = await User.findOne({_id:user.teams[i]['direct'].id})
-          let BALANCE = u.balance-fivePercentSalary;
-          await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
+        if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){
+          // let u = await User.findOne({_id:Userid})
+          // let BALANCE = u.balance-fivePercentSalary;
+          // await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
+          console.log('direct hit')
+          totalSalary = user.balance + fivePercentSalary
+          console.log('direct'+ totalSalary)
+          await User.updateOne({_id:user._id},{balance:totalSalary})
+          totalSalary=0;
         }
-        if(user.teams[i]['indirect'].plan=='yes'){
-          indirectbalance = threePercentSalary; //3%
-          let u = await User.findOne({_id:user.teams[i]['direct'].id})
-          let BALANCE = u.balance-threePercentSalary;
-          await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
+        if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
+          let u = await User.findOne({_id:Userid})
+          // let u = await User.findOne({_id:user.teams[i]['direct'].id})
+          // let BALANCE = u.balance-threePercentSalary;
+          // await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
+          totalSalary = u.balance + threePercentSalary
+          console.log('indirect' + totalSalary)
+          await User.updateOne({_id:u._id},{balance:totalSalary})
+          totalSalary=0;
         }
         
-        totalSalary = user.balance + directbalance + indirectbalance
-        await User.updateOne({_id:user._id},{balance:totalSalary})
+        
         }
         else if(A>=10000 && A<50000 && user.teams[i]['direct'].plan=='yes' && stop==0){
             let salary=0;

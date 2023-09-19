@@ -224,9 +224,13 @@ const PlanForm = () => {
       <div className="PlanForm-Head">
         <div className="Invest-Container">
           <div className=" title ">
-            <img src='remove_bg.png'  className="img-planfirm-upload-top" />
+            {/* <img src='remove_bg.png'  className="img-planfirm-upload-top" /> */}
+            <img src="remove_bg.png" className="planform-logo-web-planform"/>
+
             {" "}
+            <span className="planform-main-web-title">
             Yearly Plan
+            </span>
             <span className="Address">
               <span className="wallet">
                 <select
@@ -241,17 +245,19 @@ const PlanForm = () => {
                   <option value={"JAZZCASH"}>JAZZCASH</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"RASS"}>RASS</option>
+                  <option value={"BANK"}>Al-BARAKA</option>
                 </select>
                 {/* {" "} */}
                 {/* :{" "} */}
 
               </span>
               {wallet == "TRC20" && (
-                <span className="planfirm-space-span-address">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
+                                <span className="planfirm-space-span">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
               {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "}
               {wallet == "EASYPAISA" && <span  className="planfirm-space-span">03364569822</span>}{" "}
               {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>}
+              {wallet == "BANK" && <span className="planfirm-space-span" >0104509017019</span>}
             </span>
           </div>
           <div className="content">
@@ -478,7 +484,7 @@ const PlanForm = () => {
             Yearly Plan
             <span className="Address">
               <span className="wallet">
-                <img src='remove_bg.png'  className="img-planfirm-upload-top" />
+            <img src="remove_bg.png" className="img-planfirm-upload-top"/>
                 <select
                   value={wallet}
                   name="select"
@@ -491,14 +497,16 @@ const PlanForm = () => {
                   <option value={"JAZZCASH"}>JAZZCASH</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"RASS"}>RASS</option>
+                  <option value={"BANK"}>AL-BARAKA</option>
                 </select>
               </span>
               {wallet == "TRC20" && (
-                <span className="trc-address-text">TXM2g5Dw2u1woTSjFZucA5p3sBqiNDA4HP</span>
+                <span className="trc-address-text">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
               {wallet == "JAZZCASH" && <span  >03224959827</span>}{" "}
               {wallet == "EASYPAISA" && <span  >03224959827</span>}{" "}
               {wallet == "RASS" && <span  >03224959827</span>}
+              {wallet == "BANK" && <span  >0104509017019</span>}
             </span>
           </div>
           <div className="content">
