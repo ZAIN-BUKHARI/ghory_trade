@@ -52,23 +52,33 @@ const handler= async (req, res)=> {
         if(A<10000)
         {
         if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){
-          // let u = await User.findOne({_id:Userid})
-          // let BALANCE = u.balance-fivePercentSalary;
-          // await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
-          console.log('direct hit')
+          console.log('if direct Hit Block')
+          
           totalSalary = user.balance + fivePercentSalary
-          console.log('direct'+ totalSalary)
+          console.log('Salary' + totalSalary)
           await User.updateOne({_id:user._id},{balance:totalSalary})
+
+          // subtracing the  5% monthly salary from the direct 
+          let u = await User.findOne({_id:user.teams[i]['direct'].id})
+          let BALANCE = u.balance-fivePercentSalary;
+          console.log('subtract balance ' + BALANCE)
+          await User.updateOne({_id:u._id},{balance:BALANCE})
+          console.log('if direct Close block')
           totalSalary=0;
         }
         if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
-          let u = await User.findOne({_id:Userid})
-          // let u = await User.findOne({_id:user.teams[i]['direct'].id})
-          // let BALANCE = u.balance-threePercentSalary;
-          // await User.updateOne({_id:user.teams[i]['direct'].id},{balance:BALANCE})
-          totalSalary = u.balance + threePercentSalary
-          console.log('indirect' + totalSalary)
-          await User.updateOne({_id:u._id},{balance:totalSalary})
+
+          console.log('if Indirect Hit')
+          let addingSalary = await User.findOne({_id:Userid})
+          totalSalary = addingSalary.balance + threePercentSalary
+          console.log('Adding ' + totalSalary)
+          await User.updateOne({_id:Userid},{balance:totalSalary})
+
+          let subtractingSalary = await User.findOne({_id:user.teams[i]['indirect'].id})
+          let BALANCE = subtractingSalary.balance-threePercentSalary;
+          console.log('Subtrac' + BALANCE)
+          await User.updateOne({_id:user.teams[i]['indirect'].id},{balance:BALANCE})
+          console.log('if Indirect close block')
           totalSalary=0;
         }
         
