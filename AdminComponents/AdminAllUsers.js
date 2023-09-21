@@ -1,15 +1,17 @@
 import React from 'react'
 import { FcRight } from "react-icons/fc";
+import { FcHighPriority } from "react-icons/fc";
 
 import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 import { useRouter } from 'next/router';
 import Searchbar from '../universe.io/Searchbar';
+import axios from 'axios';
 
 
 const AdminPlans = () => {
     //use Context 
-    const {adminallusers,usersearchresults}=useContext(ThemeContext)
+    const {adminallusers,usersearchresults,setLoader}=useContext(ThemeContext)
     //router
     const router = useRouter()
     
@@ -22,7 +24,21 @@ const AdminPlans = () => {
         
         router.push(`/adminupdate?id=${id}&model=user`)
     }
+    const del = (_id)=>{
+        let check = confirm("Are you sure enter yes");
 
+        if(check)
+        {   
+            axios.get(`/api/admin/del?_id=${_id}&model=user`).then((res=>{
+            setLoader(true)
+            if(res.data.success==true)
+            {
+                setLoader(false)
+                window.location.reload();
+            }
+        }))
+    }
+    }
 
   return (
     <>
@@ -47,6 +63,7 @@ const AdminPlans = () => {
                         <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
+                        <th className='work-start'> Delete</th>
                     </tr>
                 </thead>
                 {adminallusers && adminallusers.map((item)=>(
@@ -68,6 +85,7 @@ const AdminPlans = () => {
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'><FcHighPriority/></p> </td>
                     </tr>
                      
                         

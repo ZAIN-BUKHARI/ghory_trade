@@ -10,7 +10,6 @@ const handler= async (req, res)=> {
         if(Leader.invite==""){
           let B = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
           let teams={
-                 Rank:"no",
                  direct:{
                     level:1,
                     id:B._id,
@@ -37,7 +36,6 @@ const handler= async (req, res)=> {
           let C = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
               // direct 
               let directteam={
-                // Rank:"no",
                 direct:{
                   level:1,
                   id:C._id,

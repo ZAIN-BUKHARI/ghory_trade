@@ -129,13 +129,12 @@ const Sidebar = () => {
           </span>
           <Link href="/about">About us</Link>
         </li>
-        <li>
+        {/* <li>
           <span className="material-symbols-outlined">
-            {/* <Report/> */}
             <FcSmartphoneTablet />
           </span>
           <Link href="/download">Download App</Link>
-        </li>
+        </li> */}
         <li>
           <span className="material-symbols-outlined">
             {/* <Report/> */}
@@ -152,52 +151,39 @@ const Sidebar = () => {
         </li>}
         <hr/>
         <hr/>
-        <h4>Account</h4>
-        <li>
+        {/* <h4>Account</h4> */}
+        {/* <li>
           <span className="material-symbols-outlined">
            {subscription=='no' && <FcBarChart/> }
           </span>
-          {/* //NOT LOGGIN */}
           {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
           {!token && subscription=='no' &&  <FcLock/>}
-          {/* //LOGGIN */}
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
           </span>
-          {/* //NOT LOGGIN */}
-          {/*  neither login nor subscription  */}
           {!token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="no" && <FcLock/>}
-          {/*  login now but not has subscription  */}
           {token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {token  && subscription=="no" && <FcLock/>}
-          {/* user didnot login now but has subscription  */}
           {!token  && subscription=="yes" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="yes" && <FcLock/>}
-          
-          {/* //LOGGIN */}
-          {/* both login and subscription  */}
           {token  && subscription=="yes" && <Link  href="/work">Daily work </Link>}
-          
-          
+        </li> */}
 
-        </li>
-        <li>
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
           
           {!token &&<Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
           {!token &&<FcLock/>}
-          {/* //LOGGIN */}
-          {/* both login and subscription  */}
           {token &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
 
-        </li>
+        </li> */}
 
         <li>
         <span className="material-symbols-outlined">
@@ -205,7 +191,7 @@ const Sidebar = () => {
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
@@ -213,9 +199,9 @@ const Sidebar = () => {
           {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token &&<FcLock/>}
 
-          </li>
+          </li> */}
       
-        <li className="logout-link">
+        {/* <li className="logout-link">
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
@@ -223,9 +209,10 @@ const Sidebar = () => {
          {!token && <FcLock/>}
 
          {token &&  <Link onClick={logout}  href="/">Logout</Link>}
-        </li>
+        </li> */}
       </ul>
-    </aside>)}
+    </aside>
+    )}
 
     
     </>
@@ -276,13 +263,12 @@ else{
           </span>
           <Link href="/about">About us</Link>
         </li>
-        <li>
+        {/* <li>
           <span className="material-symbols-outlined">
-            {/* <Report/> */}
             <FcSmartphoneTablet />
           </span>
           <Link href="/download">Application </Link>
-        </li>
+        </li> */}
         <li>
           <span className="material-symbols-outlined">
             {/* <Report/> */}
@@ -292,52 +278,41 @@ else{
         </li>
         <hr/>
         <hr/>
-        <h4>Account</h4>
+        {/* <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
            {subscription=='no' && <FcBarChart/> }
           </span>
-          {/* //NOT LOGGIN */}
           {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
           {!token && subscription=='no' &&  <FcLock/>}
-          {/* //LOGGIN */}
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
           </span>
-          {/* //NOT LOGGIN */}
-          {/*  neither login nor subscription  */}
           {!token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="no" && <FcLock/>}
-          {/*  login now but not has subscription  */}
           {token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {token  && subscription=="no" && <FcLock/>}
-          {/* user didnot login now but has subscription  */}
           {!token  && subscription=="yes" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="yes" && <FcLock/>}
-          
-          {/* //LOGGIN */}
-          {/* both login and subscription  */}
           {token  && subscription=="yes" && <Link  href="/work">Daily work </Link>}
           
           
 
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcAutomatic/>
           </span>
           
           {!token &&<Link href={''} onClick={Dailywork}  >widthdraw</Link>}
           {!token &&<FcLock/>}
-          {/* //LOGGIN */}
-          {/* both login and subscription  */}
           {token &&<Link onClick={()=>{setPaymentRequestModal(true);sethideSidebar(false)}} href="#">widthdraw</Link>}
 
-        </li>
+        </li> */}
 
         <li>
         <span className="material-symbols-outlined">
@@ -345,16 +320,16 @@ else{
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
           {token &&<Link  href='/qrcode'>Invite </Link>}
           {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token &&<FcLock/>}
-          </li>
+          </li> */}
       
-        <li className="logout-link">
+        {/* <li className="logout-link">
           <span className="material-symbols-outlined">
             <FcLeft/>
           </span>
@@ -362,7 +337,7 @@ else{
          {!token && <FcLock/>}
 
          {token &&  <Link onClick={logout}  href="/">Logout</Link>}
-        </li>
+        </li> */}
       </ul>
     </aside>)}
 

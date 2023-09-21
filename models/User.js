@@ -1,5 +1,3 @@
-import { Type } from 'react-feather';
-
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
@@ -29,11 +27,6 @@ const UserSchema = new Schema({
     subscription:{
         type:String,
         default:"no",
-    },
-    subtime:
-    {
-        type:String,
-        default:"000"
     },
     channel:
     {
