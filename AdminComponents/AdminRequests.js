@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const AdminRequests = () => {
     //use Context 
-    const {router,requests}=useContext(ThemeContext)
+    const {router,requests,setLoader}=useContext(ThemeContext)
    
     
 //state variables
@@ -29,10 +29,13 @@ const detail = (id) =>{
     router.push(`/admindetail?id=${id}&plan=request`)
 }
 async function api(id){
+    setLoader(true)
     let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}`)
     if(res.data.success==true){
-            window.location.reload()
+        setLoader(false)
+        window.location.reload()
     }else{
+        setLoader(false)
         alert('Server error contact site developer for this issue')
     }
 }

@@ -60,7 +60,7 @@ const handler= async (req, res)=> {
                 
             })
             await p.save()
-            let user = await User.updateMany({},{todaywork:"no",views:0})
+            let user = await User.updateMany({},{todaywork:"no",views:0,Login:"no"})
             if(user){
                 res.status(200).json({ success:true })
             }

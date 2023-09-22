@@ -85,6 +85,11 @@ const UserSchema = new Schema({
         type:String,
         default:""
     },
+    Login:
+    {
+        type:String,
+        default:"no"
+    },
     
 
     },{timestamps:true})

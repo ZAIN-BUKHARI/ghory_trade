@@ -15,6 +15,8 @@ const handler= async (req, res)=> {
                     id:B._id,
                     plan:"no",
                     investment:0,
+                    joinDate:"0",
+                    endDate:"0"
                   },
                   
                  indirect:{
@@ -22,6 +24,8 @@ const handler= async (req, res)=> {
                     id:'no',
                     plan:"no",
                     investment:0,
+                    joinDate:"0",
+                    endDate:"0"
                   }
                 
                 }
@@ -40,14 +44,18 @@ const handler= async (req, res)=> {
                   level:1,
                   id:C._id,
                   plan:"no",
-                  investment:0
+                  investment:0,
+                  joinDate:"0",
+                  endDate:"0"
                  },
                  
                 indirect:{
                   level:2,
                   id:'no',
                   plan:"no",
-                  investment:0
+                  investment:0,
+                  joinDate:"0",
+                  endDate:"0"
                  }
                
                }

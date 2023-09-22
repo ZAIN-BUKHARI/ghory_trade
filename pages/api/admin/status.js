@@ -2,56 +2,59 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
 import User from '../../../models/User'
-// import mail from '../mailsender/email'
-
+import mail from '../mailsender/email'
 const handler= async (req, res)=> {
+    let emailaddressto;
         let result = await Plan.findByIdAndUpdate({_id:req.query._id},{status:req.query.status})
         await result.save()
+        emailaddressto = result.email;
         if(result && req.query.status=='verified'){
                 const percentage = (result.investment*20)/100
                 const perDayBalance = percentage/30;
                 await User.updateOne({email:result.email},{subscription:'yes',perDayProfit:perDayBalance,level:result.level})
                 await User.updateOne({email:result.email},{planId:req.query._id})
-
                 let user = await User.findOne({email:result.email})
-                
-                let emailaddressto;
+                //current DD/MM/YYY
+                const join = new Date();
+                const yyy = join.getFullYear();
+                let mmm = join.getMonth() + 1; // Months start at 0!
+                let ddd = join.getDate();
+                if (ddd < 10) ddd = '0' + ddd;
+                if (mmm < 10) mmm = '0' + mmm;
+                const joinDate = ddd + '/' + mmm + '/' + yyy;
+                //next year DD/MM/YY
+                const end = new Date();
+                const yyyy = end.getFullYear() + 1;
+                let mmmm = end.getMonth() + 1; // Months start at 0!
+                let dddd = end.getDate();
+                if (dddd < 10) dddd = '0' + dddd;
+                if (mmmm < 10) mmmm = '0' + mmmm;
+                const endDate = dddd + '/' + mmmm + '/' + yyyy;
+                console.log(joinDate)
+                console.log(endDate)
                 try{
                   if(user.invite!=""){
                     let u = await  User.findOne({_id:user.invite})
                     for(let i=0;i<u.teams.length;i++)
                     {
-                        console.log(u.teams[i]['direct'].id.toString())
-                        console.log(user._id)
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
                         {
                             await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment}
+                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,[`teams.${i}.direct.joinDate`]:joinDate,[`teams.${i}.direct.endDate`]:endDate}
                                 })
-
                         }
-                        
-                        else
+                        if(true)
                         {
-                                console.log('INDIRECT')
-                            let user = await User.findOne({_id:req.query._id})
-                            console.log(user.invite)
+                            let user = await User.findOne({email:result.email})
                             let direct = await User.findOne({_id:user.invite})
-                            console.log(direct.invite)
                             let indirect = await User.findOne({_id:direct.invite})
                             if(indirect.teams[i]['indirect'].id.toString()==user._id.toString())
                             {
                                 await User.findByIdAndUpdate(
-                                     {_id:indirect.invite},
-                                    {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:user.investment}}
-                                    )
-                                await User.findByIdAndUpdate(
                                      {_id:indirect._id},
-                                     {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:user.investment}}
-                                )
+                                    {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:result.investment,[`teams.${i}.indirect.joinDate`]:joinDate,[`teams.${i}.indirect.endDate`]:endDate}}
+                                    )
                             }
-
-
                         }
                     }
                 }
@@ -62,9 +65,39 @@ const handler= async (req, res)=> {
                }
         }else{ 
                 await User.updateOne({email:result.email},{subscription:'no'})
+                let user = await User.findOne({email:result.email})
+                try{
+                  if(user.invite!=""){
+                    let u = await  User.findOne({_id:user.invite})
+                    for(let i=0;i<u.teams.length;i++)
+                    {
+                        if(u.teams[i]['direct'].id.toString()==user._id.toString())
+                        {
+                            await User.findByIdAndUpdate({_id:user.invite},
+                                {$set:{[`teams.${i}.direct.plan`]:'no',[`teams.${i}.direct.investment`]:0,joinDate:"0",endDate:"0"}
+                                })
+                        }
+                        if(true)
+                        {
+                            let user = await User.findOne({email:result.email})
+                            let direct = await User.findOne({_id:user.invite})
+                            let indirect = await User.findOne({_id:direct.invite})
+                            if(indirect.teams[i]['indirect'].id.toString()==user._id.toString())
+                            {
+                                await User.findByIdAndUpdate(
+                                     {_id:indirect._id},
+                                    {$set:{[`teams.${i}.indirect.plan`]:'no',[`teams.${i}.indirect.investment`]:0,joinDate:"0",endDate:"0"}}
+                                    )
+                            }
+                        }
+                    }
+                }
+                       res.status(200).send({'success':true})
+                }catch(e){
+                       res.status(200).send({'success':true})
+               }
                 res.status(200).send({'success':true})
         }
-   
 }
 
   

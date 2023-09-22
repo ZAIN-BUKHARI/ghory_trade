@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import {useState }from 'react'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   Grid,
   Stack,
@@ -45,6 +46,11 @@ const addProducts = () => {
   const [length9,setlength9]=useState('')
   const [length10,setlength10]=useState('')
   const [Rate,setRate]=useState(0)
+
+
+  const[email,setemail]=useState('')
+  const[password,setpassword]=useState('')
+  const[cpassword,setcpassword]=useState('')
  
   const submitLinks = () =>{
     try{
@@ -91,6 +97,48 @@ const addProducts = () => {
     alert('Server error caught successfully try again')
   }
   }
+ 
+  const forgot = (e) =>{
+    const data = {email,password,cpassword}
+   axios.post('/api/post/forgot',data).then(res=>{
+    if(res.data.success==true)
+    {
+      toast.success("Password changed :)", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }else{
+      toast.success(res.data.error, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+   }).catch(err=>{
+    toast.success('Server down try again later', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+   })
+  }
+ 
   if(Admin){
     return (
       
@@ -168,6 +216,26 @@ const addProducts = () => {
           <br />
           <Button onClick={currencyRate} variant="outlined" mt={2}>
             Submit
+          </Button>
+          
+        </BaseCard>
+      </Grid>
+    </Grid>
+  
+  
+    <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-pink-500 text-center' >RESET PASSWORD</h1>
+      <Grid item xs={12} lg={12}>
+        <BaseCard >
+          <Stack spacing={3}>
+       
+            <TextField value={email} onChange={(e)=>{setemail(e.target.value)}} label="Email" type='text' variant="outlined"  />
+            <TextField value={password} onChange={(e)=>{setpassword(e.target.value)}} label="Password" type='text' variant="outlined"  />
+            <TextField value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}} label="Confirm Password" type='text' variant="outlined"  />
+          </Stack>
+          <br />
+          <Button onClick={forgot} variant="outlined" mt={2}>
+            Reset
           </Button>
           
         </BaseCard>

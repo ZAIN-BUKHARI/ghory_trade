@@ -242,9 +242,9 @@ const PlanForm = () => {
                   className="PlanForm-select-main"
                 >
                   <option value={"TRC20"}>TRC20</option>
-                  <option value={"JAZZCASH"}>JAZZCASH</option>
+                  {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                   <option value={"EASYPAISA"}>EASYPAISA</option>
-                  <option value={"RASS"}>RASS</option>
+                  {/* <option value={"RASS"}>RASS</option> */}
                   <option value={"BANK"}>Al-BARAKA</option>
                 </select>
                 {/* {" "} */}
@@ -254,10 +254,10 @@ const PlanForm = () => {
               {wallet == "TRC20" && (
                                 <span className="planfirm-space-span">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
-              {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "}
+              {/* {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "} */}
               {wallet == "EASYPAISA" && <span  className="planfirm-space-span">03364569822</span>}{" "}
-              {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>}
-              {wallet == "BANK" && <span className="planfirm-space-span" >0104509017019</span>}
+              {/* {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>} */}
+              {wallet == "BANK" && <span className="planfirm-space-span" >0102626361016</span>}
             </span>
           </div>
           <div className="content">
@@ -494,19 +494,19 @@ const PlanForm = () => {
                   className="PlanForm-select-mobile"
                 >
                   <option value={"TRC20"}>TRC20</option>
-                  <option value={"JAZZCASH"}>JAZZCASH</option>
+                  {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                   <option value={"EASYPAISA"}>EASYPAISA</option>
-                  <option value={"RASS"}>RASS</option>
+                  {/* <option value={"RASS"}>RASS</option> */}
                   <option value={"BANK"}>AL-BARAKA</option>
                 </select>
               </span>
               {wallet == "TRC20" && (
                 <span className="trc-address-text">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
-              {wallet == "JAZZCASH" && <span  >03224959827</span>}{" "}
+              {/* {wallet == "JAZZCASH" && <span  >03224959827</span>}{" "} */}
               {wallet == "EASYPAISA" && <span  >03224959827</span>}{" "}
-              {wallet == "RASS" && <span  >03224959827</span>}
-              {wallet == "BANK" && <span  >0104509017019</span>}
+              {/* {wallet == "RASS" && <span  >03224959827</span>} */}
+              {wallet == "BANK" && <span  >0102626361016</span>}
             </span>
           </div>
           <div className="content">

@@ -1,15 +1,18 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import User from '../../../models/User'
+import Plan from '../../../models/Plan'
 
     
 const handler= async (req, res)=> {
     let user;
+    let plan;
     let stop=0;
     let A=0;
     let totalSalary = 0;
     if(req.method=='POST'){
         const {Userid} = req.body
          user = await User.findOne({_id:Userid})
+         plan = await Plan.findOne({_id:user.planId})
          let arr=[];
          let sortedArr=[5]
             for(let i=0;i<user.teams.length;i++)
@@ -39,39 +42,65 @@ const handler= async (req, res)=> {
               }
             
             }
-            A = A + user.balance;
+            A = A + plan.investment;
             for(let i=0;i<user.teams.length;i++)
         {
             user = await User.findOne({_id:Userid})
+            plan = await Plan.findOne({_id:user.planId})
           
-            
+            console.log(A)
             const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
             const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
         if(A<10000)
         {
-        if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){          
-          totalSalary = user.balance + fivePercentSalary
-          console.log('Salary' + totalSalary)
-          await User.updateOne({_id:user._id},{balance:totalSalary})
-          // subtracing the  5% monthly salary from the direct 
-          let u = await User.findOne({_id:user.teams[i]['direct'].id})
-          let BALANCE = u.balance-fivePercentSalary;
-          await User.updateOne({_id:u._id},{balance:BALANCE})
-          totalSalary=0;
+        if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){ 
+          const short = user.teams[i]['direct'].joindate;  
+          if(
+            short==short.slice(0,4)+1+short.slice(5,10) /*for 1 month 22/01/2023 == 22/01/2023*/  &&
+            short==short.slice(0,4)+2+short.slice(5,10) /*for 2 month 22/02/2023 == 22/02/2023*/  &&
+            short==short.slice(0,4)+3+short.slice(5,10) /*for 3 month 22/03/2023 == 22/03/2023*/  &&
+            short==short.slice(0,4)+4+short.slice(5,10) /*for 4 month 22/04/2023 == 22/04/2023*/  &&
+            short==short.slice(0,4)+5+short.slice(5,10) /*for 5 month 22/05/2023 == 22/05/2023*/  &&
+            short==short.slice(0,4)+6+short.slice(5,10) /*for 6 month 22/06/2023 == 22/06/2023*/  &&
+            short==short.slice(0,4)+7+short.slice(5,10) /*for 7 month 22/07/2023 == 22/07/2023*/  &&
+            short==short.slice(0,4)+8+short.slice(5,10) /*for 8 month 22/08/2023 == 22/08/2023*/  &&
+            short==short.slice(0,4)+9+short.slice(5,10) /*for 9 month 22/09/2023 == 22/09/2023*/  &&
+            short==short.slice(0,3)+10+short.slice(5,10) /*for10 month 22/10/2023 == 22/10/2023*/ &&
+            short==short.slice(0,3)+11+short.slice(5,10) /*for11 month 22/11/2023 == 22/11/2023*/ &&
+            short==short.slice(0,3)+12+short.slice(5,10) /*for12 month 22/12/2023 == 22/12/2023*/ 
+            ){
+              totalSalary = plan.investment + fivePercentSalary
+              await User.updateOne({_id:user._id},{balance:totalSalary})
+              totalSalary=0;
+            }       
           }
-        if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
+          if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
+          const short = user.teams[i]['indirect'].joindate;  
+          if(
+            short==short.slice(0,4)+1+short.slice(5,10) /*for 1 month 22/01/2023 == 22/01/2023*/  &&
+            short==short.slice(0,4)+2+short.slice(5,10) /*for 2 month 22/02/2023 == 22/02/2023*/  &&
+            short==short.slice(0,4)+3+short.slice(5,10) /*for 3 month 22/03/2023 == 22/03/2023*/  &&
+            short==short.slice(0,4)+4+short.slice(5,10) /*for 4 month 22/04/2023 == 22/04/2023*/  &&
+            short==short.slice(0,4)+5+short.slice(5,10) /*for 5 month 22/05/2023 == 22/05/2023*/  &&
+            short==short.slice(0,4)+6+short.slice(5,10) /*for 6 month 22/06/2023 == 22/06/2023*/  &&
+            short==short.slice(0,4)+7+short.slice(5,10) /*for 7 month 22/07/2023 == 22/07/2023*/  &&
+            short==short.slice(0,4)+8+short.slice(5,10) /*for 8 month 22/08/2023 == 22/08/2023*/  &&
+            short==short.slice(0,4)+9+short.slice(5,10) /*for 9 month 22/09/2023 == 22/09/2023*/  &&
+            short==short.slice(0,3)+10+short.slice(5,10) /*for10 month 22/10/2023 == 22/10/2023*/ &&
+            short==short.slice(0,3)+11+short.slice(5,10) /*for11 month 22/11/2023 == 22/11/2023*/ &&
+            short==short.slice(0,3)+12+short.slice(5,10) /*for12 month 22/12/2023 == 22/12/2023*/ 
+          )
+          {
           let addingSalary = await User.findOne({_id:Userid})
           totalSalary = addingSalary.balance + threePercentSalary
           await User.updateOne({_id:Userid},{balance:totalSalary})
-          let subtractingSalary = await User.findOne({_id:user.teams[i]['indirect'].id})
-          let BALANCE = subtractingSalary.balance-threePercentSalary;
-          await User.updateOne({_id:user.teams[i]['indirect'].id},{balance:BALANCE})
           totalSalary=0;
         }
-        
-        
+        }
         }
         else if(A>=10000 && A<50000 && user.teams[i]['direct'].plan=='yes' && stop==0){
+          console.log('else if')
+
             let salary=0;
           if(A>=10000 && A<20000)
           {
@@ -105,6 +134,7 @@ const handler= async (req, res)=> {
         }
         else if(A>=50000)
         {
+          console.log('else')
           if(A>=50000 && A<150000)
             await User.updateOne({_id:user._id},{Rank:'GM',balance:(user.balance+100)})
           else if(A>=150000 && A<500000)
@@ -117,18 +147,9 @@ const handler= async (req, res)=> {
             await User.updateOne({_id:user._id},{Rank:'ED',balance:(user.balance+13000)})
           
         }
-            
-        
-
         stop=1;
             }
-
-    
-
        res.status(200).json({success:true})
-        
-
-
     }
 else{
 

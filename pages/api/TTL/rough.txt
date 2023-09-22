@@ -32,6 +32,16 @@
 
 
 
+direct subtract 
+// subtracing the  5% monthly salary from the direct 
+          // let u = await User.findOne({_id:user.teams[i]['direct'].id})
+          // let BALANCE = u.balance-fivePercentSalary;
+          // await User.updateOne({_id:u._id},{balance:BALANCE})
+
+Indiretc subtract
+// let subtractingSalary = await User.findOne({_id:user.teams[i]['indirect'].id})
+          // let BALANCE = subtractingSalary.balance-threePercentSalary;
+          // await User.updateOne({_id:user.teams[i]['indirect'].id},{balance:BALANCE})
 
 
 

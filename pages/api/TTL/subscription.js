@@ -17,7 +17,8 @@ const handler= async (req, res)=> {
         let user = await  User.findOne({email:req.body.email})
         if(user.subscription=='yes')
         {
-            let plan = await Plan.findOne({email:req.body.email});
+            // let plan = await Plan.findOne({email:req.body.email});//before
+            let plan = await Plan.findOne({_id:user.planId});
             if(plan)
             {
                 const plan_date = CurrentDate.slice(6,10) 

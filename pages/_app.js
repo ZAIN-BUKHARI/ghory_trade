@@ -27,7 +27,6 @@ import Request from '../universe.io/Request';
 import axios from 'axios';
 import Header from '../Responsiveness/Header';
 import { toast } from 'react-toastify';
-
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -41,7 +40,6 @@ async function getUser()
   setLoader(true)
   let token = localStorage.getItem('token')
   try{
-
     if(token=="null" || token=='no'){
       setLoader(false)
   }else{
@@ -60,6 +58,7 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setUserid(res.data.orders[0]._id)
+      setdailyLogin(res.data.orders[0].Login)
       if(res.data.orders[0].admin=='yes'){setusman(true);}
       _id=res.data.orders[0]._id
       if(res.data.orders[0].admin=='yes')
@@ -68,7 +67,6 @@ async function getUser()
         setAdmin(false)
       const email = res.data.orders[0].email
       const data = {email}
-      console.log(email)
       const response = await axios.post('/api/TTL/subscription',data)
       if(response.data.success=='subscription-end')
       {
@@ -76,15 +74,32 @@ async function getUser()
         window.location.reload();
       }
       setLoader(false)
-      
+      // if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
+      //   const email = res.data.orders[0].email
+      //   const Userid = res.data.orders[0]._id
+      //   const data = {email,Userid}
+      //   axios.post('/api/TTL/salary',data).then(res=>{
+      //     if(res.data.success==true)
+      //         axios.post('/api/TTL/dailystatus',data).then(res=>{
+      //     })
+      //   })
+      // }
     }
   }
+  if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
+        const email = res.data.orders[0].email
+        const Userid = res.data.orders[0]._id
+        const data = {email,Userid}
+        axios.post('/api/TTL/salary',data).then(res=>{
+          if(res.data.success==true)
+              axios.post('/api/TTL/dailystatus',data).then(res=>{
+          })
+        })
+      }
 }catch(e){
     setLoader(false)
 }
-// GiveRank(_id)
 }
-  //Admin Get functions
 async function getAllCustomers(param){
   try{
 
@@ -188,7 +203,6 @@ async function SubscribeChannel(){
     return false
   }
 }
-// https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${VIDEO_ID}
 async function getVideoInfo(id){
   try{
 
@@ -212,7 +226,6 @@ async function getVideoInfo(id){
   router.push('/')
 }
 }
-
 async function getTenvideos(){
   try {
     const response = await axios.get(
@@ -266,7 +279,6 @@ function resolutionChecker(){
         setmobile(false)
       }
 }
-
 function fetchDailyWork()
 {
   try{
@@ -297,57 +309,13 @@ function fetchDailyWork()
   // setLoader(false)
 }
 }
-async function GiveRank(_id)
-{
-  const Userid = _id
-  const data = {Userid}
-  axios.post('/api/TTL/planid',data).then(res=>{
-    
-    if(res.data.success==true){
-    axios.post('/api/TTL/teaminvestment',data).then(res=>{
-      if(res.data.success==true)
-      {
-        axios.post('/api/TTL/giverank',data).then(res=>{
-        if(res.status==200){
-          axios.post('/api/TTL/rank',data).then(res=>{
-            if(res.data.success==true)
-             alert('rank amount done')
-            }).catch((e)=>{console.log(e)})
-          }
-        }).catch((e)=>{console.log(e)})
-      }
-      else if(res.data.success==false)
-      {
-      //salary system work
-      // axios.post('/api/TTL/salary',data)
-      alert('Salary system work')
-      }else if(res.data.success=='no'){
-        // team didn't invest 
-        alert("team didn't invest")
-    }
-  }).catch((e)=>{console.log(e)}) 
-}
 
-
-}).catch((e)=>{console.log(e)})
-}
 // const schedulingTime = '*/1 * * * *'
-
   useEffect(() => {
    
     // scheduleJob(schedulingTime, async () => {
-    //   try {
-    //     let res = await axios.delete('/api/del/link'); 
-    //     if(res.data.success==true){
-    //       console.log('post link')
-    //       let res= await axios.get('/api/post/link'); 
-    //       if(res.data.success==true){
-    //         console.log('delete post link')
-    //       }
-    //    }
-    //   } catch (error) {
-    //     console.error('server error');
-    //   }
+    //   alert('1 mint')
+    //   Salary();
     // });
     resolutionChecker()
     if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
@@ -366,10 +334,7 @@ async function GiveRank(_id)
     router.events.on('routeChangeComplete', ()=>{
       setProgress(100)
     })
-   
     },[])
-
-    
     //Loader
     const [loader,setLoader]=useState(false)
     //Auth Modal
@@ -392,11 +357,9 @@ async function GiveRank(_id)
     const [views,setviews]=useState(0)
     const [Userid,setUserid]=useState('')
     const [usman,setusman]=useState(false)
-    
-
+    const [dailyLogin,setdailyLogin]=useState('')
     //Login confirmation
     const[token,settoken]=useState(false)
-    
     // Admin Variables
     const [Admin,setAdmin]=useState(false)
     const [customers,setcustomers]=useState([]) 
@@ -408,8 +371,6 @@ async function GiveRank(_id)
     const [allrequests,setallrequests]=useState([])
     const [searchrequestresults,setsearchrequestresults]=useState([])
     const [allLinks,setallLinks]=useState([])
-
-    
     //youtube variables
     const [channel,setchannel]=useState("") 
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
@@ -417,17 +378,13 @@ async function GiveRank(_id)
     const [dailyWork,setdailyWork]=useState([]) 
     const [workUploadedDate,setworkUploadedDate]=useState('') 
     const [linktoLevel,setlinktoLevel]=useState([]) 
-    
     //mobile responsiveness
     const[mobile,setmobile]=useState()
     const[hideSidebar,sethideSidebar]=useState(false)
-
     //Daily work + video player
     const [videoID,setvideoID]=useState('')
     const [Length,setLength]=useState('')
-
   return(
-  
 <>
 <ThemeContext.Provider value={{videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>

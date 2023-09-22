@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const AdminPlans = () => {
     //use Context 
-    const {balance,customers,}=useContext(ThemeContext)
+    const {balance,customers,setLoader}=useContext(ThemeContext)
     
     //router
     const router = useRouter()
@@ -34,8 +34,16 @@ const AdminPlans = () => {
         router.push(`/admindetail?id=${id}&plan=${plan}`)
     }
     async function api(id){
-       let res =  await axios.get(`/api/admin/status?_id=${id}&status=${status}`)
-        if(res.data.success==true) window.location.reload()
+        setLoader(true)
+        let res =  await axios.get(`/api/admin/status?_id=${id}&status=${status}`)
+        if(res.data.success==true){
+            setLoader(false)
+            window.location.reload()
+        }else{
+            setLoader(false)
+            alert('Server error contact site developer for this issue')
+        }
+
     }
 
 

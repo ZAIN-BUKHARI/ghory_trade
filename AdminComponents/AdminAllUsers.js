@@ -85,7 +85,7 @@ const AdminPlans = () => {
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
-                        <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'><FcHighPriority/></p> </td>
+                        {/* <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'><FcHighPriority/></p> </td> */}
                     </tr>
                      
                         

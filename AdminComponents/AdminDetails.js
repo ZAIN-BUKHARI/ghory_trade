@@ -1,34 +1,49 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AdminTable from './AdminTable'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import { ThemeContext } from '../Context/ThemeContext'
 const AdminDetails = () => {
+  const {setLoader} = useContext(ThemeContext)
   const router = useRouter()
   const[doc,setdoc]=useState([])
   const {id,plan} = router.query
   useEffect(()=>{
     if(plan=='join'){
+      setLoader(true)
       axios.get(`/api/admin/plan?_id=${id}`).then(res=>{
         if(res.data.success==true){
           setdoc(res.data.result)
+          setLoader(false)
         }else{
+          setLoader(false)
           alert(res.data.error)
         }
       })
     }
     else if(plan=='user'){
+      setLoader(true)
       axios.get(`/api/get/userone?_id=${id}`).then(res=>{
         if(res.data.success==true){
           setdoc(res.data.user)
+          setLoader(false)
+        }else{
+          setLoader(false)
+          alert(res.data.error)
         }
       })
     }
     else if(plan=='request'){
+      setLoader(true)
       axios.get(`/api/admin/request?_id=${id}`).then(res=>{
         if(res.data.success==true){
           setdoc(res.data.result)
+          setLoader(false)
+        }else{
+          setLoader(false)
+          alert(res.data.error)
         }
       })
     }
