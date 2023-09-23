@@ -27,6 +27,7 @@ const AdminUpdate = () => {
     const [status,setstatus]=useState('')
     const [level,setlevel]=useState('')
     const [name,setname]=useState('')
+    const [enddate,setenddate]=useState('')
     //request varibles
     const [method,setmethod]=useState('')
     const [amount,setamount]=useState(0)
@@ -74,6 +75,7 @@ const AdminUpdate = () => {
             setcreatedAt(res.data.result.date)
             setaddress(res.data.result.address)
             setcnic(res.data.result.cnic)
+            setenddate(res.data.result.enddate)
         }else{
             alert('server error')
             router.push('/admin')
@@ -132,7 +134,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,name,email,cnic,investment,phone,createdAt,id,model,address,status,level}
+            const data = {_id,name,email,cnic,investment,phone,createdAt,id,model,address,status,level,enddate}
             let res = await axios.post('/api/post/updateplan',data)
     if(res.data.success==true){
         alert('Update successfully')
@@ -421,13 +423,13 @@ const AdminUpdate = () => {
         
         </div>
         <div className="input-box">
-          <span className="details">Cnic</span>
+          <span className="details">EndDate</span>
           <div className="flex">
             <input
               type="text"
-              value={cnic}
-              onChange={(e)=>{setcnic(e.target.value)}}
-              name="cnic"
+              value={enddate}
+              onChange={(e)=>{setenddate(e.target.value)}}
+              name="enddate"
               />
           </div>
         
