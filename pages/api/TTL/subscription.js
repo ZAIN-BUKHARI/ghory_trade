@@ -5,15 +5,14 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
     const end = new Date();
         const yyyyy = end.getFullYear();
-        let mmm = end.getMonth() + 1; // Months start at 0!
-        let ddd = end.getDate();
+        let mmm = end.getMonth() + 1 ; // Months start at 0!
+        let ddd = end.getDate() ;
 
         if (ddd < 10) ddd = '0' + ddd;
         if (mmm < 10) mmm = '0' + mmm;
 
         const CurrentDate= ddd + '/' + mmm + '/' + yyyyy;
     try {
-        
         let user = await  User.findOne({email:req.body.email})
         if(user.subscription=='yes')
         {
@@ -21,9 +20,13 @@ const handler= async (req, res)=> {
             let plan = await Plan.findOne({_id:user.planId});
             if(plan)
             {
+                const Current_month = CurrentDate.slice(3,5)
+                const End_month =  plan.enddate.slice(3,5)
                 const plan_date = CurrentDate.slice(6,10) 
                 const plan_enddate = plan.enddate.slice(6,10) 
-                if(parseInt(CurrentDate)>=parseInt(plan.enddate) && parseInt(plan_date) >= parseInt(plan_enddate))
+                console.log(CurrentDate)
+                console.log(plan.enddate)
+                if(parseInt(CurrentDate)>=parseInt(plan.enddate) && parseInt(plan_date) >= parseInt(plan_enddate) && parseInt(Current_month)>=parseInt(End_month))
                 {
                     await Plan.findByIdAndDelete({_id:plan._id}); 
                     let u = await User.updateOne({email:req.body.email},{subscription:'no'})
