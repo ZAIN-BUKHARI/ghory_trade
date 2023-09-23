@@ -30,7 +30,7 @@ const Request = () => {
           progress: undefined,
           theme: "light",
         })
-
+      setdisable(false)
       }else{
 
         if(amount>=20){
@@ -50,6 +50,7 @@ const Request = () => {
                 theme: "light",
               })
               setPaymentRequestModal(false)
+              setdisable(false)
             }
             else{
               toast.error("Withdrawal request failed try again! ", {
@@ -63,6 +64,7 @@ const Request = () => {
                 theme: "light",
               });
               setPaymentRequestModal(false)
+              setdisable(false)
             }
           
       }
@@ -77,7 +79,7 @@ const Request = () => {
                 progress: undefined,
                 theme: "light",
               });
-
+      setdisable(false)
             }
       }else{
         toast.error("More than 20$ withdarwal allowed ", {
@@ -90,6 +92,7 @@ const Request = () => {
           progress: undefined,
           theme: "light",
         });
+        setdisable(false)
       }
     }
 
@@ -102,7 +105,7 @@ if(mobile){
     <div className='FormModal'>
     <div className='card-responsive'>
     <div className="card__title-mobile">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.
     </p>
     <div className="card__form">
         <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
@@ -133,7 +136,7 @@ if(mobile){
       <div className='FormModal'>
       <div className='card'>
       <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-      <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method.
+      <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.
       </p>
       <div className="card__form">
           <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>

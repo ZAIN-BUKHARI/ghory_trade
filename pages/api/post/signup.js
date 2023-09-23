@@ -1,7 +1,8 @@
 import User from '../../../models/User'
 import ConnectMongoDB from '../../../middleware/mongoose'
 var CryptoJS = require("crypto-js");
-import mail from '../mailsender/email';
+const nodemailer = require('nodemailer');
+
 
 const handler= async (req, res)=> {
   const {firstname,lastname,email,password,cpassword}=req.body
@@ -32,10 +33,52 @@ const handler= async (req, res)=> {
               if(u.email==email){
                 u.save()
                 try{
-                  const name = u.firstname;
-                  const emailaddressto = u.email
-                    if(mail('garbage1','garbage2','garbage3','garbage4','signup',name,emailaddressto))
+                  let name = u.firstname;
+                  let emailaddressto = u.email
+                     
+                  console.log(name)
+                  console.log(emailaddressto)
+                                       //EMAIL PROCESS
+                    //    let from = usman bhai ka account 
+                    emailaddressto = 'zainyshorts@gmail.com'
+                    let transporter = nodemailer.createTransport({
+                    service: 'Gmail',
+                      auth: {
+                      user: 'usmanghory3@gmail.com', 
+                      pass: 'rvma faxr ablkzvrr' 
+                            }
+                });
+                // Request Date: [${address}]
+                //     Withdrawal Amount: [${id}]
+                //     Account Number: [${amount}]
+                //     Transaction ID: [${date}]
+                let mailOptions = {
+                    from: 'usmanghory3@gmail.com', 
+                    to: `${emailaddressto}`,
+                    subject: 'GHORY.TRADE',
+                    text: `Dear ${name},
+
+We are thrilled to welcome you to ghory.trade! Your account has been successfully created, and we're excited to have you as part of our community.
+
+With your new account, you can start exploring all that ghory.trade has to offer. we have a wide range of offerings to cater to your needs.`
+                };
+
+                transporter.sendMail(mailOptions).then(result=>{
+                    try{
                       res.status(200).json({success:true})
+                    }catch(e){
+                      res.status(200).json({success:true})
+                    }
+                     })
+                     res.status(200).json({success:true})
+
+
+
+
+
+
+
+
                    
                    }catch(e){
                     res.status(200).json({error:'server down'})

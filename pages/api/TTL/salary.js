@@ -4,6 +4,14 @@ import Plan from '../../../models/Plan'
 
     
 const handler= async (req, res)=> {
+   //current DD/MM/YYY
+   const join = new Date();
+   const yyy = join.getFullYear();
+   let mmm = join.getMonth() + 1; // Months start at 0!
+   let ddd = join.getDate();
+   if (ddd < 10) ddd = '0' + ddd;
+   if (mmm < 10) mmm = '0' + mmm;
+   const currentDate = ddd + '/' + mmm + '/' + yyy;
     let user;
     let plan;
     let stop=0;
@@ -51,45 +59,24 @@ const handler= async (req, res)=> {
             console.log(A)
             const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
             const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
+            const qq = user.teams[i]['direct']['salaryDate'].d2 
+            console.log(qq)
         if(A<10000)
         {
         if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){ 
-          const short = user.teams[i]['direct'].joindate;  
-          if(
-            short==short.slice(0,4)+1+short.slice(5,10) /*for 1 month 22/01/2023 == 22/01/2023*/  &&
-            short==short.slice(0,4)+2+short.slice(5,10) /*for 2 month 22/02/2023 == 22/02/2023*/  &&
-            short==short.slice(0,4)+3+short.slice(5,10) /*for 3 month 22/03/2023 == 22/03/2023*/  &&
-            short==short.slice(0,4)+4+short.slice(5,10) /*for 4 month 22/04/2023 == 22/04/2023*/  &&
-            short==short.slice(0,4)+5+short.slice(5,10) /*for 5 month 22/05/2023 == 22/05/2023*/  &&
-            short==short.slice(0,4)+6+short.slice(5,10) /*for 6 month 22/06/2023 == 22/06/2023*/  &&
-            short==short.slice(0,4)+7+short.slice(5,10) /*for 7 month 22/07/2023 == 22/07/2023*/  &&
-            short==short.slice(0,4)+8+short.slice(5,10) /*for 8 month 22/08/2023 == 22/08/2023*/  &&
-            short==short.slice(0,4)+9+short.slice(5,10) /*for 9 month 22/09/2023 == 22/09/2023*/  &&
-            short==short.slice(0,3)+10+short.slice(5,10) /*for10 month 22/10/2023 == 22/10/2023*/ &&
-            short==short.slice(0,3)+11+short.slice(5,10) /*for11 month 22/11/2023 == 22/11/2023*/ &&
-            short==short.slice(0,3)+12+short.slice(5,10) /*for12 month 22/12/2023 == 22/12/2023*/ 
+          
+
+            if(currentDate==qq 
             ){
               totalSalary = plan.investment + fivePercentSalary
               await User.updateOne({_id:user._id},{balance:totalSalary})
               totalSalary=0;
             }       
+        
           }
           if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
-          const short = user.teams[i]['indirect'].joindate;  
-          if(
-            short==short.slice(0,4)+1+short.slice(5,10) /*for 1 month 22/01/2023 == 22/01/2023*/  &&
-            short==short.slice(0,4)+2+short.slice(5,10) /*for 2 month 22/02/2023 == 22/02/2023*/  &&
-            short==short.slice(0,4)+3+short.slice(5,10) /*for 3 month 22/03/2023 == 22/03/2023*/  &&
-            short==short.slice(0,4)+4+short.slice(5,10) /*for 4 month 22/04/2023 == 22/04/2023*/  &&
-            short==short.slice(0,4)+5+short.slice(5,10) /*for 5 month 22/05/2023 == 22/05/2023*/  &&
-            short==short.slice(0,4)+6+short.slice(5,10) /*for 6 month 22/06/2023 == 22/06/2023*/  &&
-            short==short.slice(0,4)+7+short.slice(5,10) /*for 7 month 22/07/2023 == 22/07/2023*/  &&
-            short==short.slice(0,4)+8+short.slice(5,10) /*for 8 month 22/08/2023 == 22/08/2023*/  &&
-            short==short.slice(0,4)+9+short.slice(5,10) /*for 9 month 22/09/2023 == 22/09/2023*/  &&
-            short==short.slice(0,3)+10+short.slice(5,10) /*for10 month 22/10/2023 == 22/10/2023*/ &&
-            short==short.slice(0,3)+11+short.slice(5,10) /*for11 month 22/11/2023 == 22/11/2023*/ &&
-            short==short.slice(0,3)+12+short.slice(5,10) /*for12 month 22/12/2023 == 22/12/2023*/ 
-          )
+          if(currentDate==user.teams[i]['indirect']['salaryDate'][i].d2 
+           )
           {
           let addingSalary = await User.findOne({_id:Userid})
           totalSalary = addingSalary.balance + threePercentSalary
@@ -99,7 +86,6 @@ const handler= async (req, res)=> {
         }
         }
         else if(A>=10000 && A<50000 && user.teams[i]['direct'].plan=='yes' && stop==0){
-          console.log('else if')
 
             let salary=0;
           if(A>=10000 && A<20000)
@@ -134,7 +120,6 @@ const handler= async (req, res)=> {
         }
         else if(A>=50000)
         {
-          console.log('else')
           if(A>=50000 && A<150000)
             await User.updateOne({_id:user._id},{Rank:'GM',balance:(user.balance+100)})
           else if(A>=150000 && A<500000)

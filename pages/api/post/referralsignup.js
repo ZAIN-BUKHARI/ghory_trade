@@ -16,7 +16,19 @@ const handler= async (req, res)=> {
                     plan:"no",
                     investment:0,
                     joinDate:"0",
-                    endDate:"0"
+                    salaryDate:{
+                    d2:"0",
+                    d3:"0",
+                    d4:"0",
+                    d5:"0",
+                    d6:"0",
+                    d7:"0",
+                    d8:"0",
+                    d9:"0",
+                    d10:"0",
+                    d11:"0",
+                    d12:"0",
+                  }
                   },
                   
                  indirect:{
@@ -25,7 +37,19 @@ const handler= async (req, res)=> {
                     plan:"no",
                     investment:0,
                     joinDate:"0",
-                    endDate:"0"
+                    salaryDate:{
+                      d2:"0",
+                      d3:"0",
+                      d4:"0",
+                      d5:"0",
+                      d6:"0",
+                      d7:"0",
+                      d8:"0",
+                      d9:"0",
+                      d10:"0",
+                      d11:"0",
+                      d12:"0",
+                    }
                   }
                 
                 }
@@ -46,7 +70,19 @@ const handler= async (req, res)=> {
                   plan:"no",
                   investment:0,
                   joinDate:"0",
-                  endDate:"0"
+                  salaryDate:{
+                    d2:"0",
+                    d3:"0",
+                    d4:"0",
+                    d5:"0",
+                    d6:"0",
+                    d7:"0",
+                    d8:"0",
+                    d9:"0",
+                    d10:"0",
+                    d11:"0",
+                    d12:"0",
+                  }
                  },
                  
                 indirect:{
@@ -55,7 +91,19 @@ const handler= async (req, res)=> {
                   plan:"no",
                   investment:0,
                   joinDate:"0",
-                  endDate:"0"
+                  salaryDate:{
+                    d2:"0",
+                    d3:"0",
+                    d4:"0",
+                    d5:"0",
+                    d6:"0",
+                    d7:"0",
+                    d8:"0",
+                    d9:"0",
+                    d10:"0",
+                    d11:"0",
+                    d12:"0",
+                  }
                  }
                
                }
