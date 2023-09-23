@@ -435,7 +435,7 @@ const PlanForm = () => {
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
-    </script>
+    </script><a className="youtube-channel-link">https://www.youtube.com/@YMPGHORY4289</a>
    
 
     <style></style>
@@ -685,7 +685,7 @@ const PlanForm = () => {
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
-    </script>
+    </script><a className="youtube-channel-link">https://www.youtube.com/@YMPGHORY4289</a>
    
 
     <style></style>
