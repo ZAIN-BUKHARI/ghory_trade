@@ -44,8 +44,9 @@ const handler= async (req, res)=> {
                     let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                       auth: {
-                      user: 'usmanghory3@gmail.com', 
-                      pass: 'rvma faxr ablkzvrr' 
+                      user: 'ghoryg7@gmail.com', 
+                      // pass: 'rvma faxr ablkzvrr' 
+                      pass: 'hscq rlbp puns xlud' // new usman bhai password
                             }
                 });
                 // Request Date: [${address}]

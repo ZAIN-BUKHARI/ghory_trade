@@ -41,7 +41,7 @@ const handler= async (req, res)=> {
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
                         {
                             await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,[`teams.${i}.direct.joinDate`]:joinDate,[`teams.${i}.direct.salaryDate.d2`]:endDate}
+                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,[`teams.${i}.direct.joinDate`]:joinDate,[`teams.${i}.direct.salaryDate.d1`]:endDate}
                                 })
                         }
                         if(true)
@@ -65,8 +65,9 @@ const handler= async (req, res)=> {
                         let transporter = nodemailer.createTransport({
                         service: 'Gmail',
                           auth: {
-                          user: 'usmanghory3@gmail.com', 
-                          pass: 'rvma faxr ablkzvrr' 
+                          user: 'ghoryg7@gmail.com', 
+                        //   pass: 'rvma faxr ablkzvrr' 
+                          pass: 'hscq rlbp puns xlud' // new usman bhai password
                                 }
                     });
                     let mailOptions = {

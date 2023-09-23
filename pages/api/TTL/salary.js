@@ -6,7 +6,7 @@ import Plan from '../../../models/Plan'
 const handler= async (req, res)=> {
    //current DD/MM/YYY
    const join = new Date();
-   const yyy = join.getFullYear();
+   const yyy = join.getFullYear() + 1;
    let mmm = join.getMonth() + 1; // Months start at 0!
    let ddd = join.getDate();
    if (ddd < 10) ddd = '0' + ddd;
@@ -59,23 +59,48 @@ const handler= async (req, res)=> {
             console.log(A)
             const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
             const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
-            const qq = user.teams[i]['direct']['salaryDate'].d2 
-            console.log(qq)
+            
+
         if(A<10000)
         {
         if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){ 
           
 
-            if(currentDate==qq 
+            if(
+              currentDate==user.teams[i]['direct']['salaryDate'].d1  ||
+              currentDate==user.teams[i]['direct']['salaryDate'].d2  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d3  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d4  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d5  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d6  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d7  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d8  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d9  || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d10 || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d11 || 
+              currentDate==user.teams[i]['direct']['salaryDate'].d12 
             ){
-              totalSalary = plan.investment + fivePercentSalary
+              totalSalary = user.balance + fivePercentSalary
               await User.updateOne({_id:user._id},{balance:totalSalary})
               totalSalary=0;
             }       
         
           }
           if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
-          if(currentDate==user.teams[i]['indirect']['salaryDate'][i].d2 
+
+          if(
+            currentDate==user.teams[i]['indirect']['salaryDate'].d1  ||
+            currentDate==user.teams[i]['indirect']['salaryDate'].d2  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d3  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d4  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d5  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d6  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d7  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d8  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d9  || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d10 || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d11 || 
+            currentDate==user.teams[i]['indirect']['salaryDate'].d12  
            )
           {
           let addingSalary = await User.findOne({_id:Userid})

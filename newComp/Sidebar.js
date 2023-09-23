@@ -191,7 +191,7 @@ const Sidebar = () => {
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
           </span>
@@ -199,7 +199,7 @@ const Sidebar = () => {
           {!token && subscription=='no' &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token && subscription=='no' &&<FcLock/>}
 
-          </li>
+          </li> */}
       
         <li className="logout-link">
           <span className="material-symbols-outlined">
@@ -320,14 +320,14 @@ else{
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
           {token &&<Link  href='/qrcode'>Invite </Link>}
           {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token &&<FcLock/>}
-          </li>
+          </li> */}
       
         <li className="logout-link">
           <span className="material-symbols-outlined">

@@ -17,6 +17,7 @@ const handler= async (req, res)=> {
                     investment:0,
                     joinDate:"0",
                     salaryDate:{
+                    d1:"0",
                     d2:"0",
                     d3:"0",
                     d4:"0",
@@ -38,6 +39,7 @@ const handler= async (req, res)=> {
                     investment:0,
                     joinDate:"0",
                     salaryDate:{
+                      d1:"0",
                       d2:"0",
                       d3:"0",
                       d4:"0",
@@ -71,6 +73,7 @@ const handler= async (req, res)=> {
                   investment:0,
                   joinDate:"0",
                   salaryDate:{
+                    d1:"0",
                     d2:"0",
                     d3:"0",
                     d4:"0",
@@ -92,6 +95,7 @@ const handler= async (req, res)=> {
                   investment:0,
                   joinDate:"0",
                   salaryDate:{
+                    d1:"0",
                     d2:"0",
                     d3:"0",
                     d4:"0",

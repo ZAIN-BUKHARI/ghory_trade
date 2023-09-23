@@ -1,33 +1,48 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
-import Plan from '../../../models/Plan'
-import User from '../../../models/User'
+const moment = require('moment');
+const readline = require('readline');
+
+
+
 
 const handler= async (req, res)=> {
-    if(req.method=='POST'){
-        
-        const today = new Date();
-        const yyyy = today.getFullYear()+1;
-        let mm = today.getMonth() + 1; // Months start at 0!
-        let dd = today.getDate();
-
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
-
-        const formattedToday = dd + '/' + mm + '/' + yyyy;
-
-        if(Plan.date == formattedToday)
-        {
-            res.send(formattedToday)
-        }
-
-        }
-
-else{
-
-    res.status(200).json({ error : 'request method is incorrect it should be post' })
+    
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    
+    rl.question('Enter the start date (DD/MM/YY): ', (startDateInput) => {
+      // Validate user input for the start date
+      const startDate = moment(startDateInput, 'DD/MM/YY', true);
+    
+      if (!startDate.isValid()) {
+        console.error('Invalid date format. Please use DD/MM/YY.');
+        rl.close();
+        return;
+      }
+    
+      // Create an array to store the dates
+      const dates = [];
+    
+      // Generate the plan for the whole year with monthly intervals
+      for (let i = 0; i < 12; i++) {
+        const formattedDate = startDate.format('DD/MM/YY');
+        dates.push(formattedDate);
+    
+        startDate.add(1, 'month');
+      }
+    
+      console.log('Yearly Plan:');
+      dates.forEach((date, index) => {
+        console.log(`Month ${index + 1}: ${date}`);
+      });
+    
+      rl.close();
+    });
+    
 }
-  }
   
   
   
-  export default   ConnectMongoDB(handler)
+export default   ConnectMongoDB(handler)
