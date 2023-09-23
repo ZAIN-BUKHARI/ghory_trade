@@ -74,6 +74,8 @@ const AuthForm = () => {
   const signup = (e) => {
     e.preventDefault();
     setdisable(true)
+    if(password.length>=10){
+
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/signup", data).then((res) => {
     setLoader(true)
@@ -106,6 +108,20 @@ const AuthForm = () => {
       }
       setLoader(false)
     }).catch(e=>{alert('Check your network');setdisable(false)});
+  }
+else{
+  setdisable(false)
+  toast.error('Password must be 10 characters', {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+}
   };
   const signin = (e) => {
     e.preventDefault();
@@ -290,6 +306,10 @@ const AuthForm = () => {
                     />
 
                   </div>
+                  {/* {password && password.length<10 && (
+                  <span className="PlanForm-investment-error">
+                        Minimum investment 100$
+                  </span>)} */}
                 {/* {forgotModal && (  <div className="input-box">
                     <span className="details">New Password</span>
                     <input
