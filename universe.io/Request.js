@@ -117,9 +117,10 @@ if(mobile){
                   className="PlanForm-select modal-select"
                 >
                   <option value={"TRC20"}>TRC20</option>
-                  <option value={"JAZZCASH"}>JAZZCASH</option>
+                  {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                   <option value={"EASYPAISA"}>EASYPAISA</option>
-                  <option value={"RASS"}>RASS</option>
+                  <option value={"BANK"}>BANK</option>
+                  {/* <option value={"RASS"}>RASS</option> */}
                 </select>
         <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
                     </div>
@@ -148,9 +149,10 @@ if(mobile){
                     className="  request-select-modal"
                   >
                     <option value={"TRC20"}>TRC20</option>
-                    <option value={"JAZZCASH"}>JAZZCASH</option>
+                    {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                     <option value={"EASYPAISA"}>EASYPAISA</option>
-                    <option value={"RASS"}>RASS</option>
+                    <option value={"BANK"}>BANK</option>
+                    {/* <option value={"RASS"}>RASS</option> */}
                   </select>
           <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
                       </div>

@@ -66,7 +66,6 @@ const handler= async (req, res)=> {
                     Manager
                 `
                 };
-
                 transporter.sendMail(mailOptions).then(result=>{
                     try{
                     }catch(e){
