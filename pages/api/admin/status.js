@@ -61,7 +61,6 @@ const handler= async (req, res)=> {
                 }
                        //EMAIL PROCESS
                     //    let from = usman bhai ka account 
-                    emailaddressto = 'zainnnnnnnnnnnnnnnnnnnn@gmail.com'
                         let transporter = nodemailer.createTransport({
                         service: 'Gmail',
                           auth: {
@@ -71,7 +70,7 @@ const handler= async (req, res)=> {
                                 }
                     });
                     let mailOptions = {
-                        from: 'usmanghory3@gmail.com', 
+                        from: 'ghoryg7@gmail.com', 
                         to: `${emailaddressto}`,
                     subject: 'GHORY.TRADE',
                     text: `Dear sir,

@@ -31,13 +31,14 @@ const detail = (id) =>{
 async function api(id){
     setLoader(true)
     let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}`)
-    if(res.data.success==true){
+    // console.log
+    // if(res.data.success==true){
         setLoader(false)
         window.location.reload()
-    }else{
-        setLoader(false)
-        alert('Server error contact site developer for this issue')
-    }
+    // }else{
+    //     setLoader(false)
+    //     alert('Server error contact site developer for this issue')
+    // }
 }
 
   return (

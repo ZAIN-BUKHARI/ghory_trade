@@ -63,7 +63,7 @@ const AdminPlans = () => {
                         <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
-                        <th className='work-start'> Delete</th>
+                        {/* <th className='work-start'> Delete</th> */}
                     </tr>
                 </thead>
                 {adminallusers && adminallusers.map((item)=>(
