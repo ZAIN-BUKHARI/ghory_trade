@@ -145,7 +145,7 @@ const VideoPlayer = () => {
     <div className='TestBody-mobile'>
     <main className="TestBody-container-mob">
         <section className="TestBody-main-video">
-    <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <h3 className="title mobile-title-player">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div>
