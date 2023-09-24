@@ -46,6 +46,7 @@ const addProducts = () => {
   const [length9,setlength9]=useState('')
   const [length10,setlength10]=useState('')
   const [Rate,setRate]=useState(0)
+  const [Selrate,setSelrate]=useState(0)
 
 
   const[email,setemail]=useState('')
@@ -84,6 +85,24 @@ const addProducts = () => {
     try{
 
       axios.post('/api/rate/update',data).then(res=>{
+        if(res.data.success==true)
+      {
+        alert('Rate set successfully')
+      }
+      else{
+        alert('Server error try again ')
+      }
+    })
+  }catch(e)
+  {
+    alert('Server error caught successfully try again')
+  }
+  }
+  const currencyRateSelrate = () =>{
+    const data = {Selrate}
+    try{
+
+      axios.post('/api/selrate/update',data).then(res=>{
         if(res.data.success==true)
       {
         alert('Rate set successfully')
@@ -215,6 +234,22 @@ const addProducts = () => {
           </Stack>
           <br />
           <Button onClick={currencyRate} variant="outlined" mt={2}>
+            Submit
+          </Button>
+          
+        </BaseCard>
+      </Grid>
+    </Grid>
+    <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-pink-500 text-center' >SELL RATE</h1>
+      <Grid item xs={12} lg={12}>
+        <BaseCard >
+          <Stack spacing={3}>
+       
+            <TextField value={Selrate} onChange={(e)=>{setSelrate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
+          </Stack>
+          <br />
+          <Button onClick={currencyRateSelrate} variant="outlined" mt={2}>
             Submit
           </Button>
           

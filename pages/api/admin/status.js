@@ -3,6 +3,7 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
 import User from '../../../models/User'
 const nodemailer = require('nodemailer');
+const { addMonths, format } = require('date-fns');
 
 const handler= async (req, res)=> {
     //current DD/MM/YYY
@@ -21,6 +22,28 @@ const handler= async (req, res)=> {
     if (dddd < 10) dddd = '0' + dddd;
     if (mmmm < 10) mmmm = '0' + mmmm;
     const endDate = dddd + '/' + mmmm + '/' + yyyy;
+    //time formula program
+
+function generateOneYearSalaryPlan(todayDate) {
+  const salaryPlan = [];
+  let currentDate = new Date(todayDate);
+  const endDate = addMonths(currentDate, 12);
+
+  while (currentDate <= endDate) {
+    salaryPlan.push(format(currentDate, 'dd/MM/yyyy'))
+    currentDate = addMonths(currentDate, 1);
+  }
+
+  return salaryPlan;
+}
+function parseCustomDateFormat(customDate) {
+  const [day, month, year] = customDate.split('/');
+  return new Date(year, month - 1, day); // Note: Months are 0-based
+}
+const todayDate = parseCustomDateFormat(joinDate) // Note: Months are 0-based (8 represents September)
+const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
+
+
     let emailaddressto;
         let result = await Plan.findByIdAndUpdate({_id:req.query._id},{status:req.query.status,date:joinDate,enddate:endDate})
         await result.save()
@@ -41,7 +64,7 @@ const handler= async (req, res)=> {
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
                         {
                             await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,[`teams.${i}.direct.joinDate`]:joinDate,[`teams.${i}.direct.salaryDate.d1`]:endDate}
+                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,DirectsalaryDate:oneYearSalaryPlan}
                                 })
                         }
                         if(true)
@@ -53,7 +76,7 @@ const handler= async (req, res)=> {
                             {
                                 await User.findByIdAndUpdate(
                                      {_id:indirect._id},
-                                    {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:result.investment,[`teams.${i}.indirect.joinDate`]:joinDate,[`teams.${i}.indirect.salaryDate.d2`]:endDate}}
+                                    {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:result.investment,[`teams.${i}.indirect.joinDate`]:joinDate,InDirectsalaryDate:oneYearSalaryPlan}}
                                     )
                             }
                         }
@@ -73,7 +96,7 @@ const handler= async (req, res)=> {
                         from: 'ghoryg7@gmail.com', 
                         to: `${emailaddressto}`,
                     subject: 'GHORY.TRADE',
-                    text: `Dear sir,
+                    text: `Dear sir ${emailaddressto},
                     
                     We're excited to share the wonderful news that your subscription plan has been successfully activated on your account at ghory.trade. Welcome to a
                     new world of possibilities!
@@ -88,20 +111,12 @@ const handler= async (req, res)=> {
                     Best regards,
                     `
                     };
-
                     transporter.sendMail(mailOptions).then(result=>{
                         try{
                         }catch(e){
                         }
                         
                          })
-
-
-
-
-
-
-
                        res.status(200).send({'success':true})
                 }catch(e){
                        res.status(200).send({'success':true})
@@ -117,7 +132,7 @@ const handler= async (req, res)=> {
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
                         {
                             await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'no',[`teams.${i}.direct.investment`]:0,joinDate:"0",endDate:"0"}
+                                {$set:{[`teams.${i}.direct.plan`]:'no',[`teams.${i}.direct.investment`]:0,},DirectsalaryDate:[]
                                 })
                         }
                         if(true)
@@ -129,7 +144,7 @@ const handler= async (req, res)=> {
                             {
                                 await User.findByIdAndUpdate(
                                      {_id:indirect._id},
-                                    {$set:{[`teams.${i}.indirect.plan`]:'no',[`teams.${i}.indirect.investment`]:0,joinDate:"0",endDate:"0"}}
+                                    {$set:{[`teams.${i}.indirect.plan`]:'no',[`teams.${i}.indirect.investment`]:0},InDirectsalaryDate:[]}
                                     )
                             }
                         }

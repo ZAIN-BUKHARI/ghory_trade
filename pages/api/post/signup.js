@@ -35,11 +35,9 @@ const handler= async (req, res)=> {
                 try{
                   let name = u.firstname;
                   let emailaddressto = u.email
-                     
                  
                                        //EMAIL PROCESS
                     //    let from = usman bhai ka account 
-                    emailaddressto = 'zainyshorts@gmail.com'
                     let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                       auth: {

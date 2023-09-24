@@ -25,6 +25,10 @@ const RequestSchema = new Schema({
         type:String,
         default:"pending"
     },
+    bankname:{
+        type:String,
+        default:""
+    },
     
     
 

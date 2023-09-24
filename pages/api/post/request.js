@@ -1,6 +1,5 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import Request from '../../../models/Request'
-import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
@@ -14,13 +13,14 @@ const handler= async (req, res)=> {
         if (mm < 10) mm = '0' + mm;
 
         const formattedToday = dd + '/' + mm + '/' + yyyy;
-        const {email,method,address,amount} = req.body
+        const {email,method,address,amount,bankname} = req.body
         let p = new Request({
             method:method,
             address:address,
             email:email,
             amount:amount,
-            date:formattedToday  
+            date:formattedToday,
+            bankname:bankname
         })
     //     let getUser  = await User.findOne({email:email})
     //     for(var i=0; i<=getUser.teams.length;i++)

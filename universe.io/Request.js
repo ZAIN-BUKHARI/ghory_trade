@@ -12,6 +12,7 @@ const Request = () => {
     const [address,setaddress]=useState("")
     const [method,setmethod]=useState("TRC20")
     const [amount,setamount]=useState(0)
+    const [bankname,setbankname]=useState("")
   
   const[ disable,setdisable]=useState(false)
 
@@ -36,7 +37,7 @@ const Request = () => {
         if(amount>=20){
         if( amount<=balance
           ){
-          const data = {method,address,amount,email}
+          const data = {method,address,amount,email,bankname}
           let res = await axios.post('/api/post/request',data)
             if(res.data.success==true){
               toast.success("Your withdrawal request is in processing state it will take 12 to 24 hour", {
@@ -123,7 +124,9 @@ if(mobile){
                   {/* <option value={"RASS"}>RASS</option> */}
                 </select>
         <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
+        {method=="BANK" &&  <input value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
                     </div>
+
         <button onClick={requestSubmit} className="sign-up mobile-button"> Submit Request</button>
     </div>
 </div>
@@ -155,6 +158,7 @@ if(mobile){
                     {/* <option value={"RASS"}>RASS</option> */}
                   </select>
           <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
+        {method=="BANK" &&  <input value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
                       </div>
           <button onClick={requestSubmit} className="sign-up" disabled={disable}> Submit Request</button>
       </div>

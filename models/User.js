@@ -90,6 +90,8 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    DirectsalaryDate:[],
+    InDirectsalaryDate:[]
     
 
     },{timestamps:true})
