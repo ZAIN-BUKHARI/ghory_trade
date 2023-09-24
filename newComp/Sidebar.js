@@ -10,6 +10,7 @@ import { FcLeft } from 'react-icons/fc';
 import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
 import { FcShare } from 'react-icons/fc';
+// import { FcPlanner } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FcSmartphoneTablet } from 'react-icons/fc';
 import { FcPositiveDynamic } from 'react-icons/fc';
@@ -82,17 +83,17 @@ const Sidebar = () => {
     settoken(false)
   }
 
-  const fetchHistory = async () =>{
-    setLoader(true)
-    axios.get(`/api/get/history?email=${email}`).then(res=>{
-      sethistory(res.data.history)
-      setLoader(false)
-      router.push('/history')
-  }).catch(err=>{
-      sethistory([])
-      setLoader(false)
-  });
-  }
+  // const fetchHistory = async () =>{
+  //   setLoader(true)
+  //   axios.get(`/api/get/history?email=${email}`).then(res=>{
+  //     sethistory(res.data.history)
+  //     setLoader(false)
+  //     router.push('/history')
+  // }).catch(err=>{
+  //     sethistory([])
+  //     setLoader(false)
+  // });
+  // }
   if(!mobile)
   {
 
@@ -211,13 +212,13 @@ const Sidebar = () => {
           {!token && subscription=='no' &&<FcLock/>}
 
           </li> */}
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           {token &&  <FcPlanner/>}
           </span>
           {token &&  <Link onClick={fetchHistory}  href='#'>History</Link>}
 
-          </li>
+          </li> */}
       
         <li className="logout-link">
           <span className="material-symbols-outlined">
