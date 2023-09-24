@@ -9,6 +9,8 @@
 } 
 .yt{
     pointer-events: none;
+    /* background-color: red; */
+    /* bottom: 50px; */
     /* position: absolute; */
     }
 .Player-Color{

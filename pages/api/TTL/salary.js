@@ -60,18 +60,15 @@ const handler= async (req, res)=> {
             const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
             const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
             
-          console.log(currentDate == user.salaryDate[0])
+          console.log(currentDate == user.DirectsalaryDate[0])
           console.log(currentDate)
-          console.log(user.salaryDate[0])
+          console.log(user.DirectsalaryDate[0])
         if(A<10000)
         {
-          console.log('If Hit')
 
         if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){ 
-          console.log('Direct')
 
             if(
-              currentDate==user.DirectsalaryDate[0]  ||
               currentDate==user.DirectsalaryDate[1]  ||
               currentDate==user.DirectsalaryDate[2]  ||
               currentDate==user.DirectsalaryDate[3]  ||
@@ -94,7 +91,6 @@ const handler= async (req, res)=> {
           if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
 
           if(
-              currentDate==user.InDirectsalaryDate[0]  ||
               currentDate==user.InDirectsalaryDate[1]  ||
               currentDate==user.InDirectsalaryDate[2]  ||
               currentDate==user.InDirectsalaryDate[3]  ||
