@@ -13,29 +13,21 @@ const handler= async (req, res)=> {
         if (mm < 10) mm = '0' + mm;
         const formattedToday = dd + '/' + mm + '/' + yyyy;
         let emailaddressto;
-        let emaildate = formattedToday
         let emailid ;
         let emailaddress;
         let emailamount;
-        let emailmethod;
         try{
         if(req.query.status =='verified'){
                 let result = await Request.findByIdAndUpdate({_id:req.query._id},{status:req.query.status})
                 if(result){
                         let response = await Request.findOne({_id:req.query._id})
                         emailaddressto = response.email
-                        console.log('this'+ emailaddressto)
                         if(true){
                                 let user = await User.findOne({email:response.email})
                                 if(true){
                                        emailid=response._id
                                        emailaddress=response.address
                                        emailamount=response.amount
-                                       emailmethod = response.method
-                                       console.log('test'+emailid)
-                                       console.log('test'+emailamount)
-                                       console.log('test'+emailaddress)
-                                       console.log('test'+formattedToday)
                 
                 //   EMAIL PROCESS
                 let transporter = nodemailer.createTransport({
@@ -77,7 +69,6 @@ const handler= async (req, res)=> {
                         
                          })
                 
-                                        console.log('end' + 'email here')
                                         const decrementAmount = user.balance - response.amount;
                                        let updateOneuser =  await User.updateOne({email:response.email},{balance:decrementAmount})
                                        if(updateOneuser){

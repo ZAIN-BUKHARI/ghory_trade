@@ -26,17 +26,17 @@ const Menuitems = [
     href: "/adminplanreject",
   },
   {
-    title: "Verified Requests",
+    title: "Verified Withdrawals",
     icon: "user-check",
     href: "/adminrecent",
   },
   {
-    title: "Pending Requests",
+    title: "Pending Withdrawals",
     icon: "user",
     href: "/adminwithdrawals",
   },
   {
-    title: "Rejected Requests",
+    title: "Rejected Withdrawals",
     icon: "user-x",
     href: "/adminreject",
   },

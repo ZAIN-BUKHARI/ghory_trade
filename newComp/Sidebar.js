@@ -16,10 +16,10 @@ import { FcPositiveDynamic } from 'react-icons/fc';
 import { FcBusinessman } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
-
+import axios from 'axios';
 
 const Sidebar = () => {
-  const {usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -82,6 +82,17 @@ const Sidebar = () => {
     settoken(false)
   }
 
+  const fetchHistory = async () =>{
+    setLoader(true)
+    axios.get(`/api/get/history?email=${email}`).then(res=>{
+      sethistory(res.data.history)
+      setLoader(false)
+      router.push('/history')
+  }).catch(err=>{
+      sethistory([])
+      setLoader(false)
+  });
+  }
   if(!mobile)
   {
 
@@ -200,6 +211,13 @@ const Sidebar = () => {
           {!token && subscription=='no' &&<FcLock/>}
 
           </li> */}
+        <li>
+        <span className="material-symbols-outlined">
+          {token &&  <FcPlanner/>}
+          </span>
+          {token &&  <Link onClick={fetchHistory}  href='#'>History</Link>}
+
+          </li>
       
         <li className="logout-link">
           <span className="material-symbols-outlined">

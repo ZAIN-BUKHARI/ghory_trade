@@ -36,8 +36,7 @@ const handler= async (req, res)=> {
                   let name = u.firstname;
                   let emailaddressto = u.email
                      
-                  console.log(name)
-                  console.log(emailaddressto)
+                 
                                        //EMAIL PROCESS
                     //    let from = usman bhai ka account 
                     emailaddressto = 'zainyshorts@gmail.com'
