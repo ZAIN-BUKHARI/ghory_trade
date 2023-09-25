@@ -4,6 +4,7 @@ import Request from '../../../models/Request'
 const handler= async (req, res)=> {
     
         let request = await Request.find()
+        request.reverse()
         res.status(200).send({request})
     
 }

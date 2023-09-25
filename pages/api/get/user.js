@@ -8,6 +8,7 @@ const handler= async (req, res)=> {
     }
     else{
         let orders = await User.find()
+        orders.reverse()
         res.status(200).send({orders})
     }
 }
