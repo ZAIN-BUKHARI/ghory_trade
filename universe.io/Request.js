@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 const Request = () => {
     //useContext
-    const {setLoader,setPaymentRequestModal,balance,email,mobile,Userid} = useContext(ThemeContext)
+    const {getBalanceCurrent,setLoader,setPaymentRequestModal,balance,email,mobile,Userid} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
@@ -30,6 +30,7 @@ const Request = () => {
   //  derecemting in balance method is remaining
     const requestSubmit = async () =>{
       setdisable(true)
+      setLoader(true)
     if(address.length==0 && amount==0  
       ){
         toast.error("Cannot submit empty request", {
@@ -42,6 +43,7 @@ const Request = () => {
           progress: undefined,
           theme: "light",
         })
+        setLoader(false)
       setdisable(false)
       }else{
 
@@ -63,6 +65,9 @@ const Request = () => {
               })
               setPaymentRequestModal(false)
               setdisable(false)
+              getBalanceCurrent()
+              setLoader(false)
+              
             }
             else{
               toast.error("Withdrawal request failed try again! ", {
@@ -109,7 +114,7 @@ const Request = () => {
     }
 
 
-
+    setLoader(false)
     };
 if(mobile){
   return (
