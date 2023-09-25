@@ -36,39 +36,39 @@ const handler= async (req, res)=> {
                   let name = u.firstname;
                   let emailaddressto = u.email
                  
-                                       //EMAIL PROCESS
+                                                          //EMAIL PROCESS
                     //    let from = usman bhai ka account 
                     let transporter = nodemailer.createTransport({
-                    service: 'Gmail',
-                      auth: {
-                      user: 'ghoryg7@gmail.com', 
-                      // pass: 'rvma faxr ablkzvrr' 
-                      pass: 'hscq rlbp puns xlud' // new usman bhai password
-                            }
-                });
-                // Request Date: [${address}]
-                //     Withdrawal Amount: [${id}]
-                //     Account Number: [${amount}]
-                //     Transaction ID: [${date}]
-                let mailOptions = {
-                    from: 'usmanghory3@gmail.com', 
-                    to: `${emailaddressto}`,
-                    subject: 'GHORY.TRADE',
-                    text: `Dear ${name},
-
-We are thrilled to welcome you to ghory.trade! Your account has been successfully created, and we're excited to have you as part of our community.
-
-With your new account, you can start exploring all that ghory.trade has to offer. we have a wide range of offerings to cater to your needs.`
-                };
-
-                transporter.sendMail(mailOptions).then(result=>{
-                    try{
-                      res.status(200).json({success:true})
-                    }catch(e){
-                      res.status(200).json({success:true})
-                    }
-                     })
-                     res.status(200).json({success:true})
+                      service: 'Gmail',
+                        auth: {
+                          user: `${process.env.NODE_MAILER_USER}`, 
+                          pass: `${process.env.NODE_MAILER_PASS}`
+                              }
+                  });
+                  // Request Date: [${address}]
+                  //     Withdrawal Amount: [${id}]
+                  //     Account Number: [${amount}]
+                  //     Transaction ID: [${date}]
+                  let mailOptions = {
+                      from: `${process.env.NODE_MAILER_USER}`, 
+                      to: `${emailaddressto}`,
+                      subject: 'GHORY.TRADE',
+                      text: `Dear ${name},
+  
+  We are thrilled to welcome you to ghory.trade! Your account has been successfully created, and we're excited to have you as part of our community.
+  
+  With your new account, you can start exploring all that ghory.trade has to offer. we have a wide range of offerings to cater to your needs.`
+                  };
+  
+                  transporter.sendMail(mailOptions).then(result=>{
+                      try{
+                        res.status(200).json({success:true})
+                      }catch(e){
+                        res.status(200).json({success:true})
+                      }
+                       })
+                       res.status(200).json({success:true})
+  
 
 
 

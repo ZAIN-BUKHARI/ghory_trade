@@ -10,12 +10,12 @@ const handler= async (req, res)=> {
         let transporter = nodemailer.createTransport({
             service: 'Gmail',
               auth: {
-              user: 'ghoryg7@gmail.com', 
-              pass: 'hscq rlbp puns xlud'
+              user: `${process.env.NODE_MAILER_USER}`, 
+              pass: `${process.env.NODE_MAILER_PASS}`
                     }
         });
         let mailOptions = {
-            from: 'ghoryg7@gmail.com', 
+            from: `${process.env.NODE_MAILER_USER}`, 
             to: `${email}`,
         subject: 'GHORY.TRADE',
         text: `OTP CODE FOR EMAIL VERIFICATION ${a}

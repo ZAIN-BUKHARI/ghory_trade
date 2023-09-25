@@ -33,13 +33,12 @@ const handler= async (req, res)=> {
                 let transporter = nodemailer.createTransport({
                         service: 'Gmail',
                           auth: {
-                          user: 'ghoryg7@gmail.com', 
-                        //   pass: 'rvma faxr ablkzvrr' 
-                          pass: 'hscq rlbp puns xlud' // new usman bhai password
+                                user: `${process.env.NODE_MAILER_USER}`, 
+                                pass: `${process.env.NODE_MAILER_PASS}`
                                 }
                     });
                     let mailOptions = {
-                        from: 'ghoryg7@gmail.com', 
+                        from: `${process.env.NODE_MAILER_USER}`, 
                         to: `${emailaddressto}`,
                     subject: 'GHORY.TRADE',
                     text: `Withdrawal Details:
