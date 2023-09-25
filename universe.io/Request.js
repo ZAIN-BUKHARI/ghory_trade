@@ -2,10 +2,11 @@ import React,{ useContext,useState } from 'react'
 import { ThemeContext } from '../Context/ThemeContext';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { useEffect } from 'react';
 
 const Request = () => {
     //useContext
-    const {setPaymentRequestModal,balance,email,mobile} = useContext(ThemeContext)
+    const {setLoader,setPaymentRequestModal,balance,email,mobile} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
@@ -13,8 +14,18 @@ const Request = () => {
     const [method,setmethod]=useState("TRC20")
     const [amount,setamount]=useState(0)
     const [bankname,setbankname]=useState("")
+    const [selrate,setselrate]=useState(0)
   
   const[ disable,setdisable]=useState(false)
+  useEffect(()=>{
+    setLoader(true)
+    axios.get('/api/selrate/get').then(res=>{
+      setselrate(res.data.rate.Selrate)
+      setLoader(false)
+    }).catch(e=>{
+    setLoader(false)
+    })
+  },[])
 
   //  derecemting in balance method is remaining
     const requestSubmit = async () =>{
@@ -106,7 +117,7 @@ if(mobile){
     <div className='FormModal'>
     <div className='card-responsive'>
     <div className="card__title-mobile">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${selrate}</strong>
     </p>
     <div className="card__form">
         <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
@@ -140,7 +151,8 @@ if(mobile){
       <div className='FormModal'>
       <div className='card'>
       <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-      <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${selrate}</strong>
+
       </p>
       <div className="card__form">
           <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>

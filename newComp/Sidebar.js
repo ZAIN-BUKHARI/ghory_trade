@@ -10,7 +10,7 @@ import { FcLeft } from 'react-icons/fc';
 import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
 import { FcShare } from 'react-icons/fc';
-// import { FcPlanner } from 'react-icons/fc';
+import { FcPlanner } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FcSmartphoneTablet } from 'react-icons/fc';
 import { FcPositiveDynamic } from 'react-icons/fc';
@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const Sidebar = () => {
-  const {setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {setselrate,setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -83,17 +83,40 @@ const Sidebar = () => {
     settoken(false)
   }
 
-  // const fetchHistory = async () =>{
-  //   setLoader(true)
-  //   axios.get(`/api/get/history?email=${email}`).then(res=>{
-  //     sethistory(res.data.history)
-  //     setLoader(false)
-  //     router.push('/history')
-  // }).catch(err=>{
-  //     sethistory([])
-  //     setLoader(false)
-  // });
-  // }
+  const fetchHistory = async () =>{
+    setLoader(true)
+    axios.get(`/api/get/history?email=${email}`).then(res=>{
+      if(res.data.history==0 || res.data.history==undefined || res.data.history==null || res.data.history==[])
+      {
+        toast.info('No withdrawal history', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setLoader(false)
+      }else{
+        sethistory(res.data.history)
+        setLoader(false)
+        router.push('/history')
+      
+      }
+    }).catch(err=>{
+      sethistory([])
+      setLoader(false)
+    });  
+    }
+
+  const withdrafunc =()=>{
+    setPaymentRequestModal(true);
+    sethideSidebar(false);
+    
+  }
+
   if(!mobile)
   {
 
@@ -212,13 +235,13 @@ const Sidebar = () => {
           {!token && subscription=='no' &&<FcLock/>}
 
           </li> */}
-        {/* <li>
+        <li>
         <span className="material-symbols-outlined">
           {token &&  <FcPlanner/>}
           </span>
           {token &&  <Link onClick={fetchHistory}  href='#'>History</Link>}
 
-          </li> */}
+          </li>
       
         <li className="logout-link">
           <span className="material-symbols-outlined">
@@ -240,7 +263,7 @@ const Sidebar = () => {
 else{
   return (
     <>
-    {hideSidebar && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
+    {hideSidebar && router.asPath!='/history' && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">
@@ -329,7 +352,7 @@ else{
           
           {!token &&<Link href={''} onClick={Dailywork}  >widthdraw</Link>}
           {!token &&<FcLock/>}
-          {token &&<Link onClick={()=>{setPaymentRequestModal(true);sethideSidebar(false)}} href="#">widthdraw</Link>}
+          {token &&<Link onClick={withdrafunc} href="#">widthdraw</Link>}
 
         </li>
 
@@ -347,6 +370,13 @@ else{
           {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token &&<FcLock/>}
           </li> */}
+          <li>
+        <span className="material-symbols-outlined">
+          {token &&  <FcPlanner/>}
+          </span>
+          {token &&  <Link onClick={fetchHistory}  href='#'>History</Link>}
+
+          </li>
       
         <li className="logout-link">
           <span className="material-symbols-outlined">

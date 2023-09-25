@@ -1120,3 +1120,7 @@ p {
 	padding-left: 20px;
 	background-color: #eee;
 }
+.bold-selrate{
+	font-weight: bold;
+	color: black;
+}

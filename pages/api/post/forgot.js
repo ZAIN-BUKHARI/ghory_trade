@@ -12,12 +12,11 @@ const handler= async (req,res)=>{
         
         const bytes  = CryptoJS.AES.decrypt(userdata.password, 'secret123')
         const decryptPass = bytes.toString(CryptoJS.enc.Utf8);
-        if(req.body.password==req.body.cpassword){
-            let changepass = await User.findOneAndUpdate({email:req.body.email},{password:CryptoJS.AES.encrypt(req.body.cpassword,'secret123').toString()})
+        console.log(decryptPass)
+            let changepass = await User.findOneAndUpdate({email:req.body.email},{password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString()})
+            
             res.status(200).json({success:true})
-        }else{
-            res.status(200).json({error:"password not match"})
-        }
+        
     }
         
         else{

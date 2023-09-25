@@ -258,7 +258,7 @@ const addProducts = () => {
     </Grid>
   
   
-    <Grid container spacing={0}>
+    {/* <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-pink-500 text-center' >RESET PASSWORD</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -275,7 +275,7 @@ const addProducts = () => {
           
         </BaseCard>
       </Grid>
-    </Grid>
+    </Grid> */}
 
 
 {/* DELETE OLD LINKS  */}

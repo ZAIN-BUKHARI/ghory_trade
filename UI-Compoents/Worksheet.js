@@ -6,11 +6,11 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../Context/ThemeContext'
 import { FcLeft } from "react-icons/fc";
-
 const Worksheet = () => {
     //use Context 
-    const {setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {fetchDailyWork,setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
+    const [disable,setdisable]=useState(false)
    
     const startWork = (link,length) =>{
         setvideoID(link)
@@ -18,40 +18,52 @@ const Worksheet = () => {
         router.push(`/dailywork`)
     }
     const Complete=async()=>{
+      setdisable(true)
+      setTimeout(() => {
       const data = {email}
-      await axios.post('/api/post/balanceincrement',data)
-        toast.info('Congrats for completing tasks :) ', {
-          position: "top-center",
-          autoClose: 50000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        getBlalance()
+       axios.post('/api/post/balanceincrement',data).then(res=>{
+         window.location.replace('/')
+         toast.info('Congrats for completing tasks :) ', {
+           position: "top-center",
+           autoClose: 50000,
+           hideProgressBar: false,
+           closeOnClick: true,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
+           theme: "light",
+          });
+        }).catch(e=>{
+          alert('Sever error')
+          window.location.replace('/')
+
+        })
+      //   .then(res)
+      // axios.post('/api/get/balance',data).then(res=>{
+      //   if(res.data.success==true)
+      //   {
+      //     setbalance(parseFloat(res.data.balance))
+      //     window.location.replace('/')
+      //   }else{
+      //     alert('server error try again')
+      //   }
+      // })
+    }, 500);
   
     }
-    function getBlalance()
-    {
-      const data={email}
-      axios.post('/api/get/balance',data).then(res=>{
-        if(res.data.success==true)
-        {
-          setbalance(parseFloat(res.data.balance))
-          window.location.replace('/')
-        }else{
-          alert('server error try again')
-        }
-      })
-    }
+    
+    
+    
     useEffect(()=>{
       if(mobile && hideSidebar)
       {
         sethideSidebar(false)
       }
-    },[])
+      fetchDailyWork()
+    },[linktoLevel])
+
+
+
     if(!mobile)
     {
 
@@ -189,7 +201,7 @@ else{
 
             </table>
         
-        {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}} className="Done ">Complete</p> </td>} 
+        {workStatus=='yes' && linktoLevel!=0 && <td> <p disable={disable} onClick={()=>{alert('All Task Done ')}} className="Done ">Complete</p> </td>} 
         {workStatus=='no'  && views!=parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn">click when your task complete</p> </td>} 
         {views==parseInt(level) &&  <td> <p onClick={Complete}  className={`Done dim `}>click here for submision</p> </td>} 
             

@@ -4,7 +4,8 @@ import Selrate from '../../../models/Selrate'
 const handler= async (req, res)=> {
     if(req.method=='GET'){   
        try{ 
-            let rate = await Selrate.findOne()   
+            let rate = await Selrate.findOne() 
+            console.log(rate)  
             if(rate)    res.status(200).json({ rate })
            
        }

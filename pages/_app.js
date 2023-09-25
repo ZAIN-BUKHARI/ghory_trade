@@ -15,6 +15,7 @@ import '../styles/currency.css'
 import '../styles/invite.css'
 import '../styles/searchbar.css'
 import '../styles/download.css'
+import '../styles/otp.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
@@ -27,6 +28,7 @@ import Request from '../universe.io/Request';
 import axios from 'axios';
 import Header from '../Responsiveness/Header';
 import { toast } from 'react-toastify';
+import Otp from '../universe.io/Otp';
 function MyApp({ Component, pageProps
 }) {
   const router = useRouter()
@@ -207,12 +209,8 @@ async function getVideoInfo(id){
   try{
 
     setLoader(true)
-    // let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet&id=${id}`)
   let result = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,contentDetails&id=${id}`)
   if(result.status==200){
-    // var time = result.data.items[0].contentDetails.duration
-    // setduration((parseInt(time.split('M')[0].slice(2)))*60000)
-
     setvideoTitle(result.data.items[0].snippet.localized.title)
     setLoader(false)
     
@@ -386,14 +384,20 @@ function fetchDailyWork()
     const [Length,setLength]=useState('')
 
     //withdrawal history
-    // const [history,sethistory]=useState([])
+    const [history,sethistory]=useState([])
+
+    
+
+    
+    
 
   return(
 <>
-<ThemeContext.Provider value={{videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
+    
     {mobile  &&<Header/>}
     {PaymentRequestModal && <Request/>}
     {loader && <Loading/>}

@@ -14,7 +14,7 @@ const Header = () => {
         else
             sethideSidebar(true)
     }
-   if(!router.asPath.includes('/work') && router.asPath!='/chart')
+   if(!router.asPath.includes('/work') && router.asPath!='/chart' && router.asPath!='/history')
    {
 
     return (
