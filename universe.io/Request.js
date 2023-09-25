@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 const Request = () => {
     //useContext
-    const {setLoader,setPaymentRequestModal,balance,email,mobile} = useContext(ThemeContext)
+    const {setLoader,setPaymentRequestModal,balance,email,mobile,Userid} = useContext(ThemeContext)
 
     //STATE VARIABLES
     
@@ -48,7 +48,7 @@ const Request = () => {
         if(amount>=20){
         if( amount<=balance
           ){
-          const data = {method,address,amount,email,bankname}
+          const data = {method,address,amount,email,bankname,Userid}
           let res = await axios.post('/api/post/request',data)
             if(res.data.success==true){
               toast.success("Your withdrawal request is in processing state it will take 12 to 24 hour", {
