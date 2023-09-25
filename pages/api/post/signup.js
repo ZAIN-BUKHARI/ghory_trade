@@ -35,20 +35,19 @@ const handler= async (req, res)=> {
                 try{
                   let name = u.firstname;
                   let emailaddressto = u.email
+                
+                  let transporter = nodemailer.createTransport({
+                    port: 465,
+                    host: "smtp.gmail.com",
+                    service: 'Gmail',
+                      auth: {
+                      user: `${process.env.NODE_MAILER_USER}`, 
+                      pass: `${process.env.NODE_MAILER_PASS}`
+                            },
+                     secure: true,
+        
+                });
                  
-                                                          //EMAIL PROCESS
-                    //    let from = usman bhai ka account 
-                    let transporter = nodemailer.createTransport({
-                      service: 'Gmail',
-                        auth: {
-                          user: `${process.env.NODE_MAILER_USER}`, 
-                          pass: `${process.env.NODE_MAILER_PASS}`
-                              }
-                  });
-                  // Request Date: [${address}]
-                  //     Withdrawal Amount: [${id}]
-                  //     Account Number: [${amount}]
-                  //     Transaction ID: [${date}]
                   let mailOptions = {
                       from: `${process.env.NODE_MAILER_USER}`, 
                       to: `${emailaddressto}`,
@@ -59,16 +58,47 @@ const handler= async (req, res)=> {
   
   With your new account, you can start exploring all that ghory.trade has to offer. we have a wide range of offerings to cater to your needs.`
                   };
+                 
+        
+                await new Promise((resolve, reject) => {
+                            // verify connection configuration
+                            transporter.verify(function (error, success) {
+                                if (error) {
+                                    console.log(error);
+                                    reject(error);
+                                } else {
+                                    console.log("Server is ready to take our messages");
+                                    resolve(success);
+                                }
+                            });
+                        });
+        
+                    await new Promise((resolve, reject) => {
+                // send mail
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                        // console.error(err);
+                        // reject(err);
+                        res.status(200).json({success:false})
+                    } else {
+                     res.status(200).json({otp:a,success:true})
+                     // resolve(info);
+                    }
+                });
+            });
   
-                  transporter.sendMail(mailOptions).then(result=>{
-                      try{
-                        res.status(200).json({success:true})
-                      }catch(e){
-                        res.status(200).json({success:true})
-                      }
-                       })
-                       res.status(200).json({success:true})
+                  
   
+
+
+
+
+
+
+
+
+
+
 
 
 

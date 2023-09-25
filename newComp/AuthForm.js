@@ -82,14 +82,15 @@ const AuthForm = () => {
   const signup = (e) => {
     e.preventDefault();
     setdisable(true)
+    setLoader(true)
     if(password.length>=10){
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/otp", data).then((res) => {
-    setLoader(true)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setActiveLoginModal(true);
         setotpModal(true)
+        setLoader(false)
       } else {
         setdisable(false)
         toast.error('Email is not correct', {

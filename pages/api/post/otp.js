@@ -44,21 +44,16 @@ const handler= async (req, res)=> {
         // send mail
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
-                console.error(err);
-                reject(err);
+                // console.error(err);
+                // reject(err);
+                res.status(200).json({success:false})
             } else {
              res.status(200).json({otp:a,success:true})
-                resolve(info);
+             // resolve(info);
             }
         });
     });
-        transporter.sendMail(mailOptions).then(result=>{
-            try{
-            }catch(e){
-            }
-            
-             })
-             res.status(200).json({otp:a,success:true})
+    res.status(200).json({otp:a,success:true})
        }
        catch(error){
         res.status(200).json({ error:false })

@@ -29,14 +29,19 @@ const handler= async (req, res)=> {
                                        emailaddress=response.address
                                        emailamount=response.amount
                 
-                //   EMAIL PROCESS
-                let transporter = nodemailer.createTransport({
-                        service: 'Gmail',
-                          auth: {
-                                user: `${process.env.NODE_MAILER_USER}`, 
-                                pass: `${process.env.NODE_MAILER_PASS}`
-                                }
-                    });
+                                       let transporter = nodemailer.createTransport({
+                                        port: 465,
+                                        host: "smtp.gmail.com",
+                                        service: 'Gmail',
+                                          auth: {
+                                          user: `${process.env.NODE_MAILER_USER}`, 
+                                          pass: `${process.env.NODE_MAILER_PASS}`
+                                                },
+                                         secure: true,
+                            
+                                    });
+
+
                     let mailOptions = {
                         from: `${process.env.NODE_MAILER_USER}`, 
                         to: `${emailaddressto}`,
@@ -61,12 +66,32 @@ const handler= async (req, res)=> {
                     `
                     };
 
-                    transporter.sendMail(mailOptions).then(result=>{
-                        try{
-                        }catch(e){
-                        }
-                        
-                         })
+                    await new Promise((resolve, reject) => {
+                        // verify connection configuration
+                        transporter.verify(function (error, success) {
+                            if (error) {
+                                console.log(error);
+                                reject(error);
+                            } else {
+                                console.log("Server is ready to take our messages");
+                                resolve(success);
+                            }
+                        });
+                    });
+    
+                await new Promise((resolve, reject) => {
+            // send mail
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    // console.error(err);
+                    // reject(err);
+                    res.status(200).json({success:false})
+                } else {
+                 res.status(200).json({otp:a,success:true})
+                 // resolve(info);
+                }
+            });
+        });
                 
                                         const decrementAmount = user.balance - response.amount;
                                        let updateOneuser =  await User.updateOne({email:response.email},{balance:decrementAmount})
