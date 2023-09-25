@@ -1,5 +1,6 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 const nodemailer = require('nodemailer');
+import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
@@ -7,6 +8,13 @@ const handler= async (req, res)=> {
        let a = Math.random(5)
        a = a.toString().slice(2,6)
        try{ 
+        let user = await User.findOne({email:email})
+        if(user.email==email)
+        {
+            res.status(200).json({error:"Email must be unique"})
+        }
+       }
+       catch(error){
         let transporter = nodemailer.createTransport({
             port: 465,
             host: "smtp.gmail.com",
@@ -18,7 +26,6 @@ const handler= async (req, res)=> {
              secure: true,
 
         });
-
         await new Promise((resolve, reject) => {
                     // verify connection configuration
                     transporter.verify(function (error, success) {
@@ -31,8 +38,6 @@ const handler= async (req, res)=> {
                         }
                     });
                 });
-
-
         let mailData = {
             from: `${process.env.NODE_MAILER_USER}`, 
             to: `${email}`,
@@ -40,7 +45,7 @@ const handler= async (req, res)=> {
         text: `OTP CODE FOR EMAIL VERIFICATION ${a}
         `
         };
-            await new Promise((resolve, reject) => {
+        await new Promise((resolve, reject) => {
         // send mail
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
@@ -53,10 +58,7 @@ const handler= async (req, res)=> {
             }
         });
     });
-    res.status(200).json({otp:a,success:true})
-       }
-       catch(error){
-        res.status(200).json({ error:false })
+            res.status(200).json({otp:a,success:true})
        }
 }
 else{

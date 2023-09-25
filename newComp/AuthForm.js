@@ -81,11 +81,15 @@ const AuthForm = () => {
   //SIGNUP
   const signup = (e) => {
     e.preventDefault();
+    if(password==cpassword)
+    {
+
     setdisable(true)
     setLoader(true)
     if(password.length>=10){
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/otp", data).then((res) => {
+      console.log(res)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setActiveLoginModal(true);
@@ -93,7 +97,7 @@ const AuthForm = () => {
         setLoader(false)
       } else {
         setdisable(false)
-        toast.error('Email is not correct', {
+        toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -120,7 +124,24 @@ else{
     theme: "light",
   });
 }
+}
+else{
+  setdisable(false)
+  toast.error('Password not match', {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+}
+
   };
+
+
   const signin = (e) => {
     e.preventDefault();
     setdisable(true)
@@ -234,10 +255,12 @@ else{
 
       if(otpcode==one+two+three+four)
       {
+        console.log(true)
         const data = { email, password, firstname, lastname, cpassword };
         axios.post("/api/post/signup", data).then((res) => {
         setLoader(true)
-          if (res.data.success == true) {
+        
+          if (res.data.success==true) {
             toast.success("Successfully signup", {
               position: "top-right",
               autoClose: 2000,
@@ -263,6 +286,9 @@ else{
               progress: undefined,
               theme: "light",
             });
+            setTimeout(() => {
+              window.location.reload()
+            }, 2000);
           }
           setLoader(false)
         }).catch(e=>{alert('Check your network');setdisable(false)});
