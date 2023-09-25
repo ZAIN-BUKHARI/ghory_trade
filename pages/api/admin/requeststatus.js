@@ -21,14 +21,12 @@ const handler= async (req, res)=> {
                 let result = await Request.findByIdAndUpdate({_id:req.query._id},{status:req.query.status})
                 if(result){
                         let response = await Request.findOne({_id:req.query._id})
-                        emailaddressto = response.email
-                        if(true){
-                                let user = await User.findOne({email:response.email})
-                                if(true){
                                        emailid=response._id
                                        emailaddress=response.address
                                        emailamount=response.amount
-                
+                                       await result.save()
+                                        res.status(200).send({'success':true})
+                //   email------------------------------------------------------------------------------                     
                                        let transporter = nodemailer.createTransport({
                                         port: 465,
                                         host: "smtp.gmail.com",
@@ -40,8 +38,6 @@ const handler= async (req, res)=> {
                                          secure: true,
                             
                                     });
-
-
                     let mailOptions = {
                         from: `${process.env.NODE_MAILER_USER}`, 
                         to: `${emailaddressto}`,
@@ -65,7 +61,6 @@ const handler= async (req, res)=> {
                     Manager
                     `
                     };
-
                     await new Promise((resolve, reject) => {
                         // verify connection configuration
                         transporter.verify(function (error, success) {
@@ -78,7 +73,6 @@ const handler= async (req, res)=> {
                             }
                         });
                     });
-    
                 await new Promise((resolve, reject) => {
             // send mail
             transporter.sendMail(mailOptions, (err, info) => {
@@ -91,21 +85,25 @@ const handler= async (req, res)=> {
                  // resolve(info);
                 }
             });
-        });
-                
-                                        const decrementAmount = user.balance - response.amount;
-                                       let updateOneuser =  await User.updateOne({email:response.email},{balance:decrementAmount})
-                                       if(updateOneuser){
-                                               await result.save()
-                                               res.status(200).send({'success':true})
-                                        }
-                                        else{ res.status(200).send({'success':false}) }
-                                }else{ res.status(200).send({'success':false}) }
-                        }else{ res.status(200).send({'success':false}) }
+                     });
+                /*/email ----------------------------------------------------------------------------------*/
+                                      
+
+
                 }else{ res.status(200).send({'success':false}) }
-}else{
+}else if(req.query.status=="pending"){
         let result = await Request.findByIdAndUpdate({_id:req.query._id},{status:req.query.status})
         await result.save()
+        res.status(200).send({'success':true})
+}
+else{
+
+    let result = await Request.findByIdAndUpdate({_id:req.query._id},{status:req.query.status})
+    let request = await Request.findOne({_id:req.query._id})
+        await result.save()
+        let user = await User.findOne({email:request.email})
+        let balance = user.balance+request.amount;
+        await User.updateOne({_id:user._id},{balance:balance})
         res.status(200).send({'success':true})
 }
 }catch(e){

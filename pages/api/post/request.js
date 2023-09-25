@@ -1,5 +1,6 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import Request from '../../../models/Request'
+import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
@@ -13,38 +14,25 @@ const handler= async (req, res)=> {
         if (mm < 10) mm = '0' + mm;
 
         const formattedToday = dd + '/' + mm + '/' + yyyy;
-        const {email,method,address,amount,bankname} = req.body
-        let p = new Request({
-            method:method,
-            address:address,
-            email:email,
-            amount:amount,
-            date:formattedToday,
-            bankname:bankname
-        })
-    //     let getUser  = await User.findOne({email:email})
-    //     for(var i=0; i<=getUser.teams.length;i++)
-    // {
-    //     if(getUser.teams[i].direct.plan=='yes')
-    //     {
-    //         let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].direct.id})
-    //         const invesetment=getdirectUserbyId.investment;
-    //         const invested_time=p.createdAt;
-    //         const finalPecentage=invesetment*100/5;
-    //         const finalbalance = getdirectUserbyId.balance+finalPecentage
-    //         await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
-    //     }
-    //     if(getUser.teams[i].indirect.plan=='yes')
-    //     {
-    //         let getdirectUserbyId = await User.findOne({_id:getUser.teams[0].indirect.id})
-    //         const invesetment=getdirectUserbyId.investment;
-    //         const invested_time=p.createdAt;
-    //         const finalPecentage=invesetment*100/3;
-    //         const finalbalance = getdirectUserbyId.balance+finalPecentage
-    //         await User.updateOne({_id:getdirectUserbyId},{balance:finalbalance})
-    //     }
-    // }
+        const {email,method,address,amount,bankname,Userid} = req.body
+        let user = await User.findOne({_id:Userid})
+        let p;
+        if(user.email==email)
+        {
+            p = new Request({
+                method:method,
+                address:address,
+                email:email,
+                amount:amount,
+                date:formattedToday,
+                bankname:bankname
+            })
+        }
+
         await p.save()
+        let balance = user.balance;
+        balance = balance - amount
+        await User.updateOne({_id:user._id},{balance:balance})
         res.status(200).json({ success:true })
        }
        catch(error){

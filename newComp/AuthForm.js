@@ -326,7 +326,7 @@ else{
     </div> 
     <div class="title">Verification Code
     </div> 
-    <p class="message">We have sent a verification code to your mobile number</p>
+    <p class="message">We have sent a verification code to your email</p>
     <div class="inputs">
          <input value={one} onChange={(e)=>{setone(e.target.value)}} id="input1" type="text" maxlength="1"/>
          <input value={two} onChange={(e)=>{settwo(e.target.value)}} id="input2" type="text" maxlength="1"/>
@@ -467,7 +467,7 @@ else{
     </div> 
     <div class="title">Verification Code
     </div> 
-    <p class="message">We have sent a verification code to your mobile number</p>
+    <p class="message">We have sent a verification code to your email</p>
     <div class="inputs">
          <input value={one} onChange={(e)=>{setone(e.target.value)}} id="input1" type="text" maxlength="1"/>
          <input value={two} onChange={(e)=>{settwo(e.target.value)}} id="input2" type="text" maxlength="1"/>
