@@ -226,7 +226,7 @@ const Sidebar = () => {
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        {/* <li>
+        <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
           </span>
@@ -234,7 +234,7 @@ const Sidebar = () => {
           {!token && subscription=='no' &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token && subscription=='no' &&<FcLock/>}
 
-          </li> */}
+          </li>
         <li>
         <span className="material-symbols-outlined">
           {token &&  <FcPlanner/>}
@@ -318,6 +318,13 @@ else{
           </span>
           <Link href="/chart">Profit Chart</Link>
         </li>
+        {usman && <li>
+          <span className="material-symbols-outlined">
+            {/* <Report/> */}
+            <FcBusinessman />
+          </span>
+          <Link href="/admin">Admin Panel</Link>
+        </li>}
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -362,14 +369,14 @@ else{
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        {/* <li>
+        <li>
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
           {token &&<Link  href='/qrcode'>Invite </Link>}
           {!token &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}
           {!token &&<FcLock/>}
-          </li> */}
+          </li>
           <li>
         <span className="material-symbols-outlined">
           {token &&  <FcPlanner/>}

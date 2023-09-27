@@ -2,9 +2,11 @@ import React from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 import { FcStart } from "react-icons/fc";
+import { FcRight } from "react-icons/fc";
+
 import axios from 'axios';
 
-const AdminAllLinks = () => {
+const AdminAllLinks = ({Update}) => {
     const {allLinks}=useContext(ThemeContext)
     const Delete = (date) =>{
         axios.get(`/api/del/link?date=${date}`).then(res=>{
@@ -16,6 +18,7 @@ const AdminAllLinks = () => {
             }
         })
     }
+    
     return (
     <>
     <div className='AdminWorksheet-body'>
@@ -31,6 +34,7 @@ const AdminAllLinks = () => {
                         <th> Time </th>
                         <th> Date </th>
                         <th className='work-start'> Delete</th>
+                        <th className='work-start'> Update</th>
                     </tr>
                 </thead>
                 {allLinks && allLinks.map((item)=>(
@@ -44,6 +48,8 @@ const AdminAllLinks = () => {
                     
                     
                     <td> <p onClick={(e)=>{Delete(item.date)}} className='WorkSheet-Icon-Alert'><FcStart/></p> </td>
+                    <td> <p onClick={(e)=>{Update()}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                    
                 </tr>
                  
                     

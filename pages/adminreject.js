@@ -10,12 +10,12 @@ import { useEffect } from 'react';
 import AdminRequests from '../AdminComponents/AdminRequests';
 
 const adminreject = () => {
-  const {Admin,getAllRequest} =useContext(ThemeContext)
+  const {Admin,getAllRequest,mobile} =useContext(ThemeContext)
   
   useEffect(()=>{
     getAllRequest("rejected")
   },[])
-  if(Admin){
+  if(Admin && mobile){
     return (
       
       <ThemeProvider theme={theme}>

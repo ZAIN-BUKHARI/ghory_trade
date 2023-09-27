@@ -1,4 +1,5 @@
 // import { use } from 'react'
+// import { resolve } from 'styled-jsx/css';
 import ConnectMongoDB from '../../../middleware/mongoose'
 import Plan from '../../../models/Plan'
 import User from '../../../models/User'
@@ -55,36 +56,43 @@ const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
                 await User.updateOne({email:result.email},{planId:req.query._id})
                 let user = await User.findOne({email:result.email})
                 emailaddressto = result.email
-
                 try{
                   if(user.invite!=""){
                     let u = await  User.findOne({_id:user.invite})
+                    let secondUser = await User.findOne({email:result.email})
+                    let seconddirect = await User.findOne({_id:secondUser.invite})
+                    let secondindirect = await User.findOne({_id:seconddirect._id})
                     for(let i=0;i<u.teams.length;i++)
                     {
+                        
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
-                        {
+                        {   
                             await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'yes',[`teams.${i}.direct.investment`]:result.investment,DirectsalaryDate:oneYearSalaryPlan}
+                                {$set:{
+                                    [`teams.${i}.direct.plan`]:'yes',
+                                    [`teams.${i}.direct.investment`]:result.investment,
+                                    [`teams.${i}.direct.salaryDate`]:[oneYearSalaryPlan[1],oneYearSalaryPlan[2],oneYearSalaryPlan[3],oneYearSalaryPlan[4],oneYearSalaryPlan[5],oneYearSalaryPlan[6],oneYearSalaryPlan[7],oneYearSalaryPlan[8],oneYearSalaryPlan[9],oneYearSalaryPlan[10],oneYearSalaryPlan[11],oneYearSalaryPlan[12],]
+                                }
                                 })
                         }
-                        if(true)
-                        {
-                            let user = await User.findOne({email:result.email})
-                            let direct = await User.findOne({_id:user.invite})
-                            let indirect = await User.findOne({_id:direct.invite})
-                            if(indirect.teams[i]['indirect'].id.toString()==user._id.toString())
+                            
+                        else if(secondindirect.teams[i]['indirect'].id.toString()==secondUser._id.toString())
                             {
                                 await User.findByIdAndUpdate(
-                                     {_id:indirect._id},
-                                    {$set:{[`teams.${i}.indirect.plan`]:'yes',[`teams.${i}.indirect.investment`]:result.investment,[`teams.${i}.indirect.joinDate`]:joinDate,InDirectsalaryDate:oneYearSalaryPlan}}
+                                     {_id:secondindirect._id},
+                                    {$set:{
+                                        // [`teams.${i}.indirect.id`]:user._id,
+                                        [`teams.${i}.indirect.plan`]:'yes',
+                                        [`teams.${i}.indirect.investment`]:result.investment,
+                                        [`teams.${i}.indirect.salaryDate`]:[oneYearSalaryPlan[1],oneYearSalaryPlan[2],oneYearSalaryPlan[3],oneYearSalaryPlan[4],oneYearSalaryPlan[5],oneYearSalaryPlan[6],oneYearSalaryPlan[7],oneYearSalaryPlan[8],oneYearSalaryPlan[9],oneYearSalaryPlan[10],oneYearSalaryPlan[11],oneYearSalaryPlan[12],]
+                                    }}
                                     )
                             }
                         }
-                    }
                 }
                        //EMAIL PROCESS
                     //    let from = usman bhai ka account 
-                    let transporter = nodemailer.createTransport({
+    let transporter = nodemailer.createTransport({
                       port: 465,
                       host: "smtp.gmail.com",
                       service: 'Gmail',
@@ -94,8 +102,8 @@ const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
                               },
                        secure: true,
           
-                  });
-                    let mailOptions = {
+    });
+    let mailOptions = {
                         from: `${process.env.NODE_MAILER_USER}`,
                         to: `${emailaddressto}`,
                     subject: 'GHORY.TRADE',
@@ -113,10 +121,8 @@ const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
                     Here's to a fantastic experience ahead!
                     Best regards,
                     `
-                    };
-                    
-
-                    await new Promise((resolve, reject) => {
+    };
+    await new Promise((resolve, reject) => {
                       // verify connection configuration
                       transporter.verify(function (error, success) {
                           if (error) {
@@ -127,25 +133,24 @@ const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
                               resolve(success);
                           }
                       });
-                  });
-  
-              await new Promise((resolve, reject) => {
+    }); 
+    await new Promise((resolve, reject) => {
           // send mail
           transporter.sendMail(mailOptions, (err, info) => {
               if (err) {
-                  // console.error(err);
-                  // reject(err);
-                  res.status(200).json({success:false})
+                  reject(err);
               } else {
-               res.status(200).json({otp:a,success:true})
-               // resolve(info);
-              }
-          });
-      });
-                }catch(e){
-                       res.status(200).send({'success':true})
-               }
-        }else{ 
+               resolve(info);
+            }
+        });
+    });
+    res.status(200).json({success:true})
+    }catch(e){
+                       res.status(200).send({success:true})
+    }
+
+   }
+    else{ 
                 await User.updateOne({email:result.email},{subscription:'no'})
                 let user = await User.findOne({email:result.email})
                 try{
@@ -153,22 +158,35 @@ const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
                     let u = await  User.findOne({_id:user.invite})
                     for(let i=0;i<u.teams.length;i++)
                     {
+                        console.log('length '+i)
                         if(u.teams[i]['direct'].id.toString()==user._id.toString())
                         {
-                            await User.findByIdAndUpdate({_id:user.invite},
-                                {$set:{[`teams.${i}.direct.plan`]:'no',[`teams.${i}.direct.investment`]:0,},DirectsalaryDate:[]
-                                })
+                            await User.findByIdAndUpdate
+                            (
+                                {_id:user.invite},
+                                {$set:{
+                                    [`teams.${i}.direct.plan`]:'no',
+                                    [`teams.${i}.direct.investment`]:0,
+                                    [`teams.${i}.direct.salaryDate`]:[]
+                                }
+                                }
+                            )
                         }
                         if(true)
-                        {
+                        { 
                             let user = await User.findOne({email:result.email})
                             let direct = await User.findOne({_id:user.invite})
                             let indirect = await User.findOne({_id:direct.invite})
-                            if(indirect.teams[i]['indirect'].id.toString()==user._id.toString())
+                            if(direct.teams[i]['direct'].id.toString()==user._id.toString())
                             {
                                 await User.findByIdAndUpdate(
                                      {_id:indirect._id},
-                                    {$set:{[`teams.${i}.indirect.plan`]:'no',[`teams.${i}.indirect.investment`]:0},InDirectsalaryDate:[]}
+                                    {$set:{
+                                        // [`teams.${i}.indirect.id`]:'no',
+                                        [`teams.${i}.indirect.plan`]:'no',
+                                        [`teams.${i}.indirect.investment`]:0,
+                                        [`teams.${i}.indirect.salaryDate`]:[]
+                                    }}
                                     )
                             }
                         }

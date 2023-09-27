@@ -43,6 +43,7 @@ const AdminPlans = () => {
             setLoader(false)
             alert('Server error contact site developer for this issue')
         }
+        setLoader(false)
 
     }
 
@@ -60,7 +61,7 @@ const AdminPlans = () => {
                     <tr>
                         <th> ID </th>
                         <th> Customer </th>
-                        <th> Address </th>
+                        <th> Email </th>
                         <th> Join</th>
                         <th> Level</th>
                         <th> Amount </th>

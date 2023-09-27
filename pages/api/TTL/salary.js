@@ -3,171 +3,96 @@ import User from '../../../models/User'
 import Plan from '../../../models/Plan'
 
     
-const handler= async (req, res)=> {
-   //current DD/MM/YYY
-   const join = new Date();
-   const yyy = join.getFullYear() ;
-   let mmm = join.getMonth() + 1; // Months start at 0!
-   let ddd = join.getDate();
-   if (ddd < 10) ddd = '0' + ddd;
-   if (mmm < 10) mmm = '0' + mmm;
-   const currentDate = ddd + '/' + mmm + '/' + yyy;
-    let user;
-    let plan;
-    let stop=0;
-    let A=0;
-    let totalSalary = 0;
-    if(req.method=='POST'){
-        const {Userid} = req.body
-         user = await User.findOne({_id:Userid})
-         plan = await Plan.findOne({_id:user.planId})
-         let arr=[];
-         let sortedArr=[5]
-            for(let i=0;i<user.teams.length;i++)
-            {
-                arr[i] = user.teams[i]
-            }
-            for(let i=0;i<arr.length;i++)
-            {
-                for(let j=i;j<arr.length;j++)
-                {
-                    if(arr[j]['direct'].investment>arr[i]['direct'].investment && arr[i]['direct'].plan=='yes')
-                    {
-                        let temp =  arr[i]; 
-                        arr[i] = arr[j]
-                        arr[j] = temp;
-                    }
-                }
-            }
-            for(let i=0;i<5;i++)
-            {
-            if(user.teams[i] && arr[i]['direct'].plan=='yes')
-            {
-              if(arr[i]['direct'].plan=='yes')    
-                  sortedArr[i] = arr[i]
-                  A = A + arr[i]['direct'].investment
-                    
-              }
-            
-            }
-            A = A + plan.investment;
-            for(let i=0;i<user.teams.length;i++)
-        {
-            user = await User.findOne({_id:Userid})
-            plan = await Plan.findOne({_id:user.planId})
-          
-            console.log(A)
-            const fivePercentSalary  = ((user.teams[i]['direct'].investment*20/100)*5/100)
-            const threePercentSalary = ((user.teams[i]['indirect'].investment*20/100)*3/100)
-            
-          console.log(currentDate == user.DirectsalaryDate[0])
-          console.log(currentDate)
-          console.log(user.DirectsalaryDate[0])
-        if(A<10000)
-        {
+const handler = async (req, res) => {
+    let salary=0;   
+    var join = new Date();
+    var yyy = join.getFullYear();
+    var mmm = String(join.getMonth() + 1).padStart(2, '0');
+    var ddd = String(join.getDate()).padStart(2, '0');
+    var currentDate = `${ddd}/${mmm}/${yyy}`;
+  
+    if (req.method === 'POST') {
+      var { Userid } = req.body;
+      var user = await User.findOne({ _id: Userid });
+      var plan = await Plan.findOne({ _id: user.planId });
+  
+      let arr = [...user.teams];
+      arr = arr.filter((data) => data['direct'].plan === 'yes');
+      arr.sort((a, b) => b['direct'].investment - a['direct'].investment);
+  
+    //   note leader investment is not included in the sub total 
 
-        if(user.teams[i]['direct'].plan=='yes' && user.teams[i]['direct'].investment>=100 ){ 
-
-            if(
-              currentDate==user.DirectsalaryDate[1]  ||
-              currentDate==user.DirectsalaryDate[2]  ||
-              currentDate==user.DirectsalaryDate[3]  ||
-              currentDate==user.DirectsalaryDate[4]  ||
-              currentDate==user.DirectsalaryDate[5]  ||
-              currentDate==user.DirectsalaryDate[6]  ||
-              currentDate==user.DirectsalaryDate[7]  ||
-              currentDate==user.DirectsalaryDate[8]  ||
-              currentDate==user.DirectsalaryDate[9]  ||
-              currentDate==user.DirectsalaryDate[10] ||
-              currentDate==user.DirectsalaryDate[11] ||
-              currentDate==user.DirectsalaryDate[12] 
-            ){
-              totalSalary = user.balance + fivePercentSalary
-              await User.updateOne({_id:user._id},{balance:totalSalary})
-              totalSalary=0;
-            }       
+    if(arr.length >= 80 && arr.slice(0, 80).reduce((sum, data) => {if (data['direct'].plan === 'yes') { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 6000000){
+        await User.updateOne({_id:user._id},{Rank:'ED',balance:(user.balance+13000)})
+    }else if(arr.length >= 40 && arr.slice(0, 40).reduce((sum, data) => {if (data['direct'].plan === 'yes') { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 2000000){
+        await User.updateOne({_id:user._id},{Rank:'MD',balance:(user.balance+1500)})
+    }else if(arr.length >= 20 && arr.slice(0, 20).reduce((sum, data) => {if (data['direct'].plan === 'yes') { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 1000000){
+        await User.updateOne({_id:user._id},{Rank:'SVP',balance:(user.balance+600)})
+    }else if(arr.length >= 10 && arr.slice(0, 10).reduce((sum, data) => {if (data['direct'].plan === 'yes') { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 150000 ){
+        await User.updateOne({_id:user._id},{Rank:'VP',balance:(user.balance+150)})
+    }else if(arr.length >= 5 && arr.slice(0, 5).reduce((sum, data) => {if (data['direct'].plan === 'yes')   { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 50000  ){
+        await User.updateOne({_id:user._id},{Rank:'GM',balance:(user.balance+100)})
+    }else if(arr.length >= 4 && arr.slice(0, 4).reduce((sum, data) => {if (data['direct'].plan === 'yes')   { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 40000  ){
+       
+        if(currentDate==arr[0]['direct'].salaryDate[0] || arr[1]['direct'].salaryDate[1]|| arr[2]['direct'].salaryDate[2] || arr[3]['direct'].salaryDate[3] || arr[4]['direct'].salaryDate[4] || arr[5]['direct'].salaryDate[5] || arr[6]['direct'].salaryDate[6] || arr[7]['direct'].salaryDate[7] || arr[8]['direct'].salaryDate[8] || arr[9]['direct'].salaryDate[9] || arr[10]['direct'].salaryDate[10] || arr[11]['direct'].salaryDate[11])
+          {
+          salary = user.balance + 400; 
+          await User.updateOne({_id:user._id},{balance:salary,Rank:'D'})
+          }
+       
         
-          }
-          if(user.teams[i]['indirect'].plan=='yes' && user.teams[i]['indirect'].investment>=100 ){
-
-          if(
-              currentDate==user.InDirectsalaryDate[1]  ||
-              currentDate==user.InDirectsalaryDate[2]  ||
-              currentDate==user.InDirectsalaryDate[3]  ||
-              currentDate==user.InDirectsalaryDate[4]  ||
-              currentDate==user.InDirectsalaryDate[5]  ||
-              currentDate==user.InDirectsalaryDate[6]  ||
-              currentDate==user.InDirectsalaryDate[7]  ||
-              currentDate==user.InDirectsalaryDate[8]  ||
-              currentDate==user.InDirectsalaryDate[9]  ||
-              currentDate==user.InDirectsalaryDate[10] ||
-              currentDate==user.InDirectsalaryDate[11] ||
-              currentDate==user.InDirectsalaryDate[12]
-           )
+    }else if(arr.length >= 3 && arr.slice(0, 3).reduce((sum, data) => {if (data['direct'].plan === 'yes')   { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 30000  ){
+        
+        if(currentDate==arr[0]['direct'].salaryDate[0] || arr[1]['direct'].salaryDate[1]|| arr[2]['direct'].salaryDate[2] || arr[3]['direct'].salaryDate[3] || arr[4]['direct'].salaryDate[4] || arr[5]['direct'].salaryDate[5] || arr[6]['direct'].salaryDate[6] || arr[7]['direct'].salaryDate[7] || arr[8]['direct'].salaryDate[8] || arr[9]['direct'].salaryDate[9] || arr[10]['direct'].salaryDate[10] || arr[11]['direct'].salaryDate[11])
           {
-          let addingSalary = await User.findOne({_id:Userid})
-          totalSalary = addingSalary.balance + threePercentSalary
-          await User.updateOne({_id:Userid},{balance:totalSalary})
-          totalSalary=0;
+          salary = user.balance + 300; 
+          await User.updateOne({_id:user._id},{balance:salary,Rank:"C"})
         }
-        }
-        }
-        else if(A>=10000 && A<50000 && user.teams[i]['direct'].plan=='yes' && stop==0){
-
-            let salary=0;
-          if(A>=10000 && A<20000)
-          {
-            salary = user.balance + 100; 
-            await User.updateOne({_id:user._id},{balance:salary})
-            break;
-          }
-          else if(A>=20000 && A<30000)
-          {
-            salary = user.balance + 200; 
-            await User.updateOne({_id:user._id},{balance:salary})
-            break;
-
-          }
-          else if(A>=30000 && A<40000)
-          {
-            salary = user.balance + 300; 
-            await User.updateOne({_id:user._id},{balance:salary})
-            break;
-
-          }
-          else if(A>=40000 && A<50000)
-          {
-            salary = user.balance + 400; 
-            await User.updateOne({_id:user._id},{balance:salary})
-            break;
-
-          }
-
-
-        }
-        else if(A>=50000)
+    
+    }else if(arr.length >= 2 && arr.slice(0, 2).reduce((sum, data) => {if (data['direct'].plan === 'yes')   { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 20000  ){
+        
+        if(currentDate==arr[0]['direct'].salaryDate[0] || arr[1]['direct'].salaryDate[1]|| arr[2]['direct'].salaryDate[2] || arr[3]['direct'].salaryDate[3] || arr[4]['direct'].salaryDate[4] || arr[5]['direct'].salaryDate[5] || arr[6]['direct'].salaryDate[6] || arr[7]['direct'].salaryDate[7] || arr[8]['direct'].salaryDate[8] || arr[9]['direct'].salaryDate[9] || arr[10]['direct'].salaryDate[10] || arr[11]['direct'].salaryDate[11])
         {
-          if(A>=50000 && A<150000)
-            await User.updateOne({_id:user._id},{Rank:'GM',balance:(user.balance+100)})
-          else if(A>=150000 && A<500000)
-            await User.updateOne({_id:user._id},{Rank:'VP',balance:(user.balance+150)})
-          else if(A>=500000 && A<200000)
-            await User.updateOne({_id:user._id},{Rank:'SVP',balance:(user.balance+600)})
-          else if(A>=200000 && A<600000)
-            await User.updateOne({_id:user._id},{Rank:'MD',balance:(user.balance+1500)})
-          else if(A>=600000 )
-            await User.updateOne({_id:user._id},{Rank:'ED',balance:(user.balance+13000)})
-          
+          salary = user.balance + 200; 
+          await User.updateOne({_id:user._id},{balance:salary,Rank:'B'})  
         }
-        stop=1;
-            }
-       res.status(200).json({success:true})
-    }
-else{
+    
+    }else if(arr.length >= 1 && arr.slice(0, 1).reduce((sum, data) => {if (data['direct'].plan === 'yes')   { return sum + plan.investment + data['direct'].investment;}return sum;}, 0) >= 10000  ){
+        
+        if(currentDate==arr[0]['direct'].salaryDate[0] || arr[1]['direct'].salaryDate[1]|| arr[2]['direct'].salaryDate[2] || arr[3]['direct'].salaryDate[3] || arr[4]['direct'].salaryDate[4] || arr[5]['direct'].salaryDate[5] || arr[6]['direct'].salaryDate[6] || arr[7]['direct'].salaryDate[7] || arr[8]['direct'].salaryDate[8] || arr[9]['direct'].salaryDate[9] || arr[10]['direct'].salaryDate[10] || arr[11]['direct'].salaryDate[11])
+        {
+          salary = user.balance + 100; 
+          await User.updateOne({_id:user._id},{balance:salary,Rank:'A'})  
+        }
+    
+    }else
+    {
+        let directsalary=0;
+        let indirectsalary=0;
+        user = await User.findOne({_id:Userid})
 
-    res.status(200).json({ error : 'request method is incorrect it should be post' })
+        for(let i=0;i<arr.length;i++)
+        {
+            const fivePercentSalary  = ((arr[i]['direct'].investment*20/100)*5/100)
+            const threePercentSalary = ((arr[i]['indirect'].investment*20/100)*3/100)
+            for(let j=0;j<12;j++)
+            {
+
+                if(arr[i]['direct'].plan=='yes' && currentDate==arr[i]['direct'].salaryDate[j])
+                    directsalary +=  user.balance + fivePercentSalary
+            
+                if(arr[i]['indirect'].plan=='yes' && currentDate==arr[i]['indirect'].salaryDate[j])
+                    indirectsalary +=  user.balance + threePercentSalary
+            }
+            
+        }
+                const finalAmount = directsalary + indirectsalary
+                await User.updateOne({_id:user._id},{balance:finalAmount})
+    }
+
 }
-  }
+res.status(200).json({success:true})
+}
   
   
   

@@ -34,13 +34,16 @@ const AuthForm = () => {
   const[two,settwo]=useState('')
   const[three,setthree]=useState('')
   const[four,setfour]=useState('')
+
+  //showpasss type
+  const [showpass,setshowpass]=useState('text')
   const hideModla = () => {
     setAuth(false);
   };
   const showsignin = () => {
     if(mobile)
     {
-
+      setshowpass('password')
       setActiveLoginModal(true);
       setforgotModal(false)
       document.getElementById("zain").classList.remove("signup-height");
@@ -48,6 +51,7 @@ const AuthForm = () => {
       .getElementById("zain")
       .classList.add("signin-height");
     }else{
+      setshowpass('password')
       setforgotModal(false)
       setActiveLoginModal(true);
       document.getElementById("window").classList.remove("Invest-Container-authform");
@@ -58,6 +62,7 @@ const AuthForm = () => {
   const showsignup = () => {
     if(mobile)
     {
+      setshowpass('text')
       setActiveLoginModal(false);
       setforgotModal(false)
       document.getElementById("zain").classList.remove('signin-height')
@@ -65,6 +70,7 @@ const AuthForm = () => {
       .getElementById("zain")
       .classList.add("signup-height");
     }else{
+      setshowpass('text')
       setActiveLoginModal(false);
       setforgotModal(false)
       document.getElementById("window").classList.remove("Invest-Container-authform-singin-height");
@@ -72,6 +78,7 @@ const AuthForm = () => {
     }
   };
   const showforgot =() =>{
+    setshowpass('password')
     setforgotModal(true)
     
   }
@@ -89,7 +96,7 @@ const AuthForm = () => {
     if(password.length>=10){
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/otp", data).then((res) => {
-      console.log(res)
+      // alert(res.data.otp)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setActiveLoginModal(true);
@@ -123,6 +130,7 @@ else{
     progress: undefined,
     theme: "light",
   });
+  setLoader(false)
 }
 }
 else{
@@ -140,8 +148,6 @@ else{
 }
 
   };
-
-
   const signin = (e) => {
     e.preventDefault();
     setdisable(true)
@@ -161,47 +167,6 @@ else{
         });
         localStorage.setItem("token", res.data.user.email);
         setAuth(true);
-        router.push('/')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000);
-      } else {
-        setdisable(false)
-        toast.error(res.data.error, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        localStorage.setItem("token", "no");
-      }
-    });
-    setLoader(false)
-  };
-  const signinmobile = (e) => {
-    e.preventDefault();
-    setdisable(true)
-    setLoader(true)
-    const data = { email, password };
-    axios.post("/api/post/signin", data).then((res) => {
-      if (res.data.success == true) {
-        toast.success("successfully logged in", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        localStorage.setItem("token", res.data.user.email);
-        setAuth(true);
-        alert('Login')
         router.push('/')
         setTimeout(() => {
           window.location.reload()
@@ -255,7 +220,6 @@ else{
 
       if(otpcode==one+two+three+four)
       {
-        console.log(true)
         const data = { email, password, firstname, lastname, cpassword };
         axios.post("/api/post/signup", data).then((res) => {
         setLoader(true)
@@ -412,7 +376,7 @@ else{
                     {forgotModal && <span className="details"> New Password</span>}
                     {!forgotModal && <span className="details"> Password</span>}
                     <input
-                      type="password"
+                      type={showpass}
                       onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
@@ -436,7 +400,7 @@ else{
                   {!ActiveLoginModal && <div className="input-box">
                     <span className="details">Confirm password</span>
                     <input
-                      type="password"
+                      type={showpass}
                       onChange={(e) => {setcpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
@@ -559,7 +523,7 @@ else{
                   {forgotModal && <span className="details"> New Password</span>}
                   {!forgotModal && <span className="details"> Password</span>}
                     <input
-                      type='password'
+                      type={showpass}
                       
                       onChange={(e) => {
                         setpassword(e.target.value);
@@ -578,7 +542,7 @@ else{
                     <div className="input-box-auth">
                       <span className="details">Confirm password</span>
                       <input
-                        type='password'
+                        type={showpass}
                         onChange={(e) => {
                           setcpassword(e.target.value);
                         }}

@@ -20,12 +20,12 @@ import { useContext,useEffect } from 'react';
 import AdminPlans from '../AdminComponents/AdminPlans';
 
 const adminview = () => {
-  const {Admin,getAllCustomers} =useContext(ThemeContext)
+  const {Admin,getAllCustomers,mobile} =useContext(ThemeContext)
   useEffect(()=>{
     getAllCustomers("pending");
   },[])
   
-  if(Admin){
+  if(Admin && !mobile){
     return (
       
       <ThemeProvider theme={theme}>

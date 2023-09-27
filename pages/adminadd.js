@@ -19,8 +19,8 @@ import { useEffect } from 'react';
 import AdminAllLinks from '../AdminComponents/AdminAllLinks';
 
 const addProducts = () => {
-  const {Admin,fetchDailyWork,dailyWork} =useContext(ThemeContext)
-  
+  const {Admin,fetchDailyWork,dailyWork,mobile,setLoader} =useContext(ThemeContext)
+  const [updateLinks,setupdateLinks]=useState([])
   useEffect(()=>{
     fetchDailyWork()
   })
@@ -49,9 +49,6 @@ const addProducts = () => {
   const [Selrate,setSelrate]=useState(0)
 
 
-  const[email,setemail]=useState('')
-  const[password,setpassword]=useState('')
-  const[cpassword,setcpassword]=useState('')
  
   const submitLinks = () =>{
     try{
@@ -117,47 +114,54 @@ const addProducts = () => {
   }
   }
  
-  const forgot = (e) =>{
-    const data = {email,password,cpassword}
-   axios.post('/api/post/forgot',data).then(res=>{
-    if(res.data.success==true)
-    {
-      toast.success("Password changed :)", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }else{
-      toast.success(res.data.error, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-   }).catch(err=>{
-    toast.success('Server down try again later', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-   })
+  
+  const Update =async () =>{
+    setLoader(true)
+    let res = await axios.get('/api/get/links')
+    setupdateLinks(res.data.links[0]._id)
+    setlink1(res.data.links[0].links[0].link)
+    setlink2(res.data.links[0].links[1].link)
+    setlink3(res.data.links[0].links[2].link)
+    setlink4(res.data.links[0].links[3].link)
+    setlink5(res.data.links[0].links[4].link)
+    setlink6(res.data.links[0].links[5].link)
+    setlink7(res.data.links[0].links[6].link)
+    setlink8(res.data.links[0].links[7].link)
+    setlink9(res.data.links[0].links[8].link)
+    setlink10(res.data.links[0].links[9].link)
+    setlength1(res.data.links[0].links[0].length)
+    setlength2(res.data.links[0].links[1].length)
+    setlength3(res.data.links[0].links[2].length)
+    setlength4(res.data.links[0].links[3].length)
+    setlength5(res.data.links[0].links[4].length)
+    setlength6(res.data.links[0].links[5].length)
+    setlength7(res.data.links[0].links[6].length)
+    setlength8(res.data.links[0].links[7].length)
+    setlength9(res.data.links[0].links[8].length)
+    setlength10(res.data.links[0].links[9].length)
+    setLoader(false)
+}
+const updateLinkmethod = () =>{
+  setLoader(true)
+  const data = {
+    link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,updateLinks,
+    length1,length2,length3,length4,length5,length6,length7,length8,length9,length10
   }
- 
+   axios.post('/api/admin/updatelink',data).then(res=>{
+    if(res.data.success==true){
+      setlink1('');setlink2('');setlink3('');setlink4('')
+        setlink5('');setlink6('');setlink7('');setlink8('')
+        setlink9('');setlink10('')
+        setlength1('');setlength2('');setlength3('');setlength4('')
+        setlength5('');setlength6('');setlength7('');setlength8('')
+        setlength9('');setlength10('')
+      alert('Links update')
+    }
+   })
+  setLoader(false)
+
+  }
+
   if(Admin){
     return (
       
@@ -213,6 +217,10 @@ const addProducts = () => {
           <br />
           <Button onClick={submitLinks} variant="outlined" mt={2}>
             Submit
+          </Button>
+          
+          <Button className='' onClick={updateLinkmethod} variant="outlined" mt={2}>
+            Update
           </Button>
           
         </BaseCard>
@@ -279,9 +287,12 @@ const addProducts = () => {
 
 
 {/* DELETE OLD LINKS  */}
+{!mobile && (
+  <>
 <h1 className='text-3xl font-bold text-pink-500 text-center' >DELETE OLD LINKS</h1>
-
-      <AdminAllLinks/>
+      <AdminAllLinks Update={Update} updateLinkmethod={updateLinkmethod}/>
+  </>
+)}
 
 
 

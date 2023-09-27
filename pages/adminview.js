@@ -21,11 +21,11 @@ import { useEffect } from 'react';
 import AdminPlans from '../AdminComponents/AdminPlans';
 
 const adminview = () => {
-  const {Admin,customers,getAllCustomers} =useContext(ThemeContext)
+  const {Admin,customers,getAllCustomers,mobile} =useContext(ThemeContext)
   useEffect(()=>{
     getAllCustomers("verified");
   },[])
-  if(Admin){
+  if(Admin && !mobile){
     return (
       
       <ThemeProvider theme={theme}>

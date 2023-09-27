@@ -21,12 +21,12 @@ import { useEffect } from 'react';
 import AdminPlans from '../AdminComponents/AdminPlans';
 
 const adminplanreject = () => {
-  const {Admin,getAllCustomers} =useContext(ThemeContext)
+  const {Admin,getAllCustomers,mobile} =useContext(ThemeContext)
   useEffect(()=>{
     getAllCustomers("rejected");
   },[])
   
-  if(Admin){
+  if(Admin && !mobile){
     return (
       
       <ThemeProvider theme={theme}>

@@ -1,3 +1,22 @@
+  
+            currentDate==user.teams[i]['direct'].salaryDate[1]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[2]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[3]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[3]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[4]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[5]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[6]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[7]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[8]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[9]  ||
+            currentDate==user.teams[i]['direct'].salaryDate[10] ||
+            currentDate==user.teams[i]['direct'].salaryDate[11] 
+  
+  
+  
+  
+  
+  
   // Montly Salary According to Rank 
     // let countTotalDirectInestment = 0;
     // if(user.teams[i]['direct'].plan=='yes' )

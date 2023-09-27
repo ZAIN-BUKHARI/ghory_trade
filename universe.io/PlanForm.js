@@ -176,7 +176,7 @@ const PlanForm = () => {
     data.append('file',e.target.files[0])
     // data.append('upload_preset','vru3vgic') // old
     // data.append('cloud_name','dklqbx5k0')  //old
-    // const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'//old
+    // const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'
 
     data.append('upload_preset','hasmui7k') // ghory
     data.append('cloud_name','dy2hybbx5')  // Ghory
@@ -191,11 +191,11 @@ const PlanForm = () => {
     data.append('file',e.target.files[0])
     data.append('upload_preset','hasmui7k') // ghory
     data.append('cloud_name','dy2hybbx5')  // Ghory
-    const url='https://api.cloudinary.com/v1_1/dy2hybbx5/image/upload'//Ghory
+    // const url='https://api.cloudinary.com/v1_1/dy2hybbx5/image/upload'//Ghory
 
     // data.append('upload_preset','vru3vgic') // old
     // data.append('cloud_name','dklqbx5k0')  //old
-    // const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'//old
+    // const url='https://api.cloudinary.com/v1_1/dklqbx5k0/image/upload'//Ghory
     axios.post(url,data).then(res=>{
       setimg2(res.data.secure_url)
       setLoader(false)

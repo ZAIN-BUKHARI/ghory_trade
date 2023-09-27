@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 import AdminAllRequests from '../AdminComponents/AdminAllRequests';
 
 const adminallrequests = () => {
-  const {Admin,getAllRequests} =useContext(ThemeContext)
+  const {Admin,getAllRequests,mobile} =useContext(ThemeContext)
   
   useEffect(()=>{
     // setrequestsearchresults([])
     getAllRequests();
   },[])
-  if(Admin){
+  if(Admin && !mobile){
     return (
       
       <ThemeProvider theme={theme}>

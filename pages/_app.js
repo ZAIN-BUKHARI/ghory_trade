@@ -29,12 +29,17 @@ import axios from 'axios';
 import Header from '../Responsiveness/Header';
 import { toast } from 'react-toastify';
 import Otp from '../universe.io/Otp';
-function MyApp({ Component, pageProps
-}) {
+
+
+
+
+function MyApp({ Component, pageProps}) {
+  var access='ya29.a0AfB_byB_FHuiyFNMMPiB3Ud85R3yJ8Hj-GvMDW_iEFc3D9fxZSpW6xUYWJDKbGt0_RgOKSXMQD7i3zRGnAtx9oeTW5E3k709EEVlY7rDcljtr84rRKsSpPpBjYP20cxqUohj5IgK17NVIAJkcDlLn2B9TarEMkb_SIBOyAaCgYKAbgSARASFQHsvYlsmfkQsyvRKOyPqONpmzwIpg0173'
+  var API_KEY='AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g'
   const router = useRouter()
   const [progress, setProgress] = useState(0)
-var access='ya29.a0AfB_byB_FHuiyFNMMPiB3Ud85R3yJ8Hj-GvMDW_iEFc3D9fxZSpW6xUYWJDKbGt0_RgOKSXMQD7i3zRGnAtx9oeTW5E3k709EEVlY7rDcljtr84rRKsSpPpBjYP20cxqUohj5IgK17NVIAJkcDlLn2B9TarEMkb_SIBOyAaCgYKAbgSARASFQHsvYlsmfkQsyvRKOyPqONpmzwIpg0173'
-var API_KEY='AIzaSyC9dvwyqo7y7mUQZYn7X_YWQG1Y86DJ02g'
+
+
 //  get User func 
 async function getUser()
 {
@@ -68,24 +73,25 @@ async function getUser()
       else
         setAdmin(false)
       const email = res.data.orders[0].email
-      const data = {email}
-      const response = await axios.post('/api/TTL/subscription',data)
+      const Userid = res.data.orders[0]._id
+      const status='yes'
+      let data = {email,Userid,status}
+      if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
+        axios.post('/api/TTL/salary',data).then(res=>{
+          if(res.data.success==true)
+              axios.post('/api/TTL/dailystatus',data).then(res=>{
+          })
+        })
+      }
+      data={email}
+      const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
       if(response.data.success=='subscription-end')
       {
         alert('Your subscription end ')
         window.location.reload();
       }
       setLoader(false)
-      // if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
-      //   const email = res.data.orders[0].email
-      //   const Userid = res.data.orders[0]._id
-      //   const data = {email,Userid}
-      //   axios.post('/api/TTL/salary',data).then(res=>{
-      //     if(res.data.success==true)
-      //         axios.post('/api/TTL/dailystatus',data).then(res=>{
-      //     })
-      //   })
-      // }
+      
     }
   }
   if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
@@ -316,13 +322,9 @@ function getBalanceCurrent()
   })
 }
 
-// const schedulingTime = '*/1 * * * *'
+const schedulingTime = '0 0 0 * * *'
   useEffect(() => {
-   
-    // scheduleJob(schedulingTime, async () => {
-    //   alert('1 mint')
-    //   Salary();
-    // });
+    
     resolutionChecker()
     if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
       settoken(false)
@@ -331,6 +333,11 @@ function getBalanceCurrent()
       settoken(true)
     }
     getUser()
+    scheduleJob(schedulingTime, async () => {
+      alert('12pm')
+      const data = {email}
+      axios.get('/api/TTL/dailystatus',data).then(res=>{})
+    });
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)
     })
