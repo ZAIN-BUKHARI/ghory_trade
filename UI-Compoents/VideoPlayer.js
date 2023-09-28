@@ -23,7 +23,7 @@ const VideoPlayer = () => {
   // }
   
   useEffect(()=>{
-    if(localStorage.getItem('youtube')=='true')
+    if(localStorage.getItem('youtube')=='true' && !mobile)
     {
       router.push('/')
       setTimeout(() => {
@@ -52,7 +52,10 @@ const VideoPlayer = () => {
       getVideoInfo(videoID)
     }, 500);
     setTimeout(()=>{
-      AddclassforVideoPLayerControlsDisable()
+      if(!mobile)
+      {
+        AddclassforVideoPLayerControlsDisable()
+      }
     },100)
     setTimeout(()=>{
       // RemoveclassforVideoPLayerControlsEnables()
@@ -112,6 +115,7 @@ const VideoPlayer = () => {
         <section className="TestBody-main-video">
     <iframe  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+
             <h3 className="title">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div className='test-comment-head'>
@@ -141,11 +145,13 @@ const VideoPlayer = () => {
   return (
     <>
 
-
+    <div className='iframe-body-left'></div>
+    <div className='iframe-body-mid'></div>
+    <div className='iframe-body-right'></div>
     <div className='TestBody-mobile'>
     <main className="TestBody-container-mob">
         <section className="TestBody-main-video">
-    <iframe   src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe   src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <h3 className="title mobile-title-player">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div>

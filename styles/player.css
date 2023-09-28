@@ -68,7 +68,36 @@
   margin-bottom: 10px;
 }
 
-
+.iframe-body-right{
+  height: 400px;
+  width: 70px;
+  background-color: transparent;
+  z-index: 50;
+  top: 20%;
+  left: 0%;
+  
+  position: absolute;
+}
+.iframe-body-left{
+  height: 400px;
+  width: 230px;
+  background-color: transparent;
+  z-index: 50;
+  top: 20%;
+  left: 35%;
+  
+  position: absolute;
+}
+.iframe-body-mid{
+  height: 340px;
+  width: 80px;
+  background-color: transparent;
+  z-index: 50;
+  top: 20%;
+  left: 18%;
+  
+  position: absolute;
+}
 
 
     
