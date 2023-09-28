@@ -16,6 +16,7 @@ import '../styles/invite.css'
 import '../styles/searchbar.css'
 import '../styles/download.css'
 import '../styles/otp.css'
+import '../styles/stats.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
@@ -44,6 +45,7 @@ function MyApp({ Component, pageProps}) {
 async function getUser()
 {
   let _id;
+  let data;
   setLoader(true)
   let token = localStorage.getItem('token')
   try{
@@ -53,7 +55,6 @@ async function getUser()
     let res = await axios.get(`/api/get/localstorage?token=${token}`,)
     if(res.data.success==true)
     {
-      
       setviews(res.data.orders[0].views)
       setlevel(res.data.orders[0].level)
       setUname(res.data.orders[0].firstname)
@@ -65,28 +66,32 @@ async function getUser()
       setchannel(res.data.orders[0].channel)
       setworkStatus(res.data.orders[0].todaywork)
       setUserid(res.data.orders[0]._id)
-      setdailyLogin(res.data.orders[0].Login)
-      if(res.data.orders[0].admin=='yes'){setusman(true);}
+      setteamlength(res.data.orders[0].teams.length)
+      setrank(res.data.orders[0].Rank)
+      if(res.data.orders[0].admin=='yes'){setusman(true);admin=true}
       _id=res.data.orders[0]._id
       if(res.data.orders[0].admin=='yes')
+      {
         setAdmin(true)
-      else
+      }
+      else{
         setAdmin(false)
+      }
       const email = res.data.orders[0].email
       const Userid = res.data.orders[0]._id
       const status='yes'
-      let data = {email,Userid,status}
+       data = {email,Userid,status}
       if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
         axios.post('/api/TTL/salary',data).then(res=>{
           if(res.data.success==true)
-              axios.post('/api/TTL/dailystatus',data).then(res=>{
-          })
-        })
-      }
-      data={email}
-      const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
-      if(response.data.success=='subscription-end')
-      {
+          axios.post('/api/TTL/dailystatus',data).then(res=>{
+      })
+    })
+  }
+  data={email}
+  const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
+  if(response.data.success=='subscription-end')
+  {
         alert('Your subscription end ')
         window.location.reload();
       }
@@ -94,16 +99,23 @@ async function getUser()
       
     }
   }
-  if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
-        const email = res.data.orders[0].email
-        const Userid = res.data.orders[0]._id
-        const data = {email,Userid}
-        axios.post('/api/TTL/salary',data).then(res=>{
-          if(res.data.success==true)
-              axios.post('/api/TTL/dailystatus',data).then(res=>{
-          })
-        })
-      }
+  // if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
+  //   const email = res.data.orders[0].email
+  //   const Userid = res.data.orders[0]._id
+  //       const data = {email,Userid}
+  //       axios.post('/api/TTL/salary',data).then(res=>{
+  //         if(res.data.success==true)
+  //             axios.post('/api/TTL/dailystatus',data).then(res=>{
+  //         })
+  //       })
+  //     }
+  // alert('hello')
+  // alert(email)
+  // axios.post('/api/get/allteaminvestment',data).then(res=>{
+  //   alert(res.data.investment)
+  //   setteaminvestment(res.data.investment)
+  // })
+      
 }catch(e){
     setLoader(false)
 }
@@ -370,7 +382,9 @@ const schedulingTime = '0 0 0 * * *'
     const [views,setviews]=useState(0)
     const [Userid,setUserid]=useState('')
     const [usman,setusman]=useState(false)
-    const [dailyLogin,setdailyLogin]=useState('')
+    const [teamlength,setteamlength]=useState(0)
+    const [rank,setrank]=useState('no')
+    const [teaminvestment,setteaminvestment]=useState(0)
     //Login confirmation
     const[token,settoken]=useState(false)
     // Admin Variables
@@ -408,7 +422,7 @@ const schedulingTime = '0 0 0 * * *'
 
   return(
 <>
-<ThemeContext.Provider value={{getBalanceCurrent,history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{teaminvestment,rank,teamlength,getBalanceCurrent,history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

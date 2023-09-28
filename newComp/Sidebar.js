@@ -9,7 +9,9 @@ import { FcAutomatic } from 'react-icons/fc';
 import { FcLeft } from 'react-icons/fc';
 import { FcLock } from "react-icons/fc";
 import { FcPhone } from 'react-icons/fc';
+import { FcPortraitMode } from 'react-icons/fc';
 import { FcShare } from 'react-icons/fc';
+import { FcOnlineSupport } from 'react-icons/fc';
 import { FcPlanner } from 'react-icons/fc';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FcSmartphoneTablet } from 'react-icons/fc';
@@ -20,7 +22,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const Sidebar = () => {
-  const {setselrate,setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {admin,setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -127,8 +129,6 @@ const Sidebar = () => {
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">
         <img src="remove_bg.png" alt="logo"/>
-        {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
-        {/* <h1 className="section-title-sidebar">Ghory <span>Trading</span></h1> */}
       </div>
       <ul className="links">
         <h4 >Main Menu</h4>
@@ -184,6 +184,12 @@ const Sidebar = () => {
           </span>
           <Link href="/admin">Admin Panel</Link>
         </li>}
+       {/* {usman && <li>
+          <span className="material-symbols-outlined">
+            <FcPortraitMode />
+          </span>
+          <Link href="/webdetail">Admin Stats</Link>
+        </li>} */}
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -214,18 +220,25 @@ const Sidebar = () => {
             <FcAutomatic/>
           </span>
           
-          {!token &&<Link href={'#'} onClick={Dailywork}  >widthdraw</Link>}
+          {!token &&<Link href={'#'} onClick={Dailywork}  >Withdraw</Link>}
           {!token &&<FcLock/>}
           {token &&<Link onClick={()=>{setPaymentRequestModal(true)}} href="#">widthdraw</Link>}
 
         </li>
-
+       
+       
         <li>
         <span className="material-symbols-outlined">
           <FcCurrencyExchange/>
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
+     {token &&  <li>
+        <span className="material-symbols-outlined">
+          <FcOnlineSupport/>
+          </span>
+          <Link href='/stats'>Team </Link>
+          </li>}
         <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
@@ -363,6 +376,7 @@ else{
 
         </li>
 
+
         <li>
         <span className="material-symbols-outlined">
           <FcCurrencyExchange/>
@@ -370,6 +384,12 @@ else{
           <Link href='/currency'>Currency </Link>
           </li>
         <li>
+        {/* {token &&  <li>
+        <span className="material-symbols-outlined">
+          <FcOnlineSupport/>
+          </span>
+          <Link href='/stats'>Team </Link>
+          </li>} */}
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
