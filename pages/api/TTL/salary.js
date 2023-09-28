@@ -86,8 +86,11 @@ const handler = async (req, res) => {
             }
             
         }
+
                 const finalAmount = directsalary + indirectsalary
-                await User.updateOne({_id:user._id},{balance:finalAmount})
+                if(finalAmount>0)
+                    await User.updateOne({_id:user._id},{balance:finalAmount})
+                
     }
 
 }

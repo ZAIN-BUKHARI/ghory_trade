@@ -22,6 +22,8 @@ const VideoPlayer = () => {
     doc.classList.remove('yt');
   }
   
+  if(!mobile){
+
   useEffect(()=>{
     if(localStorage.getItem('youtube')=='true')
     {
@@ -70,7 +72,56 @@ const VideoPlayer = () => {
     };
   }
   },[router])
+}else{
+  useEffect(()=>{
+    if(localStorage.getItem('youtube')=='true')
+    {
+      // router.push('/')
+      // setTimeout(() => {
+        // window.location.reload()
+      //   alert('Task Complete')
+        
+      // },1000);
+      localStorage.setItem('youtube','false');
+    }
+    else{
 
+    if(workStatus=='yes'){
+      router.push('/')
+      toast.info('Not allowed here ', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+    setTimeout(() => {
+      getVideoInfo(videoID)
+    }, 500);
+    setTimeout(()=>{
+      AddclassforVideoPLayerControlsDisable()
+    },100)
+    setTimeout(()=>{
+      RemoveclassforVideoPLayerControlsEnables()
+      setHideCompleteWorkbtn(false)
+    },parseInt(Length)*60000)
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        router.push('/');
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }
+  },[router])
+}
   
   const Viewincrement=async()=>{
     const data = {email}
