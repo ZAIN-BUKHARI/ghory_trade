@@ -17,13 +17,11 @@ const VideoPlayer = () => {
     var doc = document.getElementById("zain");
     doc.classList.add('yt');
   }
-  const RemoveclassforVideoPLayerControlsEnables = () =>{
-    var doc = document.getElementById("zain");
-    doc.classList.remove('yt');
-  }
+  // const RemoveclassforVideoPLayerControlsEnables = () =>{
+  //   var doc = document.getElementById("zain");
+  //   doc.classList.remove('yt');
+  // }
   
-  if(!mobile){
-
   useEffect(()=>{
     if(localStorage.getItem('youtube')=='true')
     {
@@ -57,7 +55,7 @@ const VideoPlayer = () => {
       AddclassforVideoPLayerControlsDisable()
     },100)
     setTimeout(()=>{
-      RemoveclassforVideoPLayerControlsEnables()
+      // RemoveclassforVideoPLayerControlsEnables()
       setHideCompleteWorkbtn(false)
     },parseInt(Length)*60000)
 
@@ -72,56 +70,7 @@ const VideoPlayer = () => {
     };
   }
   },[router])
-}else{
-  useEffect(()=>{
-    if(localStorage.getItem('youtube')=='true')
-    {
-      // router.push('/')
-      // setTimeout(() => {
-        // window.location.reload()
-      //   alert('Task Complete')
-        
-      // },1000);
-      localStorage.setItem('youtube','false');
-    }
-    else{
 
-    if(workStatus=='yes'){
-      router.push('/')
-      toast.info('Not allowed here ', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-    setTimeout(() => {
-      getVideoInfo(videoID)
-    }, 500);
-    setTimeout(()=>{
-      AddclassforVideoPLayerControlsDisable()
-    },100)
-    setTimeout(()=>{
-      RemoveclassforVideoPLayerControlsEnables()
-      setHideCompleteWorkbtn(false)
-    },parseInt(Length)*60000)
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        router.push('/');
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }
-  },[router])
-}
   
   const Viewincrement=async()=>{
     const data = {email}
@@ -196,7 +145,7 @@ const VideoPlayer = () => {
     <div className='TestBody-mobile'>
     <main className="TestBody-container-mob">
         <section className="TestBody-main-video">
-    <iframe id='zain'  src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe   src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <h3 className="title mobile-title-player">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div>
