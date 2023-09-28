@@ -233,12 +233,12 @@ const Sidebar = () => {
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-     {token &&  <li>
+     {/* {token &&  <li>
         <span className="material-symbols-outlined">
           <FcOnlineSupport/>
           </span>
           <Link href='/stats'>Team </Link>
-          </li>}
+          </li>} */}
         <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
