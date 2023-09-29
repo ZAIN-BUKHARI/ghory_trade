@@ -48,7 +48,7 @@ const stats = () => {
     <div class="stats-media-info">
       <ul>
         <li>
-          <span>{Math.round(balance)}$</span> Wallet
+          <span>{balance.toString().slice(0,8)}$</span> Wallet
         </li>
         <li>
           <span>{teamlength}</span> Teams

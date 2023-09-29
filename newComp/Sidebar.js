@@ -333,6 +333,12 @@ else{
           </span>
           <Link href="/admin">Admin Panel</Link>
         </li>}
+        {usman && <li>
+          <span className="material-symbols-outlined">
+            <FcPortraitMode />
+          </span>
+          <Link onClick={sethideSidebar(false)} href="/webdetail">Admin Stats</Link>
+        </li>}
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -382,7 +388,7 @@ else{
         <span className="material-symbols-outlined">
           <FcOnlineSupport/>
           </span>
-          <Link href='/stats'>Team </Link>
+          <Link onClick={sethideSidebar(false)} href='/stats'>Team </Link>
           </li>}
         <li>
         <span className="material-symbols-outlined">
