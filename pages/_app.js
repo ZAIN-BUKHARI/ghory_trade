@@ -68,7 +68,7 @@ async function getUser()
       setUserid(res.data.orders[0]._id)
       setteamlength(res.data.orders[0].teams.length)
       setrank(res.data.orders[0].Rank)
-      if(res.data.orders[0].admin=='yes'){setusman(true);admin=true}
+      if(res.data.orders[0].admin=='yes'){setusman(true)}
       _id=res.data.orders[0]._id
       if(res.data.orders[0].admin=='yes')
       {
