@@ -145,12 +145,7 @@ const Sidebar = () => {
           </span>
           <Link  href={'/contact'}>Contact</Link>
         </li>
-        {/* <li>
-          <span className="material-symbols-outlined">
-            <FcServices/>
-          </span>
-          <Link href="/service">Service</Link>
-        </li> */}
+        
         <li>
           <span className="material-symbols-outlined">
             <FcBriefcase/>
@@ -184,12 +179,12 @@ const Sidebar = () => {
           </span>
           <Link href="/admin">Admin Panel</Link>
         </li>}
-       {/* {usman && <li>
+       {usman && <li>
           <span className="material-symbols-outlined">
             <FcPortraitMode />
           </span>
           <Link href="/webdetail">Admin Stats</Link>
-        </li>} */}
+        </li>}
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -233,12 +228,12 @@ const Sidebar = () => {
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-     {/* {token &&  <li>
+     {token &&  <li>
         <span className="material-symbols-outlined">
           <FcOnlineSupport/>
           </span>
           <Link href='/stats'>Team </Link>
-          </li>} */}
+          </li>}
         <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
@@ -384,12 +379,12 @@ else{
           <Link href='/currency'>Currency </Link>
           </li>
         <li>
-        {/* {token &&  <li>
+        {token &&  <li>
         <span className="material-symbols-outlined">
           <FcOnlineSupport/>
           </span>
           <Link href='/stats'>Team </Link>
-          </li>} */}
+          </li>}
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>

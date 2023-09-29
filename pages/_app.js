@@ -109,12 +109,9 @@ async function getUser()
   //         })
   //       })
   //     }
-  // alert('hello')
-  // alert(email)
-  // axios.post('/api/get/allteaminvestment',data).then(res=>{
-  //   alert(res.data.investment)
-  //   setteaminvestment(res.data.investment)
-  // })
+  axios.post('/api/get/allteaminvestment',data).then(res=>{
+    setteaminvestment(res.data.investment)
+  })
       
 }catch(e){
     setLoader(false)
