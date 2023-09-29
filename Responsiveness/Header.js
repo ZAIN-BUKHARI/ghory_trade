@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
     const router = useRouter()
-    const {hideSidebar,sethideSidebar}=useContext(ThemeContext)
+    const {hideSidebar,sethideSidebar,token,subscription}=useContext(ThemeContext)
     
     function hamburgerMenu(){
         if(hideSidebar)
@@ -99,29 +99,24 @@ const Header = () => {
     </style>
     <div className='mobile-main'>
         <div className=' flex div-one'>
-            {/* <h1>Ghory.trading</h1> */}
             <img className='mobile-img' src='remove_bg.png'/>
             <FcMenu className='hamburger' onClick={hamburgerMenu} />
         </div>
         <div className=''>
-            <ul className='flex div-two'>
+           {subscription=='no' && <ul className='flex div-two'>
                 <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
                 <li className='list2 mobile-list'><Link href='/about'>About</Link></li>
                 <li className='list3 mobile-list'><Link href='/contact'>Contact</Link></li>
                 <li className='list5 mobile-list'><Link href='/project'>Projects</Link></li>
-                {/* <li className='list4 mobile-list'><Link href='/investment'>currency</Link></li> */}
-            </ul>
+            </ul>}
+           {token && subscription=='yes' && <ul className='flex div-two'>
+                <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
+                <li className='list3 mobile-list'><Link href='/about'>About</Link></li>
+                <li className='list2 mobile-list'><Link href='/stats'>Team</Link></li>
+                <li className='list5 mobile-list'><Link href='/work'>Dailywork</Link></li>
+            </ul>}
         </div>
     </div>
-    {/* {showMenu && <div className='header-hamburger-menu'>
-        <ul className='list-hamburger'>
-            <li className='ham-l1' onClick={LoginModaltoggle}>Singup</li>
-            <li className='ham-l2'><Link href='/work'>Dailywork</Link></li>
-            <li className='ham-l4' onClick={invite}>Invite</li>
-            <li className='ham-l5' onClick={withdraw}>Withdraw</li>
-        </ul>
-
-    </div>} */}
     </>
   )
 }

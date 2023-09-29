@@ -98,6 +98,10 @@ async function getUser()
       setLoader(false)
       
     }
+    setLoader(false)
+    axios.post('/api/get/allteaminvestment',data).then(res=>{
+          setteaminvestment(res.data.investment)
+        })
   }
   // if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
   //   const email = res.data.orders[0].email
@@ -109,9 +113,9 @@ async function getUser()
   //         })
   //       })
   //     }
-  axios.post('/api/get/allteaminvestment',data).then(res=>{
-    setteaminvestment(res.data.investment)
-  })
+  
+  
+  
       
 }catch(e){
     setLoader(false)
