@@ -378,13 +378,13 @@ else{
           </span>
           <Link href='/currency'>Currency </Link>
           </li>
-        <li>
         {token &&  <li>
         <span className="material-symbols-outlined">
           <FcOnlineSupport/>
           </span>
           <Link href='/stats'>Team </Link>
           </li>}
+        <li>
         <span className="material-symbols-outlined">
           <FcShare/>
           </span>
