@@ -17,6 +17,7 @@ import '../styles/searchbar.css'
 import '../styles/download.css'
 import '../styles/otp.css'
 import '../styles/stats.css'
+import '../styles/adminsheet.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
@@ -98,24 +99,23 @@ async function getUser()
       setLoader(false)
       
     }
-    setLoader(false)
-    axios.post('/api/get/allteaminvestment',data).then(res=>{
-          setteaminvestment(res.data.investment)
-        })
+    
+      setLoader(false)
+      axios.post('/api/get/allteaminvestment',data).then(res=>{
+              setteaminvestment(res.data.investment)
+            })
+      
+      if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
+          const email = res.data.orders[0].email
+          const Userid = res.data.orders[0]._id
+          const data = {email,Userid}
+            axios.post('/api/TTL/salary',data).then(res=>{
+              if(res.data.success==true)
+                      axios.post('/api/TTL/dailystatus',data).then(res=>{
+                  })
+                })
+              }
   }
-  // if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
-  //   const email = res.data.orders[0].email
-  //   const Userid = res.data.orders[0]._id
-  //       const data = {email,Userid}
-  //       axios.post('/api/TTL/salary',data).then(res=>{
-  //         if(res.data.success==true)
-  //             axios.post('/api/TTL/dailystatus',data).then(res=>{
-  //         })
-  //       })
-  //     }
-  
-  
-  
       
 }catch(e){
     setLoader(false)
@@ -347,9 +347,7 @@ const schedulingTime = '0 0 0 * * *'
     }
     getUser()
     scheduleJob(schedulingTime, async () => {
-      alert('12pm')
-      const data = {email}
-      axios.get('/api/TTL/dailystatus',data).then(res=>{})
+      axios.get(`/api/TTL/dailystatus`).then(res=>{})
     });
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)

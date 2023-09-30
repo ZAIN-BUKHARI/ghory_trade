@@ -7,7 +7,7 @@ const Footer = () => {
   var Hide = router.asPath
   return (
     <>
-    {!Hide.includes('/dailywork') && Hide!='/currency' && Hide!='/currency#' &&Hide!="/chart" && Hide!='/register' && Hide!='/download' && !router.asPath.includes('/invite') && Hide!='/work' && Hide!="/dailywork" && Hide!='/test' && !router.asPath.includes("admin")  && Hide!='/login' && Hide!='/intro' && Hide!='/investment'  && (
+    {!Hide.includes('/dailywork') && Hide!='/history' && Hide!='/currency' && Hide!='/currency#' &&Hide!="/chart" && Hide!='/register' && Hide!='/download' && !router.asPath.includes('/invite') && Hide!='/work' && Hide!="/dailywork" && Hide!='/test' && !router.asPath.includes("admin")  && Hide!='/login' && Hide!='/intro' && Hide!='/investment'  && (
     <section id="footer">
     <div className="footer container">
       <div className="brand">

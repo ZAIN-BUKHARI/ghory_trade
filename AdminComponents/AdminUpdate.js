@@ -16,6 +16,7 @@ const AdminUpdate = () => {
     const [balance,setbalance]=useState(0)
     const [admin,setadmin]=useState('')
     const [pdprofit,setpdprofit]=useState(0)
+    const [views,setviews]=useState(0)
     //Plan modal variables Total 10
     // id from user varibles
     // email from user varibles
@@ -52,6 +53,7 @@ const AdminUpdate = () => {
                 setlevel(res.data.user.level)
                 setadmin(res.data.user.admin)
                 setpdprofit(res.data.user.perDayProfit)
+                setviews(res.data.user.views)
             }else{
                 alert('server error')
             }
@@ -115,7 +117,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level}
+            const data = {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
             let res = await axios.post('/api/post/update',data)
         if(res.data.success==true){
             alert('Update successfully')
@@ -303,6 +305,18 @@ const AdminUpdate = () => {
                   value={todaywork}
                   onChange={(e)=>{settodaywork(e.target.value)}}
                   name="todaywork"
+                  />
+              </div>
+            
+            </div>
+            <div className="input-box">
+              <span className="details">View Video</span>
+              <div className="flex">
+                <input
+                  type="number"
+                  value={views}
+                  onChange={(e)=>{setviews(e.target.value)}}
+                  name="views"
                   />
               </div>
             

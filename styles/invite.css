@@ -98,4 +98,12 @@
     height: 100%;
     background-color: red;
   }
+  .button-auth{
+    background: linear-gradient(135deg, #71b7e6, #9b59b6) !important;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+  }
  

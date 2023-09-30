@@ -1,0 +1,67 @@
+import ConnectMongoDB from '../../../middleware/mongoose'
+const nodemailer = require('nodemailer');
+
+const handler= async (req, res)=> {
+    if(req.method=='POST'){
+            const {email,name,msg}=req.body
+        let transporter = nodemailer.createTransport({
+            port: 465,
+            host: "smtp.gmail.com",
+            service: 'Gmail',
+              auth: {
+              user: `${process.env.NODE_MAILER_USER}`, 
+              pass: `${process.env.NODE_MAILER_PASS}`
+                    },
+             secure: true,
+
+        });
+        await new Promise((resolve, reject) => {
+                    // verify connection configuration
+                    transporter.verify(function (error, success) {
+                        if (error) {
+                            console.log(error);
+                            reject(error);
+                        } else {
+                            console.log("Server is ready to take our messages");
+                            resolve(success);
+                        }
+                    });
+                });
+        let mailData = {
+            from: `${process.env.NODE_MAILER_USER}`, 
+            to: `${email}`,
+        subject: 'GHORY.TRADE',
+        text: `Hello usman bhai zain
+        This name is from your website a user contact you from the Ghory Trading contact page here is ${name} msg:
+        ${msg}
+        `
+        };
+        await new Promise((resolve, reject) => {
+        // send mail
+        transporter.sendMail(mailData, (err, info) => {
+            if (err) {
+                // console.error(err);
+                // reject(err);
+                res.status(200).json({success:false})
+            } else {
+             res.status(200).json({success:true})
+             // resolve(info);
+            }
+        });
+    });
+            res.status(200).json({success:true})
+       
+}
+
+  }
+  
+  
+  
+  export default   ConnectMongoDB(handler)
+
+
+    
+
+    
+
+    

@@ -25,7 +25,7 @@ const adminusers = () => {
           
        <FullLayout>
        <Grid container spacing={0}>
-       <h1 className='text-5xl font-bold text-red-500 text-center ml-[450px]' >Users</h1>
+       <h1 className='text-5xl font-bold text-blue-400  text-center ml-[450px]' >Users</h1>
 
       <Grid item xs={12} lg={12}>
         <AdminAllUsers/>

@@ -138,6 +138,13 @@
 }
 @media (max-width: 768px) {
     /* //chart */
+    .eye-icon-auth{
+        font-size: 12px;
+        cursor: pointer;
+        /* margin-left: 5px; */
+        /* margin-top: 2px; */
+        color: grey;
+      }
     .chart-table-text-mob{
         font-size: 15px;
 	font-family: sans-serif;

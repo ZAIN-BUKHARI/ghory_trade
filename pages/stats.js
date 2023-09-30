@@ -5,7 +5,7 @@ import html2canvas from 'html2canvas';
 import { toast } from 'react-toastify';
 
 const stats = () => {
-  const { balance ,rank,teamlength ,teaminvestment , mobile,setLoader} = useContext(ThemeContext)
+  const { balance ,rank,teamlength ,teaminvestment , Userid, mobile,setLoader,perDayProfit} = useContext(ThemeContext)
  
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
@@ -48,16 +48,26 @@ const stats = () => {
     <div class="stats-media-info">
       <ul>
         <li>
-          <span>{balance.toString().slice(0,8)}$</span> Wallet
+          <span>{balance.toString().slice(0,8)}$</span><span  className='stats-lower-title-mob'  > Wallet </span>
         </li>
         <li>
-          <span>{teamlength}</span> Teams
+          <span>{teamlength}</span><span  className='stats-lower-title-mob'  > Teams</span>
         </li>
         <li>
-          <span>{teaminvestment}</span> Investment
+          <span>{teaminvestment}</span  > <span className='stats-lower-title-mob' > Investment</span>
         </li>
         <li>
-          <span>{rank}</span> Rank
+          <span>{rank}</span> <span  className='stats-lower-title-mob'  > Rank </span> 
+        </li>
+      </ul>
+    </div>
+    <div class="stats-media-info">
+      <ul>
+        <li>
+          <span>{perDayProfit.toString().slice(0,8)}$</span><span  className='stats-lower-title-mob'  > Daily Profit </span>
+        </li>
+        <li>
+          <span>0</span><span  className='stats-lower-title-mob'  > Team Comission</span>
         </li>
       </ul>
     </div>

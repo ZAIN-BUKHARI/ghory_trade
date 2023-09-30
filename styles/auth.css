@@ -189,5 +189,15 @@
     }
   }
 
+.auth-form-span-password{
+  display: flex !important;
+}
+.eye-icon-auth{
+  font-size: 10px;
+  margin-left: 5px;
+  margin-top: 2px;
+  color: grey;
+  cursor: pointer;
 
+}
   

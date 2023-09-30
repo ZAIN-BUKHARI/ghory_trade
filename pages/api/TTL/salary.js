@@ -65,36 +65,9 @@ const handler = async (req, res) => {
           await User.updateOne({_id:user._id},{balance:salary,Rank:'A'})  
         }
     
-    }else
-    {
-        let directsalary=0;
-        let indirectsalary=0;
-        user = await User.findOne({_id:Userid})
-
-        for(let i=0;i<arr.length;i++)
-        {
-            const fivePercentSalary  = ((arr[i]['direct'].investment*20/100)*5/100)
-            const threePercentSalary = ((arr[i]['indirect'].investment*20/100)*3/100)
-            for(let j=0;j<12;j++)
-            {
-
-                if(arr[i]['direct'].plan=='yes' && currentDate==arr[i]['direct'].salaryDate[j])
-                    directsalary +=  user.balance + fivePercentSalary
-            
-                if(arr[i]['indirect'].plan=='yes' && currentDate==arr[i]['indirect'].salaryDate[j])
-                    indirectsalary +=  user.balance + threePercentSalary
-            }
-            
-        }
-
-                const finalAmount = directsalary + indirectsalary
-                if(finalAmount>0)
-                    await User.updateOne({_id:user._id},{balance:finalAmount})
-                
     }
-
+    res.status(200).json({success:true})
 }
-res.status(200).json({success:true})
 }
   
   

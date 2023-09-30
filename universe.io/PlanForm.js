@@ -229,7 +229,7 @@ const PlanForm = () => {
         <div className="Invest-Container">
           <div className=" title ">
             {/* <img src='remove_bg.png'  className="img-planfirm-upload-top" /> */}
-            <img src="remove_bg.png" className="planform-logo-web-planform"/>
+            {/* <img src="remove_bg.png" className="planform-logo-web-planform"/> */}
 
             {" "}
             <span className="planform-main-web-title">
@@ -488,7 +488,7 @@ const PlanForm = () => {
             Yearly Plan
             <span className="Address">
               <span className="wallet">
-            <img src="remove_bg.png" className="img-planfirm-upload-top"/>
+            {/* <img src="remove_bg.png" className="img-planfirm-upload-top"/> */}
                 <select
                   value={wallet}
                   name="select"

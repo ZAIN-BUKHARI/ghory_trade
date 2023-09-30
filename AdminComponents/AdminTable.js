@@ -16,7 +16,6 @@ const AdminTable = (props) => {
 {
     // margin: 50px auto;
     // background: linear-gradient(135deg, #71b7e6, #9b59b6);
-
 }
 
 .table-row{
@@ -25,11 +24,17 @@ const AdminTable = (props) => {
     margin: 10px auto;
     font-family: sans-serif;
     // background: transparent;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    // background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background-Color:#1da1f2;
+    
     padding: 12px 0;
     color: #555;
     font-size: 13px;
     box-shadow: 0 1px 4px 0px rgba(0,0,50,0.3);
+}
+.table-row p{
+    font-weight:bold;
+    font-size:15px;
 }
 .table-head{
     background: #8665f7;

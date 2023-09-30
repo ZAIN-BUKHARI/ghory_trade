@@ -14,7 +14,7 @@ const Header = () => {
         else
             sethideSidebar(true)
     }
-   if(!router.asPath.includes('/work') && router.asPath!='/chart' && router.asPath!='/history')
+   if( router.asPath!='/chart' )
    {
 
     return (
@@ -26,6 +26,17 @@ const Header = () => {
             display:flex;
             flex-direction:column;
             justify-content:space-between;
+            
+
+        }
+        .mobile-main-home{
+            height:100px;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            background-Color:black;
+
+            
 
         }
         .div-one{
@@ -51,10 +62,17 @@ const Header = () => {
             margin-right:15px
         }
         
+        .mobile-list-main {
+            font-size:15px;
+            font-family:serif;
+            font-weight:bold;
+            color:white;
+        }
         .mobile-list {
             font-size:15px;
             font-family:serif;
             font-weight:bold;
+            color:black;
         }
         // h1{
         //     font-size:12px;
@@ -97,23 +115,23 @@ const Header = () => {
         .ham-l5{padding-bottom:35px;}
         `}
     </style>
-    <div className='mobile-main'>
+    <div className={`${router.asPath=='/'?'mobile-main-home':'mobile-main'}`}>
         <div className=' flex div-one'>
             <img className='mobile-img' src='remove_bg.png'/>
-            <FcMenu className='hamburger' onClick={hamburgerMenu} />
+           {router.asPath!='/history'&& router.asPath!='/work'&& <FcMenu className='hamburger' onClick={hamburgerMenu} />}
         </div>
         <div className=''>
            {subscription=='no' && <ul className='flex div-two'>
-                <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
-                <li className='list2 mobile-list'><Link href='/about'>About</Link></li>
-                <li className='list3 mobile-list'><Link href='/contact'>Contact</Link></li>
-                <li className='list5 mobile-list'><Link href='/project'>Projects</Link></li>
+                <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/'>Home</Link></li>
+                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/about'>About</Link></li>
+                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/contact'>Contact</Link></li>
+                <li className={`list-5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/project'>Projects</Link></li>
             </ul>}
            {token && subscription=='yes' && <ul className='flex div-two'>
-                <li className='list1 mobile-list'><Link href='/'>Home</Link></li>
-                <li className='list3 mobile-list'><Link href='/about'>About</Link></li>
-                <li className='list2 mobile-list'><Link href='/stats'>Team</Link></li>
-                <li className='list5 mobile-list'><Link href='/work'>Dailywork</Link></li>
+                <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/'>Home</Link></li>
+                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/about'>About</Link></li>
+                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/stats'>Team</Link></li>
+                <li className={`list5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/work'>Dailywork</Link></li>
             </ul>}
         </div>
     </div>

@@ -27,38 +27,33 @@ const history = () => {
    
 
 
-      if(!mobile)
-    {
+    return(
+      
+        <>
+      <section class="main">
+     
 
-  return (
-    
-    <>
-    <div className='Worksheet-body'>
-    <main className="table">
-    <section className="table__header">
-        <h1 className='flex'><FcLeft  className='back-arr-mob-chart'/><strong className='strong-tag'> Withdrawal History </strong></h1>
-            <h1 className='WORK-WALLET'>Wallet {balance}$</h1>
+      <section class="attendance">
+        <div class="attendance-list ">
+          <table class="table">
+            <thead>
+              <tr>
+                   {!mobile && <th> Email </th>}
+                    <th> Amount </th>
+                    {!mobile && <th> Address</th>}
+                    {!mobile && <th> Method</th>}
+                    <th> Date</th>
+                    <th> Status</th>
+              </tr>
+            </thead>
 
-        </section>
-        <section className="table__body">
-            <table>
-                <thead>
-                    <tr>
-                        <th> Email </th>
-                        <th> Amount </th>
-                        <th> Address</th>
-                        <th> Method</th>
-                        <th> Date</th>
-                        <th> Status</th>
-                    </tr>
-                </thead>
-                 {history!=0 && history.map((item)=>{
+            {history!=0 && history.map((item)=>{
                    return  <tbody>
                     <tr>
-                        <td> {item.email}   </td>
+                    {!mobile &&<td> {item.email}   </td>}
                         <td> {item.amount}  </td>
-                        <td> {item.address} </td>
-                        <td> {item.method}  </td>
+                        {!mobile && <td> {item.address} </td>}
+                        {!mobile && <td> {item.method}  </td>}
                         <td> {item.date}    </td>
                         <td> {item.status}  </td>
                     </tr>
@@ -66,104 +61,19 @@ const history = () => {
                 </tbody>
                  }
                  )} 
-
-            </table>
-            
-        </section>
-        </main>
+          </table>
         </div>
-       <style>{`
-       .dim-btn{
-        background-color:#f1807e;
-        font-size:12px;
-        color:black !important;
-        width:200px;
-        // cursor: none;
+      </section>
+    </section>
+    
+    </>
+  
+    )
 
-       }
-       .strong-tag{
-        font-size:20px;
-       }
-       .dim{
-        width:200px;
-       }
-     
-       `}</style>
-       </>
-       )
-    }
-       
-      
-    else{
-      return (
-      
-        <>
-        <div className='worksheet-flow'>
-        <div className='Worksheet-body-mobile'>
-        <main className="table">
-        <section className="table__header">
-        <h1 className='flex'><FcLeft onClick={()=>{router.push('/')}} className='back-arr-mob-chart'/><strong className='strong-tag'> Withdrawal History </strong></h1>
 
-                <h1 className='WORK-WALLET '>Wallet {balance}$</h1>
-            </section>
-            <section className="table__body">
-                <table>
-                    <thead>
-                        <tr>
-                        <th> Email </th>
-                        <th> Amount </th>
-                        <th> Address</th>
-                        <th> Method</th>
-                        <th> Date</th>
-                        <th> Status</th>
-                        </tr>
-                    </thead>
-                    
-                     {history!=0 && history.map((item)=>{
-    
-    
-                       return  <tbody>
-                        <tr>
-                          <td> {item.email}   </td>
-                          <td> {item.amount}  </td>
-                          <td> {item.address} </td>
-                          <td> {item.method}  </td>
-                          <td> {item.date}    </td>
-                          <td> {item.status}  </td>
-                        </tr>
-                         
-                    </tbody>
-                     }
-                     )} 
-    
-                </table>
-            
-           
-            </section>
-            </main>
-            </div>
-            </div>
-           <style>{`
-           .dim-btn{
-            background-color:#f1807e;
-            font-size:12px;
-            color:black !important;
-            width:200px;
-            // cursor: none;
-    
-           }
-           .strong-tag{
-            font-size:20px;
-           }
-           .dim{
-            width:200px;
-           }
-         
-           `}</style>
-           </>
-        
-      )
-    }
+
+
+ 
 }
     
 

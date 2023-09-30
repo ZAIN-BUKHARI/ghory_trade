@@ -96,7 +96,6 @@ const AuthForm = () => {
     if(password.length>=10){
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/otp", data).then((res) => {
-      // alert(res.data.otp)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setActiveLoginModal(true);
@@ -104,6 +103,7 @@ const AuthForm = () => {
         setLoader(false)
       } else {
         setdisable(false)
+        setLoader(false)
         toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
@@ -116,7 +116,7 @@ const AuthForm = () => {
         });
       }
       setLoader(false)
-    }).catch(e=>{alert('Check your network');setdisable(false)});
+    }).catch(e=>{alert('Check your network');setdisable(false);setLoader(false)});
   }
 else{
   setdisable(false)
@@ -154,6 +154,7 @@ else{
     setLoader(true)
     const data = { email, password };
     axios.post("/api/post/signin", data).then((res) => {
+      setLoader(true)
       if (res.data.success == true) {
         toast.success("successfully logged in", {
           position: "top-right",
@@ -167,12 +168,14 @@ else{
         });
         localStorage.setItem("token", res.data.user.email);
         setAuth(true);
+        setLoader(false)
         router.push('/')
         setTimeout(() => {
           window.location.reload()
         }, 1000);
       } else {
         setdisable(false)
+        setLoader(false)
         toast.error(res.data.error, {
           position: "top-right",
           autoClose: 2000,
@@ -191,15 +194,17 @@ else{
   const forgot = (e) =>{
     setdisable(true)
     setforgotOTPBTN(true)
-    const data = { email};
-    axios.post("/api/post/otp", data).then((res) => {
     setLoader(true)
+    axios.get(`/api/post/otp?email=${email}`).then((res) => {
       if (res.data.success == true) {
         setotpcode(res.data.otp)
+        setLoader(false)
         setActiveLoginModal(true);
         setotpModal(true)
+
       } else {
         setdisable(false)
+        setLoader(false)
         toast.error('Email is not correct', {
           position: "top-right",
           autoClose: 2000,
@@ -217,13 +222,12 @@ else{
     
   }
   const confirmOTP =()=>{
-
-      if(otpcode==one+two+three+four)
-      {
+    setLoader(true)
+    if(otpcode==one+two+three+four)
+    {
         const data = { email, password, firstname, lastname, cpassword };
         axios.post("/api/post/signup", data).then((res) => {
         setLoader(true)
-        
           if (res.data.success==true) {
             toast.success("Successfully signup", {
               position: "top-right",
@@ -235,14 +239,17 @@ else{
               progress: undefined,
               theme: "light",
             });
+            setLoader(false)
             setActiveLoginModal(true);
             setAuth(false);
+
     
           } else {
             setdisable(false)
+            setLoader(true)
             toast.error(res.data.error, {
               position: "top-right",
-              autoClose: 2000,
+              autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -254,13 +261,12 @@ else{
               window.location.reload()
             }, 2000);
           }
-          setLoader(false)
-        }).catch(e=>{alert('Check your network');setdisable(false)});
-    
+        }).catch(e=>{alert('Check your network');setdisable(false);setLoader(false)});
+        
       }else{
-        toast.success('OTP error :(', {
+        toast.error('OTP error :(', {
           position: "top-right",
-          autoClose: 2000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -269,9 +275,11 @@ else{
           theme: "light",
         });
       }
+      setLoader(false)
+
   }
   const forgotOtp =()=>{
-    
+    setLoader(true)
     if(otpcode==one+two+three+four)
     {
     setdisable(true)
@@ -287,10 +295,12 @@ else{
       progress: undefined,
       theme: "light",
     });
+    setLoader(false)
     setAuth(false);
     setforgotOTPBTN(false)
   })
 }else{
+  setLoader(false)
   toast.success('OTP error :(', {
     position: "top-right",
     autoClose: 2000,
@@ -302,6 +312,12 @@ else{
     theme: "light",
   });
 }
+  }
+  const toggle = ()=>{
+    if(showpass=='text')
+      setshowpass('password')
+    else 
+      setshowpass('text')
   }
 
 
@@ -372,33 +388,29 @@ else{
                       required
                     />
                   </div>
+
                   <div className="input-box">
-                    {forgotModal && <span className="details"> New Password</span>}
-                    {!forgotModal && <span className="details"> Password</span>}
+                  {forgotModal && <div className="auth-form-span-password"> 
+                  {showpass == "text" && (<><span > New Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/></>)}
+                  {showpass == "password" && (<><span > New Password </span><AiOutlineEyeInvisible onClick={toggle} className="eye-icon-auth"/></>)}
+                  </div>}
+                  {!forgotModal && <div className="auth-form-span-password"> 
+                  {showpass == "text" && (<><span className=" "> Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/></>)}
+                  {showpass == "password" && (<><span className=" "> Password </span><AiOutlineEyeInvisible onClick={toggle} className="eye-icon-auth"/></>)}
+                  </div>}
+
                     <input
                       type={showpass}
                       onChange={(e) => {setpassword(e.target.value)}}
                       placeholder="Enter your password"
                       required
                     />
-
                   </div>
-                  {/* {password && password.length<10 && (
-                  <span className="PlanForm-investment-error">
-                        Minimum investment 100$
-                  </span>)} */}
-                {/* {forgotModal && (  <div className="input-box">
-                    <span className="details">New Password</span>
-                    <input
-                      type="password"
-                      onChange={(e) => {setpassword(e.target.value)}}
-                      placeholder="Enter your password"
-                      required
-                    />
-                    
-                  </div>)} */}
                   {!ActiveLoginModal && <div className="input-box">
-                    <span className="details">Confirm password</span>
+                  {!forgotModal && <div className="auth-form-span-password">
+                     {showpass == "text" && (<><span className=" ">Confirm Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/> </>)}
+                     {showpass == "password" && (<><span className=" ">Confirm Password </span><AiOutlineEyeInvisible onClick={toggle} className="eye-icon-auth"/> </>)}
+                  </div>}
                     <input
                       type={showpass}
                       onChange={(e) => {setcpassword(e.target.value)}}
@@ -407,6 +419,7 @@ else{
                     />
                   </div>}
                 </div>
+
                 <div className="button-auth">
                  {!ActiveLoginModal && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> )}
                  {ActiveLoginModal && !forgotModal && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign in" onClick={signin} /> )}
@@ -520,8 +533,9 @@ else{
                     />
                   </div>
                   <div className="input-box-auth">
-                  {forgotModal && <span className="details"> New Password</span>}
-                  {!forgotModal && <span className="details"> Password</span>}
+                  {forgotModal && <div className="auth-form-span-password"> <span > New Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/></div>}
+                  {!forgotModal && <div className="auth-form-span-password"> <span className=" "> Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/></div>}
+                  
                     <input
                       type={showpass}
                       
@@ -530,6 +544,7 @@ else{
                       }}
                       placeholder="Enter your password"
                       required
+                      
                     />
                         {/* {!ActiveLoginModal && toggle=='password' && <AiOutlineEye onClick={toggleBtn} className="securityToggle"/>}
                         {ActiveLoginModal && toggle=='password' &&  <AiOutlineEye onClick={toggleBtn} className="securityToggle-signin"/>}
@@ -540,7 +555,7 @@ else{
                   </div>
                   {!ActiveLoginModal && (
                     <div className="input-box-auth">
-                      <span className="details">Confirm password</span>
+                      {!forgotModal && <div className="auth-form-span-password"> <span className=" "> Confirm Password </span><AiOutlineEye onClick={toggle} className="eye-icon-auth"/></div>}
                       <input
                         type={showpass}
                         onChange={(e) => {

@@ -56,7 +56,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                     ...(location === item.href && {
                       color: "white",
                       backgroundColor: (theme) =>
-                        `green!important`,
+                        `#1da1f2!important`,
                     }),
                   }}
                 >
@@ -95,7 +95,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                     ...(location === item.href && {
                       color: "white",
                       backgroundColor: (theme) =>
-                        `green!important`,
+                        `#1da1f2!important`,
                     }),
                   }}
                 >

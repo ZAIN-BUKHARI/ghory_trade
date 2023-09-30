@@ -34,10 +34,7 @@
   top: -70px;
   left: 190px;
 }
-img{
-  width: 120px;
-  padding: 10px;
-}
+
 
 .stats-wrapper h3{
   margin-top: -50px;
@@ -148,5 +145,8 @@ i{
         /* width: 400px; */
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .stats-lower-title-mob{
+      font-size: 10px;
     }
 }

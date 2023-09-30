@@ -22,7 +22,7 @@ const adminrecent = () => {
           
        <FullLayout>
        <Grid container spacing={0}>
-       <h1 className='text-5xl font-bold text-green-500 text-center ml-[450px]' >Verified Requests</h1>
+       <h1 className='text-5xl font-bold text-blue-400  text-center ml-[450px]' >Verified Requests</h1>
 
       <Grid item xs={12} lg={12}>
         <AdminRequests/>

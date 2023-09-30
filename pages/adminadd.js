@@ -169,7 +169,7 @@ const updateLinkmethod = () =>{
           
        <FullLayout>
        <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >Add Youtube Video Links </h1>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >Add Youtube Video Links </h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
@@ -233,7 +233,7 @@ const updateLinkmethod = () =>{
 
     {/* currency daily Rate  */}
     <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >DAILY USD TO PKR Rate</h1>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >DAILY USD TO PKR Rate</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
@@ -249,7 +249,7 @@ const updateLinkmethod = () =>{
       </Grid>
     </Grid>
     <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >SELL RATE</h1>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >SELL RATE</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
@@ -267,7 +267,7 @@ const updateLinkmethod = () =>{
   
   
     {/* <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-pink-500 text-center' >RESET PASSWORD</h1>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >RESET PASSWORD</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
@@ -289,8 +289,15 @@ const updateLinkmethod = () =>{
 {/* DELETE OLD LINKS  */}
 {!mobile && (
   <>
-<h1 className='text-3xl font-bold text-pink-500 text-center' >DELETE OLD LINKS</h1>
+    <Grid container spacing={0}>
+
+<h1 className='text-3xl font-bold text-blue-500 text-center' >DELETE OLD LINKS</h1>
+<Grid item xs={12} lg={12}>
+        <BaseCard >
       <AdminAllLinks Update={Update} updateLinkmethod={updateLinkmethod}/>
+      </BaseCard>
+      </Grid>
+      </Grid>
   </>
 )}
 

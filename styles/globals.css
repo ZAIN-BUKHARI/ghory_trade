@@ -14,12 +14,11 @@
 .option-one{ color: green; font-weight: bold;}
 .option-two{ color: brown; font-weight: bold;}
 .option-three{color: red; font-weight: bold;}
-/* body {
+body {
     
-    background-color: #333;
+    overflow-x: hidden;
 
-} */
-
+}
 
 
 
@@ -302,7 +301,8 @@
 		font-size: 20px;
 	}
   section {
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    padding-top: 180px;
     padding-bottom: 50px;
   }
   
@@ -330,6 +330,7 @@ html {
 	font-size: 10px;
 	font-family: 'Montserrat', sans-serif;
 	scroll-behavior: smooth;
+	
 }
 a {
 	text-decoration: none;

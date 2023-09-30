@@ -7,7 +7,7 @@ const handler= async (req, res)=> {
         res.status(200).json(true)
     }
     if(req.method=='GET'){
-        await User.updateOne({email:req.body.email},{Login:"no"})
+        await User.updateMany({Login:"no"})
         res.status(200).json(true)
 
     }

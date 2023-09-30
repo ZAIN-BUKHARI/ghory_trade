@@ -106,20 +106,7 @@ const Section = () => {
         <section id="VIDEO-PAGE-CSS" className="section-text-color">
         {!mobile && ( <div className="VIDEO-PAGE-CSS container Ab ">
             
-              {/* <div className="MEDIA-CON-SECTION">
-                <h1 className="section-text">
-                  Welcome, <span></span>
-                </h1>
-                <h1 className="section-text">
-                  We are <span></span>
-                </h1>
-                <h1 className="section-text">
-                  ghory.traders <span></span>
-                </h1>
-                <a href="#projects" type="button" className="cta">
-                  Start
-                </a>
-              </div> */}
+             
             
           </div>)}
         </section>
