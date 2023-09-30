@@ -143,7 +143,7 @@ if(mobile){
         {method=="BANK" &&  <input value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
                     </div>
 
-        <button onClick={requestSubmit} className="sign-up mobile-button"> Submit Request</button>
+        <button onClick={requestSubmit} className="sign-up mobile-button"  disabled={disable}> Submit Request</button>
     </div>
 </div>
     </div>

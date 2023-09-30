@@ -54,7 +54,6 @@ const Worksheet = () => {
 
     }
     useEffect(()=>{
-      // window.localStorage.reload()
       if(stop==true)
       {
         handleButtonClick()
@@ -63,6 +62,7 @@ const Worksheet = () => {
       {
         sethideSidebar(false)
       }
+
       fetchDailyWork() 
     },[linktoLevel])
 
@@ -99,9 +99,9 @@ const Worksheet = () => {
               <tr>
                 <td>{index+1}</td>
                 {!mobile && <td>{Uname}</td>}
-                {!mobile &&<td>{workUploadedDate}</td>}
+                {!mobile &&<td>{workUploadedDate.slice(0,6)}{workUploadedDate.slice(8)}</td>}
                 {!mobile &&<td>11:59pm</td>}
-               {!mobile && <td>{currentTime.slice(0,5)} {currentTime.slice(9,11)}</td>}
+               {!mobile && <td>{currentTime.slice(0,4)} {currentTime.slice(7,10)}</td>}
                 <td><p className=" WorkSheet-Icon-Alert ">
                               {workStatus=="no"  && <FcHighPriority className='worsheet-stats-icon-web'/>}
                               {workStatus=="yes" &&  <FcOk className='worsheet-stats-icon-web'/> }
@@ -114,7 +114,7 @@ const Worksheet = () => {
           </table>
             {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}} className="dim-btn-complete ">Complete</p> </td>} 
             {workStatus=='no'  && views!=parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn-incomplete">click when your task complete</p> </td>} 
-            {views==parseInt(level) &&  <td> <p onClick={Complete}  className='dim-btn-click'>click here for submision</p> </td>} 
+            {views==parseInt(level) &&  <td> <p onClick={Complete} disabled={disable} className='dim-btn-click'>click here for submision</p> </td>} 
       
         </div>
       </section>
