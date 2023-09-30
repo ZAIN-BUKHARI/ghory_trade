@@ -5,7 +5,10 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {email} = req.body
         let user = await User.findOne({email})
-        const views=user.views+1;
+        let views= user.views;
+        if(views>=0 && views<=10){
+            views++;
+        }
         await User.updateOne({email:email},{views:views})
         res.status(200).send({success:true})   
     }

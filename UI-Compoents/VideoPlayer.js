@@ -12,6 +12,7 @@ const VideoPlayer = () => {
   
   // STATE VARIABLES
   const[HideCompleteWorkbtn,setHideCompleteWorkbtn]=useState(true)
+  const[disable,setdisable]=useState(false)
   
   const AddclassforVideoPLayerControlsDisable = () =>{
     var doc = document.getElementById("zain");
@@ -76,6 +77,7 @@ const VideoPlayer = () => {
 
   
   const Viewincrement=async()=>{
+    setdisable(true)
     const data = {email}
     try{
 
@@ -83,6 +85,7 @@ const VideoPlayer = () => {
       if(res.data.success==true)
       {
         localStorage.setItem('youtube','true');
+        setdisable(false)
         window.location.href = `https://www.youtube.com/watch?v=${videoID}`
 
         
@@ -96,6 +99,7 @@ const VideoPlayer = () => {
     }catch(e)
     {
       router.push('/')
+      setdisable(false)
         setTimeout(() => {
           window.location.reload()
         }, 1000);
@@ -122,7 +126,7 @@ const VideoPlayer = () => {
               </div>
               
           {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer' onClick={Viewincrement} >Submit</button>
+           <button className='done-btn-videoplayer' disable={disable} onClick={Viewincrement} >Submit</button>
            }
            </div>
 
@@ -156,7 +160,7 @@ const VideoPlayer = () => {
             <div className='test-bootom-sec'>
               <div>
           {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer mobile-submit-player' onClick={Viewincrement} >Submit</button>}
+           <button className='done-btn-videoplayer mobile-submit-player' disable={disable} onClick={Viewincrement} >Submit</button>}
             <p className=' mobile-title-player video-timer-player '>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <p className=' mobile-title-player  '>Disclaimer : Watch the whole video until you see a submit button on your screen and post a comment </p>
               </div>

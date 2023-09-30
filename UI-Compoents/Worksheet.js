@@ -54,6 +54,7 @@ const Worksheet = () => {
 
     }
     useEffect(()=>{
+      window.localStorage.reload()
       if(stop==true)
       {
         handleButtonClick()

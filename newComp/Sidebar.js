@@ -247,7 +247,7 @@ const Sidebar = () => {
         <span className="material-symbols-outlined">
           {token &&  <FcPlanner/>}
           </span>
-          {token &&  <Link onClick={fetchHistory}  href='#'>History</Link>}
+          {token &&  <Link onClick={fetchHistory} href='#'>History</Link>}
 
           </li>
       

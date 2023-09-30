@@ -6,22 +6,9 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const history = () => {
-    const {mobile,balance,history,setbalance,email} = useContext(ThemeContext)
-    function getBlalance()
-    {
-      const data={email}
-      axios.post('/api/get/balance',data).then(res=>{
-        if(res.data.success==true)
-        {
-          setbalance(parseFloat(res.data.balance))
-          // window.location.replace('/')
-        }else{
-          alert('server error try again')
-        }
-      })
-    }
+    const {mobile,balance,history,} = useContext(ThemeContext)
+   
     useEffect(()=>{
-    getBlalance()
     },[])
    
    
