@@ -90,6 +90,7 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    YearPlan:[]
     
 
     },{timestamps:true})

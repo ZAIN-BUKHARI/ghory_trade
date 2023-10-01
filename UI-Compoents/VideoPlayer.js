@@ -11,8 +11,8 @@ const VideoPlayer = () => {
   const {videoID,Length,router,getVideoInfo,videoTitle,email,workStatus,mobile}=useContext(ThemeContext)
   
   // STATE VARIABLES
-  const[HideCompleteWorkbtn,setHideCompleteWorkbtn]=useState(true)
-  const [disable,setdisable]=useState(false)
+  // const[HideCompleteWorkbtn,setHideCompleteWorkbtn]=useState(true)
+  // const [disable,setdisable]=useState(false)
   
   const AddclassforVideoPLayerControlsDisable = () =>{
     var doc = document.getElementById("zain");
@@ -59,8 +59,7 @@ const VideoPlayer = () => {
       }
     },100)
     setTimeout(()=>{
-      // RemoveclassforVideoPLayerControlsEnables()
-      setHideCompleteWorkbtn(false)
+      Viewincrement()
     },parseInt(Length)*60000)
 
     const handleVisibilityChange = () => {
@@ -77,7 +76,6 @@ const VideoPlayer = () => {
 
   
   const Viewincrement=async()=>{
-    setdisable(true)
     const data = {email}
     try{
 
@@ -123,16 +121,14 @@ const VideoPlayer = () => {
               <div className='test-comment-head'>
               </div>
               
-          {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer' disabled={disable} onClick={Viewincrement} >Submit</button>
-           }
-           </div>
+          {/* {!HideCompleteWorkbtn && <button className='done-btn-videoplayer' disabled={disable} onClick={Viewincrement} >Submit</button>} */}
+          </div>
 
         </section>
         <section className="TestBody-video-playlist">
             <h3 className="title">{videoTitle}</h3>
             <p>video length &nbsp; . &nbsp; {Length} Minutes</p>
-            <p className=' mobile-title-player  '>Disclaimer : Watch the whole video until you see a submit button on your screen and post a comment </p>
+            <p className=' mobile-title-player  '>Disclaimer : Watch the whole video and wait  until you redirect to our youtube channel.</p>
             <div className="TestBody-videos">
                 <Comment/>
             </div>
@@ -157,10 +153,9 @@ const VideoPlayer = () => {
             <h3 className="title mobile-title-player">{videoTitle}</h3>
             <div className='test-bootom-sec'>
               <div>
-          {!HideCompleteWorkbtn &&
-           <button className='done-btn-videoplayer mobile-submit-player' disabled={disable} onClick={Viewincrement} >Submit</button>}
+          {/* {!HideCompleteWorkbtn &&<button className='done-btn-videoplayer mobile-submit-player' disabled={disable} onClick={Viewincrement} >Submit</button>} */}
             <p className=' mobile-title-player video-timer-player '>video length &nbsp; . &nbsp; {Length} Minutes</p>
-            <p className=' mobile-title-player  '>Disclaimer : Watch the whole video until you see a submit button on your screen and post a comment </p>
+            <p className=' mobile-title-player  '>Disclaimer : Watch the whole video and wait  until you redirect to our youtube channel.</p>
               </div>
            </div>
         </section>

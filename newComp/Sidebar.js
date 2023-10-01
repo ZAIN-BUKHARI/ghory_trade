@@ -237,6 +237,7 @@ const Sidebar = () => {
         <li>
         <span className="material-symbols-outlined">
           {token && subscription=='yes' && <FcShare/>}
+          {!token && subscription=='no' && <FcShare/>}
           </span>
           {token && subscription=='yes' && <Link  href='/qrcode'>Invite </Link>}
           {!token && subscription=='no' &&<Link onClick={INVESTCHECKER} href='#'>Invite </Link>}

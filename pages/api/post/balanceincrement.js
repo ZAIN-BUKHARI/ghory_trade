@@ -10,7 +10,7 @@ const handler= async (req, res)=> {
         if(user.invite=="")
         {
             const balance=user.balance+user.perDayProfit;
-            await User.updateOne({Userid},{
+            await User.updateOne({_id:Userid},{
                 balance:balance,
                 todaywork:'yes',
                 views:0
@@ -30,6 +30,16 @@ const handler= async (req, res)=> {
                 await User.updateOne({_id:Userid},{balance:(user.balance+(pdp-FivePercent)),todaywork:'yes',views:0})
                 res.status(200).json({success:true})
 
+            }
+            else
+            {
+                const balance=user.balance+user.perDayProfit;
+                await User.updateOne({_id:Userid},{
+                balance:balance,
+                todaywork:'yes',
+                views:0
+            }) 
+            res.status(200).json({success:true})
             }
         }
         else //indirect

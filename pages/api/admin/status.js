@@ -56,7 +56,20 @@ const handler = async (req, res) => {
     const perDayBalance = percentage / 30;
     await User.updateOne(
       { email: result.email },
-      { subscription: "yes", perDayProfit: perDayBalance, level: result.level }
+      { subscription: "yes", perDayProfit: perDayBalance, level: result.level,YearPlan:[
+        oneYearSalaryPlan[1],
+        oneYearSalaryPlan[2],
+        oneYearSalaryPlan[3],
+        oneYearSalaryPlan[4],
+        oneYearSalaryPlan[5],
+        oneYearSalaryPlan[6],
+        oneYearSalaryPlan[7],
+        oneYearSalaryPlan[8],
+        oneYearSalaryPlan[9],
+        oneYearSalaryPlan[10],
+        oneYearSalaryPlan[11],
+        oneYearSalaryPlan[12],
+      ] }
     );
     await User.updateOne({ email: result.email }, { planId: req.query._id });
     let user = await User.findOne({ email: result.email });
@@ -69,69 +82,137 @@ const handler = async (req, res) => {
         if (thirdDoc.invite != "") {
 
           let Leader = await User.findOne({ _id: thirdDoc.invite });
-          if (Leader.invite == "") {
-            for (let i = 0; i < Leader.teams.length; i++) {
-              if (
-                user._id.toString() ===
-                Leader.teams[i]["indirect"].id.toString()
-              ) {
-                await User.findByIdAndUpdate(
-                  { _id: Leader._id },
-                  {
-                    $set: {
-                      [`teams.${i}.indirect.plan`]: "yes",
-                      [`teams.${i}.indirect.investment`]: result.investment,
-                      [`teams.${i}.indirect.salaryDate`]: [
-                        oneYearSalaryPlan[1],
-                        oneYearSalaryPlan[2],
-                        oneYearSalaryPlan[3],
-                        oneYearSalaryPlan[4],
-                        oneYearSalaryPlan[5],
-                        oneYearSalaryPlan[6],
-                        oneYearSalaryPlan[7],
-                        oneYearSalaryPlan[8],
-                        oneYearSalaryPlan[9],
-                        oneYearSalaryPlan[10],
-                        oneYearSalaryPlan[11],
-                        oneYearSalaryPlan[12],
-                      ],
-                    },
+          
+              if(Leader.invite!="") // new if
+              {
+                  for (let i = 0; i < Leader.teams.length; i++) {
+                    if (
+                      user._id.toString() ===
+                      Leader.teams[i]["indirect"].id.toString()
+                    ) {
+                      await User.findByIdAndUpdate(
+                        { _id: Leader._id },
+                        {
+                          $set: {
+                            [`teams.${i}.indirect.plan`]: "yes",
+                            [`teams.${i}.indirect.investment`]: result.investment,
+                            [`teams.${i}.indirect.salaryDate`]: [
+                              oneYearSalaryPlan[1],
+                              oneYearSalaryPlan[2],
+                              oneYearSalaryPlan[3],
+                              oneYearSalaryPlan[4],
+                              oneYearSalaryPlan[5],
+                              oneYearSalaryPlan[6],
+                              oneYearSalaryPlan[7],
+                              oneYearSalaryPlan[8],
+                              oneYearSalaryPlan[9],
+                              oneYearSalaryPlan[10],
+                              oneYearSalaryPlan[11],
+                              oneYearSalaryPlan[12],
+                            ],
+                          },
+                        }
+                      );
+                    }
                   }
-                );
+  
+                  for (let i = 0; i < thirdDoc.teams.length; i++) {
+                    if (
+                      user._id.toString() ===
+                      thirdDoc.teams[i]["direct"].id.toString()
+                    ) {
+                      await User.findByIdAndUpdate(
+                        { _id: thirdDoc._id },
+                        {
+                          $set: {
+                            [`teams.${i}.direct.plan`]: "yes",
+                            [`teams.${i}.direct.investment`]: result.investment,
+                            [`teams.${i}.direct.salaryDate`]: [
+                              oneYearSalaryPlan[1],
+                              oneYearSalaryPlan[2],
+                              oneYearSalaryPlan[3],
+                              oneYearSalaryPlan[4],
+                              oneYearSalaryPlan[5],
+                              oneYearSalaryPlan[6],
+                              oneYearSalaryPlan[7],
+                              oneYearSalaryPlan[8],
+                              oneYearSalaryPlan[9],
+                              oneYearSalaryPlan[10],
+                              oneYearSalaryPlan[11],
+                              oneYearSalaryPlan[12],
+                            ],
+                          },
+                        }
+                      );
+                    }
+                  }
+                
               }
-            }
 
-            for (let i = 0; i < thirdDoc.teams.length; i++) {
-              if (
-                user._id.toString() ===
-                thirdDoc.teams[i]["direct"].id.toString()
-              ) {
-                await User.findByIdAndUpdate(
-                  { _id: thirdDoc._id },
-                  {
-                    $set: {
-                      [`teams.${i}.direct.plan`]: "yes",
-                      [`teams.${i}.direct.investment`]: result.investment,
-                      [`teams.${i}.direct.salaryDate`]: [
-                        oneYearSalaryPlan[1],
-                        oneYearSalaryPlan[2],
-                        oneYearSalaryPlan[3],
-                        oneYearSalaryPlan[4],
-                        oneYearSalaryPlan[5],
-                        oneYearSalaryPlan[6],
-                        oneYearSalaryPlan[7],
-                        oneYearSalaryPlan[8],
-                        oneYearSalaryPlan[9],
-                        oneYearSalaryPlan[10],
-                        oneYearSalaryPlan[11],
-                        oneYearSalaryPlan[12],
-                      ],
-                    },
+              else if(Leader.invite == "") {
+                for (let i = 0; i < Leader.teams.length; i++) {
+                  if (
+                    user._id.toString() ===
+                    Leader.teams[i]["indirect"].id.toString()
+                  ) {
+                    await User.findByIdAndUpdate(
+                      { _id: Leader._id },
+                      {
+                        $set: {
+                          [`teams.${i}.indirect.plan`]: "yes",
+                          [`teams.${i}.indirect.investment`]: result.investment,
+                          [`teams.${i}.indirect.salaryDate`]: [
+                            oneYearSalaryPlan[1],
+                            oneYearSalaryPlan[2],
+                            oneYearSalaryPlan[3],
+                            oneYearSalaryPlan[4],
+                            oneYearSalaryPlan[5],
+                            oneYearSalaryPlan[6],
+                            oneYearSalaryPlan[7],
+                            oneYearSalaryPlan[8],
+                            oneYearSalaryPlan[9],
+                            oneYearSalaryPlan[10],
+                            oneYearSalaryPlan[11],
+                            oneYearSalaryPlan[12],
+                          ],
+                        },
+                      }
+                    );
                   }
-                );
+                }
+
+                for (let i = 0; i < thirdDoc.teams.length; i++) {
+                  if (
+                    user._id.toString() ===
+                    thirdDoc.teams[i]["direct"].id.toString()
+                  ) {
+                    await User.findByIdAndUpdate(
+                      { _id: thirdDoc._id },
+                      {
+                        $set: {
+                          [`teams.${i}.direct.plan`]: "yes",
+                          [`teams.${i}.direct.investment`]: result.investment,
+                          [`teams.${i}.direct.salaryDate`]: [
+                            oneYearSalaryPlan[1],
+                            oneYearSalaryPlan[2],
+                            oneYearSalaryPlan[3],
+                            oneYearSalaryPlan[4],
+                            oneYearSalaryPlan[5],
+                            oneYearSalaryPlan[6],
+                            oneYearSalaryPlan[7],
+                            oneYearSalaryPlan[8],
+                            oneYearSalaryPlan[9],
+                            oneYearSalaryPlan[10],
+                            oneYearSalaryPlan[11],
+                            oneYearSalaryPlan[12],
+                          ],
+                        },
+                      }
+                    );
+                  }
+                }
               }
-            }
-          }
+
         } else {
           for (let i = 0; i < thirdDoc.teams.length; i++) {
             if (
@@ -249,16 +330,54 @@ const handler = async (req, res) => {
       res.status(200).send({ success: true });
     }
   } else {
-    await User.updateOne({ email: result.email }, { subscription: "no" });
+    await User.updateOne({ email: result.email }, { subscription: "no",YearPlan:[],Level:"0" });
     let user = await User.findOne({ email: result.email });
     try {
       if (user.invite != "") {
         let thirdDoc = await User.findOne({ _id: user.invite });
 
         if (thirdDoc.invite != "") {
-          console.log("ye ni chale ga");
           let Leader = await User.findOne({ _id: thirdDoc.invite });
-          if (Leader.invite == "") {
+          if(Leader.invite!="") // new if
+              {
+                  for (let i = 0; i < Leader.teams.length; i++) {
+                    if (
+                      user._id.toString() ===
+                      Leader.teams[i]["indirect"].id.toString()
+                    ) {
+                      await User.findByIdAndUpdate(
+                        { _id: Leader._id },
+                        {
+                          $set: {
+                            [`teams.${i}.indirect.plan`]: "no",
+                            [`teams.${i}.indirect.investment`]: 0,
+                            [`teams.${i}.indirect.salaryDate`]: [],
+                          },
+                        }
+                      );
+                    }
+                  }
+  
+                  for (let i = 0; i < thirdDoc.teams.length; i++) {
+                    if (
+                      user._id.toString() ===
+                      thirdDoc.teams[i]["direct"].id.toString()
+                    ) {
+                      await User.findByIdAndUpdate(
+                        { _id: thirdDoc._id },
+                        {
+                          $set: {
+                            [`teams.${i}.direct.plan`]: "no",
+                            [`teams.${i}.direct.investment`]: 0,
+                            [`teams.${i}.direct.salaryDate`]: [],
+                          },
+                        }
+                      );
+                    }
+                  }
+                
+              }
+          else if(Leader.invite == "") {
             for (let i = 0; i < Leader.teams.length; i++) {
               if (
                 user._id.toString() ===

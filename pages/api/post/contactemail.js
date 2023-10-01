@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const handler= async (req, res)=> {
     if(req.method=='POST'){
             const {email,name,msg}=req.body
+            console.log(email,name,msg)
         let transporter = nodemailer.createTransport({
             port: 465,
             host: "smtp.gmail.com",
@@ -19,7 +20,6 @@ const handler= async (req, res)=> {
                     // verify connection configuration
                     transporter.verify(function (error, success) {
                         if (error) {
-                            console.log(error);
                             reject(error);
                         } else {
                             console.log("Server is ready to take our messages");
@@ -28,11 +28,11 @@ const handler= async (req, res)=> {
                     });
                 });
         let mailData = {
-            from: `${process.env.NODE_MAILER_USER}`, 
-            to: `${email}`,
+            from: `${email}`, 
+            to: `${process.env.NODE_MAILER_USER}`,
         subject: 'GHORY.TRADE',
         text: `Hello usman bhai zain
-        This name is from your website a user contact you from the Ghory Trading contact page here is ${name} msg:
+        This name is from your website a user contact you from the Ghory Trading contact page here is  msg:
         ${msg}
         `
         };
@@ -41,11 +41,11 @@ const handler= async (req, res)=> {
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
                 // console.error(err);
-                // reject(err);
                 res.status(200).json({success:false})
+                reject(err);
             } else {
              res.status(200).json({success:true})
-             // resolve(info);
+             resolve(info);
             }
         });
     });

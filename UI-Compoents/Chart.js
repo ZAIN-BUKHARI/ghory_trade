@@ -67,7 +67,7 @@ else{
   return (
     
     <>
-    <div className='worksheet-flow'>
+    <div className='Worksheet-flow'>
     <div className='Worksheet-body-mobile'>
     <main className="table">
     <section className="table__header">

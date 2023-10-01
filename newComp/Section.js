@@ -67,7 +67,7 @@ const Section = () => {
 
         .Head {
           background-color: black;
-          width: 100vw;
+          width: 1  0vw;
           position: relative;
         }
         .VIDEO {

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
     const router = useRouter()
-    const {hideSidebar,sethideSidebar,token,subscription}=useContext(ThemeContext)
+    const {hideSidebar,sethideSidebar,token,settoken,subscription,setAuth,Auth}=useContext(ThemeContext)
     
     function hamburgerMenu(){
         if(hideSidebar)
@@ -14,6 +14,17 @@ const Header = () => {
         else
             sethideSidebar(true)
     }
+    const toggle=()=>{
+        if(Auth==true)
+            setAuth(false)
+        else    
+            setAuth(true)
+    }
+    const logout = () =>{
+        localStorage.setItem('token','no')
+        settoken(false)
+        window.location.reload()
+      }
    if( router.asPath!='/chart' )
    {
 
@@ -123,13 +134,13 @@ const Header = () => {
         <div className=''>
            {subscription=='no' && <ul className='flex div-two'>
                 <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/'>Home</Link></li>
-                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/about'>About</Link></li>
+                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><span onClick={toggle}>Login</span></li>
                 <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/contact'>Contact</Link></li>
                 <li className={`list-5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/project'>Projects</Link></li>
             </ul>}
            {token && subscription=='yes' && <ul className='flex div-two'>
                 <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/'>Home</Link></li>
-                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/about'>About</Link></li>
+                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><span onClick={logout} >Logout</span></li>
                 <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/stats'>Team</Link></li>
                 <li className={`list5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/work'>Dailywork</Link></li>
             </ul>}

@@ -8,15 +8,16 @@
     margin-left: 50px;
 }
 .Worksheet-body-mobile {
-    min-height: 115vh;
-    width: 121%;
-    overflow-x: scroll;
-    font-size: 12px;
-    font-weight: 600;
-     background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    /* min-height: 115vh; */
+    /* width: 121%; */
+    
+    overflow-x: auto;
+    /* font-size: 12px; */
+    /* font-weight: 600; */
+     /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+     
 }
-.worksheetflow{
-    overflow-y: scroll;
+.worksheet-flow{
 }
 .AdminWorksheet-body {
     min-height: 100vh;
