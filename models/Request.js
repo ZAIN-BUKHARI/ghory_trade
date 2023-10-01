@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 const RequestSchema = new Schema({
+    __v: { type: Number, default: 0 }, 
     method:{
         type:String,
         required:true

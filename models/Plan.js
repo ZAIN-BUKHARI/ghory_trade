@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
 const PlanSchema = new Schema({
+    __v: { type: Number, default: 0 }, 
     email:{
         type:String,
         required:true,

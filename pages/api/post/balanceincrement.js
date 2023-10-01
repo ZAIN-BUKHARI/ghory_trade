@@ -13,7 +13,7 @@ const handler= async (req, res)=> {
             await User.updateOne({_id:Userid},{
                 balance:balance,
                 todaywork:'yes',
-                views:0
+                views:0,
             }) 
             res.status(200).json({success:true})
        }else{

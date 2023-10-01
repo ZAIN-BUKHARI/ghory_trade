@@ -15,7 +15,7 @@ const adminreject = () => {
   useEffect(()=>{
     getAllRequest("rejected")
   },[])
-  if(Admin && mobile){
+  if(Admin && !mobile){
     return (
       
       <ThemeProvider theme={theme}>

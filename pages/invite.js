@@ -16,7 +16,7 @@ const invite = () => {
   const [password,setpassword]=useState("")
   const [cpassword,setcpassword]=useState("")
 
-  const[ disable,setdisable]=useState(false)
+  const[disable,setdisable]=useState(false)
   const[otpModal,setotpModal]=useState(false)
   const[otpcode,setotpcode]=useState('')
 
@@ -136,9 +136,7 @@ const confirmOTP =(e)=>{
   {
       const data = { email, password, firstname, lastname, cpassword,_id };
       axios.post("/api/post/referralsignup", data).then((res) => {
-      setLoader(true)
-        if (res.data.success==true) {
-          router.push('/')
+        window.location.replace('/')
           toast.success("Successfully signup", {
             position: "top-right",
             autoClose: 2000,
@@ -150,32 +148,13 @@ const confirmOTP =(e)=>{
             theme: "light",
           });
           setLoader(false)
-
-  
-        } else {
-          setdisable(false)
-          setLoader(true)
-          toast.error(res.data.error, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          setTimeout(() => {
-            window.location.reload()
-            router.push('/')
-          }, 2000);
-        }
       }).catch(e=>{alert('Check your network');setdisable(false);setLoader(false)
       setTimeout(() => {
         window.location.reload()
         router.push('/')
       }, 2000);
     });
+  
       
     }else{
       setone('')
@@ -193,6 +172,7 @@ const confirmOTP =(e)=>{
         theme: "light",
       });
     }
+
     setLoader(false)
 
 }
@@ -297,7 +277,7 @@ if (mobile) {
 
             <h1 onClick={hideModla}>X</h1>
           </div>
-          <div className="content">
+          <form className="content">
             <div>
               <div className="user-details">
              <div className="input-box">
@@ -357,7 +337,7 @@ if (mobile) {
                 </div>
               </div>
 
-              <div className="button-auth">
+              <div className="button-auth input-box-auth">
                <input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> 
               </div>
              
@@ -373,7 +353,7 @@ if (mobile) {
               
              
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

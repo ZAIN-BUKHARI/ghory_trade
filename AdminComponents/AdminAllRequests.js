@@ -20,6 +20,13 @@ const AdminAllRequests = () => {
         
         router.push(`/adminupdate?id=${id}&model=request`)
     }
+    const del = (Userid)=>{
+        let confirmation = confirm('Are you sure. You want to delete document')
+        if(confirmation)
+            axios.post('/api/del/request',{Userid}).then(res=>{window.location.reload()})
+        
+    
+    }
 
 
   return (
@@ -89,6 +96,8 @@ const AdminAllRequests = () => {
                         <th> Join</th>
                         <th> Status </th>
                         <th className='work-start'> Update</th>
+                        <th className='work-start'> Delete</th>
+                        <th className='work-start'> Delete</th>
                     </tr>
                 </thead>
                 {searchrequestresults && searchrequestresults.map((item)=>(
@@ -106,6 +115,7 @@ const AdminAllRequests = () => {
                        
                        
                        <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                       <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
                    </tr>
                     
                        

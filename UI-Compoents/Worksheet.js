@@ -10,7 +10,7 @@ const Worksheet = () => {
     //use Context 
     const {setLoader,Userid,fetchDailyWork,isLogin,setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
-    const [disable,setdisable]=useState(false)
+    const [disable,setdisable]=useState(true)
     const [currentTime, setCurrentTime] = useState('');
   const [stop,setstop]=useState(true)
   const handleButtonClick = () => {
@@ -26,29 +26,30 @@ const Worksheet = () => {
         router.push(`/dailywork`)
     }
     const Complete=async()=>{
-      setdisable(true)
-      setLoader(true)
-      const data = {Userid}
-      
-        axios.post('/api/post/balanceincrement',data).then(res=>{
-          window.location.replace('/')
-          toast.info('Congrats for completing tasks :) ', {
-            position: "top-center",
-            autoClose: 50000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-          setLoader(false)
-          }).catch(e=>{
-            alert('Sever error')
+      alert('Thanks for submitting tasks 😃')
+      setdisable(false)
+        setLoader(true)
+        const data = {Userid}
+          axios.post('/api/post/balanceincrement',data).then(res=>{
             window.location.replace('/')
+            toast.info('Congrats for completing tasks :) ', {
+              position: "top-center",
+              autoClose: 50000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
             setLoader(false)
-          })
-        setLoader(false)
+            }).catch(e=>{
+              alert('Sever error')
+              window.location.replace('/')
+              setLoader(false)
+            })
+          setLoader(false)
+      //   
 
     }
     useEffect(()=>{
@@ -110,9 +111,9 @@ const Worksheet = () => {
               
             </tbody>)})}
           </table>
-            {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}}  className="dim-btn-complete ">Complete</p> </td>} 
+            {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}}   className="dim-btn-complete ">Complete</p> </td>} 
             {workStatus=='no'  && views!=parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn-incomplete">click when your task complete</p> </td>} 
-            {views==parseInt(level) &&  <td> <p onClick={Complete} disabled={disable} className='dim-btn-click'>click here for submision</p> </td>} 
+            {views==parseInt(level) &&  <td> {disable &&<p onClick={Complete}  className='dim-btn-click'>click here for submision</p>} </td>} 
       
         </div>
       </section>

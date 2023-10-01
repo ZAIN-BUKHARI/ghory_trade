@@ -548,9 +548,12 @@ display: none;
   width: 70px;
   position: absolute;
   left: 0;
+  /* margin-right: 10px; */
+  margin-bottom: 15px;
 }
 .planform-logo-web-planform{
   height: 80px;
+  margin-bottom: 15px;
   width: 80px;
   position: absolute;
   left: 0;

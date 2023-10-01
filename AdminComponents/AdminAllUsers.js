@@ -24,21 +24,14 @@ const AdminPlans = () => {
         
         router.push(`/adminupdate?id=${id}&model=user`)
     }
-    const del = (_id)=>{
-        let check = confirm("Are you sure enter yes");
+    const del = (Userid)=>{
+        let confirmation = confirm('Are you sure. You want to delete document')
+        if(confirmation)
+            axios.post('/api/del/delone',{Userid}).then(res=>{window.location.reload()})
+        
+    
+    }
 
-        if(check)
-        {   
-            axios.get(`/api/admin/del?_id=${_id}&model=user`).then((res=>{
-            setLoader(true)
-            if(res.data.success==true)
-            {
-                setLoader(false)
-                window.location.reload();
-            }
-        }))
-    }
-    }
 
   return (
     <>
@@ -63,7 +56,7 @@ const AdminPlans = () => {
                         <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
-                        {/* <th className='work-start'> Delete</th> */}
+                        <th className='work-start'> Delete</th>
                     </tr>
                 </thead>
                 {adminallusers && adminallusers.map((item)=>(
@@ -74,10 +67,10 @@ const AdminPlans = () => {
                         <td> {item._id.slice(0,5)} </td>
                         <td> {item.firstname} </td>
                         <td>{item.email}</td>
-                        <td> {item.createdAt.slice(0,10)} </td>
+                        <td > {item.createdAt.slice(0,10)} </td>
                         <td> {item.todaywork} </td>
                         
-                        <td> <strong> $ {item.balance} </strong></td>
+                        <td> <strong> $ {item.balance.toString().slice(0,7)} </strong></td>
                         {/* <td className=''> */}
                         <td> <strong> {item.subscription} </strong></td>
                         
@@ -85,7 +78,7 @@ const AdminPlans = () => {
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
-                        {/* <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'><FcHighPriority/></p> </td> */}
+                        <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
                     </tr>
                      
                         

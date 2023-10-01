@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../Context/ThemeContext'
 import { useRouter } from 'next/router';
 import Searchbar from '../universe.io/Searchbar'
-
+import axios from 'axios';
 
 const AdminPlans = () => {
     //use Context 
@@ -19,6 +19,13 @@ const AdminPlans = () => {
     const Update =(id)=>{
         
         router.push(`/adminupdate?id=${id}&model=plan`)
+    }
+    const del = (Userid)=>{
+        let confirmation = confirm('Are you sure. You want to delete document')
+        if(confirmation)
+            axios.get(`/api/del/delone?Userid=${Userid}`).then(res=>{window.location.reload()})
+        
+    
     }
 
 
@@ -94,6 +101,7 @@ const AdminPlans = () => {
                         <th> Status </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
+                        <th className='work-start'> Delete</th>
                     </tr>
                 </thead>
                 {planssearchresults && planssearchresults.map((item)=>(
@@ -102,9 +110,9 @@ const AdminPlans = () => {
                 
                 <tr>
                     <td> {item._id.slice(0,5)} </td>
-                    <td> {item.name} </td>
+                    <td> {item.name.slice(0,15)} </td>
                     <td>{item.email}</td>
-                    <td> {item.createdAt.slice(0,10)} </td>
+                    <td> {item.createdAt.slice(0,10).slice(2)} </td>
                     <td> {item.level} </td>
                     
                     <td> <strong> ${item.investment} </strong></td>
@@ -114,6 +122,7 @@ const AdminPlans = () => {
                     </td>
                     <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                    <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
                 </tr>
                  
                     

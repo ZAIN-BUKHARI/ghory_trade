@@ -74,6 +74,7 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
+    alert('Checking Details 💰')
     setLoader(true)
     setdisable(true)
     if(!formula){
@@ -348,7 +349,7 @@ const PlanForm = () => {
                       onChange={ChangeEvent}
                       // onChange={(e)=>{setinvestment(e.target.value)}}
                       name="investment"
-                      placeholder="Enter your Amount"
+                      placeholder="Enter your Amount 💲"
                     />
                   </div>
                   {currency == "USD" &&

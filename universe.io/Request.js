@@ -29,6 +29,7 @@ const Request = () => {
 
   //  derecemting in balance method is remaining
     const requestSubmit = async () =>{
+      alert('Checking Balance 👁')
       setdisable(true)
       setLoader(true)
     if(address.length==0 && amount==0  
