@@ -84,11 +84,7 @@ async function getUser()
       const status='yes'
        data = {email,Userid,status}
       if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
-        axios.post('/api/TTL/salary',data).then(res=>{
-          if(res.data.success==true)
-          axios.post('/api/TTL/dailystatus',data).then(res=>{
-      })
-    })
+        axios.post('/api/TTL/salary',data).then(res=>{})
   }
   data={email}
   const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
