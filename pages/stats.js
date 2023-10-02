@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 import html2canvas from 'html2canvas';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import Dropdown from '../universe.io/Dropdown';
+
 
 const stats = () => {
-  const { balance ,rank,teamlength ,teaminvestment , Userid, mobile,setLoader,perDayProfit} = useContext(ThemeContext)
- 
+  const {yourinvestment, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
+  const [team,setteam]=useState([])
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
     if (elementToCapture) {
@@ -31,6 +34,21 @@ const stats = () => {
         theme: "light",
       });
 } 
+useEffect(()=>{
+  setLoader(true)
+  let email =localStorage.getItem('token')
+  const data = {email}
+  axios.post(`api/TTL/teammemebers`,data).then(res=>{
+    if(res.status==200)
+    {
+      setteam(res.data.members)
+      setLoader(false)
+    }
+  })
+  
+    
+  
+},[])
 
 
   return (
@@ -42,8 +60,9 @@ const stats = () => {
       <img className='stats-img-resize' src="remove_bg.png"/>
     </div>
     <h3 >Ghory Trading</h3>
-    <p>TEAM <br/>
-    </p>
+    <div>TEAM <br/>
+    <Dropdown team={team} />          
+    </div>
     
     <div class="stats-media-info">
       <ul>
@@ -69,6 +88,10 @@ const stats = () => {
         <li>
           <span>0</span><span  className='stats-lower-title-mob'  > Team Comission</span>
         </li>
+       {yourinvestment>0 &&<li>
+          <span>{yourinvestment}</span><span  className='stats-lower-title-mob'  > Your Investment</span>
+        </li>
+        }
       </ul>
     </div>
     <div class="stats-icons">

@@ -3,22 +3,26 @@ import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
-        const {Userid}=req.body
-        let user = await User.findOne({_id:Userid})
+        const {email}=req.body
+        let user = await User.findOne({email:email})
         let members=[];
+        let u='';
         for(let i=0;i<user.teams.length;i++)
         {
+            u = user.teams[i]['direct'].id.toString()
             if(user.teams[i]['direct'].plan=='yes')
-                members.push(user.teams[i]['direct'].id.toString())
+            {
+                let user = await User.findOne({_id:u})
+                members.push({email:user.email})
+            }
+            u = user.teams[i]['indirect'].id.toString()
             if(user.teams[i]['indirect'].plan=='yes')
-                members.push(user.teams[i]['indirect'].id.toString())
+            {
+                let user = await User.findOne({_id:u})
+                members.push({email:user.email})
+            }
         }
-        let users=[]
-        for(let i=0;i<members.length;i++)
-        {
-            let u = await User.findOne({_id:members[i]})
-        }
-        res.status(200).json('true')
+        res.status(200).json({members})
 
     }
 }

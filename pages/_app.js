@@ -18,6 +18,7 @@ import '../styles/download.css'
 import '../styles/otp.css'
 import '../styles/stats.css'
 import '../styles/adminsheet.css'
+import '../styles/dropdown.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
@@ -85,7 +86,16 @@ async function getUser()
        data = {email,Userid,status}
       if(res.data.orders[0].Login=="no" && res.data.orders[0].subscription=='yes'){
         axios.post('/api/TTL/salary',data).then(res=>{})
-  }
+     }
+     if(res.data.orders[0].subscription=='yes')
+     {
+      axios.post('/api/get/yourinvestment',data).then(res=>{
+        if(res.data.success==true)
+        {
+          setyourinvestment(res.data.investment)
+        }
+      })
+     }
   data={email}
   const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
   if(response.data.success=='subscription-end')
@@ -375,6 +385,7 @@ const schedulingTime = '0 0 0 * * *'
     const [rank,setrank]=useState('no')
     const [teaminvestment,setteaminvestment]=useState(0)
     const [isLogin,setisLogin]=useState('')
+    const [yourinvestment,setyourinvestment]=useState(0)
     //Login confirmation
     const[token,settoken]=useState(false)
     // Admin Variables
@@ -416,7 +427,7 @@ const schedulingTime = '0 0 0 * * *'
 
   return(
 <>
-<ThemeContext.Provider value={{isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
