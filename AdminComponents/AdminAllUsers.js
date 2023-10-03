@@ -88,7 +88,9 @@ const AdminPlans = () => {
             </table>
             </section>
         </main>          
-        </div>)}
+        </div>
+
+        )}
         {usersearchresults!=0 && usersearchresults!=undefined && (
             <>
             <div className='AdminWorksheet-body'>

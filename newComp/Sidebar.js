@@ -22,7 +22,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const Sidebar = () => {
-  const {admin,setLoader,email,sethistory,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {admin,setLoader,email,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -102,13 +102,11 @@ const Sidebar = () => {
         });
         setLoader(false)
       }else{
-        sethistory(res.data.history)
         setLoader(false)
         router.push('/history')
       
       }
     }).catch(err=>{
-      sethistory([])
       setLoader(false)
     });  
     }
@@ -273,7 +271,7 @@ else{
   return (
     <>
     {hideSidebar && router.asPath!='/history' && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
-     
+      
       <aside className="sidebar text-[10px]">
       <div className="sidebar-logo">
         {/* <img src="remove_bg.png" alt="logo"/> */}

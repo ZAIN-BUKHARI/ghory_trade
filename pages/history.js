@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
 import { FcLeft } from "react-icons/fc";
@@ -6,9 +6,16 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const history = () => {
-    const {mobile,balance,history,} = useContext(ThemeContext)
-   
+    const {mobile,balance,setLoader} = useContext(ThemeContext)
+   const [history,sethistory]=useState([])
     useEffect(()=>{
+        setLoader(true)
+        const email = localStorage.getItem('token')
+        axios.get(`/api/get/history?email=${email}`).then(res=>{
+            sethistory(res.data.history)
+            setLoader(false)
+        });  
+        
     },[])
    
    

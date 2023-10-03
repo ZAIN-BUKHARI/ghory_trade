@@ -335,6 +335,7 @@ function getBalanceCurrent()
   })
 }
 
+
 const schedulingTime = '0 0 0 * * *'
   useEffect(() => {
     
@@ -413,8 +414,6 @@ const schedulingTime = '0 0 0 * * *'
     const [videoID,setvideoID]=useState('')
     const [Length,setLength]=useState('')
 
-    //withdrawal history
-    const [history,sethistory]=useState([])
 
 
     //multiple clicks issue variables
@@ -427,7 +426,7 @@ const schedulingTime = '0 0 0 * * *'
 
   return(
 <>
-<ThemeContext.Provider value={{yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,history,sethistory,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>

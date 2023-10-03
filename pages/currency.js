@@ -75,11 +75,11 @@ const converter = () => {
               {oneday!=0 && <h1 className='reset-calculator flex'>Reset calculator <FcUndo onClick={reset} className='reset-calculator'/> </h1>}
              {oneday!=0 && 
              <section className="table__body">
-              <h1 className='profit-calculator-h1-tag'>1 Day------------------------------{oneday}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>1 Month--------------------------{onemonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>2 Month--------------------------{twomonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>6 Month--------------------------{sixmonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>1 Year-----------------------------{year}$ </h1>
+              <h1 className='profit-calculator-h1-tag'>1 Day--------------------------------------------------{oneday.slice(0,7)}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>  1 Month------------------------------------------------{onemonth}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>  2 Month------------------------------------------------{twomonth}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>  6 Month------------------------------------------------{sixmonth}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>  1 Year-------------------------------------------------{year}$ </h1>
             
             </section>}
           </div>
@@ -91,7 +91,9 @@ const converter = () => {
   return(
     <>
   <style>{`
-  
+   .table__body-mob{
+    margin-bottom:200px;
+   }
   `}</style>
   <div className='currency-body flex flex-col'>
         {/* currency calculator  */}
@@ -112,15 +114,17 @@ const converter = () => {
           <div className="button currency-button" onClick={investmentPlan}>
                <input className='currency-btn-input-mob' type="submit" value="Convert"   />
             </div></>}
-            {oneday!='' && <h1 className='reset-calculator flex'>Reset calculator <FcUndo onClick={reset} className='reset-calculator'/> </h1>}
+            {/* {oneday!='' && <h1 className='reset-calculator flex'>Reset calculator <FcUndo onClick={reset} className='reset-calculator'/> </h1>} */}
            {oneday!='' && 
-           <section className="table__body">
-            <h1 className='profit-calculator-h1-tag'>1 Day------------------------------{oneday}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>1 Month--------------------------{onemonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>2 Month--------------------------{twomonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>6 Month--------------------------{sixmonth}$ </h1>
-            <h1 className='profit-calculator-h1-tag'>1 Year-----------------------------{year}$ </h1>
             
+           <section className="table__body-mob">
+             <h1 className='reset-calculator flex'>Reset calculator <FcUndo onClick={reset} className='reset-calculator'/></h1>
+            <h1 className='profit-calculator-h1-tag'>1 Day----------------------{oneday.slice(0,7)}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>1 Month--------------------{onemonth.slice(0,7)}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>2 Month--------------------{twomonth.slice(0,7)}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>6 Month--------------------{sixmonth.slice(0,7)}$ </h1>
+            <h1 className='profit-calculator-h1-tag'>1 Year---------------------{year.slice(0,7)}$ </h1>
+                    
           </section>}
         </div>
         

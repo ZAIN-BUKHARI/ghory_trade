@@ -52,6 +52,7 @@ const Worksheet = () => {
       //   
 
     }
+    
     useEffect(()=>{
       if(stop==true)
       {
@@ -61,10 +62,12 @@ const Worksheet = () => {
       {
         sethideSidebar(false)
       }
+      
+
 
       fetchDailyWork() 
     },[linktoLevel])
-
+    
     
     return(
       <>

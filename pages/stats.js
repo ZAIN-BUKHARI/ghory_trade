@@ -83,11 +83,11 @@ useEffect(()=>{
     <div class="stats-media-info">
       <ul>
         <li>
-          <span>{perDayProfit.toString().slice(0,8)}$</span><span  className='stats-lower-title-mob'  > Daily Profit </span>
+          <span>{perDayProfit.toString().slice(0,6)}$</span><span  className='stats-lower-title-mob'  > Daily Profit </span>
         </li>
-        <li>
-          <span>0</span><span  className='stats-lower-title-mob'  > Team Comission</span>
-        </li>
+        {/* <li>
+          <span>0</span><span  className='stats-lower-title-mob'  >Comission</span>
+        </li> */}
        {yourinvestment>0 &&<li>
           <span>{yourinvestment}</span><span  className='stats-lower-title-mob'  > Your Investment</span>
         </li>
