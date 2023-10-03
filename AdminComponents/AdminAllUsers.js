@@ -47,28 +47,25 @@ const AdminPlans = () => {
                         
                     <thead>
                     <tr>
-                        <th> ID </th>
                         <th> Name </th>
                         <th> Email </th>
                         <th> Join</th>
-                        <th> Today-Work</th>
                         <th> Amount </th>
                         <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
                         <th className='work-start'> Delete</th>
+                        <th className='work-start'> Index</th>
                     </tr>
                 </thead>
-                {adminallusers && adminallusers.map((item)=>(
+                {adminallusers && adminallusers.map((item,index)=>(
                     <>
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> {item._id.slice(0,5)} </td>
                         <td> {item.firstname} </td>
                         <td>{item.email}</td>
-                        <td > {item.createdAt.slice(0,10)} </td>
-                        <td> {item.todaywork} </td>
+                        <td > {item.createdAt.slice(0,10).slice(2)} </td>
                         
                         <td> <strong> $ {item.balance.toString().slice(0,7)} </strong></td>
                         {/* <td className=''> */}
@@ -79,6 +76,7 @@ const AdminPlans = () => {
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
+                        <td> <p  className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                     </tr>
                      
                         

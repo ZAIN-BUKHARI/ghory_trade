@@ -50,9 +50,10 @@ const AdminAllRequests = () => {
                         <th> Join</th>
                         <th> Status </th>
                         <th className='work-start'> Update</th>
+                        <th className='work-start'> Index</th>
                     </tr>
                 </thead>
-                {allrequests && allrequests.map((item)=>(
+                {allrequests && allrequests.map((item,index)=>(
                     <>
                  <tbody key={item._id}>
                 
@@ -67,6 +68,7 @@ const AdminAllRequests = () => {
                     
                     
                     <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                    <td> <p className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                 </tr>
                  
                     
@@ -97,10 +99,10 @@ const AdminAllRequests = () => {
                         <th> Status </th>
                         <th className='work-start'> Update</th>
                         <th className='work-start'> Delete</th>
-                        <th className='work-start'> Delete</th>
+                        <th className='work-start'> Index</th>
                     </tr>
                 </thead>
-                {searchrequestresults && searchrequestresults.map((item)=>(
+                {searchrequestresults && searchrequestresults.map((item,index)=>(
                     <>
                     <tbody key={item._id}>
                    
@@ -116,6 +118,7 @@ const AdminAllRequests = () => {
                        
                        <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                        <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
+                       <td> <p  className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                    </tr>
                     
                        

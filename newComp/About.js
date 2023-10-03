@@ -12,7 +12,7 @@ const About = () => {
             <h1 className="section-title">
               About <span>us</span>
             </h1>
-            <h2>ghory trade</h2>
+            <h2>U-G TRADING</h2>
             <p className="Service-Media-P">
               We are a dynamic trading company specializing in the exchange of
               commodities that drive global markets - oil, gold, and Bitcoin.
@@ -24,7 +24,7 @@ const About = () => {
               defines our approach, making us a trusted player in the complex
               world of commodity trading.
             </p>
-            <a href="Ghory-Trading.pdf" className="cta">
+            <a href="U-GTRADING.pdf" className="cta">
               Download Company  Profile PDF
             </a>
           </div>

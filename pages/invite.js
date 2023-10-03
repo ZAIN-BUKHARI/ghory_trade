@@ -132,6 +132,7 @@ const invite = () => {
 const confirmOTP =(e)=>{
   e.preventDefault()
   setLoader(true)
+
   if(otpcode==one+two+three+four)
   {
       const data = { email, password, firstname, lastname, cpassword,_id };
@@ -187,6 +188,7 @@ const signup = (e) => {
   if(password.length>=10){
   const data = { email };
   axios.post("/api/post/otp", data).then((res) => {
+    
     if (res.data.success == true) {
       setotpcode(res.data.otp)
       setotpModal(true)

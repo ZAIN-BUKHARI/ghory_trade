@@ -40,7 +40,7 @@ const adminwithdrawals = () => {
   }
   else{
     return(
-    <h1 className='text-3xl text-blue-500 my-5 text-center'>Only ghory trading admins allow here</h1>
+    <h1 className='text-3xl text-blue-500 my-5 text-center'>Only U-G TRADING admins allow here</h1>
 
     )
   }

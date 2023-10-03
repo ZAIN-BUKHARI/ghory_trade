@@ -42,7 +42,6 @@ const AdminPlans = () => {
                         
                     <thead>
                     <tr>
-                        <th> ID </th>
                         <th> Name </th>
                         <th> Email </th>
                         <th> Join</th>
@@ -51,9 +50,10 @@ const AdminPlans = () => {
                         <th> Status </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
+                        <th className='work-start'> Index</th>
                     </tr>
                 </thead>
-                {adminallplans && adminallplans.map((item)=>(
+                {adminallplans && adminallplans.map((item,index)=>(
                     <>
                  <tbody key={item._id}>
                 
@@ -71,6 +71,7 @@ const AdminPlans = () => {
                     </td>
                     <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                    <td> <p  className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                 </tr>
                  
                     
@@ -92,7 +93,6 @@ const AdminPlans = () => {
                         
                     <thead>
                     <tr>
-                        <th> ID </th>
                         <th> Name </th>
                         <th> Email </th>
                         <th> Join</th>
@@ -102,14 +102,14 @@ const AdminPlans = () => {
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
                         <th className='work-start'> Delete</th>
+                        <th className='work-start'> Index</th>
                     </tr>
                 </thead>
-                {planssearchresults && planssearchresults.map((item)=>(
+                {planssearchresults && planssearchresults.map((item,index)=>(
                     <>
                  <tbody key={item._id}>
                 
                 <tr>
-                    <td> {item._id.slice(0,5)} </td>
                     <td> {item.name.slice(0,15)} </td>
                     <td>{item.email}</td>
                     <td> {item.createdAt.slice(0,10).slice(2)} </td>
@@ -123,6 +123,7 @@ const AdminPlans = () => {
                     <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
+                    <td> <p  className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                 </tr>
                  
                     
