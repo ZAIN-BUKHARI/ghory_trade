@@ -30,6 +30,10 @@ const RequestSchema = new Schema({
         type:String,
         default:""
     },
+    ScreenShot:{
+        type:String,
+        default:"no"
+    },
     
     
 

@@ -14,8 +14,7 @@ const about = () => {
   return (
     <>
     <About/>
-    {!mobile && 
-    <Documents/>}
+    <Documents/>
     </>
   )
 }

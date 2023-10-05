@@ -4,8 +4,9 @@ import Request from '../../../models/Request'
         const handler= async (req, res)=> {
             if(req.method=='POST'){
             
-                const {_id,email,address,status,createdAt,id,amount,method}=req.body
+                const {_id,email,address,status,createdAt,id,amount,method,ScreenShot}=req.body
                 try{ 
+                    console.log(ScreenShot)
                let request =  await Request.findByIdAndUpdate({_id:id},{
                     _id:_id,
                     method:method,
@@ -14,6 +15,7 @@ import Request from '../../../models/Request'
                     amount:amount,
                     status:status,
                     date:createdAt,
+                    ScreenShot:ScreenShot
                 })
                 await request.save()
                 res.status(200).json({ success:true })

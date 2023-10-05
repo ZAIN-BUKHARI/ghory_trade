@@ -137,6 +137,7 @@ if(mobile){
                   <option value={"TRC20"}>TRC20</option>
                   {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                   <option value={"EASYPAISA"}>EASYPAISA</option>
+                  <option value={"NAYAPAY"}>NAYAPAY</option>
                   <option value={"BANK"}>BANK</option>
                   {/* <option value={"RASS"}>RASS</option> */}
                 </select>
@@ -151,7 +152,7 @@ if(mobile){
     </>
   )
 }
-  else{
+else{
     return (
       <>
       <div className='FormModal'>
@@ -172,6 +173,7 @@ if(mobile){
                     <option value={"TRC20"}>TRC20</option>
                     {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                     <option value={"EASYPAISA"}>EASYPAISA</option>
+                    <option value={"NAYAPAY"}>NAYAPAY</option>
                     <option value={"BANK"}>BANK</option>
                     {/* <option value={"RASS"}>RASS</option> */}
                   </select>

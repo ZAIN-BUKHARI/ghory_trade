@@ -188,3 +188,8 @@
         padding: 5px;
         cursor: pointer;
     }
+    .history-flex-box{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }

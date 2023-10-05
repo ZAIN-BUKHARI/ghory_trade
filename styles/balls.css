@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-balls {
     display: inline-flex;
     list-style: none;
     height: 120px;
@@ -8,7 +8,7 @@
     justify-content: center;
   }
   
-  .wrapper .icon {
+  .wrapper-balls .icon {
     position: relative;
     background: #fff;
     border-radius: 50%;
@@ -25,7 +25,7 @@
     transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
-  .wrapper .tooltip {
+  .wrapper-balls .tooltip {
     position: absolute;
     top: 0;
     font-size: 14px;
@@ -39,7 +39,7 @@
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
-  .wrapper .tooltip::before {
+  .wrapper-balls .tooltip::before {
     position: absolute;
     content: "";
     height: 8px;
@@ -51,47 +51,47 @@
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
-  .wrapper .icon:hover .tooltip {
+  .wrapper-balls .icon:hover .tooltip {
     top: -45px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
   
-  .wrapper .icon:hover span,
-  .wrapper .icon:hover .tooltip {
+  .wrapper-balls .icon:hover span,
+  .wrapper-balls .icon:hover .tooltip {
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
   }
   
-  .wrapper .facebook:hover,
-  .wrapper .facebook:hover .tooltip,
-  .wrapper .facebook:hover .tooltip::before {
+  .wrapper-balls .facebook:hover,
+  .wrapper-balls .facebook:hover .tooltip,
+  .wrapper-balls .facebook:hover .tooltip::before {
     background: #1877F2;
     color: #fff;
   }
   
-  .wrapper .twitter:hover,
-  .wrapper .twitter:hover .tooltip,
-  .wrapper .twitter:hover .tooltip::before {
+  .wrapper-balls .twitter:hover,
+  .wrapper-balls .twitter:hover .tooltip,
+  .wrapper-balls .twitter:hover .tooltip::before {
     background: #1DA1F2;
     color: #fff;
   }
   
-  .wrapper .instagram:hover,
-  .wrapper .instagram:hover .tooltip,
-  .wrapper .instagram:hover .tooltip::before {
+  .wrapper-balls .instagram:hover,
+  .wrapper-balls .instagram:hover .tooltip,
+  .wrapper-balls .instagram:hover .tooltip::before {
     background: #E4405F;
     color: #fff;
   }
-  .wrapper .youtube:hover,
-  .wrapper .youtube:hover .tooltip,
-  .wrapper .youtube:hover .tooltip::before {
+  .wrapper-balls .youtube:hover,
+  .wrapper-balls .youtube:hover .tooltip,
+  .wrapper-balls .youtube:hover .tooltip::before {
     background: red;
     color: #fff;
   }
-  .wrapper .tiktok:hover,
-  .wrapper .tiktok:hover .tooltip,
-  .wrapper .tiktok:hover .tooltip::before {
+  .wrapper-balls .tiktok:hover,
+  .wrapper-balls .tiktok:hover .tooltip,
+  .wrapper-balls .tiktok:hover .tooltip::before {
     background: #1DA1F2;
     color: #fff;
   }

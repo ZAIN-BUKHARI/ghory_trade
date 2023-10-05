@@ -100,7 +100,7 @@ else{
     <AdminTable title={"METHOD"} desc={doc.method} />
     <AdminTable title={"ADDRESS"} desc={doc.address} />
     <AdminTable title={"BALANCE"} desc={`$${doc.amount}`} />
-    <AdminTable title={"Bank"} desc={`$${doc.bankname}`} />
+    <AdminTable title={"Bank Name"} desc={`${doc.bankname}`} />
     </div>
     <style>{`
 .table-box

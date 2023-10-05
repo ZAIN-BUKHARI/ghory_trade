@@ -249,6 +249,7 @@ const PlanForm = () => {
                   <option value={"TRC20"}>TRC20</option>
                   {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                   <option value={"EASYPAISA"}>EASYPAISA</option>
+                  <option value={"NAYAPAY"}>NAYAPAY</option>
                   {/* <option value={"RASS"}>RASS</option> */}
                   <option value={"BANK"}>Al-BARAKA</option>
                 </select>
@@ -260,7 +261,8 @@ const PlanForm = () => {
                                 <span className="planfirm-space-span">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
               {/* {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "} */}
-              {wallet == "EASYPAISA" && <span  className="planfirm-space-span">03364569822</span>}{" "}
+              {wallet == "EASYPAISA" && <span  className="planfirm-space-span">0322495827</span>}{" "}
+              {wallet == "NAYAPAY" && <span  className="planfirm-space-span">0322495827</span>}{" "}
               {/* {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>} */}
               {wallet == "BANK" && <span className="planfirm-space-span" >0102626361016</span>}
             </span>

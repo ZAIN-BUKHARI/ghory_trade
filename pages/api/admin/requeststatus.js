@@ -38,6 +38,7 @@ const handler= async (req, res)=> {
                                          secure: true,
                             
                                     });
+                                    let deduction = (emailamount*5)/100
                     let mailOptions = {
                         from: `${process.env.NODE_MAILER_USER}`, 
                         to: `${emailaddressto}`,
@@ -47,9 +48,10 @@ const handler= async (req, res)=> {
                     Withdrawal Amount: [${emailamount}]
                     Account Number: [${emailaddress}]
                     Transaction ID: [${emailid}]
+                    Fee : [${deduction}]
                     
                     Please allow for a processing time of 1-2 mins for the funds to reflect in your account. If you encounter any issues or have further questions, please feel 
-                    free to reach out to our customer support team at [Customer usman@ghory.trade}].
+                    free to reach out to our customer support team usman@ghory.trade.
   
                     We appreciate your trust in our services and are pleased to have the opportunity to assist you with your financial needs. Should you require any
                     assistance in the future, please don't hesitate to contact us.

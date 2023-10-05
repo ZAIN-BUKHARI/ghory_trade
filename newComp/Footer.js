@@ -16,15 +16,6 @@ const Footer = () => {
       <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
       <div className="social-icon">
         <Balls/>
-        {/* <div className="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
-        </div>
-        <div className="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
-        </div>
-        <div className="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/behance.png" /></a>
-        </div> */}
       </div>
       <p className='MEDIA-FOOTER-COPYRIGHT'>Copyright © 2023 ghory.trade. All rights reserved</p>
     </div>

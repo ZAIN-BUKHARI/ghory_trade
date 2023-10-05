@@ -36,7 +36,8 @@ const history = () => {
                     <th> Amount </th>
                     {!mobile && <th> Address</th>}
                     {!mobile && <th> Method</th>}
-                    <th> Date</th>
+                    {!mobile &&<th> Date</th>}
+                    <th> ScreenShot</th>
                     <th> Status</th>
               </tr>
             </thead>
@@ -48,7 +49,9 @@ const history = () => {
                         <td> {item.amount}  </td>
                         {!mobile && <td> {item.address} </td>}
                         {!mobile && <td> {item.method}  </td>}
-                        <td> {item.date}    </td>
+                        {!mobile &&<td> {item.date}    </td>}
+                        {!mobile &&<td> <a href={item.ScreenShot}><div className='history-flex-box'><img src={item.ScreenShot}/><span> View</span></div></a>  </td>}
+                        {mobile &&<td> <a href={item.ScreenShot}><img src={item.ScreenShot}/><span> View</span></a>  </td>}
                         <td> {item.status}  </td>
                     </tr>
                      

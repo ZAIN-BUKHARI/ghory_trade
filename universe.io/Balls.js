@@ -4,7 +4,7 @@ const Balls = () => {
   return (
     <>
     
-    <ul className="wrapper">
+    <ul className="wrapper-balls">
     <li className="icon facebook">
         <span className="tooltip">Facebook</span>
         <a href="https://www.facebook.com/profile.php?id=61551249801661"><img className='balls-img' src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
