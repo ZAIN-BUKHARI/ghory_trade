@@ -176,7 +176,7 @@ const Sidebar = () => {
           </span>
           <Link href={'#'} onClick={()=>{setselect(true)}}>Admin Panel</Link>
         </li>}
-       {admin && <li>
+       {usman && <li>
           <span className="material-symbols-outlined">
             <FcPortraitMode />
           </span>
@@ -353,12 +353,12 @@ else{
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
-        <li>
+        {/* <li>
         <span className="material-symbols-outlined">
           <img src='youtube.png' className='sidebar-icon-youtube' />
         </span>
          <Link className='SideBar-Investment-Span' href={'/youtubeplan'} >U-Plan</Link>
-        </li>
+        </li> */}
         <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
