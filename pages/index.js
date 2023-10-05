@@ -13,6 +13,7 @@ export default function Home() {
   },[])
   return (
 <>
+      
       <Section/> 
       <Project/>
       <About/>

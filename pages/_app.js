@@ -19,6 +19,7 @@ import '../styles/otp.css'
 import '../styles/stats.css'
 import '../styles/adminsheet.css'
 import '../styles/dropdown.css'
+import '../YouTube/Instruction/instruction.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'

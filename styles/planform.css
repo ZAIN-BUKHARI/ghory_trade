@@ -564,4 +564,9 @@ display: none;
 }
 .planform-main-web-title{
   /* margin-left: 40px; */
+  display: flex;
+}
+.planform-main-web-title-Uform{
+  margin-left: 20px;
+
 }

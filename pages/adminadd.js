@@ -230,7 +230,6 @@ const updateLinkmethod = () =>{
 
      
     </Grid>
-
     {/* currency daily Rate  */}
     <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-blue-500 text-center' >DAILY USD TO PKR Rate</h1>
@@ -265,27 +264,6 @@ const updateLinkmethod = () =>{
       </Grid>
     </Grid>
   
-  
-    {/* <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-blue-500 text-center' >RESET PASSWORD</h1>
-      <Grid item xs={12} lg={12}>
-        <BaseCard >
-          <Stack spacing={3}>
-       
-            <TextField value={email} onChange={(e)=>{setemail(e.target.value)}} label="Email" type='text' variant="outlined"  />
-            <TextField value={password} onChange={(e)=>{setpassword(e.target.value)}} label="Password" type='text' variant="outlined"  />
-            <TextField value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}} label="Confirm Password" type='text' variant="outlined"  />
-          </Stack>
-          <br />
-          <Button onClick={forgot} variant="outlined" mt={2}>
-            Reset
-          </Button>
-          
-        </BaseCard>
-      </Grid>
-    </Grid> */}
-
-
 {/* DELETE OLD LINKS  */}
 {!mobile && (
   <>
@@ -300,26 +278,6 @@ const updateLinkmethod = () =>{
       </Grid>
   </>
 )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </FullLayout>
         </ThemeProvider>
       );

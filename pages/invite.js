@@ -188,7 +188,6 @@ const signup = (e) => {
   if(password.length>=10){
   const data = { email };
   axios.post("/api/post/otp", data).then((res) => {
-    
     if (res.data.success == true) {
       setotpcode(res.data.otp)
       setotpModal(true)

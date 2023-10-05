@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React,{useContext, useState} from 'react'
 import Link from 'next/link'
 import { FcAbout } from 'react-icons/fc';
 import { FcBriefcase } from 'react-icons/fc';
@@ -20,9 +20,11 @@ import { FcBusinessman } from 'react-icons/fc';
 import { ThemeContext } from '../Context/ThemeContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Select from '../YouTube/Select/Select';
 
 const Sidebar = () => {
   const {admin,setLoader,email,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const[select,setselect]=useState(false)
   const INVESTCHECKER = () =>{
      if(!token){
       toast.info('Login required', {
@@ -79,12 +81,10 @@ const Sidebar = () => {
        router.push('/work')
      }
   }
- 
   const logout = () =>{
     localStorage.setItem('token','no')
     settoken(false)
   }
-
   const fetchHistory = async () =>{
     setLoader(true)
     axios.get(`/api/get/history?email=${email}`).then(res=>{
@@ -110,7 +110,6 @@ const Sidebar = () => {
       setLoader(false)
     });  
     }
-
   const withdrafunc =()=>{
     setPaymentRequestModal(true);
     sethideSidebar(false);
@@ -119,8 +118,8 @@ const Sidebar = () => {
 
   if(!mobile)
   {
-
-  return (
+    if(!select)
+      return (
     <>
     {router.asPath!='/register'  && !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
@@ -175,9 +174,9 @@ const Sidebar = () => {
             {/* <Report/> */}
             <FcBusinessman />
           </span>
-          <Link href="/admin">Admin Panel</Link>
+          <Link href={'#'} onClick={()=>{setselect(true)}}>Admin Panel</Link>
         </li>}
-       {usman && <li>
+       {admin && <li>
           <span className="material-symbols-outlined">
             <FcPortraitMode />
           </span>
@@ -195,6 +194,15 @@ const Sidebar = () => {
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
+        { usman &&  
+        <li>
+        <span className="material-symbols-outlined">
+          <img src='youtube.png' className='sidebar-icon-youtube' />
+        </span>
+         <Link className='SideBar-Investment-Span' href={'/plans'} >U-Plan</Link>
+        </li>
+          }
+
         <li>
           <span className="material-symbols-outlined">
             <FcBusinessContact/>
@@ -265,10 +273,12 @@ const Sidebar = () => {
 
     
     </>
-  )
+     )
+    else
+      return(<Select setselect={setselect}/>)
 }
 else{
-  return (
+    return (
     <>
     {hideSidebar && router.asPath!='/history' && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
       
@@ -325,13 +335,12 @@ else{
           </span>
           <Link href="/chart">Profit Chart</Link>
         </li>
-        {usman && <li>
+        {/* {usman && <li>
           <span className="material-symbols-outlined">
-            {/* <Report/> */}
             <FcBusinessman />
           </span>
-          <Link href="/admin">Admin Panel</Link>
-        </li>}
+          <Link href="#" onClick={()=>{setselect(true)}}>Admin Panel</Link>
+        </li>} */}
         <hr/>
         <hr/>
         <h4>Account</h4>
@@ -343,6 +352,12 @@ else{
           {!token && subscription=='no' &&  <FcLock/>}
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
+        </li>
+        <li>
+        <span className="material-symbols-outlined">
+          <img src='youtube.png' className='sidebar-icon-youtube' />
+        </span>
+         <Link className='SideBar-Investment-Span' href={'/youtubeplan'} >U-Plan</Link>
         </li>
         <li>
           <span className="material-symbols-outlined">
@@ -413,7 +428,7 @@ else{
 
     
     </>
-  )
+    )
 }
 }
 
