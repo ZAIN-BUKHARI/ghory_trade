@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from '../styles/document.module.css'
 import { Link } from 'react-feather'
-
+import {ThemeContext} from '../Context/ThemeContext'
+import { useContext } from 'react'
 const Documents = () => {
+  const {mobile}=useContext(ThemeContext)
   const doc_1 = () =>{
     // Define the path to the PDF file in the public directory
     const open = 'https://res.cloudinary.com/dy2hybbx5/image/upload/v1696496527/zydrydzd2r70gh9suisd.jpg';
@@ -43,7 +45,7 @@ const Documents = () => {
   return (
     <>
     <div className={styles.ug}>
-        <h1 className={styles.title}>U-G TRADING CERTIFICATES</h1>
+        {!mobile && <h1 className={styles.title}>U-G TRADING CERTIFICATES</h1>}
     </div>
     <br/>
     <div className={styles.body}>
