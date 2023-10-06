@@ -17,7 +17,7 @@ const Table = ({list}) => {
                     <th>Status</th>
                 </tr>
             </thead>
-            {list.length>0 && list.map((items,index)=>{
+            {list.map((items,index)=>{
 
                 return <tbody key={items._id}>
                 <tr>
