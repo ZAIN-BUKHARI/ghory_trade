@@ -8,7 +8,7 @@ import Dropdown from '../universe.io/Dropdown';
 
 
 const stats = () => {
-  const {yourinvestment, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
+  const {yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
   const [team,setteam]=useState([])
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
@@ -61,7 +61,7 @@ useEffect(()=>{
       <img className='stats-img-resize' src="remove_bg.png"/>
     </div>
     <h3 >Ghory Trading</h3>
-    <div>TEAM <br/>
+    <div>{Uname} TEAM <br/>
     <Dropdown items={team}  />          
     </div>
     
