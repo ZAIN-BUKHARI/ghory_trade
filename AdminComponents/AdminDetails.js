@@ -61,8 +61,8 @@ const AdminDetails = () => {
       <AdminTable title={"ADDRESS"} desc={doc.address} />
       <AdminTable title={"BALANCE"} desc={`$${doc.investment}`} />
       <AdminTable title={"LEVEL"} desc={doc.level} />
-      <AdminTable title={"Payment SS"} desc={doc.img1} />
-      <AdminTable title={"Channel SS"} desc={doc.img2} />
+      <a target="_blank" href={doc.img1}><AdminTable title={"Payment SS"} desc={doc.img1} /></a>
+      <a target="_blank" href={doc.img2}><AdminTable title={"Channel SS"} desc={doc.img2} /></a>
       </div>
       <style>{`
   .table-box
@@ -101,6 +101,7 @@ else{
     <AdminTable title={"ADDRESS"} desc={doc.address} />
     <AdminTable title={"BALANCE"} desc={`$${doc.amount}`} />
     <AdminTable title={"Bank Name"} desc={`${doc.bankname}`} />
+    <a target="_blank" href={doc.ScreenShot}><AdminTable title={"Payment Screenshot"} desc={`${doc.ScreenShot}`} /></a>
     </div>
     <style>{`
 .table-box

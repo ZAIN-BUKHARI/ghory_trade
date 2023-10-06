@@ -149,10 +149,20 @@ const confirmOTP =(e)=>{
             theme: "light",
           });
           setLoader(false)
-      }).catch(e=>{alert('Check your network');setdisable(false);setLoader(false)
+      }).catch(e=>{
+        toast.success("Successfully signup", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setLoader(false)
       setTimeout(() => {
-        window.location.reload()
-        router.push('/')
+        window.location.replace('/')
       }, 2000);
     });
   
@@ -180,6 +190,9 @@ const confirmOTP =(e)=>{
 
 const signup = (e) => {
   e.preventDefault();
+  if(firstname.length>0 && lastname.length>0)
+  {
+
   if(password==cpassword)
   {
 
@@ -237,7 +250,20 @@ toast.error('Password not match', {
   theme: "light",
 });
 }
-
+}
+else{
+  setdisable(false)
+toast.error('Name field epmty', {
+  position: "top-right",
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+});
+}
 };
 
 

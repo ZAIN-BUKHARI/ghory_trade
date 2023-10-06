@@ -63,10 +63,12 @@ const handler= async (req, res)=> {
             res.status(200).json(true)
           
         }   
+        
         res.status(200).json(true)
 
     }
     catch{
+      console.log('1')
       res.status(200).json({ error:false })
     }
     res.status(200).json(true)
