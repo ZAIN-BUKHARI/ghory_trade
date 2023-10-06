@@ -47,6 +47,7 @@ const addProducts = () => {
   const [length10,setlength10]=useState('')
   const [Rate,setRate]=useState(0)
   const [Selrate,setSelrate]=useState(0)
+  const [FIVE,setFIVE]=useState(0)
 
 
  
@@ -161,6 +162,9 @@ const updateLinkmethod = () =>{
   setLoader(false)
 
   }
+  const fivePercent = () =>{
+    setFIVE((FIVE*5)/100)
+  }
 
   if(Admin){
     return (
@@ -257,6 +261,22 @@ const updateLinkmethod = () =>{
           </Stack>
           <br />
           <Button onClick={currencyRateSelrate} variant="outlined" mt={2}>
+            Submit
+          </Button>
+          
+        </BaseCard>
+      </Grid>
+    </Grid>
+    <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >5% CALCULATOR</h1>
+      <Grid item xs={12} lg={12}>
+        <BaseCard >
+          <Stack spacing={3}>
+       
+            <TextField value={FIVE} onChange={(e)=>{setFIVE(e.target.value)}} label="Currency" type='number' variant="outlined"  />
+          </Stack>
+          <br />
+          <Button onClick={fivePercent} variant="outlined" mt={2}>
             Submit
           </Button>
           
