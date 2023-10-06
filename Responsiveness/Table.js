@@ -14,6 +14,7 @@ const Table = ({list}) => {
                     <th>Email</th>
                     <th>Investment</th>
                     <th>Join</th>
+                    <th>Number</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -23,11 +24,12 @@ const Table = ({list}) => {
                 <tr>
                     <td data-lable="ID">{index+1}</td>
                     <td data-lable="Name">{items.firstname.slice(0,20)}</td>
-                    {items.email.length<=22 &&<td  data-lable="Email">{items.email}</td>}
-                    {items.email.length>22 &&<td className={styles.emailtd}  data-lable="Email">{items.email}</td>}
+                    {items.email.length<=25 &&<td  data-lable="Email">{items.email}</td>}
+                    {items.email.length>26 &&<td className={styles.emailtd}  data-lable="Email">{items.email}</td>}
                     {items.planId=='' && <td data-lable="Investment">Not invested</td>}
                     {items.planId!='' && <td data-lable="Investment">{items.perDayProfit*150}</td>}
                     <td data-lable="Join">{items.createdAt.slice(0,10)}</td>
+                    <td data-lable="Join">{items.number}</td>
                     {items.planId=='' && <td  ><span className={styles.text_open}>Inactive</span></td>}
                     {items.planId!='' && <td ><span className={styles.text_open}>Active</span></td>}
                 </tr>

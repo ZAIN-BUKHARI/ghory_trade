@@ -91,6 +91,11 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    number:
+    {
+        type:String,
+        default:"no"
+    },
     YearPlan:[]
     
 

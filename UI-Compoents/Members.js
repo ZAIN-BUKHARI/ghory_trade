@@ -18,6 +18,7 @@ const Worksheet = ({list}) => {
                 <th>Email</th>
                 <th>Investment</th>
                 <th>Join</th>
+                <th>Number</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -34,6 +35,7 @@ const Worksheet = ({list}) => {
                 {item.planId=='' && <td>Not invested</td>}
                 {item.planId!='' && <td>{item.perDayProfit*150}</td>}
                 <td>{item.createdAt.slice(0,10)}</td>
+                <td>{item.number}</td>
                {item.planId=='' && <td>Inactive</td>}
                {item.planId!='' && <td>Active</td>}
                 

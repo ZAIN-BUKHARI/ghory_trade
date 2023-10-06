@@ -15,12 +15,18 @@ const handler= async (req, res)=> {
             if(user.teams[i]['direct'].id!='no')
             {
                 let u = await User.findOne({_id:direct})
-                members.push(u)
+                if(u!=null)
+                {
+                    members.push(u)
+                }
             }
             if(user.teams[i]['indirect'].id!='no')
             {
                 let u = await User.findOne({_id:indirect})
-                members.push(u)
+                if(u!=null)
+                {
+                    members.push(u)
+                }
             }
         }
         res.status(200).json({members})
