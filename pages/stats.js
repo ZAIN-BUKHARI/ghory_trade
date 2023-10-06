@@ -42,9 +42,10 @@ useEffect(()=>{
     if(res.status==200)
     {
       setteam(res.data.members)
-      setLoader(false)
     }
   })
+  setLoader(false)
+
   
     
   
@@ -61,7 +62,7 @@ useEffect(()=>{
     </div>
     <h3 >Ghory Trading</h3>
     <div>TEAM <br/>
-    <Dropdown team={team} />          
+    <Dropdown items={team}  />          
     </div>
     
     <div class="stats-media-info">

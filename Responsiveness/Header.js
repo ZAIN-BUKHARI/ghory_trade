@@ -50,6 +50,18 @@ const Header = () => {
             
 
         }
+        .mobile-main-detail{
+            height:100px;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            // background-Color:#32312f;
+        	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+
+
+            
+
+        }
         .div-one{
             justify-content:space-between;
         }
@@ -77,13 +89,13 @@ const Header = () => {
             font-size:15px;
             font-family:serif;
             font-weight:bold;
-            color:white;
+            color:white !important;
         }
         .mobile-list {
             font-size:15px;
             font-family:serif;
             font-weight:bold;
-            color:black;
+            color:black !important;
         }
         // h1{
         //     font-size:12px;
@@ -124,9 +136,13 @@ const Header = () => {
         .ham-l3{padding-bottom:35px;}
         .ham-l4{padding-bottom:35px;}
         .ham-l5{padding-bottom:35px;}
-        `}
+        .text{
+            color:white !important;
+        }
+        `
+        }
     </style>
-    <div className={`${router.asPath=='/'?'mobile-main-home':'mobile-main'}`}>
+    <div className={`${router.asPath=='/'?'mobile-main-home':'mobile-main'} ${router.asPath=='/detail'?'mobile-main-detail':'mobile-main'}`}>
         <div className=' flex div-one'>
             <img className='mobile-img' src='remove_bg.png'/>
            {router.asPath!='/history'&& router.asPath!='/work'&& <FcMenu className='hamburger' onClick={hamburgerMenu} />}
@@ -139,10 +155,10 @@ const Header = () => {
                 <li className={`list-5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/project'>Projects</Link></li>
             </ul>}
            {token && subscription=='yes' && <ul className='flex div-two'>
-                <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/'>Home</Link></li>
-                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><span onClick={logout} >Logout</span></li>
-                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/stats'>Team</Link></li>
-                <li className={`list5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'}`}><Link href='/work'>Dailywork</Link></li>
+                <li className={`list1 ${router.asPath=='/'?'mobile-list-main':'mobile-list'} ${router.asPath=='/detail'?'text':'mobile-list-main'}`}><Link href='/'>Home</Link></li>
+                <li className={`list3 ${router.asPath=='/'?'mobile-list-main':'mobile-list'} ${router.asPath=='/detail'?'text':'mobile-list-main'}`}><span onClick={logout} >Logout</span></li>
+                <li className={`list2 ${router.asPath=='/'?'mobile-list-main':'mobile-list'} ${router.asPath=='/detail'?'text':'mobile-list-main'}`}><Link href='/stats'>Team</Link></li>
+                <li className={`list5 ${router.asPath=='/'?'mobile-list-main':'mobile-list'} ${router.asPath=='/detail'?'text':'mobile-list-main'}`}><Link href='/work'>Dailywork</Link></li>
             </ul>}
         </div>
     </div>

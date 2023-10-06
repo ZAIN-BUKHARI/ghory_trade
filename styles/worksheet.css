@@ -193,3 +193,6 @@
       align-items: center;
       justify-content: center;
     }
+    .detail-body-page{
+      height: 100vh;
+    }

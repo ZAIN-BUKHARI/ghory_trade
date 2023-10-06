@@ -1,10 +1,9 @@
 import React from 'react'
-import UPlan from '../YouTube/Plans/UPlan'
-
+import Table from '../Responsiveness/Table'
 const test = () => {
   return (
     <>
-    <UPlan/>
+    <Table/>
     </>
   )
 }

@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router'
 import React from 'react'
-
-const Dropdown = ({team}) => {
-    console.log(team)
+const Dropdown = ({items}) => {
+  const router = useRouter()
   return (
     <>
     <label class="popup">
@@ -13,8 +13,8 @@ const Dropdown = ({team}) => {
   </div>
   <nav class="popup-window">
     <legend>Members</legend>
-    <ul>
-        {team.length>0 && team.map((member=>{
+    <ul className='ul-dropdown'>
+        {items.length>0&& items.slice(0,5).map((member=>{
             return <li >
         <button>
           <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
@@ -30,11 +30,13 @@ const Dropdown = ({team}) => {
 
      
     </ul>
+   {items.length>0 && <p onClick={()=>{router.push('/detail')}} className='p-dropdown'>View more</p>}
   </nav>
 </label>
 
     </>
   )
+  
 }
 
 export default Dropdown
