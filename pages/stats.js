@@ -99,7 +99,7 @@ useEffect(()=>{
     </div>
     <div class="stats-btn">
       <button onClick={captureScreenshot}>Screenshot</button>
-      {!mobile && team.length>0 && <button onClick={Copy}>Invite more</button>}
+      {!mobile  && <button onClick={Copy}>Invite more</button>}
     </div>
   </div>
   </div>

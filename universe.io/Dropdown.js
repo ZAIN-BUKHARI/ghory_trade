@@ -30,7 +30,7 @@ const Dropdown = ({items}) => {
 
      
     </ul>
-   {items.length>0 && <p onClick={()=>{router.push('/detail')}} className='p-dropdown'>View more</p>}
+    <p onClick={()=>{router.push('/detail')}} className='p-dropdown'>View more</p>
   </nav>
 </label>
 
