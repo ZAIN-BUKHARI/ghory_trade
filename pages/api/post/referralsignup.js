@@ -4,11 +4,11 @@ var CryptoJS = require("crypto-js");
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
-        const {firstname,lastname,email,_id}=req.body
+        const {firstname,lastname,email,_id,number}=req.body
         let Leader = await User.findOne({_id:_id})
       try{
         if(Leader.invite==""){
-          let B = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+          let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
           let teams={
                  direct:{
                     level:1,
@@ -33,7 +33,7 @@ const handler= async (req, res)=> {
         // -------------------------------------------
       else if(Leader.invite!=""){
           
-          let C = new User({firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+          let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
               // direct 
               let directteam={
                 direct:{

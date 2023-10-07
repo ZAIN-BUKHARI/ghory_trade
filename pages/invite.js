@@ -15,6 +15,7 @@ const invite = () => {
   const [email,setemail]=useState("")
   const [password,setpassword]=useState("")
   const [cpassword,setcpassword]=useState("")
+  const [number,setnumber]=useState("")
 
   const[disable,setdisable]=useState(false)
   const[otpModal,setotpModal]=useState(false)
@@ -135,7 +136,7 @@ const confirmOTP =(e)=>{
 
   if(otpcode==one+two+three+four)
   {
-      const data = { email, password, firstname, lastname, cpassword,_id };
+      const data = { email, password, firstname, lastname, cpassword,_id,number };
       axios.post("/api/post/referralsignup", data).then((res) => {
         window.location.replace('/')
           toast.success("Successfully signup", {
@@ -190,6 +191,8 @@ const confirmOTP =(e)=>{
 
 const signup = (e) => {
   e.preventDefault();
+  if(number.length>0)
+  {
   if(firstname.length>0 && lastname.length>0)
   {
 
@@ -253,7 +256,7 @@ toast.error('Password not match', {
 }
 else{
   setdisable(false)
-toast.error('Name field epmty', {
+toast.error('Name field empty', {
   position: "top-right",
   autoClose: 2000,
   hideProgressBar: false,
@@ -263,6 +266,20 @@ toast.error('Name field epmty', {
   progress: undefined,
   theme: "light",
 });
+}
+}
+else{
+  setdisable(false)
+  toast.error('Mobile Number ', {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 }
 };
 
@@ -296,7 +313,7 @@ if (mobile) {
 <>
     
       <div className="PlanForm-Head-modal-auth refferal-modal-invite">
-        <div className="Invest-Container" id="zain">
+        <div className="Invest-Container-mob-auth" id="zain">
           <div className="title  authform-cancel-modal-button">
           <img src="remove_bg.png" className="planform-logo-web"/>
             {" "}
@@ -322,6 +339,17 @@ if (mobile) {
                     type="text"
                     onChange={(e) => {setlastname(e.target.value)}}
                     placeholder="Enter your lastname"
+                    required
+                  />
+                </div>
+                <div className="input-box">
+               <div className="auth-form-span-password">
+                  <span className=" ">Number </span>
+                </div>
+                  <input
+                    type='text'
+                    onChange={(e) => {setnumber(e.target.value)}}
+                    placeholder="Enter your Number"
                     required
                   />
                 </div>
@@ -362,7 +390,9 @@ if (mobile) {
                     required
                   />
                 </div>
+               
               </div>
+              
 
               <div className="button-auth input-box-auth">
                <input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> 
@@ -451,6 +481,18 @@ if (mobile) {
                       />
                     </div>
                   </>
+                  <div className="input-box-auth">
+                     <div className="auth-form-span-password"> <span className=" ">Number </span></div>
+                    <input
+                      type='text'
+                      onChange={(e) => {
+                        setnumber(e.target.value);
+                      }}
+                      placeholder="Enter your number"
+                      required
+                      />
+
+                  </div>
                 
                 <div className="input-box-auth">
                   <span className="details">Email</span>
@@ -489,9 +531,10 @@ if (mobile) {
                       />
 
                   </div>
+                 
                 
               <div className="button-auth input-box-auth">
-                  <input type="button" disabled={disable} value="Signup" onClick={signup} />
+                  <input className='input-btn-web-invite' type="button" disabled={disable} value="Signup" onClick={signup} />
               </div>
               </div>
                
