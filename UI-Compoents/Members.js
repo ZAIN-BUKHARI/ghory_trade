@@ -1,7 +1,16 @@
 import React from 'react'
+import { useContext } from 'react'
+import { useEffect } from 'react'
+import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = ({list}) => {
-    console.log(list)
+  const {setLoader} = useContext(ThemeContext)
+  useEffect(()=>{
+      setLoader(true)
+      setTimeout(()=>{
+          setLoader(false)
+      },2000)
+  },[])
     
     return(
       <>

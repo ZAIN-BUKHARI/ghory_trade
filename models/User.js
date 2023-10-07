@@ -96,6 +96,11 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
+    commission:
+    {
+        type:Number,
+        default:0
+    },
     YearPlan:[]
     
 

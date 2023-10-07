@@ -1,7 +1,18 @@
 import React from 'react'
 import styles from '../styles/table.module.css'
+import { ThemeContext } from '../Context/ThemeContext'
+import { useContext } from 'react'
+import { useEffect } from 'react'
+
 const Table = ({list}) => {
-  return (
+    const {setLoader} = useContext(ThemeContext)
+    useEffect(()=>{
+        setLoader(true)
+        setTimeout(()=>{
+            setLoader(false)
+        },2000)
+    },[])
+    return (
     <>
     <div className={styles.body}>
     <div className={styles.tableContainer}>

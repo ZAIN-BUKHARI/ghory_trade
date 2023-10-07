@@ -3,7 +3,7 @@ import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='GET'){
-        await User.updateMany({Login:"no"})
+        await User.updateMany({Login:"no",commission:0})
         res.status(200).json(true)
 
     }

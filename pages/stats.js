@@ -8,7 +8,7 @@ import Dropdown from '../universe.io/Dropdown';
 
 
 const stats = () => {
-  const {yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
+  const {commission,yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
   const [team,setteam]=useState([])
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
@@ -86,9 +86,9 @@ useEffect(()=>{
         <li>
           <span>{perDayProfit.toString().slice(0,6)}$</span><span  className='stats-lower-title-mob'  > Daily Profit </span>
         </li>
-        {/* <li>
-          <span>0</span><span  className='stats-lower-title-mob'  >Comission</span>
-        </li> */}
+        <li>
+          <span>{commission}$</span><span  className='stats-lower-title-mob'  >Daily Comission</span>
+        </li>
        {yourinvestment>0 &&<li>
           <span>{yourinvestment}</span><span  className='stats-lower-title-mob'  > Your Investment</span>
         </li>
