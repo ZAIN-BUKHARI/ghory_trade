@@ -87,7 +87,7 @@ useEffect(()=>{
           <span>{perDayProfit.toString().slice(0,6)}$</span><span  className='stats-lower-title-mob'  > Daily Profit </span>
         </li>
         <li>
-          <span>{commission}$</span><span  className='stats-lower-title-mob'  >Daily Comission</span>
+          <span>{commission.toString().slice(0,7)}$</span><span  className='stats-lower-title-mob'  >Daily Comission</span>
         </li>
        {yourinvestment>0 &&<li>
           <span>{yourinvestment}</span><span  className='stats-lower-title-mob'  > Your Investment</span>
