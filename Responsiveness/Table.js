@@ -29,7 +29,7 @@ const Table = ({list}) => {
                     {items.planId=='' && <td data-lable="Investment">Not invested</td>}
                     {items.planId!='' && <td data-lable="Investment">{items.perDayProfit*150}</td>}
                     <td data-lable="Join">{items.createdAt.slice(0,10)}</td>
-                    <td data-lable="Join">{items.number}</td>
+                    <td data-lable="Number">{items.number}</td>
                     {items.planId=='' && <td  ><span className={styles.text_open}>Inactive</span></td>}
                     {items.planId!='' && <td ><span className={styles.text_open}>Active</span></td>}
                 </tr>
