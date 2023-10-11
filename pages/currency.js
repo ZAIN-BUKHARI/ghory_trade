@@ -56,6 +56,7 @@ const converter = () => {
     <div className='currency-body flex flex-col'>
           {/* currency calculator  */}
           <div className='currency-white-box'>
+            <h1 className='currency-from convert-heading'>1 DOLLAR = {rate} PKR</h1>
             <h1 className='currency-from convert-heading'>Convert Your Currency</h1>
             <h1 className='currency-from'>From</h1>
             <input onChange={(e)=>{setUSD(e.target.value)}} className='currency-input-usd' placeholder='USD'/>
