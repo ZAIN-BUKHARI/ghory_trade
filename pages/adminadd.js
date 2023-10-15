@@ -77,6 +77,20 @@ const addProducts = () => {
     alert('Error server down contact developer for inspection')
   }
   }
+  const addperdayprofit = () =>{
+
+    let confirmation = confirm('Are you sure. You want to Add Profit')
+    if(confirmation){
+      setLoader(true)
+      axios.get('/api/admin/bonace').then(res=>{
+        if(res.data==true)
+        {
+          setLoader(false)
+          alert('Profit Added to your all clients')
+        }
+      })
+    }
+  }
   
   const currencyRate = () =>{
     const data = {Rate}
@@ -268,6 +282,20 @@ const updateLinkmethod = () =>{
       </Grid>
     </Grid>
     <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >ADD PERDAYPROFIT TO ALL</h1>
+      <Grid item xs={12} lg={12}>
+        <BaseCard >
+          <Stack spacing={3}>
+          </Stack>
+          <br />
+          <Button onClick={addperdayprofit} variant="outlined" mt={2}>
+            Add
+          </Button>
+          
+        </BaseCard>
+      </Grid>
+    </Grid>
+    <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-blue-500 text-center' >5% CALCULATOR</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -298,6 +326,8 @@ const updateLinkmethod = () =>{
       </Grid>
   </>
 )}
+
+
         </FullLayout>
         </ThemeProvider>
       );
