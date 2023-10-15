@@ -9,7 +9,7 @@ const handler= async (req, res)=> {
             if(user[i].todaywork=='no' && user[i].subscription=='yes' )
             {
                 let val = user[i].balance + user[i].perDayProfit
-                await User.updateOne({_id:user[i]._id},{balance:val})
+                await User.updateOne({_id:user[i]._id},{balance:val,todaywork:'yes'})
 
             }
         }
