@@ -436,13 +436,13 @@ const PlanForm = () => {
               </div>
               <div className="button">
               <div className='space'>
-                  <div class="g-ytsubscribe " data-channelid="UC8fgDqHGY6ETUl6buqwsLcg" data-layout="default" data-count="default"></div>
+                  <div class="g-ytsubscribe " data-channelid="UCLifmeEanPv_W6swcFZM_aw" data-layout="default" data-count="default"></div>
                  </div>
                 <input type="submit" value="Subscribe" disabled={disable} />
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
-    </script><a className="youtube-channel-link">https://www.youtube.com/@YMPGHORY4289</a>
+    </script><a className="youtube-channel-link">https://www.youtube.com/@UGTardnig</a>
    
 
     <style></style>
@@ -685,14 +685,14 @@ const PlanForm = () => {
               </div>
               <div className="button">
               <div className=''>
-                  <div class="g-ytsubscribe " data-channelid="UC8fgDqHGY6ETUl6buqwsLcg" data-layout="default" data-count="default"></div>
+                  <div class="g-ytsubscribe " data-channelid="UCLifmeEanPv_W6swcFZM_aw" data-layout="default" data-count="default"></div>
                  </div>
              
                 <input type="submit" value="Subscribe" />
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
-    </script><a className="youtube-channel-link">https://www.youtube.com/@YMPGHORY4289</a>
+    </script><a className="youtube-channel-link">https://www.youtube.com/@UGTardnig</a>
    
 
     <style></style>
