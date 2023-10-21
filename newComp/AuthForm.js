@@ -155,6 +155,7 @@ else{
     const data = { email, password };
     axios.post("/api/post/signin", data).then((res) => {
       setLoader(true)
+      alert('Wait......')
       if (res.data.success == true) {
         toast.success("successfully logged in", {
           position: "top-right",
@@ -226,6 +227,7 @@ else{
     setLoader(true)
     if(otpcode==one+two+three+four)
     {
+      alert('Wait......')
         const data = { email, password, firstname, lastname, cpassword };
         axios.post("/api/post/signup", data).then((res) => {
         setLoader(true)

@@ -101,7 +101,8 @@ const UserSchema = new Schema({
         type:Number,
         default:0
     },
-    YearPlan:[]
+    YearPlan:[],
+    missProfits:[]
     
 
     },{timestamps:true})

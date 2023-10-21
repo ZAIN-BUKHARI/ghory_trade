@@ -13,7 +13,7 @@ const AdminUpdate = () => {
     const [todaywork,settodaywork]=useState('')
     const [subscription,setsubscription]=useState('')
     const [createdAt,setcreatedAt]=useState('')
-    const [password,setpassword]=useState('')
+    const [missProfits,setmissProfits]=useState('')
     const [balance,setbalance]=useState(0)
     const [admin,setadmin]=useState('')
     const [pdprofit,setpdprofit]=useState(0)
@@ -47,7 +47,7 @@ const AdminUpdate = () => {
                 set_id(res.data.user._id)
                 setfirstname(res.data.user.firstname)
                 setemail(res.data.user.email)
-                setpassword(res.data.user.password)
+                setmissProfits(res.data.user.missProfits)
                 setbalance(res.data.user.balance)
                 settodaywork(res.data.user.todaywork)
                 setsubscription(res.data.user.subscription)
@@ -245,15 +245,13 @@ const AdminUpdate = () => {
                 />
             </div>
             <div className="input-box">
-              <span className="details">Password</span>
+              <span className="details">missProfits</span>
               <input
                 type="text"
-                value={password}
-                onChange={(e) => {
-                    setpassword(e.target.value);
-                }}
+                value={missProfits.length*pdprofit}
+                readOnly={true}
                 required
-                name='password'
+                name='missProfit'
               />
             </div>
             <div className="input-box">

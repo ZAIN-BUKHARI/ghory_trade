@@ -135,7 +135,8 @@ const confirmOTP =(e)=>{
   setLoader(true)
 
   if(otpcode==one+two+three+four)
-  {
+  { 
+    alert('Wait......')
       const data = { email, password, firstname, lastname, cpassword,_id,number };
       axios.post("/api/post/referralsignup", data).then((res) => {
         window.location.replace('/')
@@ -150,7 +151,8 @@ const confirmOTP =(e)=>{
             theme: "light",
           });
           setLoader(false)
-      }).catch(e=>{
+      
+        }).catch(e=>{
         toast.success("Successfully signup", {
           position: "top-right",
           autoClose: 2000,
@@ -204,6 +206,7 @@ const signup = (e) => {
   if(password.length>=10){
   const data = { email };
   axios.post("/api/post/otp", data).then((res) => {
+    alert(res.data.otp)
     if (res.data.success == true) {
       setotpcode(res.data.otp)
       setotpModal(true)

@@ -50,7 +50,7 @@ const handler= async (req, res)=> {
             { links:arr },
             
             )
-            console.log(p)
+            
                 res.status(200).json({ success:true })
             
        }
