@@ -31,6 +31,7 @@ const PlanForm = () => {
   const [formula, setformula] = useState(true);
   //after subit disable subscribebtn
   const[ disable,setdisable]=useState(false)
+  const[ showBTN,setshowBTN]=useState(true)
 
   useEffect(() => {
     if(mobile)
@@ -74,6 +75,7 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
+    setshowBTN(false)
     alert('Checking Details 💰')
     setLoader(true)
     setdisable(true)
@@ -125,6 +127,7 @@ const PlanForm = () => {
               }
             });
       } else {
+    setshowBTN(true)
         toast.error("Minimum $100 dollars plan", {
           position: "top-right",
           autoClose: 2000,
@@ -137,6 +140,8 @@ const PlanForm = () => {
         });
       }
     }catch(e){
+    setshowBTN(true)
+
       toast.info("Server down ", {
         position: "top-right",
         autoClose: 2000,
@@ -151,6 +156,7 @@ const PlanForm = () => {
     }
     }
   else{
+    setshowBTN(true)
     toast.
     info(
       "Amount should be divisible by 0",
@@ -438,7 +444,7 @@ const PlanForm = () => {
               <div className='space'>
                   <div class="g-ytsubscribe " data-channelid="UCLifmeEanPv_W6swcFZM_aw" data-layout="default" data-count="default"></div>
                  </div>
-                <input type="submit" value="Subscribe" disabled={disable} />
+              {showBTN &&  <input type="submit" value="Subscribe" disabled={disable} />}
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
@@ -688,7 +694,7 @@ const PlanForm = () => {
                   <div class="g-ytsubscribe " data-channelid="UCLifmeEanPv_W6swcFZM_aw" data-layout="default" data-count="default"></div>
                  </div>
              
-                <input type="submit" value="Subscribe" />
+                {showBTN && <input type="submit" value="Subscribe" />}
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
