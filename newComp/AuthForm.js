@@ -28,6 +28,7 @@ const AuthForm = () => {
   const[otpModal,setotpModal]=useState(false)
   const[otpcode,setotpcode]=useState('')
   const[forgotOTPBTN,setforgotOTPBTN]=useState(false)
+  const[showBTN,setshowBTN]=useState(true)
 
   //otp modal states
   const[one,setone]=useState('')
@@ -150,6 +151,7 @@ else{
   };
   const signin = (e) => {
     e.preventDefault();
+    setshowBTN(false)
     setdisable(true)
     setLoader(true)
     const data = { email, password };
@@ -175,6 +177,7 @@ else{
           window.location.reload()
         }, 1000);
       } else {
+        setshowBTN(true)
         setdisable(false)
         setLoader(false)
         toast.error(res.data.error, {
@@ -225,6 +228,7 @@ else{
   }
   const confirmOTP =()=>{
     setLoader(true)
+    setshowBTN(false)
     if(otpcode==one+two+three+four)
     {
       alert('Wait......')
@@ -248,6 +252,7 @@ else{
 
     
           } else {
+    setshowBTN(true)
             setdisable(false)
             setLoader(true)
             toast.error(res.data.error, {
@@ -267,6 +272,7 @@ else{
         }).catch(e=>{alert('Check your network');setdisable(false);setLoader(false)});
         
       }else{
+    setshowBTN(true)
         toast.error('OTP error :(', {
           position: "top-right",
           autoClose: 3000,
@@ -283,6 +289,7 @@ else{
   }
   const forgotOtp =()=>{
     setLoader(true)
+    setshowBTN(false)
     if(otpcode==one+two+three+four)
     {
     setdisable(true)
@@ -303,6 +310,7 @@ else{
     setforgotOTPBTN(false)
   })
 }else{
+  setshowBTN(true)
   setLoader(false)
   toast.success('OTP error :(', {
     position: "top-right",
@@ -342,8 +350,8 @@ else{
         <input value={three} onChange={(e)=>{setthree(e.target.value)}} id="input3" type="text" maxlength="1"/>
         <input value={four} onChange={(e)=>{setfour(e.target.value)}} id="input4" type="text" maxlength="1"/>
             </div>
-            {!forgotOTPBTN && <button class="action" onClick={confirmOTP}>verify me</button>} 
-            {forgotOTPBTN && <button class="action" onClick={forgotOtp}>verify me</button> }
+            {!forgotOTPBTN && showBTN && <button class="action" onClick={confirmOTP}>verify me</button>} 
+            {forgotOTPBTN && showBTN &&<button class="action" onClick={forgotOtp}>verify me</button> }
               </form>
 </div>}
 {!otpModal && (
@@ -424,9 +432,9 @@ else{
                 </div>
 
                 <div className="button-auth">
-                 {!ActiveLoginModal && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> )}
-                 {ActiveLoginModal && !forgotModal && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign in" onClick={signin} /> )}
-                 {forgotModal && ( <input type="button" value="Forgot" disabled={disable} onClick={forgot} /> )}
+                 {!ActiveLoginModal && showBTN && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign up" onClick={signup} /> )}
+                 {ActiveLoginModal && !forgotModal && showBTN && (<input className="authform-text-submit" disabled={disable} type="button" value="Sign in" onClick={signin} /> )}
+                 {forgotModal && showBTN && ( <input type="button" value="Forgot" disabled={disable} onClick={forgot} /> )}
                 </div>
                 {!ActiveLoginModal && (
                   <span className="authform-invest-spanone">
@@ -480,8 +488,8 @@ else{
         <input value={three} onChange={(e)=>{setthree(e.target.value)}} id="input3" type="text" maxlength="1"/>
         <input value={four} onChange={(e)=>{setfour(e.target.value)}} id="input4" type="text" maxlength="1"/>
             </div>
-            {!forgotOTPBTN && <button class="action" onClick={confirmOTP}>verify me</button>} 
-            {forgotOTPBTN && <button class="action" onClick={forgotOtp}>verify me</button> }
+            {!forgotOTPBTN && showBTN && <button class="action" onClick={confirmOTP}>verify me</button>} 
+            {forgotOTPBTN &&  showBTN && <button class="action" onClick={forgotOtp}>verify me</button> }
              </form>
 </div>}
 {!otpModal && (
@@ -492,8 +500,8 @@ else{
             <div className="title  authform-cancel-modal-button">
             <img src="remove_bg.png" className="planform-logo-web"/>
               {" "}
-              {!ActiveLoginModal &&  <span className="span-title-palnform-web">Sign up</span>}
-              {ActiveLoginModal && !forgotModal &&  <span className="span-title-palnform-web">Sign in</span>}
+              {!ActiveLoginModal &&   <span className="span-title-palnform-web">Sign up</span>}
+              {ActiveLoginModal && !forgotModal &&<span className="span-title-palnform-web">Sign in</span>}
               {forgotModal &&  <span className="span-title-palnform-web">Forgot Password</span>}
               <h1 onClick={hideModla}>X</h1>
             </div>
@@ -587,13 +595,13 @@ else{
                   )} */}
                 </div>
                 <div className="button-auth">
-                  {!ActiveLoginModal && (
+                  {!ActiveLoginModal && showBTN && (
                     <input type="button" disabled={disable} value="Signup" onClick={signup} />
                   )}
-                  {ActiveLoginModal && !forgotModal &&  (
+                  {ActiveLoginModal && !forgotModal && showBTN && (
                     <input type="button" disabled={disable} value="Signin" onClick={signin} />
                   )}
-                  {forgotModal && (
+                  {forgotModal && showBTN && (
                     <input type="button" disabled={disable} value="Forgot" onClick={forgot} />
                   )}
                 </div>

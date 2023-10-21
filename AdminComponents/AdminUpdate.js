@@ -120,7 +120,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,firstname,email,password,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
+            const data = {_id,firstname,email,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
             let res = await axios.post('/api/post/update',data)
         if(res.data.success==true){
             alert('Update successfully')

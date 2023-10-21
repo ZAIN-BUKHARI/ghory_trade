@@ -137,6 +137,9 @@ i{
   border: 1px solid blueviolet;
   color: blueviolet;
 }
+.stats-lower-title-mob{
+  font-size: 12px;
+}
 @media (max-width: 768px) {
     .stats-img-resize{
         margin-left:-100px;
@@ -147,6 +150,6 @@ i{
         padding-right: 10px;
     }
     .stats-lower-title-mob{
-      font-size: 10px;
+      font-size: 8px;
     }
 }
