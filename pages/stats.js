@@ -5,10 +5,10 @@ import html2canvas from 'html2canvas';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Dropdown from '../universe.io/Dropdown';
-import DatesList from '../universe.io/DatesList'
+// import DatesList from '../universe.io/DatesList'
 
 const stats = () => {
-  const {dates,missProfit,commission,yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
+  const {commission,yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
   const [team,setteam]=useState([])
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
@@ -67,7 +67,7 @@ useEffect(()=>{
     <Dropdown items={team}   />   
       </div>
       <div className='dates-list'>
-    <DatesList  />      
+    {/* <DatesList  />       */}
       </div>
       </div> 
     </div>
@@ -96,9 +96,9 @@ useEffect(()=>{
         <li>
           <span>{commission.toString().slice(0,7)}$</span><span  className='stats-lower-title-mob'  >Daily Comission</span>
         </li>
-        <li>
+        {/* <li>
           <span>{(missProfit*perDayProfit).toString().slice(0,6)}$</span><span  className='stats-lower-title-mob'  >Lost</span>
-        </li>
+        </li> */}
        {yourinvestment>0 &&<li>
           <span>{yourinvestment}</span><span  className='stats-lower-title-mob'  > Your Investment</span>
         </li>

@@ -70,8 +70,8 @@ async function getUser()
       setteamlength(res.data.orders[0].teams.length)
       setrank(res.data.orders[0].Rank)
       setcommission(res.data.orders[0].commission)
-      setmissProfit(res.data.orders[0].missProfits.length)
-      setdates(res.data.orders[0].missProfits)
+      // setmissProfit(res.data.orders[0].missProfits.length)
+      // setdates(res.data.orders[0].missProfits)
       setisLogin(res.data.orders[0].Login)
       if(res.data.orders[0].admin=='yes'){setusman(true)}
       _id=res.data.orders[0]._id
@@ -396,8 +396,8 @@ const schedulingTime = '0 0 0 * * *'
     const [isLogin,setisLogin]=useState('')
     const [yourinvestment,setyourinvestment]=useState(0)
     const [commission,setcommission]=useState(0)
-    const [missProfit,setmissProfit]=useState(0)
-    const [dates,setdates]=useState([])
+    // const [missProfit,setmissProfit]=useState(0)
+    // const [dates,setdates]=useState([])
     //Login confirmation
     const[token,settoken]=useState(false)
     // Admin Variables
@@ -437,7 +437,7 @@ const schedulingTime = '0 0 0 * * *'
 
   return(
 <>
-<ThemeContext.Provider value={{dates,missProfit,commission,yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{commission,yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
