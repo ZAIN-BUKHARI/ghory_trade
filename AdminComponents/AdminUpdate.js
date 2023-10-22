@@ -13,7 +13,7 @@ const AdminUpdate = () => {
     const [todaywork,settodaywork]=useState('')
     const [subscription,setsubscription]=useState('')
     const [createdAt,setcreatedAt]=useState('')
-    const [missProfits,setmissProfits]=useState('')
+    const [missProfits,setmissProfits]=useState([])
     const [balance,setbalance]=useState(0)
     const [admin,setadmin]=useState('')
     const [pdprofit,setpdprofit]=useState(0)
@@ -44,7 +44,7 @@ const AdminUpdate = () => {
                 
                 axios.get(`/api/get/userone?_id=${id}`).then(res=>{
             if(res.data.success==true){
-                set_id(res.data.user._id)
+                setmissProfits(res.data.user.missProfits)
                 setfirstname(res.data.user.firstname)
                 setemail(res.data.user.email)
                 setmissProfits(res.data.user.missProfits)
@@ -120,7 +120,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,firstname,email,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
+            const data = {firstname,email,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
             let res = await axios.post('/api/post/update',data)
         if(res.data.success==true){
             alert('Update successfully')
@@ -209,16 +209,17 @@ const AdminUpdate = () => {
         <form action="#" >
           <div className="user-details">
             <div className="input-box">
-              <span className="details">ID</span>
-              <input
-                type="text"
-                onChange={(e) => {
-                  set_id(e.target.value);
-                }}
-                value={_id}
-                required
-                name='id'
-                />
+              <span className="details">Miss Profit Dates</span>
+        <select
+        
+        id="missProfits"
+        >
+        {missProfits.map((option,index)=>
+        <option>{option}</option>
+
+        )}
+      </select>
+        
             </div>
             <div className="input-box">
               <span className="details">First Name</span>

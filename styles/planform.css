@@ -254,7 +254,7 @@
       font-weight: 500;
       margin-bottom: 5px;
     }
-    .user-details .input-box input{
+    .user-details .input-box input,select{
       height: 45px;
       width: 100%;
       /* width: 330px; */
@@ -266,7 +266,7 @@
       border-bottom-width: 2px;
       transition: all 0.3s ease;
     }
-    .user-details-auth .input-box-auth input{
+    .user-details-auth .input-box-auth input,select{
       height: 45px;
       width: 100%;
       /* width: 330px; */

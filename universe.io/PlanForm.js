@@ -216,7 +216,7 @@ const PlanForm = () => {
   }
   const downloadPDF = () =>{
      // Define the path to the PDF file in the public directory
-     const pdfPath = 'Ghory-Trading.pdf';
+     const pdfPath = 'UGTRADING.pdf';
 
      // Create an anchor element
      const anchor = document.createElement('a');

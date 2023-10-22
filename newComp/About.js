@@ -24,7 +24,7 @@ const About = () => {
               defines our approach, making us a trusted player in the complex
               world of commodity trading.
             </p>
-            <a href="U-GTRADING.pdf" className="cta">
+            <a href="UGTRADING.pdf" className="cta">
               Download Company  Profile PDF
             </a>
           </div>

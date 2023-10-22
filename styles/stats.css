@@ -153,3 +153,17 @@ i{
       font-size: 8px;
     }
 }
+
+.Dates-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown-list{
+  padding-right: 5px;
+
+}
+.dates-list{
+  padding-right: 5px;
+
+}

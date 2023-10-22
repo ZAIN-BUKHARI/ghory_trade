@@ -200,7 +200,6 @@ else{
     setforgotOTPBTN(true)
     setLoader(true)
     axios.get(`/api/post/otp?email=${email}`).then((res) => {
-      alert(res.data.otp)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setLoader(false)

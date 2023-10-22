@@ -5,10 +5,10 @@ import html2canvas from 'html2canvas';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Dropdown from '../universe.io/Dropdown';
-
+import DatesList from '../universe.io/DatesList'
 
 const stats = () => {
-  const {missProfit,commission,yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
+  const {dates,missProfit,commission,yourinvestment,Uname, balance ,rank,teamlength ,teaminvestment , mobile,setLoader,perDayProfit} = useContext(ThemeContext)
   const [team,setteam]=useState([])
   const captureScreenshot = async () => {
     const elementToCapture = document.getElementById('ss'); // Replace with the ID of the element you want to capture
@@ -62,7 +62,14 @@ useEffect(()=>{
     </div>
     <h3 >Ghory Trading</h3>
     <div>{Uname} TEAM <br/>
-    <Dropdown items={team}  />          
+    <div className='Dates-div'>
+      <div className='dropdown-list'>
+    <Dropdown items={team}   />   
+      </div>
+      <div className='dates-list'>
+    <DatesList  />      
+      </div>
+      </div> 
     </div>
     
     <div class="stats-media-info">
