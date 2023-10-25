@@ -6,6 +6,9 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {firstname,lastname,email,_id,number}=req.body
         let Leader = await User.findOne({_id:_id})
+        if(Leader.subscription=="yes")
+        {
+
       try{
         if(Leader.invite==""){
           let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
@@ -28,7 +31,7 @@ const handler= async (req, res)=> {
               const incrementTeamsA=Leader.nofteams+1
               await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
               await B.save()
-            res.status(200).json(true)
+            res.status(200).json({msg:'success'})
           }
         // -------------------------------------------
       else if(Leader.invite!=""){
@@ -51,26 +54,43 @@ const handler= async (req, res)=> {
                  }
                
                }
-            const nofteamsB=Leader.nofteams+1
-            await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
-            let A = await User.findOne({_id:Leader.invite})
             
-            await User.findByIdAndUpdate(
-            {_id:Leader.invite},
-            {$set:{[`teams.${A.nofteams-1}.indirect.id`]:C._id}}
-            )
-            await C.save()
-            res.status(200).json(true)
+            let A = await User.findOne({_id:Leader.invite})
+            for(let i=0;i<A.teams.length;i++)
+            {
+              
+              console.log(A.teams[i]['direct'].id.toString()==Leader._id.toString())
+              if(A.teams[i]['direct'].id.toString()==Leader._id.toString())
+              {
+                console.log('IF ENTER')
+                  await User.findByIdAndUpdate(
+                    {_id:Leader.invite},
+                    {$set:{[`teams.${i}.indirect.id`]:C._id}}
+                  )
+                  const nofteamsB=Leader.nofteams+1
+                  await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
+                  await C.save()
+                  res.status(200).json({msg:'success'})
+              }
+             
+              }
+              res.status(200).json({error:'error'})
+            
           
         }   
-        
-        res.status(200).json(true)
+        res.status(200).json({msg:'success'})
 
     }
     catch{
-      res.status(200).json({ error:false })
+      res.status(200).json({msg:'success'})
+      
     }
-    res.status(200).json(true)
+    res.status(200).json({msg:'success'})
+
+  }else{
+    res.status(200).json({error:'Invite Link broken'})
+
+  }
 
   }
   else{

@@ -28,7 +28,7 @@ const invite = () => {
   const[four,setfour]=useState('')
   //showpasss type
   const [showpass,setshowpass]=useState('text')
-
+  const [hideBTN,sethideBTN]=useState(true)
 
   //useRouter
   const { mobile,setLoader } = useContext(ThemeContext)
@@ -130,47 +130,51 @@ const invite = () => {
 
 // new methods 
 
-const confirmOTP =(e)=>{
+const confirmOTP =async(e)=>{
   e.preventDefault()
   setLoader(true)
 
   if(otpcode==one+two+three+four)
   { 
+    sethideBTN(false)
     alert('Wait......')
       const data = { email, password, firstname, lastname, cpassword,_id,number };
-      axios.post("/api/post/referralsignup", data).then((res) => {
-        window.location.replace('/')
-          toast.success("Successfully signup", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+     let res = await axios.post("/api/post/referralsignup", data)
           setLoader(false)
-      
-        }).catch(e=>{
-        toast.success("Successfully signup", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        setLoader(false)
-      setTimeout(() => {
-        window.location.replace('/')
-      }, 2000);
-    });
-  
-      
+          console.log(res)
+          if(res.data.msg=='success')
+          {
+            toast.success("Successfully signup", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+                  setLoader(false)
+                setTimeout(() => {
+                  window.location.replace('/')
+                }, 2000);
+          }
+          if(res.data.error=="Invite Link broken")
+          {
+            sethideBTN(true)
+            toast.error(res.data.error, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }  
     }else{
+      sethideBTN(true)
       setone('')
           settwo('')
           setthree('')
@@ -206,7 +210,7 @@ const signup = (e) => {
   if(password.length>=10){
   const data = { email };
   axios.post("/api/post/otp", data).then((res) => {
-    alert(res.data.otp)
+    // alert(res.data.otp)
     if (res.data.success == true) {
       setotpcode(res.data.otp)
       setotpModal(true)
@@ -307,7 +311,7 @@ if (mobile) {
       <input value={three} onChange={(e)=>{setthree(e.target.value)}} id="input3" type="text" maxlength="1"/>
       <input value={four} onChange={(e)=>{setfour(e.target.value)}} id="input4" type="text" maxlength="1"/>
           </div>
-           <button class="action" onClick={confirmOTP}>verify me</button>
+          { hideBTN && <button class="action" onClick={confirmOTP}>verify me</button>}
             </div>
 </div>
 </div>
@@ -440,7 +444,7 @@ if (mobile) {
       <input value={three} onChange={(e)=>{setthree(e.target.value)}} id="input3" type="text" maxlength="1"/>
       <input value={four} onChange={(e)=>{setfour(e.target.value)}} id="input4" type="text" maxlength="1"/>
           </div>
-           <button class="action" onClick={confirmOTP}>verify me</button>
+           {hideBTN && <button class="action" onClick={confirmOTP}>verify me</button>}
            </div>
 </div>
 </div>

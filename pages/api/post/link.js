@@ -60,13 +60,16 @@ const handler= async (req, res)=> {
                 
             })
             await p.save()
-            let user = await User.updateMany({},{todaywork:"no",views:0,Login:"no"})
-            if(user){
-                res.status(200).json({ success:true })
-            }
-            else{
-            res.status(200).json({ success:false })
-            }
+            let user = await User.find();
+            for(let i=0;i<user.length;i++)
+                if(user[i].subscription=='yes')    
+                    if(user[i].todaywork=='no')
+                        await User.updateOne({_id:user[i]._id},{$push: { missProfits: formattedToday.toString()}})    
+            
+
+            await User.updateMany({},{todaywork:"no",views:0,Login:"no"})
+            res.status(200).json({ success:true })
+            
        }
        catch(error){
         res.status(200).json({ error:'server error catch ' })

@@ -97,6 +97,7 @@ const AuthForm = () => {
     if(password.length>=10){
     const data = { email, password, firstname, lastname, cpassword };
     axios.post("/api/post/otp", data).then((res) => {
+      // alert(res.data.otp)
       if (res.data.success == true) {
         setotpcode(res.data.otp)
         setActiveLoginModal(true);
