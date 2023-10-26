@@ -35,7 +35,35 @@ const handler= async (req, res)=> {
           }
         // -------------------------------------------
       else if(Leader.invite!=""){
+          if(Leader.nofteams!=0)
+          {
+            let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+              // direct 
+              let directteam={
+                direct:{
+                  level:1,
+                  id:C._id,
+                  plan:"no",
+                  investment:0,
+                 },
+                 
+                indirect:{
+                  level:2,
+                  id:'no',
+                  plan:"no",
+                  investment:0,
+                 }
+               
+               }
+
+                const nofteamsB=Leader.nofteams+1
+                await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
+                await C.save()
+
           
+          }
+          else{
+
           let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
               // direct 
               let directteam={
@@ -57,12 +85,9 @@ const handler= async (req, res)=> {
             
             let A = await User.findOne({_id:Leader.invite})
             for(let i=0;i<A.teams.length;i++)
-            {
-              
-              console.log(A.teams[i]['direct'].id.toString()==Leader._id.toString())
+            {              
               if(A.teams[i]['direct'].id.toString()==Leader._id.toString())
               {
-                console.log('IF ENTER')
                   await User.findByIdAndUpdate(
                     {_id:Leader.invite},
                     {$set:{[`teams.${i}.indirect.id`]:C._id}}
@@ -75,9 +100,10 @@ const handler= async (req, res)=> {
              
               }
               res.status(200).json({error:'error'})
+          } //else end
             
-          
-        }   
+  
+        }   //else if end
         res.status(200).json({msg:'success'})
 
     }
