@@ -27,6 +27,10 @@ const PlanSchema = new Schema({
         type:String,
         required:true
     },
+    method:{
+        type:String,
+        required:true
+    },
     
     level:{
         type:String,

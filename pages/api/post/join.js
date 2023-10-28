@@ -41,7 +41,8 @@ const handler= async (req, res)=> {
             investment:req.body.investment,
             currency:req.body.currency,
             date:joinDate,
-            enddate:endDate
+            enddate:endDate,
+            method:req.body.wallet
             
             
         })

@@ -10,7 +10,7 @@ const PlanForm = () => {
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
-  const [wallet, setwallet] = useState("TRC20");
+  const [wallet, setwallet] = useState("Binance");
 
   const [currency, setcurrency] = useState("USD");
   // DATA STATE VARIABLE
@@ -95,6 +95,7 @@ const PlanForm = () => {
               level,
               img1,
               img2,
+              wallet,
             };
             axios.post("/api/post/join", data).then((res) => {
               if (res.data.success == true) {
@@ -252,24 +253,26 @@ const PlanForm = () => {
                   }}
                   className="PlanForm-select-main"
                 >
-                  <option value={"TRC20"}>TRC20</option>
-                  {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
+                  <option value={"Binance"}>Binance TRC20</option>
+                  <option value={"KuCoin"}>KuCoin TRC20</option>
+                  <option value={"OKX"}>OKX TRC20</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"NAYAPAY"}>NAYAPAY</option>
-                  {/* <option value={"RASS"}>RASS</option> */}
                   <option value={"BANK"}>Al-BARAKA</option>
                 </select>
-                {/* {" "} */}
-                {/* :{" "} */}
 
               </span>
-              {wallet == "TRC20" && (
+              {wallet == "Binance" && (
                                 <span className="planfirm-space-span">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
-              {/* {wallet == "JAZZCASH" && <span  className="planfirm-space-span">03364569511</span>}{" "} */}
+              {wallet == "KuCoin" && (
+                                <span className="planfirm-space-span">TH3XZiv9AHsGqefDxdtW5T4AUMMmeph8f1</span>
+                )}{" "}
+              {wallet == "OKX" && (
+                                <span className="planfirm-space-span">TMEPJQQwSWdBBLic85opn4rXdqkJH2TqyM</span>
+                )}{" "}
               {wallet == "EASYPAISA" && <span  className="planfirm-space-span">0322495827</span>}{" "}
               {wallet == "NAYAPAY" && <span  className="planfirm-space-span">0322495827</span>}{" "}
-              {/* {wallet == "RASS" && <span  className="planfirm-space-span">03364569533</span>} */}
               {wallet == "BANK" && <span className="planfirm-space-span" >0102626361016</span>}
             </span>
           </div>
@@ -506,19 +509,24 @@ const PlanForm = () => {
                   }}
                   className="PlanForm-select-mobile"
                 >
-                  <option value={"TRC20"}>TRC20</option>
-                  {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
+                  <option value={"Binance"}>Binance TRC20</option>
+                  <option value={"KuCoin"}>KuCoin TRC20</option>
+                  <option value={"OKX"}>OKX TRC20</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
-                  {/* <option value={"RASS"}>RASS</option> */}
                   <option value={"BANK"}>AL-BARAKA</option>
                 </select>
               </span>
-              {wallet == "TRC20" && (
-                <span className="trc-address-text">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
+              
+                {wallet == "Binance" && (
+                                <span className="trc-address-text">TVqsVrj4pXKdmZZqNhuT9EYHhW1FiEkm5a</span>
                 )}{" "}
-              {/* {wallet == "JAZZCASH" && <span  >03224959827</span>}{" "} */}
+              {wallet == "KuCoin" && (
+                                <span className="trc-address-text">TH3XZiv9AHsGqefDxdtW5T4AUMMmeph8f1</span>
+                )}{" "}
+              {wallet == "OKX" && (
+                                <span className="trc-address-text">TMEPJQQwSWdBBLic85opn4rXdqkJH2TqyM</span>
+                )}{" "}
               {wallet == "EASYPAISA" && <span  >03224959827</span>}{" "}
-              {/* {wallet == "RASS" && <span  >03224959827</span>} */}
               {wallet == "BANK" && <span  >0102626361016</span>}
             </span>
           </div>
