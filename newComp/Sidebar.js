@@ -194,14 +194,14 @@ const Sidebar = () => {
           {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
-        { usman &&  
+        {/* { usman &&  
         <li>
         <span className="material-symbols-outlined">
           <img src='youtube.png' className='sidebar-icon-youtube' />
         </span>
          <Link className='SideBar-Investment-Span' href={'/plans'} >U-Plan</Link>
         </li>
-          }
+          } */}
 
         <li>
           <span className="material-symbols-outlined">
@@ -211,6 +211,8 @@ const Sidebar = () => {
           {!token  && subscription=="no" && <FcLock/>}
           {token  && subscription=="no" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {token  && subscription=="no" && <FcLock/>}
+          {token  && subscription=="process" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
+          {token  && subscription=="process" && <FcLock/>}
           {!token  && subscription=="yes" && <Link  href={'#'}onClick={Dailywork} >Daily work </Link>}
           {!token  && subscription=="yes" && <FcLock/>}
           {token  && subscription=="yes" && <Link  href="/work">Daily work </Link>}

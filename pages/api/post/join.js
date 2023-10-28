@@ -42,12 +42,14 @@ const handler= async (req, res)=> {
             currency:req.body.currency,
             date:joinDate,
             enddate:endDate,
-            method:req.body.wallet
+            method:req.body.wallet,
+
             
             
         })
+        await User.updateOne({email:req.body.email},{subscription:"process"})
         await p.save()
-        res.status(200).json({ success:true })
+        res.status(200).json({success:true })
        }
        catch(error){
         res.status(200).json({ error:'Server error' })

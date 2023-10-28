@@ -6,7 +6,7 @@ import { ThemeContext } from "../Context/ThemeContext";
 import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {setLoader, token, subscription ,email,mobile,sethideSidebar,} = useContext(ThemeContext);
+  const {setLoader, token, subscription ,email,mobile,sethideSidebar,getUser} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -112,6 +112,7 @@ const PlanForm = () => {
                     theme: "light",
                   }
                 );
+                getUser()
                 downloadPDF()
                 router.push("/");
               } else {

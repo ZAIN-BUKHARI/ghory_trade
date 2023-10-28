@@ -26,7 +26,7 @@ const Worksheet = () => {
         router.push(`/dailywork`)
     }
     const Complete=async()=>{
-      alert('Thanks for submitting tasks 😃')
+      alert('Thanks for submitting tasks wait 10s 😃')
       setdisable(false)
         setLoader(true)
         const data = {Userid}
@@ -94,7 +94,8 @@ const Worksheet = () => {
             {linktoLevel==0 &&  (
                 <h1>Todays work is not uploaded yet</h1>
                 )}
-            {linktoLevel!=0 && linktoLevel.slice(0,parseInt(level)-views).map((item,index)=>{
+                
+            {linktoLevel!=0 && views<=10 && linktoLevel.slice(0,parseInt(level)-views).map((item,index)=>{
 
               return(
             <tbody>
@@ -115,8 +116,8 @@ const Worksheet = () => {
             </tbody>)})}
           </table>
             {workStatus=='yes' && linktoLevel!=0 && <td> <p onClick={()=>{alert('All Task Done ')}}   className="dim-btn-complete ">Complete</p> </td>} 
-            {workStatus=='no'  && views!=parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn-incomplete">click when your task complete</p> </td>} 
-            {views==parseInt(level) &&  <td> {disable &&<p onClick={Complete}  className='dim-btn-click'>click here for submision</p>} </td>} 
+            {workStatus=='no'  && views<parseInt(level) && <td> <p onClick={()=>{alert('Please complete your all tasks')}} className="Done dim-btn-incomplete">click when your task complete</p> </td>} 
+            {views>=parseInt(level) &&  <td> {disable &&<p onClick={Complete}  className='dim-btn-click'>click here for submision</p>} </td>} 
       
         </div>
       </section>

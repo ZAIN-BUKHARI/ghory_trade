@@ -9,7 +9,9 @@ const handler= async (req, res)=> {
         res.status(200).send({success:true})
     }
     else{
+        let p = await Plan.findOne({_id:req.query.Userid})
         await Plan.findByIdAndDelete({_id:req.query.Userid})
+        await User.updateOne({email:p.email},{subscription:"no",todaywork:"no",views:0,perDayProfit:0,planId:""})
         res.status(200).send({success:true})
 
     }
