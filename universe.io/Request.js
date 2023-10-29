@@ -132,7 +132,7 @@ if(mobile){
         <select 
                   name="select"
                   value={method} onChange={(e)=>{setmethod(e.target.value)}} 
-                  className="PlanForm-select modal-select"
+                  className="request-select-modal"
                 >
                   <option value={"TRC20"}>TRC20</option>
                   {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}

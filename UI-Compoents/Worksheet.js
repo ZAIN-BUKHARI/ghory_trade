@@ -8,9 +8,10 @@ import { ThemeContext } from '../Context/ThemeContext'
 
 const Worksheet = () => {
     //use Context 
-    const {setLoader,Userid,fetchDailyWork,isLogin,setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,views,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
+    const {setLoader,Userid,fetchDailyWork,isLogin,setvideoID,setLength,balance,sethideSidebar,hideSidebar,mobile,todayWork,level,email,setbalance,linktoLevel,Uname,perDayProfit,router,token,subscription,workStatus,workUploadedDate}=useContext(ThemeContext)
     const [hide,sethide]=useState(false)
     const [disable,setdisable]=useState(true)
+    const [views,setviews]=useState(true)
     const [currentTime, setCurrentTime] = useState('');
   const [stop,setstop]=useState(true)
   const handleButtonClick = () => {
@@ -52,6 +53,13 @@ const Worksheet = () => {
       //   
 
     }
+    async function  updateViews()
+    {
+      const email = localStorage.getItem('token')
+        axios.get(`/api/get/views?email=${email}`).then(res=>{
+            setviews(res.data.views)
+        }); 
+    }
     
     useEffect(()=>{
       if(stop==true)
@@ -63,10 +71,9 @@ const Worksheet = () => {
         sethideSidebar(false)
       }
       
-
-
+      updateViews()
       fetchDailyWork() 
-    },[linktoLevel])
+    },[])
     
     
     return(

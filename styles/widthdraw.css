@@ -1,7 +1,10 @@
 .request-select-modal{
   outline: none;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 12px;
+  border-radius: 20px;
+  border: 2px solid black;
+  width: 250px;
  
 }
 .card {
