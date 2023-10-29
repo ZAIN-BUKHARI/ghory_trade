@@ -30,7 +30,7 @@ const handler= async (req, res)=> {
                 const leaderCommission= Leader.commission+FivePercent
                 await User.updateOne({_id:Leader._id},{balance:balance,commission:leaderCommission})
                 await User.updateOne({_id:Userid},{balance:(user.balance+(pdp-FivePercent)),
-                    // todaywork:'yes',views:0
+                    todaywork:'yes',views:0
                 })
                 res.status(200).json({success:true})
                 //direct adding commsion to his leader
