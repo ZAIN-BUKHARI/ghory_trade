@@ -8,13 +8,13 @@ const handler= async (req, res)=> {
 
         const {Userid} = req.body
         let user = await User.findOne({_id:Userid})
-        if(user.invite=="")// this means leader has done his dailywork so no commission
+        if(user.invite=="" && user.subscription=='yes')// this means leader has done his dailywork so no commission
         {
             const balance=user.balance+user.perDayProfit;
             await User.updateOne({_id:Userid},{
                 balance:balance,
-                todaywork:'yes',
-                views:0,
+                // todaywork:'yes',
+                // views:0,
             }) 
             res.status(200).json({success:true})
        }else{
@@ -22,14 +22,16 @@ const handler= async (req, res)=> {
         
         if(Leader.invite=="") // direct
         {
-            if(Leader.Rank=="no")
+            if(Leader.Rank=="no" && Leader.subscription=='yes')
             {
                 let pdp = user.perDayProfit;
                 let FivePercent = ((pdp*5)/100);
                 const balance= FivePercent+Leader.balance
                 const leaderCommission= Leader.commission+FivePercent
                 await User.updateOne({_id:Leader._id},{balance:balance,commission:leaderCommission})
-                await User.updateOne({_id:Userid},{balance:(user.balance+(pdp-FivePercent)),todaywork:'yes',views:0})
+                await User.updateOne({_id:Userid},{balance:(user.balance+(pdp-FivePercent)),
+                    // todaywork:'yes',views:0
+                })
                 res.status(200).json({success:true})
                 //direct adding commsion to his leader
             }
@@ -38,8 +40,8 @@ const handler= async (req, res)=> {
                 const balance=user.balance+user.perDayProfit;
                 await User.updateOne({_id:Userid},{
                 balance:balance,
-                todaywork:'yes',
-                views:0
+                // todaywork:'yes',
+                // views:0
             }) 
             res.status(200).json({success:true})
             }
@@ -47,8 +49,8 @@ const handler= async (req, res)=> {
         else //indirect
         {
            
-            let SubLeader = await User.findOne({_id:Leader.invite})
-            if(Leader.Rank=="no" && SubLeader.Rank=="no")
+            let SubLeader = await User.findOne({_id:Leader.invite})//Indirect  Doc
+            if(Leader.Rank=="no" && SubLeader.Rank=="no" && Leader.subscription=='yes' && SubLeader.subscription=='yes')
             {
                 //add comission both direct and indirect
                 let FivePercent = ((user.perDayProfit*5)/100);// 0.0333333333333
@@ -67,10 +69,10 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + finalUserProgitPerday
                 await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
+                    // ,todaywork:'yes',views:0
                 })
             }
-            else if(Leader.Rank=="no" && SubLeader.Rank!="no")
+            else if(Leader.Rank=="no" && Leader.subscription=='yes' && SubLeader.Rank!="no" || SubLeader.subscription=='no')
             {
                 //commsiion should be add to direct check bittom to top  user -> direct -> indirect and indirect must be leader
                 let FivePercent = ((user.perDayProfit*5)/100);// 0.0333333333333
@@ -81,10 +83,10 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + UserCurrentpdp
                 await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
+                    // ,todaywork:'yes',views:0
                 })
             }
-            else if(Leader.Rank!="no" && SubLeader.Rank=="no")
+            else if(Leader.Rank!="no" || Leader.subscription=='no' && SubLeader.Rank=="no" && SubLeader.subscription=='yes')
             {
                 let ThreePercent = ((user.perDayProfit*3)/100); //0.019
                 const finalUserProgitPerday = (user.balance+(user.perDayProfit - ThreePercent)) //0.614333333333
@@ -94,15 +96,15 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + finalUserProgitPerday
                 await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
+                    // ,todaywork:'yes',views:0
                 })
             }
             else{
                 const balance=user.balance+user.perDayProfit;
                 await User.updateOne({_id:Userid},{
                     balance:balance,
-                    todaywork:'yes',
-                    views:0
+                    // todaywork:'yes',
+                    // views:0
                 }) 
             }
             res.status(200).json({success:true})
