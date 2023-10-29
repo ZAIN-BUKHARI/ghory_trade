@@ -13,8 +13,8 @@ const handler= async (req, res)=> {
             const balance=user.balance+user.perDayProfit;
             await User.updateOne({_id:Userid},{
                 balance:balance,
-                // todaywork:'yes',
-                // views:0,
+                todaywork:'yes',
+                views:0,
             }) 
             res.status(200).json({success:true})
        }else{
@@ -40,8 +40,8 @@ const handler= async (req, res)=> {
                 const balance=user.balance+user.perDayProfit;
                 await User.updateOne({_id:Userid},{
                 balance:balance,
-                // todaywork:'yes',
-                // views:0
+                todaywork:'yes',
+                views:0
             }) 
             res.status(200).json({success:true})
             }
@@ -69,7 +69,7 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + finalUserProgitPerday
                 await User.updateOne({_id:Userid},{balance:u
-                    // ,todaywork:'yes',views:0
+                    ,todaywork:'yes',views:0
                 })
             }
             else if(Leader.Rank=="no" && Leader.subscription=='yes' && SubLeader.Rank!="no" || SubLeader.subscription=='no')
@@ -83,7 +83,7 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + UserCurrentpdp
                 await User.updateOne({_id:Userid},{balance:u
-                    // ,todaywork:'yes',views:0
+                    ,todaywork:'yes',views:0
                 })
             }
             else if(Leader.Rank!="no" || Leader.subscription=='no' && SubLeader.Rank=="no" && SubLeader.subscription=='yes')
@@ -96,15 +96,15 @@ const handler= async (req, res)=> {
                 let u = await User.findOne({_id:Userid})
                 u = user.balance + finalUserProgitPerday
                 await User.updateOne({_id:Userid},{balance:u
-                    // ,todaywork:'yes',views:0
+                    ,todaywork:'yes',views:0
                 })
             }
             else{
                 const balance=user.balance+user.perDayProfit;
                 await User.updateOne({_id:Userid},{
                     balance:balance,
-                    // todaywork:'yes',
-                    // views:0
+                    todaywork:'yes',
+                    views:0
                 }) 
             }
             res.status(200).json({success:true})
