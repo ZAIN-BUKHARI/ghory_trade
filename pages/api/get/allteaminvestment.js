@@ -4,7 +4,9 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {email} = req.body
-        console.log(email)
+        try{
+
+        
         let user = await User.findOne({email})
         let investment=0;
         
@@ -14,7 +16,12 @@ const handler= async (req, res)=> {
         }
     
 
-        res.status(200).json({investment:investment})
+        res.status(200).json({investment:investment,success:true})
+    }catch(e)
+    {
+        res.status(200).json({investment:0})
+
+    }
     }
 }
   

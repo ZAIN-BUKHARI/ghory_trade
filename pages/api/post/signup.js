@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 
 
 const handler= async (req, res)=> {
+  console.log('hitttttttttttttttttttttt')
   const today = new Date();
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1; // Months start at 0!

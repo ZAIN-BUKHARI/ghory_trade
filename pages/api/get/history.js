@@ -6,7 +6,6 @@ const handler= async (req, res)=> {
         const email = req.query.email
         let requests = await Request.find({email})
         requests.reverse()
-        console.log(requests)
         res.status(200).json({history:requests})
     }
 }

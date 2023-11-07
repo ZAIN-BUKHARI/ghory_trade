@@ -122,9 +122,8 @@ if(req.method=='POST')
     {
             const bytes  = CryptoJS.AES.decrypt(user.password, 'secret123')
             const decryptPass = bytes.toString(CryptoJS.enc.Utf8);
-            console.log(decryptPass)
             let changepass = await User.findOneAndUpdate({email},{password:CryptoJS.AES.encrypt(password,'secret123').toString()})
-            res.status(200).json({success:changepass})
+            res.status(200).json({success:true})
            
     }
     else

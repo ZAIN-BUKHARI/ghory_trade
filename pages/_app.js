@@ -342,8 +342,6 @@ function getBalanceCurrent()
         setbalance(res.data.balance)
   })
 }
-
-
 const schedulingTime = '0 0 0 * * *'
   useEffect(() => {
     
