@@ -4,6 +4,8 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
     if(req.method=='POST'){
         const {email}=req.body
+        console.log(email)
+        console.log("email")
         let user = await User.findOne({email:email})
         let members=[];
         let u='';
