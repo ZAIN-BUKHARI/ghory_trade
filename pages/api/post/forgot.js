@@ -1,6 +1,7 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import User from '../../../models/User'
 const CryptoJS = require("crypto-js");
+const nodemailer = require('nodemailer');
 
 const handler= async (req, res)=> {
 //     if(req.method=='POST'){
