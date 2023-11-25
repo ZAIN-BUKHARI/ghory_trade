@@ -3,6 +3,7 @@ import Plan from '../../../models/Plan'
 import User from '../../../models/User'
 
 const handler= async (req, res)=> {
+    console.log('helooooooooooooooooooooooo')
     const end = new Date();
         const yyyyy = end.getFullYear();
         let mmm = end.getMonth() + 1 ; // Months start at 0!
