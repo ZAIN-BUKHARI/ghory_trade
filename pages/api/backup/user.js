@@ -3,7 +3,7 @@ import User from '../../../models/User'
 
 const handler= async (req, res)=> {
         let users = await User.find()
-        res.status(200).send({users})
+        res.status(200).send(users)
     
 }
   

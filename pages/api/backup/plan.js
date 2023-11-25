@@ -3,7 +3,7 @@ import Plan from '../../../models/Plan'
 
 const handler= async (req, res)=> {
         let plan = await Plan.find()
-        res.status(200).send({plan})
+        res.status(200).send(plan)
     
 }
   

@@ -3,7 +3,7 @@ import Request from '../../../models/Request'
 
 const handler= async (req, res)=> {
         let request = await Request.find()
-        res.status(200).send({request})
+        res.status(200).send(request)
     
 }
   
