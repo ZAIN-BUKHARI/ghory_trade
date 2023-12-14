@@ -7,15 +7,12 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
    
     if(req.method=='POST'){
-        const {email,img1,img2,investment,wallet,index}=req.body
+        const {email,img1,img2,investment,wallet}=req.body
         if(img1 && img2!="")
         {
        try{
         let user = await User.findOne({email:email})
 
-        
-        
-        
         let p = new Plan({
             email:email,
             img1:img1,
@@ -24,31 +21,18 @@ const handler= async (req, res)=> {
             method:wallet, 
         })
         if(user.planId.length==0)
-        {
-            if(index==1)
-            {
-                await User.updateOne(
-                    {email:req.body.email},
-                    {
-                        subscription:"process",
-                        number:req.body.phone==""?"no":req.body.phone,
-                        address:req.body.address==""?"no":req.body.address,
-                        cnic:req.body.cnic==""?"no":req.body.cnic,
-                    }
-                    )
-
-            }else{
-                
+        {    
                 await User.updateOne(
                     {email:req.body.email},
                     {
                         subscription:"process",
                         number:req.body.number,
-                        address:req.body.homeaddress,
-                        cnic:req.body.idcard,
+                        address:req.body.address,
+                        cnic:req.body.cnic,
                     }
                     )
-            }
+
+            
         }
         else
         {

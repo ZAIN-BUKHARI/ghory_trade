@@ -15,7 +15,6 @@ const PlanForm = () => {
   const [currency, setcurrency] = useState("USD");
   // DATA STATE VARIABLE
   const [investment, setinvestment] = useState();
-  const [phone, setphone] = useState("");
   // const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
@@ -31,9 +30,7 @@ const PlanForm = () => {
   const[ disable,setdisable]=useState(false)
   const[ showBTN,setshowBTN]=useState(true)
   //personel details user
-  const[ homeaddress,sethomeaddress]=useState("no")
   const[ number,setnumber]=useState("no")
-  const[ idcard,setidcard]=useState("no")
   const[ Uname,setuname]=useState("no")
   const[ email,setemail]=useState("no")
   const[ lastname,setlastname]=useState("no")
@@ -44,10 +41,6 @@ const PlanForm = () => {
       const email = localStorage.getItem('token')
       axios.get(`/api/get/userpersoneldetails?email=${email}`).then(res=>{
         if(res.success!=false){
-
-          sethomeaddress(res.data.homeaddress)
-          setnumber(res.data.number)
-          setidcard(res.data.idcard)
             setuname(res.data.uname)
             setemail(res.data.email)
             setlastname(res.data.lastname)
@@ -65,14 +58,10 @@ const PlanForm = () => {
     {
       sethideSidebar(false)
     }
-    if(homeaddress=='no')
-    {
-      setindex(1)
-    }
-    else{
-      setindex(2)
-    }
+      
+    
   }, []);
+ 
   const ChangeEvent = (e) => {
     if (e.target.name == "investment") {
       setinvestment(e.target.value)
@@ -91,34 +80,18 @@ const PlanForm = () => {
     setdisable(true)
     if(!formula){
       try{
-
         if (investment >= 100) {
-          let data;
-          if(index==1)
-             data = {
-              index,
+          console.log(index)
+          let data = {
               email,
               address,
-              phone,
+              number,
               cnic,
               investment,
               img1,
               img2,
               wallet,
-            };
-          else{
-             data = {
-              email,
-              index,
-              homeaddress,
-              number,
-              idcard,
-              investment,
-              img1,
-              img2,
-              wallet,
-            };
-          }
+             }
 
             axios.post("/api/post/join", data).then((res) => {
               if (res.data.success == true) {
@@ -269,7 +242,7 @@ const PlanForm = () => {
         <div className="Invest-Container">
           <div className=" title ">
             {" "}
-            <span className="planform-main-web-title">
+            <span  className="planform-main-web-title">
             Yearly Plan
             </span>
             <span className="Address">
@@ -308,6 +281,7 @@ const PlanForm = () => {
           <div className="content">
             <form action="#" onSubmit={submit}>
               <div className="user-details">
+
                 <div className="input-box">
                   <span className="details">First Name</span>
                   <input
@@ -329,6 +303,7 @@ const PlanForm = () => {
                     required
                   />
                 </div>
+
                 <div className="input-box">
                   <span className="details">Email</span>
                   <input
@@ -339,46 +314,21 @@ const PlanForm = () => {
                     required
                   />
                 </div>
-                { number!='no' && number!=''&& (
-                  <>
-                  <div className="input-box">
-                  <span className="details">Phone Number</span>
-                  <input
-                    type="text"
-                    value={number}
-                    readOnly={true}
-                    placeholder="Enter your number"
-                    required
-                  />
-                </div>
-                  </>
-                )}
-               {number=='no' && <div className="input-box">
+
+                
+               <div className="input-box">
                   <span className="details">Phone Number</span>
                   <input
                     type="text"
                     onChange={(e) => {
-                      setphone(e.target.value);
+                      setnumber(e.target.value);
                     }}
                     placeholder="Enter your number"
                     required
                   />
-                </div>}
-                { homeaddress!='no' && homeaddress!='' &&(
-                  <>
-                  <div className="input-box">
-                  <span className="details">Address</span>
-                  <input
-                    type="text"
-                    value={homeaddress}
-                    readOnly
-                    placeholder="Enter your Address"
-                    required
-                  />
                 </div>
-                  </>
-                )}
-               {homeaddress=='no' && <div className="input-box">
+
+               <div className="input-box">
                   <span className="details">Address</span>
                   <input
                     type="text"
@@ -388,22 +338,10 @@ const PlanForm = () => {
                     placeholder="Enter your Address"
                     required
                   />
-                </div>}
-                {idcard!='no' && idcard!='' &&(
-                  <>
-                  <div className="input-box">
-                  <span className="details">CNIC</span>
-                  <input
-                    type="text"
-                    value={idcard}
-                    readOnly={true}
-                    placeholder="Enter your Cnic"
-                    required
-                  />
                 </div>
-                  </>
-                )}
-              {idcard=='no' &&  <div className="input-box">
+
+                
+               <div className="input-box">
                   <span className="details">CNIC</span>
                   <input
                     type="text"
@@ -413,7 +351,7 @@ const PlanForm = () => {
                     placeholder="Enter your Cnic"
                     required
                   />
-                </div>}
+                </div>
                 <div className="input-box">
                   <span className="details">investment</span>
                   <div className="flex">
@@ -629,21 +567,8 @@ const PlanForm = () => {
                     required
                   />
                 </div>
-                {number!='no' && number!='' && (
-                  <>
-                  <div className="input-box">
-                  <span className="details">Phone Number</span>
-                  <input
-                    type="text"
-                    value={number}
-                    readOnly={true}
-                    placeholder="Enter your number"
-                    required
-                  />
-                </div>
-                  </>
-                )}
-               {number=='no' && <div className="input-box">
+                
+               <div className="input-box">
                   <span className="details">Phone Number</span>
                   <input
                     type="text"
@@ -653,24 +578,11 @@ const PlanForm = () => {
                     placeholder="Enter your number"
                     required
                   />
-                </div>}
+                </div>
                   
                 {/* ADDRESS  */}
-                {homeaddress!='no' && homeaddress!='' && (
-                  <>
-                  <div className="input-box">
-                  <span className="details">Address</span>
-                  <input
-                    type="text"
-                    value={homeaddress}
-                    readOnly={true}
-                    placeholder="Enter your Address"
-                    required
-                  />
-                </div>
-                  </>
-                )}
-               { homeaddress=='no' && <div className="input-box">
+                
+                <div className="input-box">
                   <span className="details">Address</span>
                   <input
                     type="text"
@@ -680,24 +592,11 @@ const PlanForm = () => {
                     placeholder="Enter your Address"
                     required
                   />
-                </div>}
+                </div>
 
                 {/* CNIC  */}
-                {idcard!='no' ** idcard!='' &&(
-                  <>
-                  <div className="input-box">
-                  <span className="details">CNIC</span>
-                  <input
-                    type="text"
-                    value={idcard}
-                    readOnly={true}
-                    placeholder="Enter your Cnic"
-                    required
-                  />
-                </div>
-                  </>
-                )}
-               { idcard=='no' && <div className="input-box">
+                
+                <div className="input-box">
                   <span className="details">CNIC</span>
                   <input
                     type="text"
@@ -707,7 +606,7 @@ const PlanForm = () => {
                     placeholder="Enter your Cnic"
                     required
                   />
-                </div>}
+                </div>
 
                 <div className="input-box">
                   <span className="details">investment</span>
