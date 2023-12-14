@@ -64,11 +64,14 @@ useEffect(()=>{
     <div class="stats-img-logo">
       <img className='stats-img-resize' src="remove_bg.png"/>
     </div>
-    <h3 >Ghory Trading</h3>
+    <h3 >UG Trading</h3>
     <div>{Uname} TEAM <br/>
     <div className='Dates-div'>
       <div className='dropdown-list'>
-    <Dropdown teamlength={teamlength} />   
+    <Dropdown subtitle={'Members'} teamlength={teamlength} title={'Team List click me'} type={1} />   
+      </div>
+      <div className='dropdown-list'>
+    <Dropdown subtitle={'Plan'} title={'Plan Details'} type={2}  />   
       </div>
       <div className='dates-list'>
       </div>

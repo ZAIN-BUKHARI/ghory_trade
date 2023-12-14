@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useContext } from 'react'
 import { toast } from "react-toastify";
-const Dropdown = ({teamlength}) => {
+import { ThemeContext } from '../Context/ThemeContext';
+const Dropdown = ({teamlength,title,type,subtitle}) => {
+  const {subscription}=useContext(ThemeContext)
   const router = useRouter()
   async function teamExistenceChecker()
   { 
@@ -20,6 +22,24 @@ const Dropdown = ({teamlength}) => {
       }else
         router.push('/detail')
   }
+  async function userPlanDetail()
+  { 
+      if(subscription=="no")
+      {
+        toast.info("Join Our Plan", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }else
+        router.push('/plandetail')
+  }
+  
   return (
     <>
     <label class="popup">
@@ -30,13 +50,12 @@ const Dropdown = ({teamlength}) => {
     <span></span>
   </div>
   <nav class="popup-window">
-    <legend>Members</legend>
+    <legend>{subtitle}</legend>
     <ul className='ul-dropdown'>
         
-
-     
     </ul>
-    <p onClick={teamExistenceChecker} className='p-dropdown'>Team List click me</p>
+   {type==1 && <p onClick={teamExistenceChecker} className='p-dropdown'>{title}</p>}
+   {type==2 && <p onClick={userPlanDetail} className='p-dropdown'>{title}</p>}
   </nav>
 </label>
 
