@@ -7,34 +7,9 @@ const PlanSchema = new Schema({
         type:String,
         required:true,
     },
-    name:{
-        type:String,
-        required:true
-    },
-    lastname:{
-        type:String,
-        default:"none"
-    },
-    cnic:{
-        type:String,
-        required:true   
-        },
-    phone:{
-        type:String,
-        required:true
-    },
-    address:{
-        type:String,
-        required:true
-    },
     method:{
         type:String,
         required:true
-    },
-    
-    level:{
-        type:String,
-        required:true,
     },
     status:{
         type:String,
@@ -52,13 +27,9 @@ const PlanSchema = new Schema({
         type:Number,
         required:true
     },
-    currency:{
-        type:String,
-        required:true
-    },
     date:{
         type:String,
-        required:true
+        default:''
     },
     enddate:
     {

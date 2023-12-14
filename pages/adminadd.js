@@ -19,7 +19,7 @@ import { useEffect } from 'react';
 import AdminAllLinks from '../AdminComponents/AdminAllLinks';
 
 const addProducts = () => {
-  const {Admin,fetchDailyWork,dailyWork,mobile,setLoader} =useContext(ThemeContext)
+  const {Admin,fetchDailyWork,mobile,setLoader} =useContext(ThemeContext)
   const [updateLinks,setupdateLinks]=useState([])
   useEffect(()=>{
     fetchDailyWork()
@@ -45,8 +45,8 @@ const addProducts = () => {
   const [length8,setlength8]=useState('')
   const [length9,setlength9]=useState('')
   const [length10,setlength10]=useState('')
-  const [Rate,setRate]=useState(0)
-  const [Selrate,setSelrate]=useState(0)
+  const [buyRate,setbuyRate]=useState(0)
+  const [sellRate,setsellRate]=useState(0)
   const [FIVE,setFIVE]=useState(0)
 
 
@@ -93,13 +93,14 @@ const addProducts = () => {
   }
   
   const currencyRate = () =>{
-    const data = {Rate}
+    const data = {buyRate}
     try{
 
-      axios.post('/api/rate/update',data).then(res=>{
+      axios.post('/api/buy/update',data).then(res=>{
         if(res.data.success==true)
       {
         alert('Rate set successfully')
+        setbuyRate(0)
       }
       else{
         alert('Server error try again ')
@@ -111,13 +112,14 @@ const addProducts = () => {
   }
   }
   const currencyRateSelrate = () =>{
-    const data = {Selrate}
+    const data = {sellRate}
     try{
 
-      axios.post('/api/selrate/update',data).then(res=>{
+      axios.post('/api/sell/update',data).then(res=>{
         if(res.data.success==true)
       {
         alert('Rate set successfully')
+        setsellRate(0)
       }
       else{
         alert('Server error try again ')
@@ -250,12 +252,12 @@ const updateLinkmethod = () =>{
     </Grid>
     {/* currency daily Rate  */}
     <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-blue-500 text-center' >DAILY USD TO PKR Rate</h1>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >BUY RATE</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
        
-            <TextField value={Rate} onChange={(e)=>{setRate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
+            <TextField value={buyRate} onChange={(e)=>{setbuyRate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
           </Stack>
           <br />
           <Button onClick={currencyRate} variant="outlined" mt={2}>
@@ -271,7 +273,7 @@ const updateLinkmethod = () =>{
         <BaseCard >
           <Stack spacing={3}>
        
-            <TextField value={Selrate} onChange={(e)=>{setSelrate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
+            <TextField value={sellRate} onChange={(e)=>{setsellRate(e.target.value)}} label="Currency" type='number' variant="outlined"  />
           </Stack>
           <br />
           <Button onClick={currencyRateSelrate} variant="outlined" mt={2}>

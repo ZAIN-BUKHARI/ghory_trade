@@ -1,12 +1,12 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
-import Selrate from '../../../models/Selrate'
+import Buy from '../../../models/Buy'
 
 const handler= async (req, res)=> {
-    if(req.method=='POST'){   
-        try{ 
-        let rate = await Selrate.findOneAndUpdate({},{Selrate:req.body.Selrate})
-        await rate.save()   
-        res.status(200).json({success:true})
+    if(req.method=='GET'){   
+       try{ 
+            let buy = await Buy.findOne()   
+            console.log(buy.buyRate)
+            if(buy)    res.status(200).json({buy:buy.buyRate} )
            
        }
        catch(error){

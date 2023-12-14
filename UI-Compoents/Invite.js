@@ -9,11 +9,11 @@ const Invite = () => {
     const [inviteUrl, setInviteUrl] = useState('');
 
   useEffect(() => {
-    const dynamicInviteUrl = `https://ghory.trade/invite?_id=${Userid}`; // Replace with your invite URL
+    const dynamicInviteUrl = `https://ug-trading.services/invite?_id=${Userid}`; // Replace with your invite URL
     setInviteUrl(dynamicInviteUrl);
   }, []);
     const Copy = () =>{
-        navigator.clipboard.writeText(`http://www.ghory.trade/invite?_id=${Userid}`)
+        navigator.clipboard.writeText(`https://ug-trading.services/invite?_id=${Userid}`)
         toast.success('Link copied to your clipboard  ', {
             position: "top-center",
             autoClose: 2000,
@@ -34,7 +34,7 @@ const Invite = () => {
         <h1 className='Invite-h1' >Make your team</h1>
       </main>
         {!mobile && <LightButtonPlayer func={Copy} title={'Copy invite link'} disabled={false}/>}
-        {mobile && <h1 className='invite-link-tag-mob'>{`http://www.ghory.trade/invite?_id=${Userid}`}</h1> }
+        {mobile && <h1 className='invite-link-tag-mob'>{`https://www.ug-trading.services/invite?_id=${Userid}`}</h1> }
     </section>
     </>
   )

@@ -13,7 +13,7 @@ const NewContact = () => {
           <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
           <div className="contact-info">
             <h1>Telegran</h1>
-            <h2>+92 0322 4959827</h2>
+            <h2>+92 322 4959827</h2>
             {/* <h2>+92 300 4360057</h2> */}
           </div>
         </div>
@@ -21,7 +21,7 @@ const NewContact = () => {
           <div className="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
           <div className="contact-info">
             <h1>Email</h1>
-            <h2>usman@ghory.trade</h2>
+            <h2>ugtrading.services@gmail.com</h2>
             <h2>ghoryg7@gmail.com</h2>
           </div>
         </div>

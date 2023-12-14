@@ -30,9 +30,9 @@ const handler= async (req, res)=> {
         let mailData = {
             from: `${email}`, 
             to: `${process.env.NODE_MAILER_USER}`,
-        subject: 'GHORY.TRADE',
+        subject: 'UG-TRADING',
         text: `Hello usman bhai zain
-        This name is from your website a user contact you from the Ghory Trading contact page here is  msg:
+        This name is from your website a user contact you from the UG TRADING contact page here is  msg:
         ${msg}
         `
         };

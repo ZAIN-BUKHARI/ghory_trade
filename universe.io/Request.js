@@ -14,13 +14,13 @@ const Request = () => {
     const [method,setmethod]=useState("TRC20")
     const [amount,setamount]=useState(0)
     const [bankname,setbankname]=useState("")
-    const [selrate,setselrate]=useState(0)
+    const [sellRate,setsellRate]=useState(0)
   
   const[ disable,setdisable]=useState(false)
   useEffect(()=>{
     setLoader(true)
-    axios.get('/api/selrate/get').then(res=>{
-      setselrate(res.data.rate.Selrate)
+    axios.get('/api/sell/get').then(res=>{
+      setsellRate(res.data.sell)
       setLoader(false)
     }).catch(e=>{
     setLoader(false)
@@ -49,12 +49,12 @@ const Request = () => {
       }else{
 
         if(amount>=20){
-        if( amount<=balance
+        if(amount<=balance
           ){
           const data = {method,address,amount,email,bankname,Userid}
           let res = await axios.post('/api/post/request',data)
             if(res.data.success==true){
-              toast.success("Your withdrawal request is in processing state it will take 12 to 24 hour", {
+              toast.success("Your withdrawal request is in processing state it will take  24 hour", {
                 position: "top-right",
                 autoClose: 30000,
                 hideProgressBar: false,
@@ -123,7 +123,7 @@ if(mobile){
     <div className='FormModal'>
     <div className='card-responsive'>
     <div className="card__title-mobile">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${selrate}</strong>
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${sellRate}</strong>
     </p>
     <div className="card__form">
         <input placeholder="Your Amount" className='request-mobile-tilt' value={amount} onChange={(e)=>{setamount(e.target.value)}}  type="number"/>
@@ -132,7 +132,7 @@ if(mobile){
         <select 
                   name="select"
                   value={method} onChange={(e)=>{setmethod(e.target.value)}} 
-                  className="request-select-modal"
+                  className="request-select-modal-withdrawal"
                 >
                   <option value={"TRC20"}>TRC20</option>
                   {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
@@ -141,14 +141,23 @@ if(mobile){
                   <option value={"BANK"}>BANK</option>
                   {/* <option value={"RASS"}>RASS</option> */}
                 </select>
-        <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
-        {method=="BANK" &&  <input value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
+        <input className='address-field-request' value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
+        {method=="BANK" &&  <input className='address-field-request' value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
                     </div>
 
         <button onClick={requestSubmit} className="sign-up mobile-button"  disabled={disable}> Submit Request</button>
     </div>
 </div>
     </div>
+    <style>
+        {`
+        .request-select-modal-withdrawal{
+          -moz-appearance: none;        
+          -webkit-appearance: none;
+          appearance: none;
+        }
+        `}
+      </style>
     </>
   )
 }
@@ -156,9 +165,9 @@ else{
     return (
       <>
       <div className='FormModal'>
-      <div className='card'>
+      <div className='card-webview-form'>
       <div className="card__title">withdraw Request<span onClick={()=>{setPaymentRequestModal(false)}} className='Form-modal-cross'>X</span></div>
-    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${selrate}</strong>
+    <p className="card__content">After submit your request will go to the admin and it will release your assests to your selected payment method and 5% will deduct from your withdrawal amount.USD sell rate<strong className='bold-selrate'> ${sellRate}</strong>
 
       </p>
       <div className="card__form">
@@ -168,22 +177,29 @@ else{
           <select 
                     name="select"
                     value={method} onChange={(e)=>{setmethod(e.target.value)}} 
-                    className="  request-select-modal"
+                    className="request-select-modal-withdrawal"
                   >
                     <option value={"TRC20"}>TRC20</option>
-                    {/* <option value={"JAZZCASH"}>JAZZCASH</option> */}
                     <option value={"EASYPAISA"}>EASYPAISA</option>
                     <option value={"NAYAPAY"}>NAYAPAY</option>
                     <option value={"BANK"}>BANK</option>
-                    {/* <option value={"RASS"}>RASS</option> */}
                   </select>
-          <input value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
-        {method=="BANK" &&  <input value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
+          <input  className='address-field-request' value={address} onChange={(e)=>{setaddress(e.target.value)}} placeholder="Your Wallet Address or Number" type="text"/>
+        {method=="BANK" &&  <input  className='address-field-request' value={bankname} onChange={(e)=>{setbankname(e.target.value)}} placeholder="Your Bank Name" type="text"/>}
                       </div>
           <button onClick={requestSubmit} className="sign-up" disabled={disable}> Submit Request</button>
       </div>
   </div>
       </div>
+      <style>
+        {`
+        .request-select-modal-withdrawal{
+          -moz-appearance: none;        
+          -webkit-appearance: none;
+          appearance: none;
+        }
+        `}
+      </style>
       </>
     )
   }

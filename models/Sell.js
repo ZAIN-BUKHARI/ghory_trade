@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
-const SelrateSchema = new Schema({
+const SellSchema = new Schema({
     
-    Selrate:{
+    sellRate:{
         type:Number,
         default:0
     },
@@ -12,4 +12,4 @@ const SelrateSchema = new Schema({
 },{timestamps:true})
 mongoose.models={}
 
-export default mongoose.model('Selrate',SelrateSchema)
+export default mongoose.model('Sell',SellSchema)

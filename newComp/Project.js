@@ -7,7 +7,7 @@ const Project = () => {
         <div className="projects container">
           <div className="projects-header">
             <h1 className="section-title MEDIA-LEFT-PROJECT">
-              Our Yearly <span>Projects</span>
+              Up Coming <span>Projects</span>
             </h1>
           </div>
           <div className="all-projects MEDIA-LEFT-PROJECT">

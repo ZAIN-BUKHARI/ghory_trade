@@ -9,14 +9,14 @@ import { useEffect,useState } from 'react';
 const Adminstats = () => {
   const {  Userid, mobile , setLoader} = useContext(ThemeContext)
   const [users,setusers]=useState(0)
-  const [sel,setsel]=useState(0)
+  const [sell,setsell]=useState(0)
   const [buy,setbuy]=useState(0)
   const [investment,setinvestment]=useState(0)
   useEffect(()=>{
     setLoader(true)
     axios.get('/api/get/noofusers').then(res=>{setusers(res.data.users)})
-    axios.get('/api/selrate/get').then(res=>{setsel(res.data.rate.Selrate)})
-    axios.get('/api/rate/get').then(res=>{setbuy(res.data.rate.Rate)})
+    axios.get('/api/sell/get').then(res=>{setsell(res.data.sell)})
+    axios.get('/api/buy/get').then(res=>{setbuy(res.data.buy)})
     axios.get('/api/get/allinvestment').then(res=>{setinvestment(res.data.investment)})
     setLoader(false)
   })
@@ -68,7 +68,7 @@ const Adminstats = () => {
           <span>{buy}$</span> Buy
         </li>
         <li>
-          <span>{sel}$</span> Sel
+          <span>{sell}$</span> Sel
         </li>
       </ul>
     </div>

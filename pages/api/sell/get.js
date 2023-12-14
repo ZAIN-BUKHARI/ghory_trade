@@ -1,11 +1,11 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
-import Rate from '../../../models/Rate'
+import Sell from '../../../models/Sell'
 
 const handler= async (req, res)=> {
     if(req.method=='GET'){   
        try{ 
-            let rate = await Rate.findOne()   
-            if(rate)    res.status(200).json({ rate })
+            let sell = await Sell.findOne() 
+            if(sell)   res.status(200).json( {sell:sell.sellRate}  )
            
        }
        catch(error){

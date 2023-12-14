@@ -54,7 +54,7 @@ const AdminPlans = () => {
                         <th> Plan </th>
                         <th className='work-start'> Details</th>
                         <th className='work-start'> Update</th>
-                        <th className='work-start'> Delete</th>
+                        {/* <th className='work-start'> Delete</th> */}
                         <th className='work-start'> Index</th>
                     </tr>
                 </thead>
@@ -63,19 +63,19 @@ const AdminPlans = () => {
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> {item.firstname} </td>
-                        <td>{item.email}</td>
+                        <td className='nameAndemailSize'> {item.firstname} </td>
+                        <td className='nameAndemailSize'>{item.email}</td>
                         <td > {item.createdAt.slice(0,10).slice(2)} </td>
                         
-                        <td> <strong> $ {item.balance.toString().slice(0,7)} </strong></td>
+                        <td> <spna className="dollarColor">$</spna><strong >  {item.balance.toString().slice(0,7)} </strong></td>
                         {/* <td className=''> */}
-                        <td> <strong> {item.subscription} </strong></td>
+                        <td> {item.subscription} </td>
                         
                     
                         {/* </td> */}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{Update(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
-                        <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td>
+                        {/* <td> <p onClick={(e)=>{del(item._id)}} className='WorkSheet-Icon-Alert'>🗑️</p> </td> */}
                         <td> <p  className='WorkSheet-Icon-Alert'>{index+1}</p> </td>
                     </tr>
                      
@@ -100,11 +100,11 @@ const AdminPlans = () => {
                         
                     <thead>
                     <tr>
-                        <th> ID </th>
+                        {/* <th> ID </th> */}
                         <th> Customer </th>
                         <th> Address </th>
                         <th> Join</th>
-                        <th> Today-Work</th>
+                        {/* <th> Today-Work</th> */}
                         <th> Amount </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
@@ -116,14 +116,14 @@ const AdminPlans = () => {
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> {item._id.slice(0,5)} </td>
+                        {/* <td> {item._id.slice(0,5)} </td> */}
                         <td> {item.firstname} </td>
-                        <td>{item.email}</td>
+                        <td >{item.email}</td>
                         <td> {item.createdAt.slice(0,10)} </td>
-                        <td> {item.todaywork} </td>
+                        {/* <td> {item.todaywork} </td> */}
                         
                         <td> <strong> $ {item.balance} </strong></td>
-                        <td> <strong> {item.subscription} </strong></td>
+                        <td> {item.subscription} </td>
                         
                     
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
@@ -146,18 +146,12 @@ const AdminPlans = () => {
     cursor: pointer;
     margin-left: 10px;
         }
-        // .admin-sheet-reviewed{
-        //     color:green;
-        //     font-weight:bold;
-        // }
-        // .admin-sheet-review{
-        //     font-weight:bold;
-        //     color:red;
-        // }
-        // .Admin-select{
-        //     outline:none;
-        //     color:green;
-        // }
+        .dollarColor{
+            color:green
+        }
+        .nameAndemailSize{
+            font-size:11px;
+        }
         `}</style>
     </>
   )

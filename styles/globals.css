@@ -145,6 +145,10 @@ body {
   padding-right: 20px;
   padding-bottom: 100px;
 }
+/* .update-screen-height{
+	height: 800px !important;
+	scroll-behavior: smooth;
+} */
 /* .containerContact
 {
 	min-height: 100vh;

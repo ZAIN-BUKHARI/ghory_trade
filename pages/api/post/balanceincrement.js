@@ -1,7 +1,6 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import User from '../../../models/User'
 import Plan from '../../../models/Plan'
-import { add } from 'date-fns'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
@@ -10,99 +9,120 @@ const handler= async (req, res)=> {
         let user = await User.findOne({_id:Userid})
         if(user.invite=="" && user.subscription=='yes')// this means leader has done his dailywork so no commission
         {
-            const balance=user.balance+user.perDayProfit;
             await User.updateOne({_id:Userid},{
-                balance:balance,
+              $inc:{balance:user.perDayProfit},
                 todaywork:'yes',
                 views:0,
             }) 
             res.status(200).json({success:true})
        }else{
         let Leader = await User.findOne({_id:user.invite})
-        
+
+        //user && direct
         if(Leader.invite=="") // direct
         {
-            if(Leader.Rank=="no" && Leader.subscription=='yes')
+            if(Leader.Rank=="no" && Leader.subscription=='yes') // tested
             {
-                let pdp = user.perDayProfit;
-                let FivePercent = ((pdp*5)/100);
-                const balance= FivePercent+Leader.balance
-                const leaderCommission= Leader.commission+FivePercent
-                await User.updateOne({_id:Leader._id},{balance:balance,commission:leaderCommission})
-                await User.updateOne({_id:Userid},{balance:(user.balance+(pdp-FivePercent)),
-                    todaywork:'yes',views:0
+                let FivePercent = ((user.perDayProfit*5)/100);
+                await User.updateOne({_id:Leader._id},{
+                  $inc:{ 
+                        balance:FivePercent, 
+                        commission:FivePercent
+                      }})
+                await User.updateOne({_id:Userid},{
+                   $inc:{balance:(user.perDayProfit-FivePercent)},
+                    todaywork:'yes',
+                    views:0
                 })
                 res.status(200).json({success:true})
-                //direct adding commsion to his leader
             }
             else
-            {
-                const balance=user.balance+user.perDayProfit;
+            {   
                 await User.updateOne({_id:Userid},{
-                balance:balance,
+               $inc:{ balance:user.perDayProfit},
                 todaywork:'yes',
                 views:0
             }) 
             res.status(200).json({success:true})
             }
         }
-        else //indirect
+        else 
         {
-           
+            //user && direct && indirect
             let SubLeader = await User.findOne({_id:Leader.invite})//Indirect  Doc
-            if(Leader.Rank=="no" && SubLeader.Rank=="no" && Leader.subscription=='yes' && SubLeader.subscription=='yes')
+            if(Leader.Rank=="no" && SubLeader.Rank=="no" && Leader.subscription=='yes' && SubLeader.subscription=='yes') //tested
             {
-                //add comission both direct and indirect
+                //add comission to both 5% direct and 3% indirect from user perdayprofit
                 let FivePercent = ((user.perDayProfit*5)/100);// 0.0333333333333
                 let UserCurrentpdp = user.perDayProfit - FivePercent //0.633333333333
                 let ThreePercent = ((UserCurrentpdp*3)/100); //0.019
-                const finalUserProgitPerday = UserCurrentpdp - ThreePercent //0.614333333333
+                const finalUserPerdayProfit = UserCurrentpdp - ThreePercent //0.614333333333
 
-                let balance = FivePercent + Leader.balance
-                const leaderCommission = Leader.commission+FivePercent
-                await User.updateOne({_id:Leader._id},{balance,commission:leaderCommission})
+                await User.updateOne({_id:Leader._id},
+                    {
+                       $inc:{
+                            balance:FivePercent,
+                            commission:FivePercent
+                           },
+                    })
                
+                await User.updateOne({_id:SubLeader._id},
+                    {
+                      $inc:
+                      { balance:ThreePercent,
+                        commission:ThreePercent
+                      }
+                    }) 
+               
+                await User.updateOne({_id:Userid},
+                    {
+                     $inc:
+                        { 
+                        balance:finalUserPerdayProfit,
+                    },
+                    todaywork:'yes',
+                    views:0
+                    })
+            }
+            else if(Leader.Rank=="no" && Leader.subscription=='yes' && SubLeader.Rank!="no" || SubLeader.subscription=='no')  //tested
+            {
+                //commsiion should be add to direct check bottom to top  user -> direct -> indirect and indirect must be leader of the team
+                let FivePercent = ((user.perDayProfit*5)/100);
+                let UserCurrentpdp = user.perDayProfit - FivePercent 
+                await User.updateOne({_id:Leader._id},{
+                   $inc:{
+                       balance:FivePercent,
+                       commission:FivePercent
+                   }
+                })
+
+                await User.updateOne({_id:Userid},{
+                    $inc:{balance:UserCurrentpdp},
+                    todaywork:'yes',views:0
+                })
+            }
+            else if(SubLeader.Rank=="no" && SubLeader.subscription=='yes' && Leader.Rank!="no" || Leader.subscription=='no' ) //tested
+            {
+                let ThreePercent = ((user.perDayProfit*3)/100);
+                const finalUserPerdayProfit = user.perDayProfit - ThreePercent
                 
-                balance = ThreePercent + SubLeader.balance; 
-                const subleaderCommission = SubLeader.commission+ThreePercent
-                await User.updateOne({_id:SubLeader._id},{balance,commission:subleaderCommission}) 
-                let u = await User.findOne({_id:Userid})
-                u = user.balance + finalUserProgitPerday
-                await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
-                })
-            }
-            else if(Leader.Rank=="no" && Leader.subscription=='yes' && SubLeader.Rank!="no" || SubLeader.subscription=='no')
-            {
-                //commsiion should be add to direct check bittom to top  user -> direct -> indirect and indirect must be leader
-                let FivePercent = ((user.perDayProfit*5)/100);// 0.0333333333333
-                let UserCurrentpdp = (user.balance+(user.perDayProfit - FivePercent)) //0.633333333333
-                let balance = FivePercent + Leader.balance
-                const leaderCommission = Leader.commission+FivePercent
-                await User.updateOne({_id:Leader._id},{balance,commission:leaderCommission})
-                let u = await User.findOne({_id:Userid})
-                u = user.balance + UserCurrentpdp
-                await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
-                })
-            }
-            else if(Leader.Rank!="no" || Leader.subscription=='no' && SubLeader.Rank=="no" && SubLeader.subscription=='yes')
-            {
-                let ThreePercent = ((user.perDayProfit*3)/100); //0.019
-                const finalUserProgitPerday = (user.balance+(user.perDayProfit - ThreePercent)) //0.614333333333
-                const balance = ThreePercent + SubLeader.balance; 
-                const subleaderCommission = SubLeader.commission+ThreePercent
-                await User.updateOne({_id:SubLeader._id},{balance,commission:subleaderCommission}) 
-                let u = await User.findOne({_id:Userid})
-                u = user.balance + finalUserProgitPerday
-                await User.updateOne({_id:Userid},{balance:u
-                    ,todaywork:'yes',views:0
+                await User.updateOne({_id:SubLeader._id},
+                    {
+                        $inc:{    
+                            balance:ThreePercent,
+                            commission:ThreePercent
+                        }
+                    }) 
+
+                await User.updateOne({_id:Userid},{
+                    $inc:{ balance:finalUserPerdayProfit},
+                    todaywork:'yes',views:0
                 })
             }
             else{
-                const balance=user.balance+user.perDayProfit;
+
                 await User.updateOne({_id:Userid},{
-                    balance:balance,
+                   $inc:{ balance:user.perDayProfit},
                     todaywork:'yes',
                     views:0
                 }) 

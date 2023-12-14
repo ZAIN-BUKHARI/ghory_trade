@@ -1,7 +1,25 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-const Dropdown = ({items}) => {
+import { toast } from "react-toastify";
+const Dropdown = ({teamlength}) => {
   const router = useRouter()
+  async function teamExistenceChecker()
+  { 
+      if(teamlength==0)
+      {
+        toast.info("Build Your Team", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }else
+        router.push('/detail')
+  }
   return (
     <>
     <label class="popup">
@@ -14,23 +32,11 @@ const Dropdown = ({items}) => {
   <nav class="popup-window">
     <legend>Members</legend>
     <ul className='ul-dropdown'>
-        {items.length>0&& items.slice(0,5).map((member=>{
-            return <li >
-        <button>
-          <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle r="4" cy="7" cx="9"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
-          <span>{member.email.slice(0,17)}...</span>
-        </button>
-      </li>
-}))}
+        
 
      
     </ul>
-    <p onClick={()=>{router.push('/detail')}} className='p-dropdown'>View more</p>
+    <p onClick={teamExistenceChecker} className='p-dropdown'>Team List click me</p>
   </nav>
 </label>
 

@@ -93,10 +93,10 @@ const AdminPlans = () => {
                         
                     <thead>
                     <tr>
-                        <th> Name </th>
+                        {/* <th> Name </th> */}
                         <th> Email </th>
                         <th> Join</th>
-                        <th> Level</th>
+                        {/* <th> Level</th> */}
                         <th> Investment </th>
                         <th> Status </th>
                         <th className='work-start'> Details</th>
@@ -110,10 +110,10 @@ const AdminPlans = () => {
                  <tbody key={item._id}>
                 
                 <tr>
-                    <td> {item.name.slice(0,15)} </td>
+                    {/* <td> {item.name.slice(0,15)} </td> */}
                     <td>{item.email}</td>
                     <td> {item.createdAt.slice(0,10).slice(2)} </td>
-                    <td> {item.level} </td>
+                    {/* <td> {item.level} </td> */}
                     
                     <td> <strong> ${item.investment} </strong></td>
                     <td className=''>

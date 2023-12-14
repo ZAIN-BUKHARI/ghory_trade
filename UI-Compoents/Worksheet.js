@@ -93,8 +93,8 @@ const Worksheet = () => {
                 {!mobile &&<th>Assign</th>}
                 {!mobile &&<th>Deadline</th>}
                {!mobile && <th>Time</th>}
-                <th>Staus</th>
-                <th>Start</th>
+                <th className='status-worksheet'>Staus</th>
+                <th className=''>Start</th>
               </tr>
             </thead>
 
@@ -132,7 +132,19 @@ const Worksheet = () => {
     
     </>
     )}
+    <style>
+      {`
+      
+      .status-worksheet {
+        padding: .4rem 0;
+        // border-radius: 2rem;
+        text-align: center;
+    }
+      
+      `}
+    </style>
     </>
+
     )
 
 

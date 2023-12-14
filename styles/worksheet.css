@@ -116,7 +116,8 @@
       background: #eee;
       width: 75%;
       border-radius: 10px;
-      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5); */
+      box-shadow: 0 20px 35px rgba(34, 92, 252, 0.5);
     }
     .table{
       border-collapse: collapse;

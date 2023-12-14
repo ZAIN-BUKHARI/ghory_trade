@@ -6,7 +6,7 @@ import { ThemeContext } from "../Context/ThemeContext";
 import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {setLoader, token, subscription ,email,mobile,sethideSidebar,getUser} = useContext(ThemeContext);
+  const {setLoader, token, mobile,sethideSidebar,getUser} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -16,61 +16,71 @@ const PlanForm = () => {
   // DATA STATE VARIABLE
   const [investment, setinvestment] = useState();
   const [phone, setphone] = useState("");
-  const [name, setname] = useState("");
-  const [lastname, setlastname] = useState("");
+  // const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
   const [img1, setimg1] = useState("");
   const [img2, setimg2] = useState("");
-  // ERROR STATE
-  const [usderror, seterror] = useState(false);
-  const [pkrerror, setpkrerror] = useState(false);
-  // TYPE-OF-USER
-  const [level, setlevel] = useState("");
+  const [index, setindex] = useState(1);
+
+
   // investment formula
   const [formula, setformula] = useState(true);
+  
   //after subit disable subscribebtn
   const[ disable,setdisable]=useState(false)
   const[ showBTN,setshowBTN]=useState(true)
+  //personel details user
+  const[ homeaddress,sethomeaddress]=useState("no")
+  const[ number,setnumber]=useState("no")
+  const[ idcard,setidcard]=useState("no")
+  const[ Uname,setuname]=useState("no")
+  const[ email,setemail]=useState("no")
+  const[ lastname,setlastname]=useState("no")
 
+  async function getUserDetails(){
+    try{
+
+      const email = localStorage.getItem('token')
+      axios.get(`/api/get/userpersoneldetails?email=${email}`).then(res=>{
+        if(res.success!=false){
+
+          sethomeaddress(res.data.homeaddress)
+          setnumber(res.data.number)
+          setidcard(res.data.idcard)
+            setuname(res.data.uname)
+            setemail(res.data.email)
+            setlastname(res.data.lastname)
+          }else{
+            router.push('/')
+
+          }
+          });  
+      }catch(e){
+      }
+  }
   useEffect(() => {
+    getUserDetails()
     if(mobile)
     {
       sethideSidebar(false)
     }
+    if(homeaddress=='no')
+    {
+      setindex(1)
+    }
+    else{
+      setindex(2)
+    }
   }, []);
   const ChangeEvent = (e) => {
-    if (e.target.name == "select") {
-      setcurrency(e.target.value);
-    } else if (e.target.name == "investment") {
+    if (e.target.name == "investment") {
       setinvestment(e.target.value)
       if((e.target.value/100).toString().includes('.')){
         setformula(true)
       }else{
         setformula(false)
-      }
-      if (currency == "USD" && e.target.value >= 100) {
-        var val = e.target.value;
-        if (val >=100 && val<200 ){setlevel("1");}
-        else if (val >= 200 && val<300){setlevel("2");}
-        else if (val >= 300 && val<400){setlevel("3");}
-        else if (val >= 400 && val<500) {setlevel("4");}
-        else if (val >= 500 && val<600) {setlevel("5");}
-        else if (val >= 600 && val<700) {setlevel("6");}
-        else if (val >= 700 && val<800) {setlevel("7");}
-        else if (val >= 800 && val<900) {setlevel("8");}
-        else if (val >= 900 && val<1000) {setlevel("9");}
-        else if (val>=1000)   {setlevel("10");}
-        console.log(level)
-        seterror(true);
-        setpkrerror(false);
-      } else if (currency == "PKR" && e.target.value < "30000") {
-        setpkrerror(true);
-        seterror(false);
-      } else {
-        seterror(false);
-        setpkrerror(false);
-      }
+      } 
     }
   };
   const submit = (e) => {
@@ -82,21 +92,34 @@ const PlanForm = () => {
     if(!formula){
       try{
 
-        if (currency == "USD" && investment >= 100) {
-          const data = {
+        if (investment >= 100) {
+          let data;
+          if(index==1)
+             data = {
+              index,
               email,
-              name,
-              lastname,
               address,
               phone,
               cnic,
               investment,
-              currency,
-              level,
               img1,
               img2,
               wallet,
             };
+          else{
+             data = {
+              email,
+              index,
+              homeaddress,
+              number,
+              idcard,
+              investment,
+              img1,
+              img2,
+              wallet,
+            };
+          }
+
             axios.post("/api/post/join", data).then((res) => {
               if (res.data.success == true) {
                 toast.success(
@@ -116,6 +139,7 @@ const PlanForm = () => {
                 downloadPDF()
                 router.push("/");
               } else {
+                
                 toast.error(res.data.error, {
                   position: "top-right",
                   autoClose: 2000,
@@ -126,6 +150,9 @@ const PlanForm = () => {
                   progress: undefined,
                   theme: "light",
                 });
+              setdisable(false)
+                if(res.data.error=='Server error')
+                  window.location.reload()
               }
             });
       } else {
@@ -140,11 +167,13 @@ const PlanForm = () => {
           progress: undefined,
           theme: "light",
         });
+        setdisable(false)
+
       }
     }catch(e){
     setshowBTN(true)
-
-      toast.info("Server down ", {
+    setdisable(false)
+      toast.info('Server down', {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -159,6 +188,7 @@ const PlanForm = () => {
     }
   else{
     setshowBTN(true)
+    setdisable(false)
     toast.
     info(
       "Amount should be divisible by 0",
@@ -233,13 +263,11 @@ const PlanForm = () => {
 
   return (
     <>
+   
     {token  && (
       <div className="PlanForm-Head">
         <div className="Invest-Container">
           <div className=" title ">
-            {/* <img src='remove_bg.png'  className="img-planfirm-upload-top" /> */}
-            {/* <img src="remove_bg.png" className="planform-logo-web-planform"/> */}
-
             {" "}
             <span className="planform-main-web-title">
             Yearly Plan
@@ -284,21 +312,20 @@ const PlanForm = () => {
                   <span className="details">First Name</span>
                   <input
                     type="text"
-                    onChange={(e) => {
-                      setname(e.target.value);
-                    }}
-                    placeholder="Enter your name"
+                    value={Uname=="no"?'':Uname}
+                    placeholder={Uname=="no"?'Enter your first name':Uname}
+                    readOnly={true}
                     required
                   />
+
                 </div>
                 <div className="input-box">
                   <span className="details">Last Name</span>
                   <input
                     type="text"
-                    onChange={(e) => {
-                      setlastname(e.target.value);
-                    }}
-                    placeholder="Enter your username"
+                    value={lastname=="no"?'':lastname}
+                    placeholder={lastname=="no"?'Enter your last name':lastname}
+                    readOnly={true}
                     required
                   />
                 </div>
@@ -306,12 +333,27 @@ const PlanForm = () => {
                   <span className="details">Email</span>
                   <input
                     type="text"
-                    value={email}
-                    placeholder="Enter your email"
+                    value={email=="no"?'':email}
+                    placeholder={email=="no"?'Enter your email':email}
+                    readOnly={true}
                     required
                   />
                 </div>
-                <div className="input-box">
+                { number!='no' && number!=''&& (
+                  <>
+                  <div className="input-box">
+                  <span className="details">Phone Number</span>
+                  <input
+                    type="text"
+                    value={number}
+                    readOnly={true}
+                    placeholder="Enter your number"
+                    required
+                  />
+                </div>
+                  </>
+                )}
+               {number=='no' && <div className="input-box">
                   <span className="details">Phone Number</span>
                   <input
                     type="text"
@@ -321,8 +363,22 @@ const PlanForm = () => {
                     placeholder="Enter your number"
                     required
                   />
+                </div>}
+                { homeaddress!='no' && homeaddress!='' &&(
+                  <>
+                  <div className="input-box">
+                  <span className="details">Address</span>
+                  <input
+                    type="text"
+                    value={homeaddress}
+                    readOnly
+                    placeholder="Enter your Address"
+                    required
+                  />
                 </div>
-                <div className="input-box">
+                  </>
+                )}
+               {homeaddress=='no' && <div className="input-box">
                   <span className="details">Address</span>
                   <input
                     type="text"
@@ -332,8 +388,22 @@ const PlanForm = () => {
                     placeholder="Enter your Address"
                     required
                   />
+                </div>}
+                {idcard!='no' && idcard!='' &&(
+                  <>
+                  <div className="input-box">
+                  <span className="details">CNIC</span>
+                  <input
+                    type="text"
+                    value={idcard}
+                    readOnly={true}
+                    placeholder="Enter your Cnic"
+                    required
+                  />
                 </div>
-                <div className="input-box">
+                  </>
+                )}
+              {idcard=='no' &&  <div className="input-box">
                   <span className="details">CNIC</span>
                   <input
                     type="text"
@@ -343,7 +413,7 @@ const PlanForm = () => {
                     placeholder="Enter your Cnic"
                     required
                   />
-                </div>
+                </div>}
                 <div className="input-box">
                   <span className="details">investment</span>
                   <div className="flex">
@@ -359,26 +429,17 @@ const PlanForm = () => {
                       type="number"
                       value={investment}
                       onChange={ChangeEvent}
-                      // onChange={(e)=>{setinvestment(e.target.value)}}
                       name="investment"
                       placeholder="Enter your Amount 💲"
                     />
                   </div>
-                  {currency == "USD" &&
-                    investment > 0 &&
-                    investment < 100 &&
+                  { investment>=0 && investment < 100 && investment!="" &&
                     (
                       <span className="PlanForm-investment-error">
                         Minimum investment 100$
                       </span>
                     )}
-                  {currency == "USD" &&
-                    investment >= 100 &&
-                    (
-                      <span className="PlanForm-investment-error-green">
-                        Minimum investment 100$
-                      </span>
-                    )}
+                  
                   
                 </div>
 
@@ -462,6 +523,13 @@ const PlanForm = () => {
         
       </div>)}
       <style>{`
+     
+      .PlanForm-select-usd {
+        -moz-appearance: none;        
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      
       .flexing-span-plan-form{
         display:flex !important;
         
@@ -538,10 +606,8 @@ const PlanForm = () => {
                   <span className="details">First Name</span>
                   <input
                     type="text"
-                    onChange={(e) => {
-                      setname(e.target.value);
-                    }}
-                    placeholder="Enter your name"
+                    value={Uname}
+                    readOnly={true}
                     required
                   />
                 </div>
@@ -549,10 +615,8 @@ const PlanForm = () => {
                   <span className="details">Last Name</span>
                   <input
                     type="text"
-                    onChange={(e) => {
-                      setlastname(e.target.value);
-                    }}
-                    placeholder="Enter your username"
+                    value={lastname}
+                    readOnly={true}
                     required
                   />
                 </div>
@@ -561,11 +625,25 @@ const PlanForm = () => {
                   <input
                     type="text"
                     value={email}
-                    placeholder="Enter your email"
+                    readOnly={true}
                     required
                   />
                 </div>
-                <div className="input-box">
+                {number!='no' && number!='' && (
+                  <>
+                  <div className="input-box">
+                  <span className="details">Phone Number</span>
+                  <input
+                    type="text"
+                    value={number}
+                    readOnly={true}
+                    placeholder="Enter your number"
+                    required
+                  />
+                </div>
+                  </>
+                )}
+               {number=='no' && <div className="input-box">
                   <span className="details">Phone Number</span>
                   <input
                     type="text"
@@ -575,8 +653,24 @@ const PlanForm = () => {
                     placeholder="Enter your number"
                     required
                   />
+                </div>}
+                  
+                {/* ADDRESS  */}
+                {homeaddress!='no' && homeaddress!='' && (
+                  <>
+                  <div className="input-box">
+                  <span className="details">Address</span>
+                  <input
+                    type="text"
+                    value={homeaddress}
+                    readOnly={true}
+                    placeholder="Enter your Address"
+                    required
+                  />
                 </div>
-                <div className="input-box">
+                  </>
+                )}
+               { homeaddress=='no' && <div className="input-box">
                   <span className="details">Address</span>
                   <input
                     type="text"
@@ -586,8 +680,24 @@ const PlanForm = () => {
                     placeholder="Enter your Address"
                     required
                   />
+                </div>}
+
+                {/* CNIC  */}
+                {idcard!='no' ** idcard!='' &&(
+                  <>
+                  <div className="input-box">
+                  <span className="details">CNIC</span>
+                  <input
+                    type="text"
+                    value={idcard}
+                    readOnly={true}
+                    placeholder="Enter your Cnic"
+                    required
+                  />
                 </div>
-                <div className="input-box">
+                  </>
+                )}
+               { idcard=='no' && <div className="input-box">
                   <span className="details">CNIC</span>
                   <input
                     type="text"
@@ -597,7 +707,8 @@ const PlanForm = () => {
                     placeholder="Enter your Cnic"
                     required
                   />
-                </div>
+                </div>}
+
                 <div className="input-box">
                   <span className="details">investment</span>
                   <div className="flex">
@@ -618,21 +729,15 @@ const PlanForm = () => {
                       placeholder="Enter your Amount"
                     />
                   </div>
-                  {currency == "USD" &&
-                    investment > 0 &&
+                  {investment != "" &&
+                    investment >= 0 &&
                     investment < 100 &&
                     (
                       <span className="PlanForm-investment-error">
                         Minimum investment 100$
                       </span>
                     )}
-                  {currency == "USD" &&
-                    investment >= 100 &&
-                    (
-                      <span className="PlanForm-investment-error-green">
-                        Minimum investment 100$
-                      </span>
-                    )}
+                 
                   
                 </div>
 
@@ -717,6 +822,11 @@ const PlanForm = () => {
         
       </div>)}
       <style>{`
+      .PlanForm-select-usd {
+        -moz-appearance: none;        
+        -webkit-appearance: none;
+        appearance: none;
+      }
       .flexing-span-plan-form{
         display:flex !important;
         

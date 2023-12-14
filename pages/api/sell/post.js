@@ -1,14 +1,14 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
-import Rate from '../../../models/Rate'
+import Sell from '../../../models/Sell'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){   
        try{ 
-            let rate = new Rate({
-                Rate:req.body.Rate,
+            let sellRateAdd = new Sell({
+                sellRate:req.body.sell,
             })
-            await rate.save()             
-            res.status(200).json({ success:true })
+            await sellRateAdd.save()
+            if(sellRateAdd) res.status(200).json({ success:true });
            
        }
        catch(error){

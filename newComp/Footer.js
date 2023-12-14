@@ -11,13 +11,13 @@ const Footer = () => {
     <section id="footer">
     <div className="footer container">
       <div className="brand">
-        <h1><span className='footer-G'>G</span>hory <span className='footer-T'>T</span>aders</h1>
+        <h1><span className='footer-G'>U</span>G <span className='footer-T'> T</span>rading</h1>
       </div>
       <h2 className='media-footer-font'>Your Complete Investment Solution</h2>
       <div className="social-icon">
         <Balls/>
       </div>
-      <p className='MEDIA-FOOTER-COPYRIGHT'>Copyright © 2023 ghory.trade. All rights reserved</p>
+      <p className='MEDIA-FOOTER-COPYRIGHT'>Copyright © 2023 ug-trading.services. All rights reserved</p>
     </div>
   </section>)}
     </>

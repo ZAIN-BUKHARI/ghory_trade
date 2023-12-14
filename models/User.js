@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
     __v: { type: Number, default: 0 }, 
+    // personel details
     firstname:{
         type:String,
          required:true
@@ -16,6 +17,20 @@ const UserSchema = new Schema({
         required:true,
         unique:true
     },
+    cnic:{
+        type:String,
+        default:"no" 
+        },
+    number:{
+            type:String,
+            default:"no"
+    },
+    address:{
+        type:String,
+        default:"no" 
+
+    },
+    //pass
     password:{
         type:String,
         required:true
@@ -25,14 +40,13 @@ const UserSchema = new Schema({
         default:0,
         required:true
     },
+    totalInvestment:{
+        type:Number,
+        default:0,
+    },
     subscription:{
         type:String,
         default:"no",
-    },
-    channel:
-    {
-        type:String,
-        default:"no"
     },
     todaywork:
     {
@@ -44,7 +58,6 @@ const UserSchema = new Schema({
         type:String,
         default:"no"
     },
-    teams:[{type:Object}],
     nofteams:
     {
         type:Number,
@@ -58,15 +71,20 @@ const UserSchema = new Schema({
     date:
     {
         type:String,
-        default:''
+        required:true,
     },
-    
     admin:
     {
         type:String,
         default:'no'
     },
+    
     perDayProfit:
+    {
+        type:Number,
+        default:0
+    },
+    planCount:
     {
         type:Number,
         default:0
@@ -81,27 +99,26 @@ const UserSchema = new Schema({
         type:Number,
         default:"0"
     },
-    planId:
-    {
-        type:String,
-        default:""
-    },
     Login:
     {
         type:String,
         default:"no"
     },
-    number:
+    review:
     {
         type:String,
         default:"no"
     },
+    
     commission:
     {
         type:Number,
         default:0
     },
-    YearPlan:[],
+    //arrays
+    teams:[{type:Object}],
+    planId:[],
+    YearPlan:[{type:Object}],
     missProfits:[]
     
 

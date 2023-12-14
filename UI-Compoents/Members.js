@@ -24,28 +24,29 @@ const Worksheet = ({list}) => {
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Investment</th>
-                <th>Join</th>
+                {/* <th>Email</th> */}
                 <th>Number</th>
+                <th>Join</th>
+                <th>Investment</th>
                 <th>Status</th>
               </tr>
             </thead>
 
+           
             
-            { list.map((item,index)=>{
+            {list.map((item,index)=>{
 
               return(
             <tbody >
               <tr>
                 <td>{index+1}</td>
                 <td>{item.firstname.slice(0,10)}</td>
-                <td>{item.email}</td>
-                {item.planId=='' && <td>Not invested</td>}
-                {item.planId!='' && <td>{item.perDayProfit*150}</td>}
-                <td>{item.createdAt.slice(0,10)}</td>
+                {/* <td>{item.email}</td> */}
                 <td>{item.number}</td>
+                {item.planId=='' && <td>Not invested</td>}
+                <td>{item.createdAt.slice(0,10)}</td>
                {item.planId=='' && <td>Inactive</td>}
+                {item.planId!='' && <td>{item.perDayProfit*150}</td>}
                {item.planId!='' && <td>Active</td>}
                 
               </tr>

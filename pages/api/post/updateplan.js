@@ -4,20 +4,16 @@ import Plan from '../../../models/Plan'
         const handler= async (req, res)=> {
             if(req.method=='POST'){
             
-                const {_id,name,email,cnic,address,phone,status,createdAt,id,level,investment,enddate}=req.body
+                const {_id,email,status,createdAt,id,investment,enddate,method}=req.body
                 try{ 
                let plan =  await Plan.findByIdAndUpdate({_id:id},{
                     _id:_id,
-                    name:name,
                     email:email,
-                    cnic:cnic,
-                    address:address,
-                    phone:phone,
                     status:status,
                     date:createdAt,
-                    level:level,
                     investment:investment,
-                    enddate:enddate
+                    enddate:enddate,
+                    method:method
                 })
                 await plan.save()
                 res.status(200).json({ success:true })

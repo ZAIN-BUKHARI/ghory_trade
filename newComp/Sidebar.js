@@ -23,7 +23,7 @@ import axios from 'axios';
 import Select from '../YouTube/Select/Select';
 
 const Sidebar = () => {
-  const {admin,setLoader,email,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
+  const {review,setLoader,email,usman,sethideSidebar,mobile,hideSidebar,setAuth,setPaymentRequestModal,token,settoken,subscription,router}=useContext(ThemeContext)
   const[select,setselect]=useState(false)
   const INVESTCHECKER = () =>{
      if(!token){
@@ -124,8 +124,10 @@ const Sidebar = () => {
     {router.asPath!='/register'  && !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
      
       <aside className="sidebar text-[10px]">
-      <div className="sidebar-logo">
-        <img src="remove_bg.png" alt="logo"/>
+      <div 
+      // className="sidebar-logo"
+      >
+        <img src="ghory_withback.jpeg" alt="logo"/>
       </div>
       <ul className="links">
         <h4 >Main Menu</h4>
@@ -156,12 +158,12 @@ const Sidebar = () => {
           </span>
           <Link href="/about">About us</Link>
         </li>
-        <li>
+        {/* <li>
           <span className="material-symbols-outlined">
             <FcSmartphoneTablet />
           </span>
           <Link href="/download">Download App</Link>
-        </li>
+        </li> */}
         <li>
           <span className="material-symbols-outlined">
             {/* <Report/> */}
@@ -187,21 +189,17 @@ const Sidebar = () => {
         <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
-           {subscription=='no' && <FcBarChart/> }
+           {token && subscription=='no' && <FcBarChart/> }
+           {token && subscription=='yes'&& review=='no' && <FcBarChart/> }
+           {/* // not login then show invest icon  */}
+           {!token && <FcBarChart/> }
           </span>
-          {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
-          {!token && subscription=='no' &&  <FcLock/>}
-          {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {!token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token &&  <FcLock/>}
+          {token  && subscription=='no' && <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {token  && subscription=='yes' && review=='no' && <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
-        {/* { usman &&  
-        <li>
-        <span className="material-symbols-outlined">
-          <img src='youtube.png' className='sidebar-icon-youtube' />
-        </span>
-         <Link className='SideBar-Investment-Span' href={'/plans'} >U-Plan</Link>
-        </li>
-          } */}
 
         <li>
           <span className="material-symbols-outlined">
@@ -285,8 +283,10 @@ else{
     {hideSidebar && router.asPath!='/history' && router.asPath!='/register' &&  !router.asPath.includes("admin") && router.asPath!='/dailywork' && router.asPath!='/test' && router.asPath!='/adminlogin'  && router.asPath!="/admin"  &&   router.asPath!='/login' && router.asPath!='/intro'  && (
       
       <aside className="sidebar text-[10px]">
-      <div className="sidebar-logo">
-        {/* <img src="remove_bg.png" alt="logo"/> */}
+      <div 
+      // className="sidebar-logo"
+      >
+        <img src="ghory_withback.jpeg" alt="logo"/>
         {/* <h1 className='font-serif sizeText' >Ghory trading</h1> */}
         {/* <h1 className="section-title-sidebar">Ghory <span>Trading</span></h1> */}
       </div>
@@ -326,33 +326,25 @@ else{
         </li>
         <li>
           <span className="material-symbols-outlined">
-            <FcSmartphoneTablet />
-          </span>
-          <Link href="/download">Application </Link>
-        </li>
-        <li>
-          <span className="material-symbols-outlined">
             {/* <Report/> */}
             <FcPositiveDynamic />
           </span>
           <Link href="/chart">Profit Chart</Link>
         </li>
-        {/* {usman && <li>
-          <span className="material-symbols-outlined">
-            <FcBusinessman />
-          </span>
-          <Link href="#" onClick={()=>{setselect(true)}}>Admin Panel</Link>
-        </li>} */}
         <hr/>
         <hr/>
         <h4>Account</h4>
         <li>
           <span className="material-symbols-outlined">
-           {subscription=='no' && <FcBarChart/> }
+           {token && subscription=='no' && <FcBarChart/> }
+           {token && subscription=='yes'&& review=='no' && <FcBarChart/> }
+           {/* // not login then show invest icon  */}
+           {!token && <FcBarChart/> }
           </span>
-          {!token && subscription=='no' &&  <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
-          {!token && subscription=='no' &&  <FcLock/>}
-          {token  && subscription=='no' &&  <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {!token && <span className='SideBar-Investment-Span' onClick={INVESTCHECKER} >Invest</span>}
+          {!token &&  <FcLock/>}
+          {token  && subscription=='no' && <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
+          {token  && subscription=='yes' && review=='no' && <Link className='SideBar-Investment-Span' href={'/investment'} >Invest</Link>}
 
         </li>
         {/* <li>

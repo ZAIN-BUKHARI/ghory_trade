@@ -8,15 +8,15 @@ const converter = () => {
   const [USD,setUSD]=useState(0)
   const [PKR,setPKR]=useState('PKR')
   const [investment,setinvestment]=useState('investment')
-  const [rate,seterate]=useState(0)
+  const [buy,setbuy]=useState(0)
   const {sethideSidebar,hideSidebar,mobile} = useContext(ThemeContext)
   useEffect(()=>{
     if(mobile && hideSidebar)
     {
       sethideSidebar(false)
     }
-    axios.get('/api/rate/get').then(res=>{
-      seterate(res.data.rate.Rate)
+    axios.get('/api/buy/get').then(res=>{
+      setbuy(res.data.buy)
     }).catch(e=>{
       alert('server down')
     })
@@ -24,7 +24,7 @@ const converter = () => {
   
   const changeAmountRate = () =>
   {
-      setPKR(USD*rate)
+      setPKR(USD*buy)
   }
   const [oneday,setoneday]=useState('')
   const [onemonth,setonemonth]=useState('')
@@ -56,7 +56,7 @@ const converter = () => {
     <div className='currency-body flex flex-col'>
           {/* currency calculator  */}
           <div className='currency-white-box'>
-            <h1 className='currency-from convert-heading'>1 DOLLAR = {rate} PKR</h1>
+            <h1 className='currency-from convert-heading'>1 DOLLAR = {buy} PKR</h1>
             <h1 className='currency-from convert-heading'>Convert Your Currency</h1>
             <h1 className='currency-from'>From</h1>
             <input onChange={(e)=>{setUSD(e.target.value)}} className='currency-input-usd' placeholder='USD'/>

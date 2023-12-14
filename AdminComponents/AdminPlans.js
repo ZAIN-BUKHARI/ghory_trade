@@ -26,16 +26,16 @@ const AdminPlans = () => {
             setstatus("rejected")
     },[])
     
-    const startWork = (id) =>{
-        api(id)
+    const startWork = (id,email,investment) =>{
+        api(id,email,investment)
     }
     const detail = (id) =>{
         var plan = "join"
         router.push(`/admindetail?id=${id}&plan=${plan}`)
     }
-    async function api(id){
+    async function api(id,email,investment){
         setLoader(true)
-        let res =  await axios.get(`/api/admin/status?_id=${id}&status=${status}`)
+        let res =  await axios.get(`/api/admin/status?_id=${id}&status=${status}&email=${email}&investment=${investment}`)
         if(res.data.success==true){
             setLoader(false)
             window.location.reload()
@@ -60,10 +60,9 @@ const AdminPlans = () => {
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Customer </th>
+                        <th>  </th>
                         <th> Email </th>
                         <th> Join</th>
-                        <th> Level</th>
                         <th> Amount </th>
                         <th> Status </th>
                         <th> Update </th>
@@ -79,7 +78,6 @@ const AdminPlans = () => {
                         <td> {item.name} </td>
                         <td>{item.email}</td>
                         <td> {item.createdAt.slice(0,10)} </td>
-                        <td> {item.level} </td>
                         
                         <td> <strong> ${item.investment} </strong></td>
                         <td className=''>
@@ -113,7 +111,7 @@ const AdminPlans = () => {
                      
                     </select>
                         </td>
-                        <td> <p onClick={(e)=>{startWork(item._id)}} className='Left'><FcRight/></p> </td>
+                        <td> <p onClick={(e)=>{startWork(item._id,item.email,item.investment)}} className='Left'><FcRight/></p> </td>
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      

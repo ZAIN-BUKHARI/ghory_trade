@@ -3,9 +3,9 @@ import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='GET'){
-            let version = await User.findOne({_id:req.query.Userid})
-            version = version.__v
-            res.status(200).send({version:version})
+        let user = await User.findOne({email:"su92-bssem-f22-030@superior.edu.pk"})
+        console.log(user.teams[0][direct].investment)
+        res.status(200).json({success:true})
     }
     
 }

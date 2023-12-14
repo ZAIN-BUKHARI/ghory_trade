@@ -12,7 +12,6 @@ const detail = () => {
         setLoader(true)
         let email = localStorage.getItem('token')
         axios.post('/api/TTL/allmembersdata',{email}).then(res=>{
-            console.log(res.data.members)
             if(res.status==200)
             {
                 setlist(res.data.members)

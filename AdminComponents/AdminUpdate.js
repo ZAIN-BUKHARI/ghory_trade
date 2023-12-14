@@ -9,11 +9,15 @@ const AdminUpdate = () => {
     // User modal variables  total 8
     const [_id,set_id]=useState('')
     const [email,setemail]=useState('')
-    const [firstname,setfirstname]=useState('')
+    const [cnic,setcnic]=useState('')
+    const [address,setaddress]=useState('')
+    const [number,setnumber]=useState('')
+    // const [firstname,setfirstname]=useState('')
+    // const [lastname,setlastname]=useState('')
     const [todaywork,settodaywork]=useState('')
     const [subscription,setsubscription]=useState('')
     const [createdAt,setcreatedAt]=useState('')
-    const [missProfits,setmissProfits]=useState([])
+    // const [missProfits,setmissProfits]=useState([])
     const [balance,setbalance]=useState(0)
     const [admin,setadmin]=useState('')
     const [pdprofit,setpdprofit]=useState(0)
@@ -23,12 +27,8 @@ const AdminUpdate = () => {
     // email from user varibles
     // createdAt from user varibles
     const [investment,setinvestment]=useState(0)
-    const [cnic,setcnic]=useState('')
-    const [address,setaddress]=useState('')
-    const [phone,setphone]=useState('')
     const [status,setstatus]=useState('')
     const [level,setlevel]=useState('')
-    const [name,setname]=useState('')
     const [enddate,setenddate]=useState('')
     //request varibles
     const [method,setmethod]=useState('')
@@ -44,10 +44,10 @@ const AdminUpdate = () => {
                 
                 axios.get(`/api/get/userone?_id=${id}`).then(res=>{
             if(res.data.success==true){
-                setmissProfits(res.data.user.missProfits)
-                setfirstname(res.data.user.firstname)
+                // setmissProfits(res.data.user.missProfits)
+                // setfirstname(res.data.user.firstname)
+                // setlastname(res.data.user.lastname)
                 setemail(res.data.user.email)
-                setmissProfits(res.data.user.missProfits)
                 setbalance(res.data.user.balance)
                 settodaywork(res.data.user.todaywork)
                 setsubscription(res.data.user.subscription)
@@ -56,6 +56,9 @@ const AdminUpdate = () => {
                 setadmin(res.data.user.admin)
                 setpdprofit(res.data.user.perDayProfit)
                 setviews(res.data.user.views)
+                setaddress(res.data.user.address)
+                setcnic(res.data.user.cnic)
+                setnumber(res.data.user.number)
             }else{
                 alert('server error')
             }
@@ -67,19 +70,15 @@ const AdminUpdate = () => {
         }else if(model=='plan'){
             try{
                 
-                axios.get(`/api/admin/plan?_id=${id}`).then(res=>{
+            axios.get(`/api/admin/plan?_id=${id}`).then(res=>{
             if(res.data.success==true){
             set_id(res.data.result._id)
-            setname(res.data.result.name)
             setemail(res.data.result.email)
-            setphone(res.data.result.phone)
             setinvestment(res.data.result.investment)
-            setlevel(res.data.result.level)
             setstatus(res.data.result.status)
             setcreatedAt(res.data.result.date)
-            setaddress(res.data.result.address)
-            setcnic(res.data.result.cnic)
             setenddate(res.data.result.enddate)
+            setmethod(res.data.result.method)
         }else{
             alert('server error')
             router.push('/admin')
@@ -120,7 +119,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {firstname,email,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views}
+            const data = {email,balance,todaywork,subscription,createdAt,id,model,admin,pdprofit,level,views,cnic,address,number}
             let res = await axios.post('/api/post/update',data)
         if(res.data.success==true){
             alert('Update successfully')
@@ -139,7 +138,7 @@ const AdminUpdate = () => {
         e.preventDefault()
         try{
 
-            const data = {_id,name,email,cnic,investment,phone,createdAt,id,model,address,status,level,enddate}
+            const data = {_id,email,investment,createdAt,id,status,enddate,method}
             let res = await axios.post('/api/post/updateplan',data)
     if(res.data.success==true){
         alert('Update successfully')
@@ -203,12 +202,12 @@ const AdminUpdate = () => {
 
         return (
             <>
-    <div className="PlanForm-Head">
+    <div className="PlanForm-Head update-screen-height">
     <div className="Invest-Container admin-planform-height">
       <div className="content">
         <form action="#" >
           <div className="user-details">
-            <div className="input-box">
+            {/* <div className="input-box">
               <span className="details">Miss Profit Dates</span>
         <select
         
@@ -220,8 +219,8 @@ const AdminUpdate = () => {
         )}
       </select>
         
-            </div>
-            <div className="input-box">
+            </div> */}
+            {/* <div className="input-box">
               <span className="details">First Name</span>
               <input
                 type="text"
@@ -230,9 +229,21 @@ const AdminUpdate = () => {
                 }}
                 value={firstname}
                 required
-                name='name'
+                name='firstname'
               />
             </div>
+            <div className="input-box">
+              <span className="details">Last Name</span>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setlastname(e.target.value);
+                }}
+                value={lastname}
+                required
+                name='name'
+              />
+            </div> */}
             <div className="input-box">
               <span className="details">Email</span>
               <input
@@ -246,20 +257,23 @@ const AdminUpdate = () => {
                 />
             </div>
             <div className="input-box">
-              <span className="details">missProfits</span>
+              <span className="details">Number</span>
               <input
-                type="text"
-                value={missProfits.length*pdprofit}
-                readOnly={true}
+                type="number"
+                value={number}
+                onChange={(e) => {
+                    setnumber(e.target.value);
+                }}
                 required
-                name='missProfit'
-              />
+                name='email'
+                />
             </div>
+            
             <div className="input-box">
               <span className="details">Balance</span>
               <input
                 value={balance}
-                type="Number"
+                type="number"
                 onChange={(e) => {
                   setbalance(e.target.value);
                 }}
@@ -348,6 +362,30 @@ const AdminUpdate = () => {
               </div>
             
             </div>
+            <div className="input-box">
+              <span className="details">Address</span>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e)=>{setaddress(e.target.value)}}
+                  name="address"
+                  />
+              </div>
+            
+            </div>
+            <div className="input-box">
+              <span className="details">Cnic</span>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={cnic}
+                  onChange={(e)=>{setcnic(e.target.value)}}
+                  name="cnic"
+                  />
+              </div>
+            
+            </div>
             
           </div>
           <div className="button">
@@ -379,18 +417,7 @@ const AdminUpdate = () => {
             name='id'
             />
         </div>
-        <div className="input-box">
-          <span className="details">First Name</span>
-          <input
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            value={name}
-            required
-            name='name'
-          />
-        </div>
+        
         <div className="input-box">
           <span className="details">Email</span>
           <input
@@ -403,18 +430,7 @@ const AdminUpdate = () => {
             name='email'
             />
         </div>
-        <div className="input-box">
-          <span className="details">phone</span>
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => {
-                setphone(e.target.value);
-            }}
-            required
-            name='phone'
-          />
-        </div>
+        
         <div className="input-box">
           <span className="details">Investment</span>
           <input
@@ -451,18 +467,8 @@ const AdminUpdate = () => {
           </div>
         
         </div>
-        <div className="input-box">
-          <span className="details">Level</span>
-          <div className="flex">
-            <input
-              type="text"
-              value={level}
-              onChange={(e)=>{setlevel(e.target.value)}}
-              name="todaywork"
-              />
-          </div>
+       
         
-        </div>
         <div className="input-box">
           <span className="details">EndDate</span>
           <div className="flex">
@@ -476,13 +482,13 @@ const AdminUpdate = () => {
         
         </div>
         <div className="input-box">
-          <span className="details">Address</span>
+          <span className="details">Method</span>
           <div className="flex">
             <input
               type="text"
-              value={address}
-              onChange={(e)=>{setaddress(e.target.value)}}
-              name="address"
+              value={method}
+              onChange={(e)=>{setmethod(e.target.value)}}
+              name="method"
               />
           </div>
         

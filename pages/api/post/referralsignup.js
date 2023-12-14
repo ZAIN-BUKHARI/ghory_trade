@@ -3,19 +3,26 @@ import ConnectMongoDB from '../../../middleware/mongoose'
 var CryptoJS = require("crypto-js");
 
 const handler= async (req, res)=> {
+  const join = new Date();
+const yyy = join.getFullYear();
+let mmm = join.getMonth() + 1; // Months start at 0!
+let ddd = join.getDate();
+if (ddd < 10) ddd = "0" + ddd;
+if (mmm < 10) mmm = "0" + mmm;
+const joinDate = ddd + "/" + mmm + "/" + yyy;
     if(req.method=='POST'){
         const {firstname,lastname,email,_id,number}=req.body
         let Leader = await User.findOne({_id:_id})
+        console.log(Leader)
         if(Leader.subscription=="yes")
         {
-
       try{
         if(Leader.invite==""){
-          let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+          let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
           let teams={
                  direct:{
                     level:1,
-                    id:B._id,
+                    id:B._id.toString(),
                     plan:"no",
                     investment:0,
                   },
@@ -28,8 +35,9 @@ const handler= async (req, res)=> {
                   }
                 
                 }
-              const incrementTeamsA=Leader.nofteams+1
-              await User.updateOne({email:Leader.email},{$push:{teams:teams},nofteams:incrementTeamsA})
+              await User.updateOne({email:Leader.email},
+                {$push:{teams:teams},
+                 inc:{nofteams:1}})
               await B.save()
             res.status(200).json({msg:'success'})
           }
@@ -37,12 +45,13 @@ const handler= async (req, res)=> {
       else if(Leader.invite!=""){
           if(Leader.nofteams!=0)
           {
-            let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+            let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
+            
               // direct 
               let directteam={
                 direct:{
                   level:1,
-                  id:C._id,
+                  id:C._id.toString(),
                   plan:"no",
                   investment:0,
                  },
@@ -56,20 +65,20 @@ const handler= async (req, res)=> {
                
                }
 
-                const nofteamsB=Leader.nofteams+1
-                await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
+                await User.updateOne({email:Leader.email},
+                  {$push:{teams:directteam},$inc:{nofteams:1}})
                 await C.save()
 
           
           }
           else{
 
-          let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id})
+          let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
               // direct 
               let directteam={
                 direct:{
                   level:1,
-                  id:C._id,
+                  id:C._id.toString(),
                   plan:"no",
                   investment:0,
                  },
@@ -92,8 +101,7 @@ const handler= async (req, res)=> {
                     {_id:Leader.invite},
                     {$set:{[`teams.${i}.indirect.id`]:C._id}}
                   )
-                  const nofteamsB=Leader.nofteams+1
-                  await User.updateOne({email:Leader.email},{$push:{teams:directteam},nofteams:nofteamsB})
+                  await User.updateOne({email:Leader.email},{$push:{teams:directteam},$inc:{nofteams:1}})
                   await C.save()
                   res.status(200).json({msg:'success'})
               }

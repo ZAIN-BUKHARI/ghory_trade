@@ -12,6 +12,7 @@ const AdminRequests = () => {
     
 //state variables
 const [status,setstatus]=useState("")
+const [conditionStatus,setConditionstatus]=useState("")
 //useEffect for checking path and set status default 
 useEffect(()=>{
     if(router.asPath=="/adminrecent")
@@ -30,15 +31,10 @@ const detail = (id) =>{
 }
 async function api(id){
     setLoader(true)
-    let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${status}`)
-    // console.log
-    // if(res.data.success==true){
+    let res = await axios.get(`/api/admin/requeststatus?_id=${id}&status=${conditionStatus}`)
         setLoader(false)
         window.location.reload()
-    // }else{
-    //     setLoader(false)
-    //     alert('Server error contact site developer for this issue')
-    // }
+    
 }
 
   return (
@@ -55,13 +51,16 @@ async function api(id){
                         <th> ID </th>
                         {/* <th> Customer </th> */}
                         <th> email </th>
-                        <th> Join</th>
+                        {status=='rejected' || status=='verified' &&  <th> Status </th>}
+                       {status=='rejected' && status!='verified' && <th> Address </th>}
+                        <th>Date</th>
                         {/* <th> Level</th> */}
                         <th> Amount </th>
                         <th> Method </th>
-                        <th> Update </th>
-                        <th> Status </th>
-                        <th className='work-start'> Details</th>
+                       { <th> Bank </th>}
+                       {status!='rejected' && status!='verified' && <th> Update </th>}
+                       {status!='rejected' && status!='verified' && <th> Status </th>}
+                       {status!='rejected' && status!='verified' && <th className='work-start'> Details</th>}
                     </tr>
                 </thead>
                 {requests.map((item)=>(
@@ -69,22 +68,23 @@ async function api(id){
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> {item._id.slice(0,5)} </td>
-                        {/* <td> {item.name} </td> */}
+                        <td> {item._id} </td>
                         <td>{item.email}</td>
+                       {status=='rejected' || status=='verified' && <td>{item.status}</td>}
+                       {status=='rejected' && status!='verified' && <td>{item.address}</td>}
                         <td>{item.createdAt.slice(0,10)}</td>
-                        {/* <td> 1 </td> */}
                         
                         <td> <strong> ${item.amount} </strong></td>
                         <td> <strong> {item.method} </strong></td>
-                        <td className=''>
-                        <select 
+                        <td>{item.bankname!=""?item.bankname:'no'}</td>
+                        {status!='rejected' && status!='verified' &&  <td className=''>
+                      <select 
                       name="select"
                       className="Admin-select"
-                      value={status}
-                    onChange={(e)=>{setstatus(e.target.value)}}
+                      value={conditionStatus}
+                    onChange={(e)=>{setConditionstatus(e.target.value)}}
                       >
-                    {status=="verified" && (
+                    {status=="verified" &&  (
                         <>
                          <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
                          <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
@@ -107,9 +107,9 @@ async function api(id){
                     )}
                      
                     </select>
-                        </td>
-                        <td > <p onClick={()=>{startWork(item._id)}} className='left'><FcRight /></p> </td>
-                        <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
+                        </td>}
+                      {status!='rejected'&& status!='verified' &&  <td > <p onClick={()=>{startWork(item._id)}} className='left'><FcRight /></p> </td>}
+                      {status!='rejected'&& status!='verified' && <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>}
                     </tr>
                      
                         

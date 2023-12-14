@@ -7,13 +7,13 @@ const Balls = () => {
     <ul className="wrapper-balls">
     <li className="icon facebook">
         <span className="tooltip">Facebook</span>
-        <a href="https://www.facebook.com/profile.php?id=61551249801661"><img className='balls-img' src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+        <a href="https://www.facebook.com/profile.php?id=61551249801661"><img  src="facebook.png" /></a>
         {/* <span><i className="fab fa-facebook-f"></i></span> */}
     </li>
     
     <li className="icon instagram">
         <span className="tooltip">Instagram</span>
-        <a href="https://www.instagram.com/usman777681/"><img className='balls-img'   src="https://img.icons8.com/fluency/48/instagram-new.png" /></a>
+        <a href="https://www.instagram.com/usman777681/"><img className=''   src="instagram.png" /></a>
         {/* <span><i cl className="fab fa-instagram"></i></span> */}
     </li>
     <li className="icon youtube">
@@ -23,13 +23,12 @@ const Balls = () => {
     </li>
     <li className="icon tiktok">
         <span className="tooltip">Tiktok</span>
-        <a href="https://www.tiktok.com/@ghory962"><img className='tiktok-logo-footer' src="https://img.icons8.com/ios-filled/50/tiktok--v1.png" /></a>
+        <a href="https://www.tiktok.com/@ghory962"><img  src="tiktok.png" /></a>
         {/* <span><i className="fab fa-tiktok"></i></span> */}
     </li>
     <li className="icon tiktok">
         <span className="tooltip">Telegram</span>
-        <a href="https://t.me/+8UTo0gEoydlhZTE0"><img className='tiktok-logo-footer' src="https://img.icons8.com/color/48/telegram-app--v1.png" /></a>
-        {/* <span><i className="fab fa-twitter"></i></span> */}
+        <a href="https://t.me/+8UTo0gEoydlhZTE0"><img  src="telegram.png" /></a>
     </li>
 </ul>
 

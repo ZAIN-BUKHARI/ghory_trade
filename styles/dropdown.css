@@ -135,6 +135,11 @@
   }
   .p-dropdown{
     cursor: pointer;
+    width: 100px;
+  }
+  .p-dropdown:hover{
+    font-weight: bold;
+    
   }
   
   .popup-window ul button {

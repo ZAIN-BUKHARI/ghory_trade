@@ -57,8 +57,10 @@ async function getUser()
     if(res.data.success==true)
     {
       setviews(res.data.orders[0].views)
+      setplanCount(res.data.orders[0].planCount)
       setlevel(res.data.orders[0].level)
       setUname(res.data.orders[0].firstname)
+      setreview(res.data.orders[0].review)
       setperDayProfit(res.data.orders[0].perDayProfit)
       setuser(res.data.orders[0]) 
       setemail(res.data.orders[0].email) 
@@ -70,11 +72,13 @@ async function getUser()
       setteamlength(res.data.orders[0].teams.length)
       setrank(res.data.orders[0].Rank)
       setcommission(res.data.orders[0].commission)
-      // setmissProfit(res.data.orders[0].missProfits.length)
-      // setdates(res.data.orders[0].missProfits)
       setisLogin(res.data.orders[0].Login)
+      setyourinvestment(res.data.orders[0].totalInvestment)
+      
+
       if(res.data.orders[0].admin=='yes'){setusman(true)}
       _id=res.data.orders[0]._id
+
       if(res.data.orders[0].admin=='yes')
       {
         setAdmin(true)
@@ -86,10 +90,11 @@ async function getUser()
       const Userid = res.data.orders[0]._id
       const status='yes'
       
+      
       data={email}
       const response = await axios.post('/api/TTL/subscription',data)//After one year subscription cancelled automatically
-      if(response.data.success=='subscription-end')
-     {
+      if(response.data.success=='subscription-end' && res.data.orders[0].Login=="no" )
+      {
         alert('Your subscription end ')
         window.location.reload();
      }else
@@ -101,24 +106,14 @@ async function getUser()
         }
      }
 
-     if(res.data.orders[0].subscription=='yes')
-     {
-      axios.post('/api/get/yourinvestment',data).then(res=>{
-        if(res.data.success==true)
-        {
-          setyourinvestment(res.data.investment)
-        }
-      })
-     }
+     
   
       setLoader(false)
       
     }
     
       setLoader(false)
-      axios.post('/api/get/allteaminvestment',data).then(res=>{
-              setteaminvestment(res.data.investment)
-            })
+      
       
         
 
@@ -381,6 +376,7 @@ const schedulingTime = '0 0 0 * * *'
     const [email,setemail]=useState("")
     const [Uname,setUname]=useState("")
     const [balance,setbalance]=useState(0)
+    const [planCount,setplanCount]=useState(0)
     const [subscription,setsubscription]=useState("no")
     const [workStatus,setworkStatus]=useState("no")
     const [perDayProfit,setperDayProfit]=useState(0)
@@ -390,10 +386,10 @@ const schedulingTime = '0 0 0 * * *'
     const [usman,setusman]=useState(false)
     const [teamlength,setteamlength]=useState(0)
     const [rank,setrank]=useState('no')
-    const [teaminvestment,setteaminvestment]=useState(0)
     const [isLogin,setisLogin]=useState('')
     const [yourinvestment,setyourinvestment]=useState(0)
     const [commission,setcommission]=useState(0)
+    const [review,setreview]=useState("")
     // const [missProfit,setmissProfit]=useState(0)
     // const [dates,setdates]=useState([])
     //Login confirmation
@@ -435,7 +431,7 @@ const schedulingTime = '0 0 0 * * *'
 
   return(
 <>
-<ThemeContext.Provider value={{commission,yourinvestment,isLogin,teaminvestment,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{planCount,review,commission,yourinvestment,isLogin,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Sidebar/>
