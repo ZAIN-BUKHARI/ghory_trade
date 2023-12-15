@@ -9,7 +9,7 @@ import axios from 'axios';
 const AdminAllLinks = ({Update}) => {
     const {allLinks}=useContext(ThemeContext)
     const Delete = (date) =>{
-        axios.get(`/api/del/link?date=${date}`).then(res=>{
+        axios.get(`/api/delete/link?date=${date}`).then(res=>{
             if(res.data.success==true)
             {
                 alert('Link document del')
