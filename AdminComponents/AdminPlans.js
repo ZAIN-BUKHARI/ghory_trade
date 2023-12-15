@@ -62,10 +62,11 @@ const AdminPlans = () => {
                         <th> ID </th>
                         <th>  </th>
                         <th> Email </th>
+                        {/* {status=="rejected" || status=="verified" && <th> Status </th>} */}
                         <th> Join</th>
                         <th> Amount </th>
-                        <th> Status </th>
-                        <th> Update </th>
+                    {status!="rejected" && status!="verified" &&   <th> Status </th>}
+                    {status!="rejected" && status!="verified" &&   <th> Update </th>}
                         <th className='work-start'> Details</th>
                     </tr>
                 </thead>
@@ -74,26 +75,27 @@ const AdminPlans = () => {
                 <tbody key={item._id}>
                 
                     <tr>
-                        <td> {item._id.slice(0,5)} </td>
+                       <td> {item._id.slice(0,5)} </td>
                         <td> {item.name} </td>
                         <td>{item.email}</td>
+                        {/* {status=="rejected" || status=="verified" && <td>{item.status}</td>} */}
                         <td> {item.createdAt.slice(0,10)} </td>
                         
                         <td> <strong> ${item.investment} </strong></td>
-                        <td className=''>
-                        <select 
+                        {status!="rejected" && status!="verified" &&  <td className=''>
+                           <select 
                       name="select"
                       className="Admin-select"
                       value={status}
                     onChange={(e)=>{setstatus(e.target.value)}}
                       >
-                    {status=="verified" && (
+                    {/* {status=="verified" && (
                         <>
                          <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
                          <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
                          <option className='admin-sheet-review   option-three' value={"rejected"}>rejected</option>
                         </>
-                    )}
+                    )} */}
                     {status=="pending" && (
                         <>
                          <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
@@ -101,17 +103,17 @@ const AdminPlans = () => {
                          <option className='admin-sheet-review   option-three' value={"rejected"}>rejected</option>
                         </>
                     )}
-                    {status=="rejected" && (
+                    {/* {status="rejected" && (
                         <>
                          <option className='admin-sheet-review   option-three' value={"rejected"}>rejected</option>
                          <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
                          <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
                         </>
-                    )}
+                    )} */}
                      
                     </select>
-                        </td>
-                        <td> <p onClick={(e)=>{startWork(item._id,item.email,item.investment)}} className='Left'><FcRight/></p> </td>
+                        </td>}
+                        {status!="rejected" && status!="verified" &&  <td> <p onClick={(e)=>{startWork(item._id,item.email,item.investment)}} className='Left'><FcRight/></p> </td>}
                         <td> <p onClick={(e)=>{detail(item._id)}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     </tr>
                      

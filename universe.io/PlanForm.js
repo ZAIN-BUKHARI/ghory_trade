@@ -3,10 +3,11 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { ThemeContext } from "../Context/ThemeContext";
+import Link from 'next/link';
 import Script from "next/script";
 const PlanForm = () => {
   //useContext
-  const {setLoader, token, mobile,sethideSidebar,getUser} = useContext(ThemeContext);
+  const {setLoader,balance, token, mobile,sethideSidebar,getUser,Userid} = useContext(ThemeContext);
   //useRouter
   const router = useRouter();
   // DROP DOWN CURRENCY & PAYMENT METHODS VARIABLE
@@ -18,9 +19,8 @@ const PlanForm = () => {
   // const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
-  const [img1, setimg1] = useState("");
-  const [img2, setimg2] = useState("");
-  const [index, setindex] = useState(1);
+  const [img1, setimg1] = useState("1");
+  const [img2, setimg2] = useState("1");
 
 
   // investment formula
@@ -74,6 +74,23 @@ const PlanForm = () => {
   };
   const submit = (e) => {
     e.preventDefault();
+    if(balance<investment && wallet=="WALLET")
+    {
+      toast.error(
+        "Insufficent balance ",
+        {
+          position: "top-right",
+          autoClose: 30000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    }else{
+
     setshowBTN(false)
     alert('Checking Details 💰')
     setLoader(true)
@@ -81,7 +98,6 @@ const PlanForm = () => {
     if(!formula){
       try{
         if (investment >= 100) {
-          console.log(index)
           let data = {
               email,
               address,
@@ -178,7 +194,11 @@ const PlanForm = () => {
     );
   }
   setLoader(false)
+}
+
+
   };
+
   const cloudinaryonChange=(e)=>{
     try{
       setLoader(true)
@@ -231,6 +251,8 @@ const PlanForm = () => {
      anchor.click();
   }
 
+ 
+
  if(!mobile)
  {
 
@@ -261,6 +283,7 @@ const PlanForm = () => {
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"NAYAPAY"}>NAYAPAY</option>
                   <option value={"BANK"}>Al-BARAKA</option>
+                  <option value={"WALLET"}>WALLET</option>
                 </select>
 
               </span>
@@ -276,6 +299,7 @@ const PlanForm = () => {
               {wallet == "EASYPAISA" && <span  className="planfirm-space-span">0322495827</span>}{" "}
               {wallet == "NAYAPAY" && <span  className="planfirm-space-span">0322495827</span>}{" "}
               {wallet == "BANK" && <span className="planfirm-space-span" >0102626361016</span>}
+              {wallet == "WALLET" && <span className="planfirm-space-span" >{Userid}</span>}
             </span>
           </div>
           <div className="content">
@@ -352,34 +376,7 @@ const PlanForm = () => {
                     required
                   />
                 </div>
-                <div className="input-box">
-                  <span className="details">investment</span>
-                  <div className="flex">
-                    <select
-                      value={currency}
-                      name="select"
-                      className="PlanForm-select-usd"
-                    >
-                      <option value={"USD"}>USD</option>
-                    </select>
-                  
-                    <input
-                      type="number"
-                      value={investment}
-                      onChange={ChangeEvent}
-                      name="investment"
-                      placeholder="Enter your Amount 💲"
-                    />
-                  </div>
-                  { investment>=0 && investment < 100 && investment!="" &&
-                    (
-                      <span className="PlanForm-investment-error">
-                        Minimum investment 100$
-                      </span>
-                    )}
-                  
-                  
-                </div>
+               
 
                {img1!=""  && <img src={img1} className="img-planfirm-upload" />}
                 {img1=="" && <label className="custum-file-upload" for="file">
@@ -442,8 +439,38 @@ const PlanForm = () => {
                   {/* </div> */}
                   <input onChange={cloudinaryonChange} name="cloud2" type="file" id="file" />
                 </label>}
+                <div className="input-box">
+                  <span className="details">investment</span>
+                  <div className="flex">
+                    
+                  
+                    <input
+                      type="number"
+                      value={investment}
+                      onChange={ChangeEvent}
+                      name="investment"
+                      placeholder="Enter your Amount 💲"
+                    />
+                    <select
+                      value={currency}
+                      name="select"
+                      className="PlanForm-select-usd"
+                    >
+                      <option value={"USD"}>USD</option>
+                    </select>
+                  </div>
+                  { investment>=0 && investment < 100 && investment!="" &&
+                    (
+                      <span className="PlanForm-investment-error">
+                        Minimum investment 100$
+                      </span>
+                    )}
+                  
+                  
+                </div>
               </div>
-              <div className="button">
+              
+              <div className="button-webview">
               <div className='space'>
                   <div class="g-ytsubscribe " data-channelid="UCLifmeEanPv_W6swcFZM_aw" data-layout="default" data-count="default"></div>
                  </div>
@@ -451,7 +478,11 @@ const PlanForm = () => {
               </div>
               <script>
     <Script src="https://apis.google.com/js/platform.js"></Script>
-    </script><a className="youtube-channel-link">https://www.youtube.com/@UGTardnig</a>
+    </script>
+    <div className="flex youtube-logo-planform-title-size ">
+    <Link href={'https://www.youtube.com/@UGTardnig'}><img className="youtube-logo-planform-size" src='youtube.png'/></Link>
+    <a className="youtube-channel-link ">UG TRADING YOUTUBE CHANNEL CLICK ME</a>
+    </div>
    
 
     <style></style>
@@ -467,7 +498,13 @@ const PlanForm = () => {
         -webkit-appearance: none;
         appearance: none;
       }
-      
+      .youtube-logo-planform-size{
+        height:15px;
+        width:15px;
+      }
+      .youtube-logo-planform-title-size{
+        padding-top:50px;
+      }
       .flexing-span-plan-form{
         display:flex !important;
         
@@ -521,6 +558,7 @@ const PlanForm = () => {
                   <option value={"OKX"}>OKX TRC20</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"BANK"}>AL-BARAKA</option>
+                  <option value={"WALLET"}>WALLET</option>
                 </select>
               </span>
               
@@ -535,6 +573,7 @@ const PlanForm = () => {
                 )}{" "}
               {wallet == "EASYPAISA" && <span  >03224959827</span>}{" "}
               {wallet == "BANK" && <span  >0102626361016</span>}
+              {wallet == "WALLET" && <span  >{Userid}</span>}
             </span>
           </div>
           <div className="content">

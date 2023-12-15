@@ -22,6 +22,19 @@ const handler= async (req, res)=> {
         })
         if(user.planId.length==0)
         {    
+            if(wallet=="WALLET")
+            {
+                await User.updateOne(
+                    {email:req.body.email},
+                    {
+                        subscription:"process",
+                        number:req.body.number,
+                        address:req.body.address,
+                        cnic:req.body.cnic,
+                        $inc:{balance:-investment}
+                    }
+                    )
+            }else{
                 await User.updateOne(
                     {email:req.body.email},
                     {
@@ -31,18 +44,31 @@ const handler= async (req, res)=> {
                         cnic:req.body.cnic,
                     }
                     )
+            }
 
             
         }
         else
         {
-            await User.updateOne(
-                {email:req.body.email},
-                {
-                    review:"review",
-                }
-                )
-                
+            if(wallet=="WALLET")
+            {
+                await User.updateOne(
+                    {email:req.body.email},
+                    {
+                        review:"review",
+                        $inc:{balance:-investment}
+                    }
+                    )
+            }
+            else{
+                await User.updateOne(
+                    {email:req.body.email},
+                    {
+                        review:"review",
+
+                    }
+                    )
+            }    
         }
         await p.save()
         res.status(200).json({success:true })
