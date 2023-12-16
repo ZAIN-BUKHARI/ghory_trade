@@ -54,13 +54,13 @@ const AdminDetails = () => {
       <>
       <div className="table-box">
       <AdminTable title={"ID"} desc={doc._id} />
-      <AdminTable title={"NAME"} desc={doc.name} />
+      {/* <AdminTable title={"NAME"} desc={doc.name} /> */}
       <AdminTable title={"EMAIL"} desc={doc.email} />
-      <AdminTable title={"PHONE"} desc={doc.phone} />
-      <AdminTable title={"CNIC"} desc={doc.cnic} />
-      <AdminTable title={"ADDRESS"} desc={doc.address} />
+      {/* <AdminTable title={"PHONE"} desc={doc.phone} /> */}
+      {/* <AdminTable title={"CNIC"} desc={doc.cnic} /> */}
+      {/* <AdminTable title={"ADDRESS"} desc={doc.address} /> */}
       <AdminTable title={"BALANCE"} desc={`$${doc.investment}`} />
-      <AdminTable title={"LEVEL"} desc={doc.level} />
+      {/* <AdminTable title={"LEVEL"} desc={doc.level} /> */}
       <a target="_blank" href={doc.img1}><AdminTable title={"Payment SS"} desc={doc.img1} /></a>
       <a target="_blank" href={doc.img2}><AdminTable title={"Channel SS"} desc={doc.img2} /></a>
       </div>
@@ -83,10 +83,13 @@ const AdminDetails = () => {
       <AdminTable title={"EMAIL"} desc={doc.email} />
       <AdminTable title={"BALANCE"} desc={`$${doc.balance}`} />
       <AdminTable title={"SUBSCRIPTION"} desc={doc.subscription} />
-      <AdminTable title={"CHANNEL"} desc={doc.channel} />
+      <AdminTable title={"LEVEL"} desc={doc.level} />
+      <AdminTable title={"PHONE"} desc={doc.number} />
+      <AdminTable title={"CNIC"} desc={doc.cnic} />
+      <AdminTable title={"ADDRESS"} desc={doc.address} />
       <AdminTable title={"TODAY-WORK"} desc={doc.todaywork} />
       <AdminTable title={"TEAMS"} desc={doc.nofteams} />
-      <AdminTable title={"JOIN-DATE"} desc={doc.createdAt} />
+      <AdminTable title={"JOIN-DATE"} desc={doc.date} />
       </div>
     </>
   )

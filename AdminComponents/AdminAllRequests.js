@@ -63,7 +63,7 @@ const AdminAllRequests = () => {
                     <td> {item.method} </td>
                     <td><strong> ${item.amount} </strong> </td>
                     <td> {item.address} </td>
-                    <td> {item.createdAt.slice(0,10)} </td>
+                    <td> {item.date} </td>
                     <td> {item.status} </td>
                     
                     
@@ -112,7 +112,7 @@ const AdminAllRequests = () => {
                        <td> {item.method} </td>
                        <td><strong> ${item.amount} </strong> </td>
                        <td> {item.address} </td>
-                       <td> {item.createdAt.slice(0,10)} </td>
+                       <td> {item.date} </td>
                        <td> {item.status} </td>
                        
                        

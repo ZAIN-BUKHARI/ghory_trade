@@ -19,8 +19,8 @@ const PlanForm = () => {
   // const [lastname, setlastname] = useState("");
   const [cnic, setcnic] = useState("");
   const [address, setaddress] = useState("");
-  const [img1, setimg1] = useState("1");
-  const [img2, setimg2] = useState("1");
+  const [img1, setimg1] = useState("");
+  const [img2, setimg2] = useState("");
 
 
   // investment formula

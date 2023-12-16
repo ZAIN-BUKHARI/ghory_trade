@@ -65,7 +65,7 @@ const AdminPlans = () => {
                     <tr>
                         <td className='nameAndemailSize'> {item.firstname} </td>
                         <td className='nameAndemailSize'>{item.email}</td>
-                        <td > {item.createdAt.slice(0,10).slice(2)} </td>
+                        <td > {item.date} </td>
                         
                         <td> <spna className="dollarColor">$</spna><strong >  {item.balance.toString().slice(0,7)} </strong></td>
                         {/* <td className=''> */}

@@ -61,7 +61,7 @@ const AdminPlans = () => {
                     <td> {item._id.slice(0,5)} </td>
                     <td> {item.name} </td>
                     <td>{item.email}</td>
-                    <td> {item.createdAt.slice(0,10)} </td>
+                    <td> {item.date} </td>
                     <td> {item.level} </td>
                     
                     <td> <strong> ${item.investment} </strong></td>
@@ -112,7 +112,7 @@ const AdminPlans = () => {
                 <tr>
                     {/* <td> {item.name.slice(0,15)} </td> */}
                     <td>{item.email}</td>
-                    <td> {item.createdAt.slice(0,10).slice(2)} </td>
+                    <td> {item.date} </td>
                     {/* <td> {item.level} </td> */}
                     
                     <td> <strong> ${item.investment} </strong></td>
