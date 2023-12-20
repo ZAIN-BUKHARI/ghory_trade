@@ -30,7 +30,7 @@ const handler= async (req, res)=> {
                         commission:FivePercent
                       }})
                 await User.updateOne({_id:Userid},{
-                   $inc:{balance:(user.perDayProfit-FivePercent)},
+                   $inc:{balance:user.perDayProfit},
                     todaywork:'yes',
                     views:0
                 })
@@ -56,7 +56,7 @@ const handler= async (req, res)=> {
                 let FivePercent = ((user.perDayProfit*5)/100);// 0.0333333333333
                 let UserCurrentpdp = user.perDayProfit - FivePercent //0.633333333333
                 let ThreePercent = ((UserCurrentpdp*3)/100); //0.019
-                const finalUserPerdayProfit = UserCurrentpdp - ThreePercent //0.614333333333
+                // const finalUserPerdayProfit = UserCurrentpdp - ThreePercent //0.614333333333
 
                 await User.updateOne({_id:Leader._id},
                     {
@@ -78,7 +78,7 @@ const handler= async (req, res)=> {
                     {
                      $inc:
                         { 
-                        balance:finalUserPerdayProfit,
+                        balance:user.perDayProfit,
                     },
                     todaywork:'yes',
                     views:0
@@ -88,7 +88,7 @@ const handler= async (req, res)=> {
             {
                 //commsiion should be add to direct check bottom to top  user -> direct -> indirect and indirect must be leader of the team
                 let FivePercent = ((user.perDayProfit*5)/100);
-                let UserCurrentpdp = user.perDayProfit - FivePercent 
+
                 await User.updateOne({_id:Leader._id},{
                    $inc:{
                        balance:FivePercent,
@@ -97,14 +97,13 @@ const handler= async (req, res)=> {
                 })
 
                 await User.updateOne({_id:Userid},{
-                    $inc:{balance:UserCurrentpdp},
+                    $inc:{balance:user.perDayProfit},
                     todaywork:'yes',views:0
                 })
             }
             else if(SubLeader.Rank=="no" && SubLeader.subscription=='yes' && Leader.Rank!="no" || Leader.subscription=='no' ) //tested
             {
                 let ThreePercent = ((user.perDayProfit*3)/100);
-                const finalUserPerdayProfit = user.perDayProfit - ThreePercent
                 
                 await User.updateOne({_id:SubLeader._id},
                     {
@@ -115,7 +114,7 @@ const handler= async (req, res)=> {
                     }) 
 
                 await User.updateOne({_id:Userid},{
-                    $inc:{ balance:finalUserPerdayProfit},
+                    $inc:{ balance:user.perDayProfit},
                     todaywork:'yes',views:0
                 })
             }
