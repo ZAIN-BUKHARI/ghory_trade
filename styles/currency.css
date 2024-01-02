@@ -33,7 +33,7 @@
 .currency-button{
   width: 300px;
   height: 50px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
   border-radius: 20px;
   /* margin-left:20px; */
   position: relative;
@@ -44,7 +44,7 @@
 .currency-btn-input{
   font-size: 20px;
   font-weight: 500;
-  color: white;
+  color: #121212;
   align-items: center;
   position: absolute;
   top: 20%;
@@ -55,7 +55,7 @@
 .currency-btn-input-mob{
   font-size: 20px;
   font-weight: 500;
-  color: white;
+  color: #121212;
   align-items: center;
   position: absolute;
   padding-left: 20px;
@@ -69,7 +69,7 @@
   .currency-button{
     width: 200px;
     height: 50px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
     border-radius: 20px;
     /* margin-left:75px; */
     /* padding-left: 20px !important; */
@@ -81,7 +81,7 @@
 
   .select-color
   {
-    color: #00a1c9;
+    /* color: #00a1c9; */
   }
 
 .currency-detail 
@@ -93,7 +93,7 @@
 
 .currency-input
 {
-  border: 0.5px solid grey;
+  border: 0.5px solid #ffdb1a;
   border-radius: 10px;
   padding: 10px;
   font-weight: 600;
@@ -104,57 +104,79 @@
   font-size: 15px;
   font-family: serif;
   font-weight: 600;
+  color: #ffdb1a;
 }
 .currency-To{
   font-size: 15px;
   font-family: serif;
   font-weight: 600;
+  color: #ffdb1a;
+
+}
+.currency-input-usd::placeholder{
+  color: #ffdb1a;
+}
+.currency-input-usd-mobile::placeholder{
+  color: #ffdb1a;
 }
 .currency-input-usd{
    width: 300px;
-   padding: 10px;
+   padding: 15px;
    border-radius: 10px;
    outline: none;
-   border: 1px solid grey;
+   border: 1px solid #ffdb1a;
    text-align: center;
-   font-size: 10px;
-   color: black;
+  color: #ffdb1a;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: bold;
+
 }
 .currency-input-pkr{
  width: 300px;
- padding: 10px;
+ font-size: 15px;
+  font-weight: bold;
+ padding: 15px;
  border-radius: 10px;
  outline: none;
- border: 1px solid grey;
+ border: 1px solid #ffdb1a;
  text-align: center;
- font-size: 10px;
- color: black;
+ color: #ffdb1a;
+background-color: transparent;
 }
 .currency-input-usd-mobile{
    width: 200px;
    padding: 10px;
    border-radius: 10px;
+   font-weight: bold;
    outline: none;
-   border: 1px solid grey;
+   border: 1px solid #ffdb1a;
+   background-color: transparent;
    text-align: center;
    font-size: 10px;
-   color: black;
+   color: #ffdb1a;
 }
 .currency-input-pkr-mobile{
  width: 200px;
+ font-weight: bold;
  padding: 10px;
+ background-color: transparent;
  border-radius: 10px;
  outline: none;
- border: 1px solid grey;
+ border: 1px solid #ffdb1a;
  text-align: center;
  font-size: 10px;
- color: black;
+ color: #ffdb1a;
 }
 .currency-body
     {
-        height: 100vh;
+        padding-top: 100px;
+        padding-bottom: 20px;
+        height: 100%;
+        font-weight: bold;
         width: 100%;
-        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        background-color: #121212;
+        /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -163,7 +185,8 @@
     .currency-white-box{
         width: 400px;
         height: 300px;
-        background-color: #eee;
+        background-color: #121212;
+        border: 1px solid #ffdb1a;
         border-radius: 30px;
         display:flex;
         flex-direction:column;
@@ -173,7 +196,8 @@
     .currency-white-box-mobile{
         width: 250px;
         height: 300px;
-        background-color: #eee;
+        border: 1px solid #ffdb1a;
+        background-color: #121212;
         border-radius: 30px;
         display:flex;
         flex-direction:column;

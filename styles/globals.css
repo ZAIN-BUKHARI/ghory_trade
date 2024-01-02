@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* @import "tailwindcss/base";
+@import  "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
@@ -14,12 +18,42 @@
 .option-one{ color: green; font-weight: bold;}
 .option-two{ color: brown; font-weight: bold;}
 .option-three{color: red; font-weight: bold;}
-body {
-    
-    overflow-x: hidden;
 
+.linear-color{
+   background-color: #121212 !important;
+}
+.gold-color{
+	color: #ffdb1a !important;
+}
+.gold-b-color{
+	border: #ffdb1a !important;
 }
 
+
+body {
+    background-color: #121212;
+    overflow-x: hidden;
+	/* overflow-x: scroll; */
+	/* overflow-y: hidden; */
+
+}
+.scroll-x{
+	overflow-x: scroll;
+}
+.inputfield_icon{
+	margin-left: 10px;
+	cursor: pointer;
+	line-height: 55px; 
+	align-self: center;
+	color:#ffdb1a;
+	transition: 0.5s;
+	font-size: 2rem;
+}
+
+
+.faIcons{
+	
+}
 
 
 
@@ -794,7 +828,7 @@ p {
 	font-size: 2rem; */
 }
 .youtube-channel-link{
-	color: blue;
+	color: #ffdb1a;
 	cursor: pointer;
 }
 #about .col-left .about-img {
@@ -1093,7 +1127,7 @@ p {
 }
 .chart-table-text
 {
-	font-size: 15px;
+	font-size: 20px;
 	font-family: sans-serif;
 	font-weight: bold;
 }
@@ -1114,16 +1148,30 @@ p {
 	font-size: 30px !important;
 }
 .reset-calculator{
-	margin-left: 5px;
+	margin-left: 10px;
 	font-size: 20px;
 	cursor: pointer;
+	color:#ffdb1a;
+}
+/* @keyframes blink{
+	50%{
+		opacity: 70%;
+	}
+	80%{
+		opacity: 100%;
+	}
+} */
+.goldShadow{
+    box-shadow: 3px 3px 25px #ffdb1a !important;
+	/* animation: blink 5s linear infinite; */
 }
 
 .profit-calculator-h1-tag{
 	font-size: 15px;
 	font-family: serif;
 	padding-left: 20px;
-	background-color: #eee;
+	background-color: #121212;
+	color:#ffdb1a;
 }
 .bold-selrate{
 	font-weight: bold;

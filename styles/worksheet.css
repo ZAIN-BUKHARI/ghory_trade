@@ -30,6 +30,16 @@
   text-transform: capitalize;
   
 }
+
+.histor-body-div-webview-toggle-1{
+  background-color: #121212;
+  height: 100vh;
+}
+.histor-body-div-webview-toggle-2{
+  background-color: #121212;
+  height: 100%;
+}
+
 .attendance-list{
   width: 90%;
   margin-left: 110px;
@@ -71,7 +81,7 @@
   color: #1da1f2;
 }
 .attendance .table tbody tr:last-of-type{
-  border-bottom: 2px solid #1da1f2;
+  border-bottom: 2px solid #ffdb1a;
 }
 .attendance .table button{
   padding: 6px 20px;

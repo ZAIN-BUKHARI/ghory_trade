@@ -37,7 +37,7 @@ const Dropdown = ({teamlength,title,type,subtitle}) => {
           theme: "light",
         });
       }else
-        router.push('/plandetail')
+        router.push('/plan-Details')
   }
   
   return (

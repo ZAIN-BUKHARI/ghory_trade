@@ -11,7 +11,10 @@
   align-items: center;
   min-height: 110vh;
   /* background: #1da1f2; */
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+  background-color: #121212;
+  padding-top: 140px;
+  padding-bottom: 20px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -19,7 +22,8 @@
   width: 100%;
   max-width: 550px;
   text-align: center;
-  background: #fff;
+  background: #121212;
+  border: 2px solid #ffdb1a;
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
@@ -29,6 +33,7 @@
   width: 120px;
   height: 120px;
   background: black;
+  border:2px solid #ffdb1a;
   border-radius: 50%;
   position: relative;
   top: -70px;
@@ -38,7 +43,6 @@
 
 .stats-wrapper h3{
   margin-top: -50px;
-  color: blue;
   font-weight: bold;
 }
 .stats-wrapper p{
@@ -59,7 +63,7 @@
 }
 .stats-media-info span{
   font-weight: 600;
-  color: rgb(43, 39, 39);
+  color: #ffdb1a;
   display: block;
   text-align: center;
 }
@@ -72,7 +76,7 @@
   margin: 25px;
   padding: 12px;
   border-radius: 50%;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 15px #ffdb1a;
 }
 
 i{
@@ -82,25 +86,25 @@ i{
 }
 
 .stats-icons a:first-child{
-  background: blue;
+  background: #ffdb1a;
 }
 .stats-icons a:nth-child(2){
-  background: rgb(158, 21, 117);
+  background: #ffdb1a;
 }
 .stats-icons a:nth-child(3){
-  background: red;
+  background: #ffdb1a;
 }
 .stats-icons a:nth-child(4){
-  background: black;
+  background: #ffdb1a;
 }
 .stats-icons a:nth-child(5){
-  background: blueviolet;
+  background: #ffdb1a;
 }
 
 .stats-icons a:hover{
-  color: black;
+  color: #ffdb1a;
   background: transparent;
-  border: 1px solid black;
+  border: 1px solid #ffdb1a;
 }
 
 .stats-btn{
@@ -111,32 +115,19 @@ i{
   margin: 20px;
   width: 180px;
   height: 50px;
-  border: none;
+  /* border: 2px solid #ffdb1a; */
   padding: 10px;
+  /* background-color: transparent !important; */
+  /* color: #ffdb1a; */
   outline: none;
-  color: white;
   cursor: pointer;
   font-weight: 600;
   border-radius: 30px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 }
 
-.stats-btn button:first-child{
-  background: #1da1f2;
-}
-.stats-btn button:last-child{
-  background: blueviolet;
-}
-.stats-btn button:first-child:hover{
-  background: transparent;
-  border: 1px solid #1da1f2;
-  color: #1da1f2;
-}
-.stats-btn button:last-child:hover{
-  background: transparent;
-  border: 1px solid blueviolet;
-  color: blueviolet;
-}
+
+
 .stats-lower-title-mob{
   font-size: 12px;
 }
@@ -161,6 +152,7 @@ i{
 }
 .dropdown-list{
   padding-right: 5px;
+  ;
 
 }
 .dates-list{

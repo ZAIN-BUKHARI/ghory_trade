@@ -11,14 +11,13 @@ if (ddd < 10) ddd = "0" + ddd;
 if (mmm < 10) mmm = "0" + mmm;
 const joinDate = ddd + "/" + mmm + "/" + yyy;
     if(req.method=='POST'){
-        const {firstname,lastname,email,_id,number}=req.body
+        const {firstname,lastname,email,address,cnic,_id,number}=req.body
         let Leader = await User.findOne({_id:_id})
-        console.log(Leader)
         if(Leader.subscription=="yes")
         {
       try{
         if(Leader.invite==""){
-          let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
+          let B = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate,address,cnic})
           let teams={
                  direct:{
                     level:1,
@@ -45,7 +44,7 @@ const joinDate = ddd + "/" + mmm + "/" + yyy;
       else if(Leader.invite!=""){
           if(Leader.nofteams!=0)
           {
-            let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
+            let C = new User({address,cnic,number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
             
               // direct 
               let directteam={
@@ -73,7 +72,7 @@ const joinDate = ddd + "/" + mmm + "/" + yyy;
           }
           else{
 
-          let C = new User({number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
+          let C = new User({address,cnic,number,firstname,lastname,email,password:CryptoJS.AES.encrypt(req.body.password,'secret123').toString(),invite:_id,date:joinDate})
               // direct 
               let directteam={
                 direct:{

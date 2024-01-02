@@ -1,23 +1,23 @@
 import React from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../Context/ThemeContext'
-import { FcStart } from "react-icons/fc";
+// import { FcStart } from "react-icons/fc";
 import { FcRight } from "react-icons/fc";
 
-import axios from 'axios';
+// import axios from 'axios';
 
 const AdminAllLinks = ({Update}) => {
-    const {allLinks}=useContext(ThemeContext)
-    const Delete = (date) =>{
-        axios.get(`/api/delete/link?date=${date}`).then(res=>{
-            if(res.data.success==true)
-            {
-                alert('Link document del')
-            }else{
-                alert('Error try again ):')
-            }
-        })
-    }
+    const {allLinks,mobile}=useContext(ThemeContext)
+    // const Delete = (date) =>{
+    //     axios.get(`/api/delete/link?date=${date}`).then(res=>{
+    //         if(res.data.success==true)
+    //         {
+    //             alert('Link document del')
+    //         }else{
+    //             alert('Error try again ):')
+    //         }
+    //     })
+    // }
     
     return (
     <>
@@ -33,7 +33,7 @@ const AdminAllLinks = ({Update}) => {
                         <th> ID </th>
                         <th> Time </th>
                         <th> Date </th>
-                        <th className='work-start'> Delete</th>
+                        {/* <th className='work-start'> Delete</th> */}
                         <th className='work-start'> Update</th>
                     </tr>
                 </thead>
@@ -47,7 +47,7 @@ const AdminAllLinks = ({Update}) => {
                     <td> {item.date}</td>
                     
                     
-                    <td> <p onClick={(e)=>{Delete(item.date)}} className='WorkSheet-Icon-Alert'><FcStart/></p> </td>
+                    {/* <td> <p onClick={(e)=>{Delete(item.date)}} className='WorkSheet-Icon-Alert'><FcStart/></p> </td> */}
                     <td> <p onClick={(e)=>{Update()}} className='WorkSheet-Icon-Alert'><FcRight/></p> </td>
                     
                 </tr>

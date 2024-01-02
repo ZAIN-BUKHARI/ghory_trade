@@ -1,8 +1,9 @@
 .body{
-    background-color: #32312f;
+    background-color: #121212;
     font-family: sans-serif;
     width: 100%;
     height: 100vh;
+    padding-top: 100px;
 }
 .tableContainer{
     padding: 0 10%;
@@ -12,7 +13,7 @@
     font-size: 40px;
     padding-top: 50px;
     text-align: center;
-    color: #f1f1f1;
+    color: #ffdb1a !important;
     margin-bottom: 40px;
 }
 .table{
@@ -21,27 +22,27 @@
 
 }
 .table thead{
-    background-color: #ee2828;
+    background-color: #ffdb1a;
 }
 .table thead tr th{
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.35px;
-    color: #FFFFFF;
+    color: #ffdb1a;
     opacity: 1;
     padding: 12px;
     vertical-align: top;
-    border: 1px solid #dee2e685;
+    border: 1px solid #ffdb1a;
 }
 .table tbody tr td{
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0.35px;
-    color: #f1f1f1;
-    background-color: #3c3f44;
+    color: #ffdb1a;
+    background-color: #121212;
     padding: 8px;
     text-align: center;
-    border: 1px solid #dee2e685;
+    border: 1px solid #ffdb1a;
 }
 .table .text_open{
     font-size: 14px;
@@ -50,20 +51,20 @@
     align-items: center;
     justify-content: center;
     letter-spacing: 0.35px;
-    color: #FF1046;
+    color: #ffdb1a;
 }
 .table tbody tr td .btn{
     width: 130px;
     text-decoration: none;
     line-height: 35px;
     display: inline-block;
-    background-color: #FF1046;
+    background-color: #ffdb1a;
     font-weight: medium;
-    color: #FFFFFF;
+    color: #ffdb1a;
     text-align: center;
     vertical-align: middle;
     user-select: none;
-    border: 1px solid transparent;
+    border: 1px solid ffdb1a;
     font-size: 14px;
     opacity: 1;
 }
@@ -72,11 +73,11 @@
 {
     .body{
         /* background-color: #32312f; */
-	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	background-image: linear-gradient(60deg, #121212 0%, #121212 100%);
 
         font-family: sans-serif;
         width: 100%;
-        color: white;
+        color: ffdb1a;
         height: 100%;
     }
     .table{

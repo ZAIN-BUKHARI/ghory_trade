@@ -53,13 +53,14 @@ const addProducts = () => {
  
   const submitLinks = () =>{
     try{
-
+      setLoader(true)
       const data = {
         link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,
         length1,length2,length3,length4,length5,length6,length7,length8,length9,length10
       }
       axios.post('/api/post/link',data).then(res=>{
       if(res.data.success==true){
+        setLoader(false)
         alert('Successfully youtube videos link uploaded')
         setlink1('');setlink2('');setlink3('');setlink4('')
         setlink5('');setlink6('');setlink7('');setlink8('')
@@ -68,12 +69,15 @@ const addProducts = () => {
         setlength5('');setlength6('');setlength7('');setlength8('')
         setlength9('');setlength10('')
       }else if(res.data.success==false){
+          setLoader(false)
           alert('Error try again')
       }else{
+        setLoader(false)
         alert(res.data.error)
       }
     })
   }catch(e){
+    setLoader(false)
     alert('Error server down contact developer for inspection')
   }
   }
@@ -132,7 +136,7 @@ const addProducts = () => {
   }
  
   
-  const Update =async () =>{
+const Update =async () =>{
     setLoader(true)
     let res = await axios.get('/api/get/links')
     setupdateLinks(res.data.links[0]._id)
@@ -164,23 +168,33 @@ const updateLinkmethod = () =>{
     link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,updateLinks,
     length1,length2,length3,length4,length5,length6,length7,length8,length9,length10
   }
+  try{
    axios.post('/api/admin/updatelink',data).then(res=>{
-    if(res.data.success==true){
-      setlink1('');setlink2('');setlink3('');setlink4('')
+
+      if(res.data.success==true){
+        setLoader(false)
+        setlink1('');setlink2('');setlink3('');setlink4('')
         setlink5('');setlink6('');setlink7('');setlink8('')
         setlink9('');setlink10('')
         setlength1('');setlength2('');setlength3('');setlength4('')
         setlength5('');setlength6('');setlength7('');setlength8('')
         setlength9('');setlength10('')
-      alert('Links update')
-    }
-   })
-  setLoader(false)
-
+        alert('Links update')
+      }else{
+        setLoader(false)
+        alert('Network error')
+      }
+    })
+  
+  }catch(e)
+  {
+    alert('Network error')
+    setLoader(false)
   }
-  const fivePercent = () =>{
+}
+const fivePercent = () =>{
     setFIVE((FIVE*5)/100)
-  }
+}
 
   if(Admin){
     return (
@@ -283,7 +297,7 @@ const updateLinkmethod = () =>{
         </BaseCard>
       </Grid>
     </Grid>
-    <Grid container spacing={0}>
+    {/* <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-blue-500 text-center' >ADD PERDAYPROFIT TO ALL</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -296,8 +310,8 @@ const updateLinkmethod = () =>{
           
         </BaseCard>
       </Grid>
-    </Grid>
-    <Grid container spacing={0}>
+    </Grid> */}
+    {/* <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-blue-500 text-center' >5% CALCULATOR</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -312,7 +326,7 @@ const updateLinkmethod = () =>{
           
         </BaseCard>
       </Grid>
-    </Grid>
+    </Grid> */}
   
 {/* DELETE OLD LINKS  */}
 {!mobile && (
