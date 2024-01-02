@@ -100,7 +100,7 @@ async function api(id){
                     )}
                     {status=="rejected" && (
                         <>
-                         <option className='admin-sheet-review option-three' value={"rejected"}>rejected</option>
+                         <option className=' admin-sheet-review option-three' value={"rejected"}>rejected</option>
                          <option className='admin-sheet-reviewed option-two' value={"pending"}>pending</option>
                          <option className='admin-sheet-reviewed option-one' value={"verified"}>verified</option>
                         </>
@@ -127,14 +127,20 @@ async function api(id){
     margin-left: 10px;
         }
         .admin-sheet-reviewed{
+            border:2px solid black;
+            background:white !important;
             color:green;
             font-weight:bold;
         }
         .admin-sheet-review{
+            background:white !important;
+            border:2px solid black;
             font-weight:bold;
             color:red;
         }
         .Admin-select{
+            background:white !important;
+            border:2px solid black;
             outline:none;
             color:green;
         }
