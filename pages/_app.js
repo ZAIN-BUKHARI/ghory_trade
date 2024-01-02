@@ -1,4 +1,4 @@
-import { useState,useEffect,createContext } from 'react'
+import { useState,useEffect } from 'react'
 import { ThemeContext } from '../Context/ThemeContext';
 import '../styles/globals.css'
 import '../styles/auth.css'
@@ -19,18 +19,14 @@ import '../styles/otp.css'
 import '../styles/stats.css'
 import '../styles/adminsheet.css'
 import '../styles/dropdown.css'
-import '../YouTube/Instruction/instruction.css'
 import { scheduleJob } from 'node-schedule';
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
-import Footer from '../newComp/Footer';
-import Sidebar from '../newComp/Sidebar';
 import Loading from '../universe.io/Loading'
-import AuthFrom from '../newComp/AuthForm'
 import Toastify from '../UI-Compoents/Toastify';
-import Request from '../universe.io/Request';
 import axios from 'axios';
-import Header from '../Responsiveness/Header';
+import Navbar from '../Components/Header/Navbar';
+import Footer from '../Components/Footer/Footer';
 
 
 
@@ -337,9 +333,18 @@ function getBalanceCurrent()
         setbalance(res.data.balance)
   })
 }
+async function achievementAttributes()
+{
+   axios.get('/api/get/noofusers').then(res=>{setusers(res.data.users)})
+    axios.get('/api/sell/get').then(res=>{setsell(res.data.sell)})
+    axios.get('/api/buy/get').then(res=>{setbuy(res.data.buy)})
+    // axios.get('/api/get/allinvestment').then(res=>{setinvestment(res.data.investment)})
+}
 const schedulingTime = '0 0 0 * * *'
   useEffect(() => {
-    
+    // import('tw-elements');
+    getUser()
+    achievementAttributes();
     resolutionChecker()
     if(localStorage.getItem('token')=='no' || localStorage.getItem('token')==null ){
       settoken(false)
@@ -347,7 +352,6 @@ const schedulingTime = '0 0 0 * * *'
     else{
       settoken(true)
     }
-    getUser()
     scheduleJob(schedulingTime, async () => {
       axios.get(`/api/TTL/dailystatus`).then(res=>{})
     });
@@ -360,16 +364,22 @@ const schedulingTime = '0 0 0 * * *'
     router.events.on('routeChangeComplete', ()=>{
       setProgress(100)
     })
+
+  window.addEventListener('scroll', handleScroll);
     },[])
+    const handleScroll = () => {
+      if(openModal)
+      {
+        setOpenModal(false)      
+      }
+  };
+
+    // achievements
+    const[sell,setsell]=useState(0)
+    const[buy,setbuy]=useState(0)
+    const[users,setusers]=useState(0)
     //Loader
     const [loader,setLoader]=useState(false)
-    //Auth Modal
-    const [Auth,setAuth]=useState(false)
-    //Payment Modal
-    const [PaymentRequestModal,setPaymentRequestModal]=useState(false)
-
-    //Balance
-    // const [balance,setbalance]=useState(5) before fake balance 
     
     //Login USER Details
     const [user,setuser]=useState({})
@@ -408,40 +418,46 @@ const schedulingTime = '0 0 0 * * *'
     //youtube variables
     const [channel,setchannel]=useState("") 
     const [videoTitle,setvideoTitle]=useState("Watch the whole video and post a comment") 
-    const [videoLinks,setvideoLinks]=useState("") 
+    const [videoLinks,setvideoLinks]=useState("")  
     const [dailyWork,setdailyWork]=useState([]) 
     const [workUploadedDate,setworkUploadedDate]=useState('') 
     const [linktoLevel,setlinktoLevel]=useState([]) 
+
     //mobile responsiveness
     const[mobile,setmobile]=useState()
-    const[hideSidebar,sethideSidebar]=useState(false)
+    // const[hideSidebar,sethideSidebar]=useState(false)
     //Daily work + video player
     const [videoID,setvideoID]=useState('')
     const [Length,setLength]=useState('')
 
-
-
-    //multiple clicks issue variables
-    const [stop,setstop]=useState(false)
-
     
+   //logout
+   const logout = () =>{
+    localStorage.setItem('token','no')
+    settoken(false)
+    setOpenModal(false)
+  }
 
-    
+  //toggle nav options modal
+  const [openModal,setOpenModal]=useState(false)
+  const toggleModal = () =>{
+    if(!openModal)
+      setOpenModal(true)
+    else 
+      setOpenModal(false)
+  }
     
 
   return(
 <>
-<ThemeContext.Provider value={{planCount,review,commission,yourinvestment,isLogin,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,hideSidebar,sethideSidebar,Userid,views,linktoLevel,level,Uname,perDayProfit,allLinks,workUploadedDate,dailyWork,fetchDailyWork,setLoader,setAuth,setbalance,balance,router,setPaymentRequestModal,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+<ThemeContext.Provider value={{allLinks,users,sell,buy,workUploadedDate,setworkUploadedDate,linktoLevel,setlinktoLevel,dailyWork,setdailyWork,fetchDailyWork,openModal,setOpenModal,toggleModal,logout,planCount,review,commission,yourinvestment,isLogin,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,Userid,views,level,Uname,perDayProfit,setLoader,setbalance,balance,router,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
-    <LoadingBar color='blue' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
-    <Sidebar/>
+    <LoadingBar color='#ffdb1a' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
+    <Navbar/>
     
-    {mobile  &&<Header/>}
-    {PaymentRequestModal && <Request/>}
     {loader && <Loading/>}
-    {Auth   && <AuthFrom/>}
     <Component  {...pageProps} />
-    <Footer  /> 
+    <Footer/>
 </ThemeContext.Provider>
   </>
   )

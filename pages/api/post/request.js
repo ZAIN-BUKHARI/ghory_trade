@@ -14,14 +14,14 @@ const handler= async (req, res)=> {
         if (mm < 10) mm = '0' + mm;
 
         const formattedToday = dd + '/' + mm + '/' + yyyy;
-        const {email,method,address,amount,bankname,Userid} = req.body
+        const {email,method,account,amount,bankname,Userid} = req.body
         let user = await User.findOne({_id:Userid})
         let p;
         if(user.email==email)
         {
             p = new Request({
                 method:method,
-                address:address,
+                address:account,
                 email:email,
                 amount:amount,
                 date:formattedToday,

@@ -8,7 +8,7 @@ const Loading = () => {
       <style>
           {`
           .Loader-Main{
-            background-color: #29323c;
+            background-color: #ffdb1a;
             position: absolute;
             top: 50%;
             z-index: 100;
@@ -31,7 +31,7 @@ const Loading = () => {
               left: var(--left);
               width: 35px;
               height: 7px;
-              background: #ffff;
+              background: #ffdb1a;
               animation: dominos 1s ease infinite;
               box-shadow: 2px 2px 3px 0px black;
             }
@@ -113,7 +113,7 @@ const Loading = () => {
       <style>
           {`
           .Loader-Main{
-            background-color: black;
+            background-color: #ffdb1a;
             position: absolute;
             top: 50%;
             z-index: 100;

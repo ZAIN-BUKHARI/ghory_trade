@@ -12,9 +12,13 @@
     /* background-color: red; */
     /* bottom: 50px; */
     /* position: absolute; */
+   background-color: #121212;
+
     }
 .Player-Color{
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   background-color: #121212;
+   background: #121212;
+    /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
 
 }
 .Player-next{
@@ -46,7 +50,7 @@
 }
 .done-btn-videoplayer{
   margin-top: 40px;
-  background-color: white;
+  background-color: #121212;
   color: black;
   border: 2px solid black;
   border-radius: 20px;
@@ -60,7 +64,7 @@
   line-height: 1.5;
   border-radius: 5px;
   border: 1px solid #ccc;
-  box-shadow: 1px 1px 1px #999;
+  box-shadow: 1px 1px 1px #121212;
 }
 
 .dailywork-label {

@@ -12,8 +12,8 @@ const Comment = () => {
     justify-content: center;
     width: 100%;
     margin-top: 150px;
-    background-color:#36454F !important;
-    color:white !important;
+    background-color:#121212 !important;
+    color:#ffdb1a !important;
 }
 
 .full-boxer{
@@ -22,7 +22,7 @@ const Comment = () => {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color:#36454F !important;
+    background-color:#121212 !important;
 
 }
 
@@ -30,7 +30,7 @@ const Comment = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:#36454F !important;
+    background-color:#121212 !important;
 
     margin-bottom: 20px;
 }
@@ -45,8 +45,8 @@ const Comment = () => {
     margin: 15px;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 3px 3px 25px rgba(0,0,0,0.3);
-    background-color:#36454F !important;
+    box-shadow: 3px 3px 25px #ffdb1a;
+    background-color:#121212 !important;
 
 }
 
@@ -58,7 +58,7 @@ const Comment = () => {
 .profile-image{
     width: 70px;
     height: 70px;
-    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 30px #ffdb1a;
     overflow: hidden;
     border-radius: 50%;
     margin-right: 10px;
@@ -78,18 +78,18 @@ const Comment = () => {
 }
 
 .Name strong{
-    color:white !important;
+    color:#ffdb1a !important;
 
     font-size: 18px;
 }
 
 .Name span{
-    color: gray;
+    color: #ffdb1a;
     margin-top: 2px;
 }
 
 .comment p{
-    color:white !important;
+    color:#ffdb1a !important;
 
 }`}</style>
      <section className="main">
