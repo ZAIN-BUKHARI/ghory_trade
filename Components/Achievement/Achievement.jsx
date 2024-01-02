@@ -14,7 +14,7 @@ const AnimatedNumbers = dynamic(
 
 const AchievementsSection = () => {
 
-  const {mobile,users,sell,buy}=useContext(ThemeContext)
+  const {mobile,sell,buy}=useContext(ThemeContext)
  
   const achievementsList = [
     {
