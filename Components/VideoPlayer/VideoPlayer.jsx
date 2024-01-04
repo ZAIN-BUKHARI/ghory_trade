@@ -53,15 +53,15 @@ const VideoPlayer = () => {
         setShowBTN(true)      
     },parseInt(Length)*60000)
 
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        router.push('/');
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
+    // const handleVisibilityChange = () => {
+    //   if (document.hidden) {
+    //     router.push('/');
+    //   }
+    // };
+    // document.addEventListener('visibilitychange', handleVisibilityChange);
+    // return () => {
+    //   document.removeEventListener('visibilitychange', handleVisibilityChange);
+    // };
   }
   },[router])
 
@@ -105,7 +105,10 @@ const VideoPlayer = () => {
 
     <main className="TestBody-container">
         <section className="TestBody-main-video">
-    <iframe className='border-2 border-b border-[#ffdb1a]'  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    {/* <div className='cover w-[600px] h-[300px] bg-red-500 absolute'></div> */}
+    <iframe className='border-2  border-b border-[#ffdb1a]'  id='zain' src={`https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0`} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+
+    </iframe>
 
 
             <h3 className="!text-[ffdb1a] title">{videoTitle}</h3>
@@ -122,7 +125,7 @@ const VideoPlayer = () => {
             <p>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <p className=' mobile-title-player  '>Disclaimer : Watch the whole video and wait until you see a button.</p>
       {showBTN && workStatus=="no" &&<button className=' w-20 text-black font-bold h-10 ml-5 rounded bg-gradient-to-br from-white via-[#ffdb1a]  to-transparent hover:bg-gradient-to-r hover:from-white  hover:via-[#ffdb1a] hover:to-[#ffdb1a]' onClick={Viewincrement} >Redirect</button>}
-         {showBTN &&   <p className=' mobile-title-player  '>Please Double click on me.</p>}
+         {showBTN &&   <p className=' mobile-title-player  '>Please  click on me.</p>}
 
 
             <div className="TestBody-videos">
@@ -152,7 +155,7 @@ const VideoPlayer = () => {
             <p className=' mobile-title-player video-timer-player '>video length &nbsp; . &nbsp; {Length} Minutes</p>
             <p className=' mobile-title-player  '>Disclaimer : Watch the whole video and wait until you see a button.</p>
             {showBTN && workStatus=="no" &&<button className=' w-20 text-black font-bold h-10 ml-5 rounded bg-gradient-to-br from-white via-[#ffdb1a]  to-transparent hover:bg-gradient-to-r hover:from-white  hover:via-[#ffdb1a] hover:to-[#ffdb1a]' onClick={Viewincrement} >Redirect</button>}
-         {showBTN &&   <p className=' mobile-title-player  '>Please Double click on me.</p>}
+         {showBTN &&   <p className=' mobile-title-player  '>Please click on me.</p>}
               </div>
            </div>
         </section>

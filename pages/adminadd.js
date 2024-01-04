@@ -51,7 +51,7 @@ const addProducts = () => {
 
 
  
-  const submitLinks = () =>{
+  const submitLinks =  () =>{
     try{
       setLoader(true)
       const data = {
@@ -67,7 +67,8 @@ const addProducts = () => {
         setlink9('');setlink10('')
         setlength1('');setlength2('');setlength3('');setlength4('')
         setlength5('');setlength6('');setlength7('');setlength8('')
-        setlength9('');setlength10('')
+        setlength9('');setlength10('');
+        axios.get('/api/send/sendEmailToAll').then();
       }else if(res.data.success==false){
           setLoader(false)
           alert('Error try again')

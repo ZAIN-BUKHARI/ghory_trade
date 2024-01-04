@@ -59,6 +59,14 @@ const handler= async (req, res)=> {
                 date:formattedToday.toString()
                 
             })
+            if(p)
+            {
+                await Video.deleteMany()
+            }else{
+                res.status(200).json({ error:'Upload links again there is some problem ' })
+            }
+
+            
             await p.save()
             let user = await User.find();
             for(let i=0;i<user.length;i++)

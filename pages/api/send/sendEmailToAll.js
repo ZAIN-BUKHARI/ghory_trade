@@ -1,10 +1,12 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 const nodemailer = require('nodemailer');
-
+import {joinDate} from '../../../Api_utils/statusfn'
+import User from '../../../models/User'
 const handler= async (req, res)=> {
-    if(req.method=='POST'){
-            const {email,name,msg}=req.body
-            console.log(email,name,msg)
+    if(req.method=='GET'){
+        let allUsers = await User.find({subscription:"yes"})
+        for(let i=0;i<allUsers.length;i++)
+        {
         let transporter = nodemailer.createTransport({
             port: 465,
             host: "smtp.gmail.com",
@@ -26,23 +28,26 @@ const handler= async (req, res)=> {
                     });
                 });
         let mailData = {
-            from: `${email}`, 
-            to: `${process.env.NODE_MAILER_USER}`,
+            from: `${process.env.NODE_MAILER_USER}`, 
+            to: `${allUsers[i].email}`,
         subject: 'UG-TRADING',
-        text: msg
+        text: `${joinDate} Daily work uploaded`
         };
         await new Promise((resolve, reject) => {
         // send mail
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
-                res.status(200).json({success:false})
+                // res.status(200).json({success:false})
                 reject(err);
             } else {
-             res.status(200).json({success:true})
+            //  res.status(200).json({success:true})
              resolve(info);
             }
         });
     });
+            // res.status(200).json({success:true})
+        }
+        
             res.status(200).json({success:true})
        
 }
