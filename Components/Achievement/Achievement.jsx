@@ -14,11 +14,10 @@ const AnimatedNumbers = dynamic(
 
 const AchievementsSection = () => {
 
-<<<<<<< HEAD
   const {mobile,users,sell,buy}=useContext(ThemeContext)
-=======
-  const {mobile,sell,buy}=useContext(ThemeContext)
->>>>>>> origin/main
+// =======
+//   const {mobile,sell,buy}=useContext(ThemeContext)
+// >>>>>>> origin/main
  
   const achievementsList = [
     {
@@ -29,11 +28,8 @@ const AchievementsSection = () => {
     {
       // postfix: "~",
       metric: "Users",
-<<<<<<< HEAD
       value: users,
-=======
       value: '722',
->>>>>>> origin/main
     },
     {
       metric: "Buy",
