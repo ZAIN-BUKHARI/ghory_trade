@@ -15,7 +15,20 @@ const handler= async (req, res)=> {
 
         const formattedToday = dd + '/' + mm + '/' + yyyy;
         const {email,method,account,amount,bankname,Userid} = req.body
+
+        //-----------------Input fields check--------------------
+        if(account.length==0 || amount==0)
+            res.status(200).json({success:'false',error:"Cannot submit empty request" })
+        if(amount<20)
+          res.status(200).json({success:'false',error:"More than 20$ withdarwal allowed " })
+        
         let user = await User.findOne({_id:Userid})
+        
+        if(user.balance<amount)
+            res.status(200).json({success:'false',error:"insufficient balance" })
+
+        //-----------------Input fields check--------------------
+
         let p;
         if(user.email==email)
         {

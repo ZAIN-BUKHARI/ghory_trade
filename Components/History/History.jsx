@@ -3,17 +3,17 @@ import { useContext,useEffect,useState } from 'react'
 import { ThemeContext } from '../../Context/ThemeContext'
 import axios from 'axios'
 import {useRouter} from 'next/router';
-
+import { toast } from "react-toastify";
 import HistoryMobile from '../../Responsiveness/HistoryMobile'
 const History = () => {
     const router=useRouter()
     const {mobile,balance,setLoader} = useContext(ThemeContext)
     const [history,sethistory]=useState([])
-     useEffect(()=>{
-         setLoader(true)
+    const getHistoryList=async()=>{
+        setLoader(true)
         try{
-         const email = localStorage.getItem('token')
-         axios.get(`/api/get/history?email=${email}`).then(res=>{
+        const email = localStorage.getItem('token')
+        const res = await axios.get(`/api/get/history?email=${email}`)
             if(res.data.history!="no")
             {
               sethistory(res.data.history)
@@ -21,7 +21,7 @@ const History = () => {
             }else{
                 setLoader(false)
              }
-         });  
+          
         }catch(e)
         {
             router.push('/')
@@ -38,7 +38,9 @@ const History = () => {
               });
             
         }
-
+    }
+     useEffect(()=>{
+        getHistoryList()
          
      },[])
 if(mobile)

@@ -21,8 +21,24 @@ import AdminAllLinks from '../AdminComponents/AdminAllLinks';
 const addProducts = () => {
   const {Admin,fetchDailyWork,mobile,setLoader} =useContext(ThemeContext)
   const [updateLinks,setupdateLinks]=useState([])
+  const [upload,setupload]=useState()
+  const [hideBTN,setHideBTN]=useState(true)
+  const uplaodStatusFunction=async()=>{
+    try{
+      let res = await axios.get('/api/get/uploadStatus');
+      if(res.data.success==true)
+      {
+        setupload(res.data.upload)
+      }
+    }catch(e)
+    {
+      alert('Internet Issue')
+      router.push('/admin')
+    }
+  }
   useEffect(()=>{
     fetchDailyWork()
+    uplaodStatusFunction()
   })
   const [link1,setlink1]=useState('')
   const [link2,setlink2]=useState('')
@@ -53,10 +69,13 @@ const addProducts = () => {
  
   const submitLinks = () =>{
     try{
+      alert('click ok')
+      setHideBTN(false)
       setLoader(true)
       const data = {
         link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,
-        length1,length2,length3,length4,length5,length6,length7,length8,length9,length10
+        length1,length2,length3,length4,length5,length6,length7,length8,
+        length9,length10
       }
       axios.post('/api/post/link',data).then(res=>{
       if(res.data.success==true){
@@ -68,15 +87,16 @@ const addProducts = () => {
         setlength1('');setlength2('');setlength3('');setlength4('')
         setlength5('');setlength6('');setlength7('');setlength8('')
         setlength9('');setlength10('')
-      }else if(res.data.success==false){
-          setLoader(false)
-          alert('Error try again')
+        axios.get('/api/send/sendEmailToAll').then();
+        window.location.reload()
       }else{
-        setLoader(false)
-        alert(res.data.error)
+          setLoader(false)
+          setHideBTN(true)
+          alert('Error try again')
       }
     })
   }catch(e){
+    setHideBTN(true)
     setLoader(false)
     alert('Error server down contact developer for inspection')
   }
@@ -203,8 +223,8 @@ const fivePercent = () =>{
           
        <FullLayout>
        <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-blue-500 text-center' >Add Youtube Video Links </h1>
-      <Grid item xs={12} lg={12}>
+       <h1 className='text-3xl font-bold text-blue-500 text-center' >Add Youtube Video Links </h1>
+    <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
          
@@ -249,9 +269,9 @@ const fivePercent = () =>{
            
           </Stack>
           <br />
-          <Button onClick={submitLinks} variant="outlined" mt={2}>
+         {upload && hideBTN && <Button onClick={submitLinks} variant="outlined" mt={2}>
             Submit
-          </Button>
+          </Button>}
           
           <Button className='' onClick={updateLinkmethod} variant="outlined" mt={2}>
             Update

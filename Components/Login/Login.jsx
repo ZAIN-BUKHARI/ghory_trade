@@ -13,12 +13,12 @@ const LoginPage = () => {
   const [password,setpassword]=useState("")
   const [toggle,setToggle]=useState("password")
   
-  const signin = (e) => {
+  const signin = async (e) => {
     e.preventDefault();
     try{
     setLoader(true)
     const data = { email, password };
-    axios.post("/api/post/signin", data).then((res) => {
+   const res = await axios.post("/api/post/signin", data)
       if (res.data.success == true) {
         toast.success("successfully logged in", {
           position: "top-right",
@@ -49,11 +49,11 @@ const LoginPage = () => {
         setLoader(false)
         localStorage.setItem("token", "no");
       }
-    });
-  }catch(e)
+    }
+      catch(e)
   {
     setLoader(false)
-    toast.error('Network Error', {
+    toast.error('Network Connection 🌐', {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -64,8 +64,6 @@ const LoginPage = () => {
       theme: "colored",
     });
   }
-
-    // setLoader(false)
   };
 
   const showHidePass=()=>{

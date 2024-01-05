@@ -70,16 +70,12 @@ const VideoPlayer = () => {
     setShowBTN(false)
     const data = {email}
     try{
-
     let res = await axios.post('/api/post/videoswatch',data)
       if(res.data.success==true)
       {
         localStorage.setItem('youtube','true');
         window.location.href = `https://www.youtube.com/watch?v=${videoID}`
-
-        
       }else{
-        alert('Server error try again')
         router.push('/')
         setTimeout(() => {
           window.location.reload()

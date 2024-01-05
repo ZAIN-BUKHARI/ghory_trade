@@ -8,9 +8,20 @@ const handler= async (req, res)=> {
    
     if(req.method=='POST'){
         const {email,img1,img2,investment,wallet}=req.body
-        if(img1 && img2!="")
-        {
        try{
+
+        //conditon checkk block 
+        //---------------------------condition check-------------------------------------
+        if(investment<100)
+            res.status(200).json({success:false,error:'Minimum $100 dollars plan'})
+
+        let user = await User.findOne({email:email})
+
+        if(user.balance<investment && wallet=="WALLET")
+            res.status(200).json({success:false,error:'Insufficent balance'})
+        //---------------------------condition check-------------------------------------
+        if(img1!="" && img2!="")
+        {
         let user = await User.findOne({email:email})
 
         let p = new Plan({
@@ -73,15 +84,17 @@ const handler= async (req, res)=> {
         await p.save()
         res.status(200).json({success:true })
        }
-       catch(error){
-        res.status(200).json({ error:'Server error' })
-       }}
+       
        else
        {
-        res.status(200).json({ error : 'Payment ScreenShot' })
+        res.status(200).json({ error : 'Upload Both ScreenShots' })
            
        }
-}
+    }
+       catch(error){
+        res.status(200).json({success:false, error:'Server error' })
+       }}
+
 
 else{
 

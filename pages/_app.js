@@ -353,7 +353,8 @@ const schedulingTime = '0 0 0 * * *'
       settoken(true)
     }
     scheduleJob(schedulingTime, async () => {
-      axios.get(`/api/TTL/dailystatus`).then(res=>{})
+      await axios.get('/api/get/changeUploadStatus')
+      await axios.get(`/api/TTL/dailystatus`)
     });
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)

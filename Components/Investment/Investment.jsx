@@ -38,21 +38,46 @@ const Investment = () => {
 
   async function getUserDetails(){
     try{
-
       const email = localStorage.getItem('token')
-      axios.get(`/api/get/userpersoneldetails?email=${email}`).then(res=>{
+      const res = await axios.get(`/api/get/userpersoneldetails?email=${email}`)
         if(res.success!=false){
             setuname(res.data.uname)
             setemail(res.data.email)
             setlastname(res.data.lastname)
           }else{
             router.push('/')
-
+            info(
+              "Network Error",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              }
+            );
+          } 
+        }catch(e){
+        router.push('/')
+        info(
+          "Network Error",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
           }
-          });  
-      }catch(e){
+        );
       }
   }
+  
   useEffect(() => {
     getUserDetails() 
   }, []);
@@ -67,81 +92,59 @@ const Investment = () => {
       } 
     }
   };
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    if(balance<investment && wallet=="WALLET")
-    {
-      toast.error(
-        "Insufficent balance ",
-        {
-          position: "top-right",
-          autoClose: 30000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      );
-    }else{
-
-    setshowBTN(false)
     alert('Checking Details 💰')
+    setshowBTN(false)
     setLoader(true)
     setdisable(true)
-    if(!formula){
-      try{
-        if (investment >= 100) {
-          let data = {
-              email,
-              address,
-              number,
-              cnic,
-              investment,
-              img1,
-              img2,
-              wallet,
-             }
-
-            axios.post("/api/post/join", data).then((res) => {
-              if (res.data.success == true) {
-                toast.success(
-                  "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
-                  {
-                    position: "top-right",
-                    autoClose: 30000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                  }
-                );
-                getUser()
-                downloadPDF()
-                router.push("/");
-              } else {
-                
-                toast.error(res.data.error, {
+    try{
+        let data = {email,address,number,cnic,investment,img1,img2,wallet,}
+         const res = await axios.post("/api/post/join", data)
+            if (res.data.success == true) {
+              toast.success(
+                "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
+                {
                   position: "top-right",
-                  autoClose: 2000,
+                  autoClose: 30000,
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
-                });
+                }
+              );
+              downloadPDF()
+              setLoader(false)
+              router.push("/");
+              setTimeout(() => {
+                window.location.reload()
+              }, 1000);
+            } else {
+              setshowBTN(true)
               setdisable(false)
-                if(res.data.error=='Server error')
-                  window.location.reload()
-              }
-            });
-      } else {
-    setshowBTN(true)
-        toast.error("Minimum $100 dollars plan", {
+              setLoader(false)
+            toast.error(res.data.error, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+        
+    
+    }catch(e){
+      setLoader(false)
+      router.push('/')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+      toast.error('Network Error', {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -150,46 +153,9 @@ const Investment = () => {
           draggable: true,
           progress: undefined,
           theme: "colored",
-        });
-        setdisable(false)
-
-      }
-    }catch(e){
-    setshowBTN(true)
-    setdisable(false)
-      toast.info('Server down', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
       });
-    setLoader(false)
     }
-    }
-  else{
-    setshowBTN(true)
-    setdisable(false)
-    toast.
-    info(
-      "Amount should be divisible by 0",
-      {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      }
-    );
-  }
-  setLoader(false)
-}
+
 
 
   };
@@ -247,9 +213,6 @@ const Investment = () => {
   }
 
  
-
-//  if(!mobile)
-//  {
 
   return (
     <>

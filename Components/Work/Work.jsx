@@ -3,10 +3,11 @@ import { useContext,useEffect,useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../../Context/ThemeContext'
+import {useRouter} from 'next/router'
 
 const Work = () => {
     //use Context 
-    const {setLoader,setvideoID,Userid,setLength,email,Uname,mobile,router,token}=useContext(ThemeContext)
+    const {setLoader,setvideoID,Userid,setLength,email,Uname,mobile,token}=useContext(ThemeContext)
     const [views,setviews]=useState(true)
     const [workstatus, setWorkStatus] = useState('');
     const [level, setLevel] = useState('');
@@ -15,6 +16,24 @@ const Work = () => {
     const [assignDate,setAssignDate]=useState('') 
     const [disable,setdisable]=useState(true)
 
+    //useRouter
+    const router = useRouter();
+
+    //network error function
+    const networkError=()=>
+    {
+      router.push('/')
+        toast.error('Network Error) ', {
+          position: "top-center",
+          autoClose: 50000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+    }
 
    
     const startWork = (link,length) =>{
@@ -22,13 +41,20 @@ const Work = () => {
         setLength(length)
         router.push(`/watching-UG-youtube-channel-video`)
     }
-    const Complete=async()=>{
-      alert('Thanks for submitting tasks wait 10s 😃')
+    const Complete=async(e)=>{
+      e.preventDefault()
+      alert('Thanks for submitting tasks wait few seconds 😃')
       setdisable(false)
       setLoader(true)
-        const data = {Userid}
-          axios.post('/api/post/balanceincrement',data).then(res=>{
-            window.location.replace('/')
+      try{
+      const data = {Userid}
+      const res = await  axios.post('/api/post/balanceincrement',data)
+          if(res.data.success==true)
+            {
+            router.push('/')
+            setTimeout(() => {
+              window.location.reload()
+          }, 1000);
             toast.info('Congrats for completing tasks :) ', {
               position: "top-center",
               autoClose: 50000,
@@ -39,30 +65,65 @@ const Work = () => {
               progress: undefined,
               theme: "light",
               });
-            setLoader(false)
-            }).catch(e=>{
-              alert('Sever error')
-              window.location.replace('/')
               setLoader(false)
-            })
-          setLoader(false)
+            }else{
+            setLoader(false)
+            router.push('/')
+            setTimeout(() => {
+            window.location.reload()
+            }, 1000);
+              toast.info('Network Error:) ', {
+                position: "top-center",
+                autoClose: 50000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+          }
+          }catch(e){
+              setTimeout(() => {
+                window.location.reload()
+              }, 1000);
+              setLoader(false)
+              router.push('/')
+              toast.info('Network Error:) ', {
+                position: "top-center",
+                autoClose: 50000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
     }
-    async function  updateViews()
+
+  async function  updateViews()
     {
-      const email = localStorage.getItem('token')
-        axios.get(`/api/get/views?email=${email}`).then(res=>{
-            setviews(res.data.views)
-        }); 
-    }
-
-
-    function fetchDailyWork()
+      try{  
+        const email = localStorage.getItem('token')
+        const res = await axios.get(`/api/get/views?email=${email}`)
+        if(res.data.success==true)
+          setviews(res.data.views)
+        else  
+          networkError();
+      }catch(e)
+      { 
+        networkError()
+      }
+  }
+    
+  async function fetchDailyWork()
     {
       try{
         setLoader(true)
         let arr=[];
-        axios.get('/api/get/links').then(res=>{
-          if(res.data.links[0]!=undefined){
+        const res = await  axios.get('/api/get/links')
+        if(res.data.success==true){
             arr.push(res.data.links[0].links[0])
             arr.push(res.data.links[0].links[1])
             arr.push(res.data.links[0].links[2])
@@ -77,39 +138,45 @@ const Work = () => {
             setLinks(arr)
             setLinksLength(arr.length)
             setAssignDate(res.data.links[0].date)
-          }
-
-          
+        }else{
+            networkError()
+        }
+         setLoader(false)
         
-        setLoader(false)
-        
-      })
     }catch(e)
     {
-      router.push('/')
+      networkError()
     }
   }
 
   async function UserDetails()
   {
+    try{
     const email = localStorage.getItem('token')
-    axios.get(`/api/get/userone?email=${email}`).then(res=>{
+    const res = await axios.get(`/api/get/userone?email=${email}`)
        if(res.data.success==true)
        {
         setWorkStatus(res.data.user.todaywork)
         setLevel(res.data.user.level)
+        }else{
+          networkError()
         }
-       
-    }); 
+      }
+    catch(e)
+    {
+      networkError()
+    }
+    
   }
     
     useEffect(()=>{
-      fetchDailyWork()
-      UserDetails()
-      updateViews()
+        fetchDailyWork()
+        UserDetails()
+        updateViews()
+      
     },[])
-    if(!mobile)
-    {
+if(!mobile){
+
     return (
       // {token && subscription == 'yes' && (
         <>
@@ -165,6 +232,7 @@ const Work = () => {
         </>
       // )}
   )
+
 }
 else{
   return (

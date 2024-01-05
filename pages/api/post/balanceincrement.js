@@ -6,6 +6,7 @@ const handler= async (req, res)=> {
     if(req.method=='POST'){
 
         const {Userid} = req.body
+        try{
         let user = await User.findOne({_id:Userid})
         if(user.invite=="" && user.subscription=='yes')// this means leader has done his dailywork so no commission
         {
@@ -133,6 +134,12 @@ const handler= async (req, res)=> {
     
 }//else
 }
+catch(e)
+{
+    res.status(200).json({success:false})
+}
+}
+
 
 }
   

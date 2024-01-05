@@ -1,16 +1,12 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
+import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='GET'){
-        try
-        {
-            res.status(200).json({success:true})
-        }
-        catch(e)
-        {
-            res.status(200).json({success:false})
-        }
+        await User.updateMany({subscription:'no'},{planCount:0})
+        res.status(200).json({success:true})
     }
+    
 }
   
   

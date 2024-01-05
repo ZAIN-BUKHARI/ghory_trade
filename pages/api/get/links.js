@@ -3,9 +3,13 @@ import Video from '../../../models/Video'
 
 const handler= async (req, res)=> {
     
-    let links = await Video.find()
-    res.status(200).send({links})
-        
+    try{
+        let links = await Video.find()
+        res.status(200).send({links,success:true})
+    }catch(e)
+    {
+        res.status(200).send({success:false})
+    }   
     
 }
   

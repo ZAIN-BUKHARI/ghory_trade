@@ -52,25 +52,28 @@ const handler= async (req, res)=> {
             link:req.body.link10,
             length:req.body.length10,
         }   
-         
        try{ 
+            let user = await User.findOne({email:'ghoryg7@gmail.com'})
+            if(user.upload)
+            {
             let p = new Video({
                 links:[links1,links2,links3,links4,links5,links6,links7,links8,links9,links10],
                 date:formattedToday.toString()
-                
             })
+            if(p)
+            {
+                await Video.deleteMany()
+            }else{
+                res.status(200).json({ error:'Upload links again there is some problem ' })
+            }
             await p.save()
-            let user = await User.find();
-            for(let i=0;i<user.length;i++)
-                if(user[i].subscription=='yes')    
-                    if(user[i].todaywork=='no')
-                        await User.updateOne({_id:user[i]._id},{$push: { missProfits: formattedToday.toString()}})    
-            
+            await User.updateMany({subscription:'yes',todaywork:'no'},{views:0,Login:"no",$push: { missProfits: formattedToday.toString()}})    
+            await User.updateMany({todaywork:'yes'},{todaywork:"no",views:0,Login:"no"})
+            await User.updateOne({email:'ghoryg7@gmail.com'},{upload:false})
 
-            await User.updateMany({},{todaywork:"no",views:0,Login:"no"})
             res.status(200).json({ success:true })
-            
-       }
+           }
+       }  
        catch(error){
         res.status(200).json({ error:'server error catch ' })
        }

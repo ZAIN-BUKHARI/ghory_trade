@@ -10,13 +10,13 @@ const Navbar = () => {
   const {openModal,setOpenModal,toggleModal,logout,review,subscription,Admin,mobile} = useContext(ThemeContext)
   const [isUser,setIsUser]=useState(false)
 
-  function fetchDailyWork()
+async  function fetchDailyWork()
     {
       setOpenModal(false)
       try{
-        axios.get('/api/get/links').then(res=>{
-          if(res.data.links[0]==undefined){
-            toast.info("Tasks are not uploaded", {
+     const res = await  axios.get('/api/get/links')
+          if(res.data.success==false){
+            toast.error("Network Error", {
               position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,
@@ -29,10 +29,19 @@ const Navbar = () => {
           }else{
           router.push('/daily-Tasks')
           }     
-      })
+    
     }catch(e)
     {
-      router.push('/')
+      toast.error('Network Error', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
   useEffect(()=>{

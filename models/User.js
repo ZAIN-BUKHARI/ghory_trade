@@ -115,6 +115,10 @@ const UserSchema = new Schema({
         type:Number,
         default:0
     },
+    upload:
+    {
+        type:Boolean,
+    },
     //arrays
     teams:[{type:Object}],
     planId:[],
