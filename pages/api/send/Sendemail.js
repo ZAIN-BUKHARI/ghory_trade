@@ -17,7 +17,10 @@ const handler= async (req, res)=> {
 
         });
         await new Promise((resolve, reject) => {
+<<<<<<< HEAD
                     // verify connection configuration
+=======
+>>>>>>> origin/main
                     transporter.verify(function (error, success) {
                         if (error) {
                             reject(error);

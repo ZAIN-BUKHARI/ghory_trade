@@ -129,18 +129,24 @@ const AdminPlans = () => {
     cursor: pointer;
     margin-left: 10px;
         }
-        // .admin-sheet-reviewed{
-        //     color:green;
-        //     font-weight:bold;
-        // }
-        // .admin-sheet-review{
-        //     font-weight:bold;
-        //     color:red;
-        // }
-        // .Admin-select{
-        //     outline:none;
-        //     color:green;
-        // }
+        .admin-sheet-reviewed{
+            background:white !important;
+            border:2px solid black;
+            color:green;
+            font-weight:bold;
+        }
+        .admin-sheet-review{
+            background:white !important;
+            border:2px solid black;
+            font-weight:bold;
+            color:red;
+        }
+        .Admin-select{
+            background:white !important;
+            border:2px solid black;
+            outline:none;
+            color:blue;
+        }
         `}</style>
     </>
   )

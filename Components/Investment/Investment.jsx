@@ -38,14 +38,21 @@ const Investment = () => {
 
   async function getUserDetails(){
     try{
+<<<<<<< HEAD
       const email = localStorage.getItem('token')
       const res = await axios.get(`/api/get/userpersoneldetails?email=${email}`)
+=======
+
+      const email = localStorage.getItem('token')
+      axios.get(`/api/get/userpersoneldetails?email=${email}`).then(res=>{
+>>>>>>> origin/main
         if(res.success!=false){
             setuname(res.data.uname)
             setemail(res.data.email)
             setlastname(res.data.lastname)
           }else{
             router.push('/')
+<<<<<<< HEAD
             info(
               "Network Error",
               {
@@ -78,6 +85,14 @@ const Investment = () => {
       }
   }
   
+=======
+
+          }
+          });  
+      }catch(e){
+      }
+  }
+>>>>>>> origin/main
   useEffect(() => {
     getUserDetails() 
   }, []);
@@ -92,6 +107,7 @@ const Investment = () => {
       } 
     }
   };
+<<<<<<< HEAD
   const submit = async (e) => {
     e.preventDefault();
     alert('Checking Details 💰')
@@ -107,12 +123,75 @@ const Investment = () => {
                 {
                   position: "top-right",
                   autoClose: 30000,
+=======
+  const submit = (e) => {
+    e.preventDefault();
+    if(balance<investment && wallet=="WALLET")
+    {
+      toast.error(
+        "Insufficent balance ",
+        {
+          position: "top-right",
+          autoClose: 30000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+    }else{
+
+    setshowBTN(false)
+    alert('Checking Details 💰')
+    setLoader(true)
+    setdisable(true)
+    if(!formula){
+      try{
+        if (investment >= 100) {
+          let data = {
+              email,
+              address,
+              number,
+              cnic,
+              investment,
+              img1,
+              img2,
+              wallet,
+             }
+
+            axios.post("/api/post/join", data).then((res) => {
+              if (res.data.success == true) {
+                toast.success(
+                  "Thanks for joining our plan its currenlty under review status and it will take 24 hours to review your request ",
+                  {
+                    position: "top-right",
+                    autoClose: 30000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  }
+                );
+                getUser()
+                downloadPDF()
+                router.push("/");
+              } else {
+                
+                toast.error(res.data.error, {
+                  position: "top-right",
+                  autoClose: 2000,
+>>>>>>> origin/main
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
+<<<<<<< HEAD
                 }
               );
               downloadPDF()
@@ -145,6 +224,17 @@ const Investment = () => {
         window.location.reload()
       }, 1000);
       toast.error('Network Error', {
+=======
+                });
+              setdisable(false)
+                if(res.data.error=='Server error')
+                  window.location.reload()
+              }
+            });
+      } else {
+    setshowBTN(true)
+        toast.error("Minimum $100 dollars plan", {
+>>>>>>> origin/main
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -153,9 +243,52 @@ const Investment = () => {
           draggable: true,
           progress: undefined,
           theme: "colored",
+<<<<<<< HEAD
       });
     }
 
+=======
+        });
+        setdisable(false)
+
+      }
+    }catch(e){
+    setshowBTN(true)
+    setdisable(false)
+      toast.info('Server down', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    setLoader(false)
+    }
+    }
+  else{
+    setshowBTN(true)
+    setdisable(false)
+    toast.
+    info(
+      "Amount should be divisible by 0",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
+  }
+  setLoader(false)
+}
+>>>>>>> origin/main
 
 
   };
@@ -214,6 +347,12 @@ const Investment = () => {
 
  
 
+<<<<<<< HEAD
+=======
+//  if(!mobile)
+//  {
+
+>>>>>>> origin/main
   return (
     <>
     {token  && (

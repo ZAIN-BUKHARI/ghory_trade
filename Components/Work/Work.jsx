@@ -3,11 +3,18 @@ import { useContext,useEffect,useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../../Context/ThemeContext'
+<<<<<<< HEAD
 import {useRouter} from 'next/router'
 
 const Work = () => {
     //use Context 
     const {setLoader,setvideoID,Userid,setLength,email,Uname,mobile,token}=useContext(ThemeContext)
+=======
+
+const Work = () => {
+    //use Context 
+    const {setLoader,setvideoID,Userid,setLength,email,Uname,mobile,router,token}=useContext(ThemeContext)
+>>>>>>> origin/main
     const [views,setviews]=useState(true)
     const [workstatus, setWorkStatus] = useState('');
     const [level, setLevel] = useState('');
@@ -16,6 +23,7 @@ const Work = () => {
     const [assignDate,setAssignDate]=useState('') 
     const [disable,setdisable]=useState(true)
 
+<<<<<<< HEAD
     //useRouter
     const router = useRouter();
 
@@ -34,6 +42,8 @@ const Work = () => {
           theme: "light",
         });
     }
+=======
+>>>>>>> origin/main
 
    
     const startWork = (link,length) =>{
@@ -41,6 +51,7 @@ const Work = () => {
         setLength(length)
         router.push(`/watching-UG-youtube-channel-video`)
     }
+<<<<<<< HEAD
     const Complete=async(e)=>{
       e.preventDefault()
       alert('Thanks for submitting tasks wait few seconds 😃')
@@ -55,6 +66,15 @@ const Work = () => {
             setTimeout(() => {
               window.location.reload()
           }, 1000);
+=======
+    const Complete=async()=>{
+      alert('Thanks for submitting tasks wait 10s 😃')
+      setdisable(false)
+      setLoader(true)
+        const data = {Userid}
+          axios.post('/api/post/balanceincrement',data).then(res=>{
+            window.location.replace('/')
+>>>>>>> origin/main
             toast.info('Congrats for completing tasks :) ', {
               position: "top-center",
               autoClose: 50000,
@@ -65,6 +85,7 @@ const Work = () => {
               progress: undefined,
               theme: "light",
               });
+<<<<<<< HEAD
               setLoader(false)
             }else{
             setLoader(false)
@@ -118,12 +139,37 @@ const Work = () => {
   }
     
   async function fetchDailyWork()
+=======
+            setLoader(false)
+            }).catch(e=>{
+              alert('Sever error')
+              window.location.replace('/')
+              setLoader(false)
+            })
+          setLoader(false)
+    }
+    async function  updateViews()
+    {
+      const email = localStorage.getItem('token')
+        axios.get(`/api/get/views?email=${email}`).then(res=>{
+            setviews(res.data.views)
+        }); 
+    }
+
+
+    function fetchDailyWork()
+>>>>>>> origin/main
     {
       try{
         setLoader(true)
         let arr=[];
+<<<<<<< HEAD
         const res = await  axios.get('/api/get/links')
         if(res.data.success==true){
+=======
+        axios.get('/api/get/links').then(res=>{
+          if(res.data.links[0]!=undefined){
+>>>>>>> origin/main
             arr.push(res.data.links[0].links[0])
             arr.push(res.data.links[0].links[1])
             arr.push(res.data.links[0].links[2])
@@ -138,6 +184,7 @@ const Work = () => {
             setLinks(arr)
             setLinksLength(arr.length)
             setAssignDate(res.data.links[0].date)
+<<<<<<< HEAD
         }else{
             networkError()
         }
@@ -146,18 +193,36 @@ const Work = () => {
     }catch(e)
     {
       networkError()
+=======
+          }
+
+          
+        
+        setLoader(false)
+        
+      })
+    }catch(e)
+    {
+      router.push('/')
+>>>>>>> origin/main
     }
   }
 
   async function UserDetails()
   {
+<<<<<<< HEAD
     try{
     const email = localStorage.getItem('token')
     const res = await axios.get(`/api/get/userone?email=${email}`)
+=======
+    const email = localStorage.getItem('token')
+    axios.get(`/api/get/userone?email=${email}`).then(res=>{
+>>>>>>> origin/main
        if(res.data.success==true)
        {
         setWorkStatus(res.data.user.todaywork)
         setLevel(res.data.user.level)
+<<<<<<< HEAD
         }else{
           networkError()
         }
@@ -177,6 +242,20 @@ const Work = () => {
     },[])
 if(!mobile){
 
+=======
+        }
+       
+    }); 
+  }
+    
+    useEffect(()=>{
+      fetchDailyWork()
+      UserDetails()
+      updateViews()
+    },[])
+    if(!mobile)
+    {
+>>>>>>> origin/main
     return (
       // {token && subscription == 'yes' && (
         <>
@@ -232,7 +311,10 @@ if(!mobile){
         </>
       // )}
   )
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 }
 else{
   return (

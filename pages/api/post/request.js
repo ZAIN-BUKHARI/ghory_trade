@@ -15,6 +15,7 @@ const handler= async (req, res)=> {
 
         const formattedToday = dd + '/' + mm + '/' + yyyy;
         const {email,method,account,amount,bankname,Userid} = req.body
+<<<<<<< HEAD
 
         //-----------------Input fields check--------------------
         if(account.length==0 || amount==0)
@@ -22,6 +23,8 @@ const handler= async (req, res)=> {
         if(amount<20)
           res.status(200).json({success:'false',error:"More than 20$ withdarwal allowed " })
         
+=======
+>>>>>>> origin/main
         let user = await User.findOne({_id:Userid})
         
         if(user.balance<amount)
