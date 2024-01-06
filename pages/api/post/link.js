@@ -1,6 +1,5 @@
 import ConnectMongoDB from '../../../middleware/mongoose'
 import Video from '../../../models/Video'
-import User from '../../../models/User'
 
 const handler= async (req, res)=> {
     if(req.method=='POST'){
@@ -57,7 +56,6 @@ const handler= async (req, res)=> {
                 links:[links1,links2,links3,links4,links5,links6,links7,links8,links9,links10],
                 date:formattedToday.toString()
             })
-            await Video.deleteMany()
             await p.save()
             res.status(200).json({ success:true })
         }
