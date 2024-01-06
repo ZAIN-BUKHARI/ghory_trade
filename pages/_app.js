@@ -354,7 +354,7 @@ const schedulingTime = '0 0 0 * * *'
     }
     scheduleJob(schedulingTime, async () => {
       await axios.get('/api/get/changeUploadStatus')
-      await axios.get(`/api/TTL/dailystatus`)
+      await axios.get(`/api/post/missProfitStatus`)
     });
     router.events.on('routeChangeStart', ()=>{
       setProgress(40)

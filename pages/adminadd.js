@@ -21,24 +21,9 @@ import AdminAllLinks from '../AdminComponents/AdminAllLinks';
 const addProducts = () => {
   const {Admin,fetchDailyWork,mobile,setLoader} =useContext(ThemeContext)
   const [updateLinks,setupdateLinks]=useState([])
-  const [upload,setupload]=useState()
-  const [hideBTN,setHideBTN]=useState(true)
-  const uplaodStatusFunction=async()=>{
-    try{
-      let res = await axios.get('/api/get/uploadStatus');
-      if(res.data.success==true)
-      {
-        setupload(res.data.upload)
-      }
-    }catch(e)
-    {
-      alert('Internet Issue')
-      router.push('/admin')
-    }
-  }
+
   useEffect(()=>{
     fetchDailyWork()
-    uplaodStatusFunction()
   })
   const [link1,setlink1]=useState('')
   const [link2,setlink2]=useState('')
@@ -69,8 +54,6 @@ const addProducts = () => {
  
   const submitLinks = () =>{
     try{
-      alert('click ok')
-      setHideBTN(false)
       setLoader(true)
       const data = {
         link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,
@@ -91,12 +74,10 @@ const addProducts = () => {
         window.location.reload()
       }else{
           setLoader(false)
-          setHideBTN(true)
           alert('Error try again')
       }
     })
   }catch(e){
-    setHideBTN(true)
     setLoader(false)
     alert('Error server down contact developer for inspection')
   }
@@ -269,9 +250,9 @@ const fivePercent = () =>{
            
           </Stack>
           <br />
-         {upload && hideBTN && <Button onClick={submitLinks} variant="outlined" mt={2}>
+        <Button onClick={submitLinks} variant="outlined" mt={2}>
             Submit
-          </Button>}
+          </Button>
           
           <Button className='' onClick={updateLinkmethod} variant="outlined" mt={2}>
             Update

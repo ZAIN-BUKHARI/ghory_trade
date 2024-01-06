@@ -16,6 +16,7 @@ async  function fetchDailyWork()
       try{
      const res = await  axios.get('/api/get/links')
           if(res.data.success==false){
+            
             toast.error("Network Error", {
               position: "top-right",
               autoClose: 2000,

@@ -22,10 +22,11 @@ const Work = () => {
     //network error function
     const networkError=()=>
     {
+       setLoader(false)
       router.push('/')
-        toast.error('Network Error) ', {
+        toast.info('Today Work is not uploaded ', {
           position: "top-center",
-          autoClose: 50000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -123,7 +124,7 @@ const Work = () => {
         setLoader(true)
         let arr=[];
         const res = await  axios.get('/api/get/links')
-        if(res.data.success==true){
+        if(res.data.success==true ){
             arr.push(res.data.links[0].links[0])
             arr.push(res.data.links[0].links[1])
             arr.push(res.data.links[0].links[2])
@@ -139,7 +140,18 @@ const Work = () => {
             setLinksLength(arr.length)
             setAssignDate(res.data.links[0].date)
         }else{
-            networkError()
+            setLoader(false)
+            router.push('/')
+            toast.error('Today Work not uploaded ', {
+              position: "top-center",
+              autoClose: 50000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
         }
          setLoader(false)
         
