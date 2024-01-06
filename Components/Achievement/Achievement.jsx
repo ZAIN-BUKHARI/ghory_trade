@@ -15,9 +15,6 @@ const AnimatedNumbers = dynamic(
 const AchievementsSection = () => {
 
   const {mobile,users,sell,buy}=useContext(ThemeContext)
-// =======
-//   const {mobile,sell,buy}=useContext(ThemeContext)
-// >>>>>>> origin/main
  
   const achievementsList = [
     {
@@ -29,7 +26,6 @@ const AchievementsSection = () => {
       // postfix: "~",
       metric: "Users",
       value: users,
-      value: '722',
     },
     {
       metric: "Buy",

@@ -66,11 +66,6 @@ const handler= async (req, res)=> {
             }else{
                 res.status(200).json({ error:'Upload links again there is some problem ' })
             }
-<<<<<<< HEAD
-=======
-
-            
->>>>>>> origin/main
             await p.save()
             await User.updateMany({subscription:'yes',todaywork:'no'},{views:0,Login:"no",$push: { missProfits: formattedToday.toString()}})    
             await User.updateMany({todaywork:'yes'},{todaywork:"no",views:0,Login:"no"})

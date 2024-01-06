@@ -11,9 +11,24 @@ const handler = async (req, res) => {
   if (dd < 10) dd = "0" + dd;
   if (mm < 10) mm = "0" + mm;
   const formattedToday = dd + "/" + mm + "/" + yyyy;
-  const { firstname, lastname, email } = req.body;
+  const { firstname, lastname, email ,password,cpassword} = req.body;
   if (req.method == "POST") {
     try {
+      //-------------------checking input fields-----------------------------------------------
+      if(email.length==""  || firstname.length=="" || lastname.length=="" || password.length=="" || cpassword.length=="")
+      {
+        res.status(200).send({ error:"Please fill the form", success: false });
+      }
+      else{
+      if(password.length<10)
+      {
+        res.status(200).send({ error:"Password must be 10 characters", success: false });
+      }else{
+      if(password!=cpassword)
+      {
+        res.status(200).send({ error:"Password not match", success: false });
+      }else{
+      //-------------------checking input fields-----------------------------------------------
       let u = new User({
         firstname,
         lastname,
@@ -26,10 +41,14 @@ const handler = async (req, res) => {
       });
       u.save();
       res.status(200).json({ success: true });
-    } catch {
-      res.status(200).json({ error: "You missed something" });
+      }
     }
-  } else res.status(200).json({ error: "Try again" });
+  }
+
+    } catch {
+      res.status(200).json({success:false, error: "You missed something" });
+    }
+  } else res.status(200).json({success:false, error: "Try again" });
 };
 
 export default ConnectMongoDB(handler);

@@ -11,9 +11,25 @@ if (ddd < 10) ddd = "0" + ddd;
 if (mmm < 10) mmm = "0" + mmm;
 const joinDate = ddd + "/" + mmm + "/" + yyy;
     if(req.method=='POST'){
-        const {firstname,lastname,email,address,cnic,_id,number}=req.body
+
+        const {firstname,lastname,email,address,cnic,_id,number,password,cpassword}=req.body
         let Leader = await User.findOne({_id:_id})
         if(Leader.subscription=="yes")
+        {
+        if(email.length==""  || firstname.length=="" || lastname.length=="" || password.length=="" ||address.length=="" || cnic.length=="" || number.length=="")
+        {
+          res.status(200).send({ error:"Please fill the form", success: false });
+        }
+        else{
+
+        if(password.length<10)
+        {
+          res.status(200).send({ error:"Password must be 10 characters", success: false });
+        }else{
+        if(password!=cpassword)
+        {
+          res.status(200).senf({ error:"Password not match", success: false });
+        }else
         {
       try{
         if(Leader.invite==""){
@@ -38,7 +54,7 @@ const joinDate = ddd + "/" + mmm + "/" + yyy;
                 {$push:{teams:teams},
                  inc:{nofteams:1}})
               await B.save()
-            res.status(200).json({msg:'success'})
+            res.status(200).send({success:true})
           }
         // -------------------------------------------
       else if(Leader.invite!=""){
@@ -102,33 +118,35 @@ const joinDate = ddd + "/" + mmm + "/" + yyy;
                   )
                   await User.updateOne({email:Leader.email},{$push:{teams:directteam},$inc:{nofteams:1}})
                   await C.save()
-                  res.status(200).json({msg:'success'})
+                  res.status(200).json({success:true})
               }
              
               }
-              res.status(200).json({error:'error'})
+              res.status(200).send({success:false})
           } //else end
             
   
         }   //else if end
-        res.status(200).json({msg:'success'})
+        res.status(200).send({success:true})
 
     }
     catch{
       res.status(200).json({msg:'success'})
       
+        }
+      }
     }
-    res.status(200).json({msg:'success'})
+  } 
+    res.status(200).send({success:true})
 
   }else{
-    res.status(200).json({error:'Invite Link broken'})
-
+    res.status(200).send({success:false,error:'Invite Link broken'})
   }
 
   }
   else{
 
-    res.status(400).json({ error : 'this method is not defined' })
+    res.status(400).json({success:false, error : 'this method is not defined' })
 }
    
   }

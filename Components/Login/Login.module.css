@@ -87,7 +87,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   color: #ffdb1a;
-  margin-left: 200px;
+  margin-left: 250px;
 }
 
 .social_text_forgot{
@@ -188,10 +188,11 @@
 }
 
 .btn {
-  width: 150px;
+  width: 230px;
   /* background-color: rgba(201,171,79); */
   border:2px solid #ffdb1a;
   color:#ffdb1a;
+  text-align: center;
   /* border: none; */
   outline: none;
   height: 49px;

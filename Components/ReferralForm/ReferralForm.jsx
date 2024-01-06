@@ -32,18 +32,28 @@ const ReferralForm = () => {
 
     
 
-const signup = (e) => {
+const signup =async (e) => {
       e.preventDefault();
       setLoader(true)
-      if(firstname.length!="" && lastname.length!="" && email.length!="" && password.length!="" && cpassword.length!="" && address.length!="" && cnic.length!="" && number.length!="")
+      if(!email.includes('@'))
       {
-      if(email.includes("@"))
-      {
-      if(password==cpassword)
-      { 
-      if(password.length>=10){
+        setLoader(false)
+        toast.error('Email is not correct', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }else{
+
+      try{
         const data = { email };
-        axios.post("/api/post/otp", data).then((res) => {
+        const res = await axios.post("/api/post/otp", data)
+        console.log(res)
           if (res.data.success == true) {
             setLoader(false)
             setSwitchUI(true)
@@ -61,63 +71,21 @@ const signup = (e) => {
               theme: "colored",
             });
           }
-        }).catch(e=>{alert('Check your network');setLoader(false)});
-      }
-      else{
-      toast.error('Password must be 10 characters', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      setLoader(false)
-      }
-      }
-      else{
-      toast.error('Password not match', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      setLoader(false)
-      }
-      }
-      else{
-      toast.error('Email is not correct ', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      setLoader(false)
-      }
-      }
-      else{
-        toast.error('Please fill form ', {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        setLoader(false)
-      }
+        }catch(e)
+        {
+          setLoader(false)
+          toast.error('Network Error', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+        }
+      }     
       };
     
   
@@ -134,7 +102,6 @@ const signup = (e) => {
     {!switchUI && ( 
 
     <>
-    {token  && (
       <div className="font_family mt-[70px] flex h-[100vh] justify-center items-center p-[10px] bg-[#121212]">
         <div className="!h-[500px] Invest-Container">
           <div className=" title text-[#ffdb1a]">
@@ -260,7 +227,7 @@ const signup = (e) => {
           </div>
         </div>
         
-      </div>)}
+      </div>
       <style>{`
      
       .PlanForm-select-usd {

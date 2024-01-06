@@ -67,13 +67,10 @@ const addProducts = () => {
 
 
  
-  const submitLinks =  () =>{
+  const submitLinks = () =>{
     try{
-<<<<<<< HEAD
       alert('click ok')
       setHideBTN(false)
-=======
->>>>>>> origin/main
       setLoader(true)
       const data = {
         link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,
@@ -89,7 +86,6 @@ const addProducts = () => {
         setlink9('');setlink10('')
         setlength1('');setlength2('');setlength3('');setlength4('')
         setlength5('');setlength6('');setlength7('');setlength8('')
-<<<<<<< HEAD
         setlength9('');setlength10('')
         axios.get('/api/send/sendEmailToAll').then();
         window.location.reload()
@@ -101,37 +97,24 @@ const addProducts = () => {
     })
   }catch(e){
     setHideBTN(true)
-=======
-        setlength9('');setlength10('');
-        axios.get('/api/send/sendEmailToAll').then();
-      }else if(res.data.success==false){
-          setLoader(false)
-          alert('Error try again')
-      }else{
-        setLoader(false)
-        alert(res.data.error)
-      }
-    })
-  }catch(e){
->>>>>>> origin/main
     setLoader(false)
     alert('Error server down contact developer for inspection')
   }
   }
-  // const addperdayprofit = () =>{
+  const addperdayprofit = () =>{
 
-  //   let confirmation = confirm('Are you sure. You want to Add Profit')
-  //   if(confirmation){
-  //     setLoader(true)
-  //     axios.get('/api/admin/bonace').then(res=>{
-  //       if(res.data==true)
-  //       {
-  //         setLoader(false)
-  //         alert('Profit Added to your all clients')
-  //       }
-  //     })
-  //   }
-  // }
+    let confirmation = confirm('Are you sure. You want to Add Profit')
+    if(confirmation){
+      setLoader(true)
+      axios.get('/api/admin/bonace').then(res=>{
+        if(res.data==true)
+        {
+          setLoader(false)
+          alert('Profit Added to your all clients')
+        }
+      })
+    }
+  }
   
   const currencyRate = () =>{
     const data = {buyRate}
@@ -348,11 +331,7 @@ const fivePercent = () =>{
         </BaseCard>
       </Grid>
     </Grid> */}
-<<<<<<< HEAD
     {/* <Grid container spacing={0}>
-=======
-     <Grid container spacing={0}>
->>>>>>> origin/main
         <h1 className='text-3xl font-bold text-blue-500 text-center' >5% CALCULATOR</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -367,11 +346,7 @@ const fivePercent = () =>{
           
         </BaseCard>
       </Grid>
-<<<<<<< HEAD
     </Grid> */}
-=======
-    </Grid> 
->>>>>>> origin/main
   
 {/* DELETE OLD LINKS  */}
 {!mobile && (

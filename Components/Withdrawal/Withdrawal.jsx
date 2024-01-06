@@ -7,15 +7,10 @@ import Link from 'next/link';
 import Script from "next/script";
 import Navbar from '../Header/Navbar'
 const Withdrawal = () => {
-<<<<<<< HEAD
       //useRouter
       const router = useRouter()
       //useContext
       const {setLoader,token,Userid,mobile} = useContext(ThemeContext)
-=======
-      //useContext
-      const {getBalanceCurrent,setLoader,token,balance,Userid,mobile} = useContext(ThemeContext)
->>>>>>> origin/main
 
       //STATE VARIABLES
       
@@ -28,10 +23,7 @@ const Withdrawal = () => {
       const [bankname,setbankname]=useState("")
     
     const[ disable,setdisable]=useState(false)
-<<<<<<< HEAD
     const[ hideBTN,setHideBTN]=useState(false)
-=======
->>>>>>> origin/main
 
     async function getUserDetails(){
       try{
@@ -42,15 +34,10 @@ const Withdrawal = () => {
               setuname(res.data.uname)
               setemail(res.data.email)
               setlastname(res.data.lastname)
-<<<<<<< HEAD
               
             }else{
               router.push('/')
 
-=======
-            }else{
-              router.push('/')
->>>>>>> origin/main
   
             }
             });  
@@ -61,7 +48,6 @@ const Withdrawal = () => {
       getUserDetails()
     },[])
     
-<<<<<<< HEAD
   const networkErrorFunction=()=>
   {
     if(email=="no" || email=="")
@@ -95,37 +81,6 @@ const Withdrawal = () => {
         const data = {method,account,amount,email,bankname,Userid}
         const res = await axios.post('/api/post/request',data)
           if(res.data.success==true){
-=======
-  
-    //  derecemting in balance method is remaining
-      const requestSubmit = async (e) =>{
-        e.preventDefault()
-        alert('Checking Balance 👁')
-        setdisable(true)
-        setLoader(true)
-      if(account.length==0 && amount==0  
-        ){
-          toast.error("Cannot submit empty request", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          })
-          setLoader(false)
-        setdisable(false)
-        }else{
-  
-          if(amount>=20){
-          if(amount<=balance
-            ){
-            const data = {method,account,amount,email,bankname,Userid}
-            let res = await axios.post('/api/post/request',data)
-              if(res.data.success==true){
->>>>>>> origin/main
                 toast.success("Your withdrawal request is in processing state it will take  24 hour", {
                   position: "top-right",
                   autoClose: 30000,
@@ -137,7 +92,6 @@ const Withdrawal = () => {
                   theme: "colored",
                 })
                 setdisable(false)
-<<<<<<< HEAD
                 setLoader(false)
                 router.push('/')
                 setTimeout(() => {
@@ -149,14 +103,6 @@ const Withdrawal = () => {
             setHideBTN(false)
             setLoader(false)
             toast.error(res.data.error, {
-=======
-                getBalanceCurrent()
-                setLoader(false)
-                
-              }
-              else{
-                toast.error("Withdrawal request failed try again! ", {
->>>>>>> origin/main
                   position: "top-right",
                   autoClose: 3000,
                   hideProgressBar: false,
@@ -165,7 +111,6 @@ const Withdrawal = () => {
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
-<<<<<<< HEAD
             });   
   }
 }
@@ -186,44 +131,6 @@ const Withdrawal = () => {
 }
             
     };
-=======
-                });
-                setdisable(false)
-              }
-            
-        }
-        else{
-                toast.error("insufficient balance ", {
-                  position: "top-right",
-                  autoClose: 3000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-        setdisable(false)
-              }
-        }else{
-          toast.error("More than 20$ withdarwal allowed ", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-          setdisable(false)
-        }
-      }
-  
-  
-      setLoader(false)
-      };
->>>>>>> origin/main
 
  
 
@@ -256,11 +163,7 @@ const Withdrawal = () => {
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"NAYAPAY"}>NAYAPAY</option>
                   <option value={"BANK"}>Al-BARAKA</option>
-<<<<<<< HEAD
                   {/* <option value={"WALLET"}>WALLET</option>  */}
-=======
-                  <option value={"WALLET"}>WALLET</option>
->>>>>>> origin/main
                 </select>
 
               </span>
@@ -365,15 +268,9 @@ const Withdrawal = () => {
                 </div>
               </div>
               
-<<<<<<< HEAD
           {!hideBTN &&  <div className="button-webview ">
              <input className="bg-gradient-to-br from-white via-[#ffdb1a]  to-transparent hover:bg-gradient-to-r hover:from-white hover:via-[#ffdb1a] hover:to-[#ffdb1a]" type="submit" value="Submit" disabled={disable} />
               </div>}
-=======
-              <div className="button-webview ">
-             <input className="bg-gradient-to-br from-white via-[#ffdb1a]  to-transparent hover:bg-gradient-to-r hover:from-white hover:via-[#ffdb1a] hover:to-[#ffdb1a]" type="submit" value="Subscribe" disabled={disable} />
-              </div>
->>>>>>> origin/main
              
     
    

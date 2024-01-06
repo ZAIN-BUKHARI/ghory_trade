@@ -12,16 +12,19 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
   const[hideBTN,setHideBtn]=useState(false)
 	const router = useRouter()
 
-	const confirmOTP =()=>{
+	const confirmOTP =async(e)=>{
+    e.preventDefault()
+    alert('wait')
     setLoader(true)
     setHideBtn(true)
 		setBtnToggle(false)
-        if(otp==one)
-        {
-            const data = { email, password, firstname, lastname, cpassword };
-            axios.post("/api/post/signup", data).then((res) => {
-              if (res.data.success==true) {
-                toast.success("Successfully signup", {
+    if(otp==one)
+      {
+      try{
+      const data = { email, password, firstname, lastname, cpassword };
+      const res = await axios.post("/api/post/signup", data)
+        if (res.data.success==true) {
+          toast.success("Successfully signup", {
                   position: "top-right",
                   autoClose: 2000,
                   hideProgressBar: false,
@@ -32,9 +35,9 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
                   theme: "colored",
                 });
                 setLoader(false)
-                router.push('/')
+                router.push('/authentication?page=signin')
                 setHideBtn(false)
-              } else {
+            }else {
                 toast.error(res.data.error, {
                   position: "top-right",
                   autoClose: 3000,
@@ -45,13 +48,27 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
                   progress: undefined,
                   theme: "colored",
                 });
-            setLoader(false)
-            setHideBtn(false)
-            setBtnToggle(false)
-            setSwitchUI(false)
-              }
-            }).catch(e=>{alert('Check your network');setSwitchUI(false);setBtnToggle(false);setLoader(false)})
-            
+              setLoader(false)
+              setHideBtn(false)
+              setBtnToggle(false)
+              setSwitchUI(false)
+            }
+        }catch(e)
+         {
+          toast.error('Network Error', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setSwitchUI(false);
+          setBtnToggle(false);
+          setLoader(false);
+         }
           }else{
             toast.error('OTP error :(', {
               position: "top-right",
@@ -71,15 +88,16 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
     
       }
 	
-	const forgotOtp =()=>{
+	const forgotOtp =async()=>{
 		setLoader(true)
 		setBtnToggle(true)
     setHideBtn(true)
+    alert('wait')
     try{
 		if(otp==one)
 		{
 		const data = {email,password}
-	   axios.post('/api/post/forgot',data).then(res=>{
+	  const res = await axios.post('/api/post/forgot',data)
 		toast.success('Password Changed', {
 		  position: "top-right",
 		  autoClose: 2000,
@@ -93,7 +111,6 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
     setLoader(false)
     setHideBtn(false)
 		router.push('/')
-	  })
 	}else{
     setHideBtn(false)
 	  toast.error('OTP error :(', {
@@ -112,7 +129,7 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
 	  setBtnToggle(false)
 	}
 }catch(e){
-  toast.error('OTP error :(', {
+  toast.error('Network Error', {
 		position: "top-right",
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -134,18 +151,17 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
 
     e.preventDefault()
     try{
+    alert('wait')
 		setLoader(true)
     setHideBtn(true)
 		setBtnToggle(true)
-      
-        if(otp==one)
-        { 
-          alert('Wait......')
-            const data = { email, password, firstname, lastname,_id,number,address,cnic };
-           let res = await axios.post("/api/post/referralsignup", data)
-                if(res.data.msg=='success')
-                {
-                  toast.success("Successfully signup", {
+    if(otp==one)
+    { 
+        const data = { email, password,cpassword, firstname, lastname,_id,number,address,cnic };
+        let res = await axios.post("/api/post/referralsignup", data)
+            if(res.data.success==true)
+            {
+              toast.success("Successfully signup", {
                           position: "top-right",
                           autoClose: 2000,
                           hideProgressBar: false,
@@ -158,12 +174,9 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
                         setLoader(false)
                         router.push('/')
                         setHideBtn(false)
-                      // setTimeout(() => {
-                      //   window.location.replace('/')
-                      // }, 2000);
                 }
-                if(res.data.error=="Invite Link broken")
-                {
+            else 
+           {
 					setSwitchUI(false)
           setLoader(false)
           setHideBtn(false)
@@ -178,26 +191,27 @@ const OtpPage = ({email,password,number,firstname,lastname,cpassword,otp,setSwit
                     theme: "colored",
                   });
                 }  
-          }else{
-            setone('')
-            toast.error('OTP error :(', {
-              position: "top-right",
-              autoClose: 4000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
+    } else{
+      setone('')
+      toast.error('OTP error :(', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 			setSwitchUI(false)
       setLoader(false)
       setHideBtn(false)
 
-          }
+    }
+    
     }catch(e)
     {
-      toast.error('OTP error :(', {
+      toast.error('Network Error', {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,

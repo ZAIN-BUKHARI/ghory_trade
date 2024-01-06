@@ -5,16 +5,13 @@ import User from '../../../models/User'
 const handler= async (req, res)=> {
     if(req.method=='POST'){
        const {email}=req.body
-       let a = Math.random(5)
-       a = a.toString().slice(2,6)
-       try{ 
+        let a = Math.random(5)
+        a = a.toString().slice(2,6)
         let user = await User.findOne({email:email})
-        if(user.email==email)
+        if(user!=null)
         {
-            res.status(200).json({error:"Email must be unique"})
-        }
-       }
-       catch(error){
+            res.status(200).json({error:"Account already created",success:false})
+        }else{
         let transporter = nodemailer.createTransport({
             port: 465,
             host: "smtp.gmail.com",
@@ -24,20 +21,17 @@ const handler= async (req, res)=> {
               pass: `${process.env.NODE_MAILER_PASS}`
                     },
              secure: true,
-
         });
         await new Promise((resolve, reject) => {
                     // verify connection configuration
                     transporter.verify(function (error, success) {
                         if (error) {
-                            console.log(error);
                             reject(error);
                         } else {
-                            console.log("Server is ready to take our messages");
                             resolve(success);
                         }
                     });
-                });
+        });
         let mailData = {
             from: `${process.env.NODE_MAILER_USER}`, 
             to: `${email}`,
@@ -50,16 +44,16 @@ const handler= async (req, res)=> {
         transporter.sendMail(mailData, (err, info) => {
             if (err) {
                 // console.error(err);
-                // reject(err);
+                reject(err);
                 res.status(200).json({success:false})
             } else {
              res.status(200).json({otp:a,success:true})
              // resolve(info);
             }
         });
-    });
-            res.status(200).json({otp:a,success:true})
-       }
+        });
+        res.status(200).json({otp:a,success:true})
+    }
 }
 else{
 

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { ThemeContext } from '../../Context/ThemeContext'
 import OtpPage from '../OTP/Otp'
+import { toast } from "react-toastify";
 
 const ForgotPage = () => {
     const {setLoader} = useContext(ThemeContext)
@@ -13,9 +14,10 @@ const ForgotPage = () => {
     const [switchUI,setSwicthUI]=useState(false)
     const [toggle,setToggle]=useState("password")
   
-  const forgot = (e) =>{
+  const forgot =async (e) =>{
     setLoader(true)
-    axios.get(`/api/post/otp?email=${email}`).then((res) => {
+    try{
+    const res = await axios.get(`/api/post/otp?email=${email}`)
       if (res.data.success == true) {
         setLoader(false)
         setotp(res.data.otp)
@@ -33,7 +35,21 @@ const ForgotPage = () => {
           theme: "colored",
         });
       }
-    }).catch(e=>{alert('Check your network');setLoader(false)});
+    }catch(e)
+    {
+      setLoader(false)
+      toast.error('Network Error', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
   }
 
   const showHidePass=()=>{

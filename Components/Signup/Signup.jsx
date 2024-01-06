@@ -26,21 +26,26 @@ const SingupPage = () => {
         
       }
 
-    const signup = (e) => {
+    const signup =async (e) => {
         e.preventDefault();
         setLoader(true)
-        try{
-          if(email.includes("@"))
+        try{   
+        const data = { email };
+        if(!email.includes('@'))
         {
-        if(email.length!=""  && firstname.length!="" && lastname.length!="")
-        {
-        
-        if(password==cpassword)
-        {    
-        setLoader(true)
-        if(password.length>=10){
-        const data = { email, password, firstname, lastname, cpassword };
-        axios.post("/api/post/otp", data).then((res) => {
+          setLoader(false)
+          toast.error('Email is not correct', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }else{
+        const res = await axios.post("/api/post/otp", data)
           if (res.data.success == true) {
             setLoader(false)
             setOtp(res.data.otp);
@@ -58,64 +63,20 @@ const SingupPage = () => {
               theme: "colored",
             });
           }
-        })
-      }
-    else{
-      setLoader(false)
-      toast.error('Password must be 10 characters', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-    }
-    else{
-      setLoader(false)
-      toast.error('Password not match', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-    
-  }else{
+        }
+  }catch(e){
     setLoader(false)
-      toast.error('Please fill the form', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+    toast.error('Network Error', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
-}else{
-  setLoader(false)
-      toast.error('Email is not Correct', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-}
-
-  }catch(e){alert('Check your network');setLoader(false)}
       };
      
   return (

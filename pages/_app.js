@@ -335,11 +335,7 @@ function getBalanceCurrent()
 }
 async function achievementAttributes()
 {
-<<<<<<< HEAD
    axios.get('/api/get/noofusers').then(res=>{setusers(res.data.users)})
-=======
-  //  axios.get('/api/get/noofusers').then(res=>{setusers(res.data.users)})
->>>>>>> origin/main
     axios.get('/api/sell/get').then(res=>{setsell(res.data.sell)})
     axios.get('/api/buy/get').then(res=>{setbuy(res.data.buy)})
     // axios.get('/api/get/allinvestment').then(res=>{setinvestment(res.data.investment)})
