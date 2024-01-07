@@ -162,7 +162,7 @@ const Withdrawal = () => {
                   <option value={"OKX"}>OKX TRC20</option>
                   <option value={"EASYPAISA"}>EASYPAISA</option>
                   <option value={"NAYAPAY"}>NAYAPAY</option>
-                  <option value={"BANK"}>Al-BARAKA</option>
+                  <option value={"BANK"}>BANK</option>
                   {/* <option value={"WALLET"}>WALLET</option>  */}
                 </select>
 

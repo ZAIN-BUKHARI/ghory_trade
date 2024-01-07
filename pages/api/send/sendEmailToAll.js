@@ -4,6 +4,7 @@ import {joinDate} from '../../../Api_utils/statusfn'
 import User from '../../../models/User'
 const handler= async (req, res)=> {
     if(req.method=='GET'){
+        try{
         let allUsers = await User.find({subscription:"yes"})
         for(let i=0;i<allUsers.length;i++)
         {
@@ -47,8 +48,12 @@ const handler= async (req, res)=> {
     });
             // res.status(200).json({success:true})
         }
-        
             res.status(200).json({success:true})
+        }
+        catch(e)
+        {
+            res.status(200).json({success:false})
+        }
        
 }
 

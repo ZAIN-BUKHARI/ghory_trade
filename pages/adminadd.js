@@ -52,7 +52,7 @@ const addProducts = () => {
 
 
  
-  const submitLinks = () =>{
+const submitLinks = () =>{
     try{
       setLoader(true)
       const data = {
@@ -70,8 +70,11 @@ const addProducts = () => {
         setlength1('');setlength2('');setlength3('');setlength4('')
         setlength5('');setlength6('');setlength7('');setlength8('')
         setlength9('');setlength10('')
-        axios.get('/api/send/sendEmailToAll').then();
+        router.push('/')
+        setTimeout(() => {
         window.location.reload()
+        }, 1000);
+
       }else{
           setLoader(false)
           alert('Error try again')
@@ -81,23 +84,9 @@ const addProducts = () => {
     setLoader(false)
     alert('Error server down contact developer for inspection')
   }
-  }
-  const addperdayprofit = () =>{
-
-    let confirmation = confirm('Are you sure. You want to Add Profit')
-    if(confirmation){
-      setLoader(true)
-      axios.get('/api/admin/bonace').then(res=>{
-        if(res.data==true)
-        {
-          setLoader(false)
-          alert('Profit Added to your all clients')
-        }
-      })
-    }
-  }
+}
   
-  const currencyRate = () =>{
+const currencyRate = () =>{
     const data = {buyRate}
     try{
 
@@ -115,8 +104,9 @@ const addProducts = () => {
   {
     alert('Server error caught successfully try again')
   }
-  }
-  const currencyRateSelrate = () =>{
+}
+
+const currencyRateSelrate = () =>{
     const data = {sellRate}
     try{
 
@@ -134,9 +124,29 @@ const addProducts = () => {
   {
     alert('Server error caught successfully try again')
   }
-  }
- 
-  
+}
+
+const sendEmailtoAllUsers = async()=>{
+    let response = confirm('Are you sure you want to send email')
+    if(response)
+    {
+
+     try{
+      const res  = await axios.get('/api/send/sendEmailToAll');
+      if(res.data.true)
+      {
+        alert('Done');
+      }else{
+      alert('Network Error')
+      }
+     }catch(e)
+     {
+      alert('Network Error')
+     }
+    }
+
+}
+   
 const Update =async () =>{
     setLoader(true)
     let res = await axios.get('/api/get/links')
@@ -163,6 +173,7 @@ const Update =async () =>{
     setlength10(res.data.links[0].links[9].length)
     setLoader(false)
 }
+
 const updateLinkmethod = () =>{
   setLoader(true)
   const data = {
@@ -193,11 +204,12 @@ const updateLinkmethod = () =>{
     setLoader(false)
   }
 }
+
 const fivePercent = () =>{
     setFIVE((FIVE*5)/100)
 }
 
-  if(Admin){
+if(Admin){
     return (
       
       <ThemeProvider theme={theme}>
@@ -298,21 +310,21 @@ const fivePercent = () =>{
         </BaseCard>
       </Grid>
     </Grid>
-    {/* <Grid container spacing={0}>
-        <h1 className='text-3xl font-bold text-blue-500 text-center' >ADD PERDAYPROFIT TO ALL</h1>
+     <Grid container spacing={0}>
+        <h1 className='text-3xl font-bold text-blue-500 text-center' >Send Email</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
           <Stack spacing={3}>
           </Stack>
           <br />
-          <Button onClick={addperdayprofit} variant="outlined" mt={2}>
-            Add
+          <Button onClick={sendEmailtoAllUsers} variant="outlined" mt={2}>
+            Send Email 
           </Button>
           
         </BaseCard>
       </Grid>
-    </Grid> */}
-    {/* <Grid container spacing={0}>
+    </Grid> 
+     <Grid container spacing={0}>
         <h1 className='text-3xl font-bold text-blue-500 text-center' >5% CALCULATOR</h1>
       <Grid item xs={12} lg={12}>
         <BaseCard >
@@ -327,7 +339,7 @@ const fivePercent = () =>{
           
         </BaseCard>
       </Grid>
-    </Grid> */}
+    </Grid> 
   
 {/* DELETE OLD LINKS  */}
 {!mobile && (
