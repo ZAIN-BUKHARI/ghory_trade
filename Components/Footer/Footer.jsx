@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 const Footer = () => {
   const router = useRouter()
   
-  if(!router.asPath.includes('/admin') )
+  if(!router.asPath.includes('/admin') && !router.asPath.includes('/admin') )
     return (
       <>
       

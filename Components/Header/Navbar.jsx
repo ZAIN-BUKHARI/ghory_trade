@@ -58,7 +58,7 @@ async  function fetchDailyWork()
   
   // dd 
  
-  if(!router.asPath.includes('/admin'))
+  if(!router.asPath.includes('/admin') && !router.asPath.includes('/maintenance'))
   {
 
   return (

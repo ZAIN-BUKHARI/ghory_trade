@@ -20,7 +20,7 @@ const handler= async (req, res)=> {
             return new Date(year, month - 1, day); // Note: Months are 0-based
           }
         
-          const todayDate = parseCustomDateFormat('22/10/2023'); // Note: Months are 0-based (8 represents September)
+          const todayDate = parseCustomDateFormat(req.body.format); // Note: Months are 0-based (8 represents September)
            const oneYearSalaryPlan = generateOneYearSalaryPlan(todayDate);
            res.status(200).send({"plan":oneYearSalaryPlan})
         

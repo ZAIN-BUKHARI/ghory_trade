@@ -27,6 +27,7 @@ import Toastify from '../UI-Compoents/Toastify';
 import axios from 'axios';
 import Navbar from '../Components/Header/Navbar';
 import Footer from '../Components/Footer/Footer';
+import Maintenance from '../Components/Maintenance/Maintenance';
 
 
 
@@ -446,11 +447,15 @@ const schedulingTime = '0 0 0 * * *'
     else 
       setOpenModal(false)
   }
+
+  //maintenance mode status 
+  const [maintenance,setMaintenance]=useState(true);
     
 
   return(
 <>
-<ThemeContext.Provider value={{allLinks,users,sell,buy,workUploadedDate,setworkUploadedDate,linktoLevel,setlinktoLevel,dailyWork,setdailyWork,fetchDailyWork,openModal,setOpenModal,toggleModal,logout,planCount,review,commission,yourinvestment,isLogin,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,Userid,views,level,Uname,perDayProfit,setLoader,setbalance,balance,router,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
+  {maintenance  && <Maintenance/>}
+  {!maintenance && <ThemeContext.Provider value={{allLinks,users,sell,buy,workUploadedDate,setworkUploadedDate,linktoLevel,setlinktoLevel,dailyWork,setdailyWork,fetchDailyWork,openModal,setOpenModal,toggleModal,logout,planCount,review,commission,yourinvestment,isLogin,rank,teamlength,getBalanceCurrent,videoID,setvideoID,Length,setLength,usman,Userid,views,level,Uname,perDayProfit,setLoader,setbalance,balance,router,setAdmin,Admin,token,settoken,user,email,subscription,workStatus,getAllCustomers,customers,requests,getAllRequests,PostComment,SubscribeChannel,channel,getVideoInfo,videoTitle,videoLinks,getTenvideos,mobile,adminallusers,getAllUsers,setusersearchresults,usersearchresults,adminallplans,getAllPlans,planssearchresults,setplanssearchresults,allrequests,setallrequests,getAllRequest,searchrequestresults,setsearchrequestresults,getUser}}>
     <Toastify angle={"top-right"}/>
     <LoadingBar color='#ffdb1a' progress={progress} waitingTime={400} onLoaderFinished={() => setProgress(0)}/>
     <Navbar/>
@@ -458,7 +463,7 @@ const schedulingTime = '0 0 0 * * *'
     {loader && <Loading/>}
     <Component  {...pageProps} />
     <Footer/>
-</ThemeContext.Provider>
+</ThemeContext.Provider>}
   </>
   )
 }

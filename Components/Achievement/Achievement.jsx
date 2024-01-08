@@ -25,7 +25,7 @@ const AchievementsSection = () => {
     {
       // postfix: "~",
       metric: "Users",
-      value: users,
+      value: 726,
     },
     {
       metric: "Buy",
