@@ -56,7 +56,8 @@ const handler= async (req, res)=> {
                 links:[links1,links2,links3,links4,links5,links6,links7,links8,links9,links10],
                 date:formattedToday.toString()
             })
-            await p.save()
+            await Video.deleteMany()
+            await p.save();
             res.status(200).json({ success:true })
         }
         catch(error)
