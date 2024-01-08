@@ -449,7 +449,7 @@ const schedulingTime = '0 0 0 * * *'
   }
 
   //maintenance mode status 
-  const [maintenance,setMaintenance]=useState(true);
+  const [maintenance,setMaintenance]=useState(false);
     
 
   return(
